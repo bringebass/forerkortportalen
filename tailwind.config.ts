@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: [
@@ -8,13 +9,55 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1.5rem",
+          sm: "1.5rem",
+          lg: "2.5rem",
+          xl: "3.5rem",
+        },
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+        display: ["var(--font-space-grotesk)", ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        brand: {
+          50: "#f4f7ff",
+          100: "#e4edff",
+          200: "#c9d8ff",
+          300: "#a3bbff",
+          400: "#7b95ff",
+          500: "#5f73f2",
+          600: "#4c58d9",
+          700: "#3942b0",
+          800: "#2c348c",
+          900: "#252c72",
+        },
+        accent: {
+          50: "#f0fdfa",
+          100: "#ccfbf1",
+          200: "#99f6e4",
+          300: "#5eead4",
+          400: "#2dd4bf",
+          500: "#14b8a6",
+          600: "#0d9488",
+          700: "#0f766e",
+          800: "#115e59",
+          900: "#134e4a",
+        },
+      },
+      boxShadow: {
+        card: "0 20px 45px -25px rgba(15, 23, 42, 0.35)",
+        subtle: "0 12px 30px -20px rgba(15, 23, 42, 0.35)",
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "hero-radial":
+          "radial-gradient(circle at top, rgba(95,115,242,0.25), transparent 55%)",
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
 export default config;

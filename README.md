@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Førerkortportalen – leadgen for trafikkskoler
 
-## Getting Started
+Moderne Next.js-applikasjon som samler inn leads til norske trafikkskoler. Løsningen er optimalisert for mobil, prioritere skjemaet øverst og kombinerer informasjonsinnhold for SEO med et tydelig handlingsforløp.
 
-First, run the development server:
+### Teknologistack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Next.js 14 (App Router) med React Server Components
+- TypeScript og Tailwind CSS (inkl. `@tailwindcss/forms`)
+- MongoDB Atlas med Mongoose for lagring av leads
+- API Route (`app/api/leads`) for sikker mottak av skjema
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Kom i gang
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Installer avhengigheter
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. Kopier miljøvariabler
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   cp env.local.example .env.local
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Fyll inn `MONGODB_URI` (inkl. bruker/passord) og eventuelt `MONGODB_DB`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Start utviklingsserver
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Åpne [http://localhost:3000](http://localhost:3000).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Skjema og API
+
+- Skjemaet finner du øverst på forsiden (`LeadForm`) og er optimalisert for mobil.
+- Innsendte data sendes til `POST /api/leads` og valideres både i klient og på server.
+- Feltvalidering håndteres med Zod (`leadSchema`).
+- Lead lagres i MongoDB via `mongoose`. Justér modell i `src/lib/models/Lead.ts`.
+
+For produksjon bør du opprette en MongoDB Atlas-kluster i EU (f.eks. Frankfurt), og legge inn tilkoblingsstrengen på Vercel som `MONGODB_URI`.
+
+### SEO
+
+- Metadata er satt for Førerkortportalen inkludert Open Graph, Twitter og kanonisk URL.
+- Strukturerte data (`WebSite` og `FAQPage`) leveres som JSON-LD gjennom `next/script`.
+- Innhold inneholder relevante nøkkelord for norske trafikkskoler, intensivkurs, førerkortklasser m.m.
+
+### Scripts
+
+| Kommando        | Beskrivelse                      |
+| --------------- | -------------------------------- |
+| `npm run dev`   | Kjører utviklingsserver          |
+| `npm run build` | Prodbygger Next.js               |
+| `npm run start` | Kjører produsert build           |
+| `npm run lint`  | ESLint via Next.js-konfigurasjon |
+
+### Deploy
+
+Deploy til Vercel via ett Next.js-prosjekt. Husk å legge inn `MONGODB_URI` og `MONGODB_DB` som miljøvariabler, og aktiver produksjonsdatabasen før du åpner skjemaet for trafikk. README gjelder også for staging-miljøer.*** End Patch```} bố
