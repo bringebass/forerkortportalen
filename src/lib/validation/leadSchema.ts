@@ -16,9 +16,11 @@ export const leadSchema = z.object({
   preferredContact: z.enum(["telefon", "epost"]),
   trafficCourseStatus: z.enum(["fullfort", "pagar", "ikke"]),
   message: z.string().max(800).optional().or(z.literal("")),
-  marketingConsent: z.literal(true, {
-    errorMap: () => ({ message: "Du må godta samtykke for å sende skjemaet." }),
-  }),
+  marketingConsent: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "Du må godta samtykke for å sende skjemaet.",
+    }),
   sourcePage: z
     .string()
     .default("forerkorttilbud.no")
