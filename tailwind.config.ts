@@ -19,8 +19,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
-        display: ["var(--font-space-grotesk)", ...defaultTheme.fontFamily.sans],
+        sans: ["var(--font-plus-jakarta-sans)", ...defaultTheme.fontFamily.sans],
+        display: ["var(--font-plus-jakarta-sans)", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         brand: {

@@ -3,8 +3,8 @@
 import { useMemo, useState } from "react";
 
 const licenseOptions = [
-  { value: "B", label: "Klasse B" },
-  { value: "B_AUT", label: "B automat" },
+  { value: "B", label: "B automat (vanlig førerkort)" },
+  { value: "B_AUT", label: "Klasse B" },
   { value: "B96", label: "B96 / B med henger" },
   { value: "BE", label: "Klasse BE" },
   { value: "A", label: "Klasse A" },
@@ -25,14 +25,6 @@ const trafficCourseOptions = [
   { value: "fullfort", label: "Kurs fullført" },
   { value: "pagar", label: "Pågår" },
   { value: "ikke", label: "Trenger kurs" },
-];
-
-const stepQuestions = [
-  "Hvor i Norge trenger du tilbud?",
-  "Hvilken førerkortklasse gjelder forespørselen?",
-  "Når ønsker du å starte?",
-  "Tilpass opplæringen",
-  "Hvordan kontakter vi deg?",
 ];
 
 type FormState = {
@@ -63,6 +55,62 @@ const defaultState: FormState = {
   marketingConsent: false,
 };
 
+// Step configuration - change the order here to reorder the form steps
+// Each step type is automatically matched with its question and validator
+const STEP_ORDER = [
+    "licenseType",    // Step 1
+  "postalCode",      // Step 0
+  "startDate",      // Step 2
+  "preferences",    // Step 3 (traffic course + intensive)
+  "contactInfo",    // Step 4
+] as const;
+
+// Step definitions - each step type has its question and validator
+const STEP_CONFIG = {
+  postalCode: {
+    question: "Hvor i Norge trenger du tilbud?",
+    validator: (formData: FormState) =>
+      /^\d{4}$/.test(formData.postalCode)
+        ? null
+        : "Oppgi et norsk postnummer (fire siffer).",
+  },
+  licenseType: {
+    question: "Hvilken førerkortklasse gjelder forespørselen?",
+    validator: (formData: FormState) =>
+      formData.licenseType ? null : "Velg hvilken klasse du trenger.",
+  },
+  startDate: {
+    question: "Når ønsker du å starte?",
+    validator: (formData: FormState) =>
+      formData.startDate ? null : "Velg ønsket oppstart.",
+  },
+  preferences: {
+    question: "Tilpass opplæringen",
+    validator: (formData: FormState) =>
+      formData.trafficCourseStatus && formData.intensiveCourse
+        ? null
+        : "Fortell om grunnkurs og intensivbehov.",
+  },
+  contactInfo: {
+    question: "Hvordan kontakter vi deg?",
+    validator: (formData: FormState) => {
+      if (formData.fullName.trim().length < 3) {
+        return "Oppgi fullt navn.";
+      }
+      if (!/.+@.+\..+/.test(formData.email)) {
+        return "Oppgi en gyldig e-postadresse.";
+      }
+      if (!/^\d{8,}$/.test(formData.phone.replace(/\s+/g, ""))) {
+        return "Telefonnummeret må ha minst åtte siffer.";
+      }
+      if (!formData.marketingConsent) {
+        return "Godta samtykke for å sende inn.";
+      }
+      return null;
+    },
+  },
+} as const;
+
 type Status = "idle" | "loading" | "success" | "error";
 
 export function LeadForm() {
@@ -78,7 +126,7 @@ export function LeadForm() {
     return date.toISOString().split("T")[0];
   }, []);
 
-  const progress = ((currentStep + 1) / stepQuestions.length) * 100;
+  const progress = ((currentStep + 1) / STEP_ORDER.length) * 100;
 
   const handleChange = (
     event:
@@ -109,37 +157,10 @@ export function LeadForm() {
     { label: "Om 1–2 mnd", offset: 45 },
   ];
 
-  const validators: Array<() => string | null> = [
-    () =>
-      /^\d{4}$/.test(formData.postalCode)
-        ? null
-        : "Oppgi et norsk postnummer (fire siffer).",
-    () => (formData.licenseType ? null : "Velg hvilken klasse du trenger."),
-    () => (formData.startDate ? null : "Velg ønsket oppstart."),
-    () =>
-      formData.trafficCourseStatus && formData.intensiveCourse
-        ? null
-        : "Fortell om grunnkurs og intensivbehov.",
-    () => {
-      if (formData.fullName.trim().length < 3) {
-        return "Oppgi fullt navn.";
-      }
-      if (!/.+@.+\..+/.test(formData.email)) {
-        return "Oppgi en gyldig e-postadresse.";
-      }
-      if (!/^\d{8,}$/.test(formData.phone.replace(/\s+/g, ""))) {
-        return "Telefonnummeret må ha minst åtte siffer.";
-      }
-      if (!formData.marketingConsent) {
-        return "Godta samtykke for å sende inn.";
-      }
-      return null;
-    },
-  ];
-
   const validateStep = () => {
-    const validator = validators[currentStep];
-    const error = validator ? validator() : null;
+    const stepType = STEP_ORDER[currentStep];
+    const stepConfig = STEP_CONFIG[stepType];
+    const error = stepConfig ? stepConfig.validator(formData) : null;
     setStepError(error);
     return !error;
   };
@@ -158,7 +179,7 @@ export function LeadForm() {
       return;
     }
 
-    if (currentStep < stepQuestions.length - 1) {
+    if (currentStep < STEP_ORDER.length - 1) {
       setCurrentStep((prev) => prev + 1);
       return;
     }
@@ -193,8 +214,10 @@ export function LeadForm() {
   };
 
   const renderStepContent = () => {
-    switch (currentStep) {
-      case 0: {
+    const stepType = STEP_ORDER[currentStep];
+    
+    switch (stepType) {
+      case "postalCode": {
         return (
           <div className="space-y-3">
             <label htmlFor="postalCode" className="sr-only">
@@ -211,12 +234,12 @@ export function LeadForm() {
               value={formData.postalCode}
               onChange={handleChange}
               className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500"
-              placeholder="F.eks. 0550"
+              placeholder="Postnummer"
             />
           </div>
         );
       }
-      case 1: {
+      case "licenseType": {
         return (
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -243,7 +266,7 @@ export function LeadForm() {
           </div>
         );
       }
-      case 2: {
+      case "startDate": {
         return (
           <div className="space-y-4">
             <label htmlFor="startDate" className="sr-only">
@@ -280,7 +303,7 @@ export function LeadForm() {
           </div>
         );
       }
-      case 3: {
+      case "preferences": {
         return (
           <div className="space-y-4">
             <div>
@@ -339,7 +362,7 @@ export function LeadForm() {
           </div>
         );
       }
-      case 4: {
+      case "contactInfo": {
         return (
           <div className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
@@ -352,7 +375,7 @@ export function LeadForm() {
                   autoComplete="name"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500"
+                  className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500 ml-2"
                   placeholder="F.eks. Nora Hansen"
                 />
               </div>
@@ -366,7 +389,7 @@ export function LeadForm() {
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500"
+                  className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500 ml-2"
                   placeholder="9X XX XX XX"
                 />
               </div>
@@ -381,12 +404,12 @@ export function LeadForm() {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500"
+                className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500 ml-2"
                 placeholder="navn@epost.no"
               />
             </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 flex flex-col gap-2">
               <label htmlFor="message">Tilleggsinfo (valgfritt)</label>
               <textarea
                 id="message"
@@ -421,11 +444,11 @@ export function LeadForm() {
   };
 
   return (
-    <div className="w-full rounded-3xl bg-white p-5 shadow-2xl ring-1 ring-slate-200 sm:p-8">
+    <div className="w-full rounded-none bg-white p-5 sm:rounded-3xl shadow-2xl sm:ring-1 sm:ring-slate-100 sm:p-8">
       <div className="mb-4">
         <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-widest text-slate-500">
           <span>
-            Steg {currentStep + 1} av {stepQuestions.length}
+            Steg {currentStep + 1} av {STEP_ORDER.length}
           </span>
           <span>{Math.round(progress)}%</span>
         </div>
@@ -437,8 +460,8 @@ export function LeadForm() {
         </div>
       </div>
 
-      <h3 className="mb-6 text-xl font-display font-semibold text-slate-900 sm:text-2xl">
-        {stepQuestions[currentStep]}
+      <h3 className="m-3 text-xl font-display font-semibold text-slate-900 sm:text-2xl">
+        {STEP_CONFIG[STEP_ORDER[currentStep]]?.question}
       </h3>
 
       <form className="space-y-5" onSubmit={handleSubmit}>
@@ -475,7 +498,7 @@ export function LeadForm() {
             type="button"
             onClick={handleBack}
             disabled={currentStep === 0 || status === "loading"}
-            className="rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+            className="bg-gray-200 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Tilbake
           </button>
@@ -486,7 +509,7 @@ export function LeadForm() {
           >
             {status === "loading"
               ? "Sender inn..."
-              : currentStep === stepQuestions.length - 1
+              : currentStep === STEP_ORDER.length - 1
                 ? "Send forespørsel"
                 : "Neste"}
             <span

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
 export function Navbar() {
@@ -14,19 +13,11 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm">
+    <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm bg-gray-50 sm:bg-white">
       <div className="container flex items-center justify-between py-4">
-        <a href="/" className="flex items-center gap-3 text-slate-900">
-          <Image
-            src="/favicon.png"
-            alt="Førerkortportalen ikon"
-            width={32}
-            height={32}
-            className="rounded-full"
-          />
-          <span className="text-xl font-bold hover:text-brand-600 transition">
-            Førerkortportalen
-          </span>
+        <a href="/" className="text-xl font-bold transition">
+          <span className="text-[#00895F]">Fører</span>
+          <span className="text-slate-900">kortportalen</span>
         </a>
 
         {/* Desktop Navigation */}
@@ -40,12 +31,7 @@ export function Navbar() {
               {item.label}
             </a>
           ))}
-          <a
-            href="#skjema"
-            className="rounded-full bg-[#00895F] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0A6F50]"
-          >
-            Fyll ut skjema
-          </a>
+        
         </div>
 
         {/* Mobile Menu Button */}
@@ -74,25 +60,19 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white">
+        <div className="lg:hidden border-t border-slate-200 bg-gray-200">
           <div className="container py-4 space-y-3">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block text-sm font-medium text-slate-700 hover:text-brand-600 transition py-2"
+                className="block text-sm font-bold text-slate-700 hover:text-brand-600 transition py-2"
               >
                 {item.label}
               </a>
             ))}
-            <a
-              href="#skjema"
-              onClick={() => setIsOpen(false)}
-              className="block rounded-full bg-[#00895F] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0A6F50] text-center"
-            >
-              Fyll ut skjema
-            </a>
+          
           </div>
         </div>
       )}

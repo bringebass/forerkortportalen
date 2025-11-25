@@ -106,9 +106,9 @@ export default function Home() {
         {JSON.stringify(faqJsonLd)}
       </Script>
       <Navbar />
-      <section className="relative flex min-h-[600px] items-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+      <section className="relative flex min-h-[400px] items-center overflow-hidden bg-white lg:bg-transparent">
+        {/* Background Image - Hidden on mobile */}
+        <div className="absolute inset-0 z-0 hidden lg:block">
           <Image
             src="/bg-photo.png"
             alt=""
@@ -121,10 +121,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-slate-900/60" />
         </div>
 
-        <div className="container relative z-10 py-16 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
-            {/* Left side - Content */}
-            <div className="space-y-6 text-white">
+        <div className="relative z-10 w-full lg:container lg:py-20">
+          <div className="flex flex-col lg:grid lg:grid-cols-[1fr_1fr] lg:gap-10 lg:items-center">
+            {/* Left side - Content - Hidden on mobile */}
+            <div className="hidden space-y-6 text-white lg:block">
               <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
                 Sammenlign tilbud fra flere trafikkskoler
               </h1>
@@ -147,24 +147,33 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right side - Form */}
+            {/* Mobile: Only show heading above form */}
+            <div className="lg:hidden">
+              <h1 className="pt-6 px-6 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
+                Sammenlign tilbud fra flere trafikkskoler
+              </h1>
+            </div>
+
+            {/* Form - Full width on mobile with borders */}
             <div
               id="skjema"
-              className="mx-auto w-full max-w-[95vw] sm:max-w-md lg:mx-0"
+              className=" bg-white pb-6 lg:mx-auto lg:max-w-md lg:border-0 lg:bg-transparent lg:py-0"
             >
-              <LeadForm />
+              <div className=" lg:px-0">
+                <LeadForm />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="hvordan" className="bg-white py-16 sm:py-20">
+      <section id="hvordan" className="bg-white py-16 sm:py-20 font-sans">
         <div className="container space-y-8">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
               Slik fungerer det
             </p>
-            <h2 className="mt-2 text-3xl font-semibold text-slate-900">
+            <h2 className="mt-2 text-3xl font-semibold text-slate-900 font-display">
               Tre steg fra behov til konkrete tilbud
             </h2>
           </div>
@@ -177,7 +186,7 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-500">
                   Steg {index + 1}
                 </p>
-                <h3 className="mt-2 text-xl font-semibold text-slate-900">
+                <h3 className="mt-2 text-xl font-semibold text-slate-900 font-display">
                   {step.title}
                 </h3>
                 <p className="mt-2 text-sm text-slate-600">{step.description}</p>
@@ -298,19 +307,16 @@ export default function Home() {
       <footer className="border-t border-slate-100 bg-white py-8 text-sm text-slate-500">
         <div className="container flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3 text-slate-900">
-            <Image
-              src="/favicon.png"
-              alt="Førerkortportalen ikon"
-              width={30}
-              height={30}
-              className="rounded-full"
-            />
             <p className="font-semibold">
-              Førerkortportalen • Sammenlign trafikkskoler i Norge
+              <span className="text-[#00895F]">Fører</span>
+              <span className="text-slate-900">kortportalen</span>
+              {" • "}Sammenlign trafikkskoler i Norge
             </p>
           </div>
           <p>
-            © {new Date().getFullYear()} Førerkortportalen. Tjenesten er
+            © {new Date().getFullYear()}{" "}
+            <span className="text-[#00895F]">Fører</span>
+            <span className="text-slate-900">kortportalen</span>. Tjenesten er
             uforpliktende, og data lagres sikkert i norsk sky.
           </p>
         </div>
