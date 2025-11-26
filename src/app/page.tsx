@@ -163,12 +163,9 @@ export default function Home() {
         <div className="relative z-10 flex min-h-[400px] w-full items-center justify-center px-4 py-4 sm:px-6 sm:py-8 lg:min-h-[820px] lg:px-8 lg:py-28">
           <div className="flex w-full max-w-[1300px] flex-col gap-6 sm:gap-12 lg:flex-row lg:items-center">
             <div className="space-y-4 sm:space-y-6 lg:w-[50%]">
-              <h1 className="text-center text-[42px] font-semibold leading-[1.15] text-slate-900 sm:text-left sm:text-[48px] lg:text-[54px] lg:text-white">
+              <h1 className="hidden text-center text-[42px] font-semibold leading-[1.15] text-slate-900 sm:block sm:text-left sm:text-[48px] lg:text-[54px] lg:text-white">
                 Spar penger og finn riktig trafikkskole for deg
               </h1>
-              <p className="text-center text-sm text-slate-600 sm:hidden">
-                Helt gratis og uforpliktende
-              </p>
               <p className="hidden text-base text-slate-600 sm:block sm:text-lg lg:text-white/85">
                 Del behovet ditt én gang – vi kobler deg med kvalitetssikrede
                 trafikkskoler i området ditt slik at du kan sammenligne priser,
@@ -196,35 +193,34 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="hvordan" className="bg-white pt-10 pb-16 sm:pt-12 sm:pb-20 font-sans">
-        <div className="container mx-auto max-w-[1300px] space-y-10 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl text-center mx-auto space-y-3">
-            <div className="inline-flex items-center justify-center rounded-full bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700">
-              <Sparkles className="mr-2 h-4 w-4" />
-              Slik fungerer tjenesten
-            </div>
-            <h2 className="text-[32px] font-semibold text-slate-900 font-display">
+      <section id="hvordan" className="bg-slate-50 pt-16 pb-20 sm:pt-20 sm:pb-24 font-sans">
+        <div className="container mx-auto max-w-[1300px] space-y-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl text-center mx-auto space-y-4">
+            <h2 className="text-[32px] font-semibold text-slate-900 sm:text-[36px]">
               Tre steg fra behov til konkrete tilbud
             </h2>
+            <p className="text-base text-slate-600 sm:text-lg">
+              Enkel prosess som gir deg oversikt over tilgjengelige trafikkskoler
+            </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
             {steps.map((step, index) => (
               <article
                 key={step.title}
-                className="rounded-3xl border border-slate-100 bg-white p-5 shadow-subtle transition hover:-translate-y-1 hover:shadow-card"
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
               >
-                <div className="flex items-center justify-between">
-                  <div className="rounded-2xl bg-brand-50 p-3 text-brand-600">
-                    <step.icon className="h-5 w-5" />
+                <div className="flex items-center justify-between mb-4">
+                  <div className="rounded-2xl bg-slate-900/10 p-3 text-slate-900">
+                    <step.icon className="h-6 w-6" />
                   </div>
-                  <span className="rounded-full bg-slate-50 px-3 py-1 text-sm font-semibold text-slate-600">
+                  <span className="rounded-full bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-700">
                     Steg {index + 1}
                   </span>
                 </div>
-                <h3 className="mt-4 text-xl font-semibold text-slate-900 font-display">
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">{step.description}</p>
+                <p className="text-base text-slate-600 leading-relaxed">{step.description}</p>
               </article>
             ))}
           </div>
@@ -233,28 +229,31 @@ export default function Home() {
 
       <DrivingSchoolList />
 
-      <section id="klasser" className="bg-slate-50 py-16 sm:py-20">
-        <div className="container mx-auto max-w-[1300px] space-y-10 px-4 sm:px-6 lg:px-8">
+      <section id="klasser" className="bg-white py-16 sm:py-20">
+        <div className="container mx-auto max-w-[1300px] space-y-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <h2 className="text-3xl font-semibold text-slate-900">
+            <h2 className="text-[32px] font-semibold text-slate-900 sm:text-[36px]">
               Kort om de vanligste klassene
             </h2>
+            <p className="mt-3 text-base text-slate-600 sm:text-lg">
+              Oversikt over de mest populære førerkortklassene og hva de innebærer
+            </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
             {licenseInfo.map((license) => (
               <article
                 key={license.title}
-                className="rounded-3xl border border-slate-200 bg-white p-5 shadow-card"
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition"
               >
-                <h3 className="text-xl font-semibold text-slate-900">
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">
                   {license.title}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">{license.content}</p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-700">
+                <p className="text-base text-slate-600 mb-4 leading-relaxed">{license.content}</p>
+                <ul className="space-y-3 text-sm text-slate-700">
                   {license.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-2">
-                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-accent-500" />
-                      <span>{bullet}</span>
+                    <li key={bullet} className="flex items-start gap-3">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#3bb54a] flex-shrink-0" />
+                      <span className="leading-relaxed">{bullet}</span>
                     </li>
                   ))}
                 </ul>
@@ -264,41 +263,44 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="bg-white py-16">
+      <section id="faq" className="bg-slate-50 py-16 sm:py-20">
         <div className="container mx-auto max-w-[1300px] grid gap-8 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div className="space-y-6">
             <div>
-              <h2 className="text-3xl font-semibold text-slate-900">
+              <h2 className="text-[32px] font-semibold text-slate-900 sm:text-[36px] mb-3">
                 Hvorfor velge en sammenligningstjeneste?
               </h2>
+              <p className="text-base text-slate-600 sm:text-lg">
+                Vi gjør det enkelt å finne og sammenligne trafikkskoler
+              </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              {valuePoints.map(({ title, copy, icon: Icon, color }) => (
+              {valuePoints.map(({ title, copy, icon: Icon }) => (
                 <article
                   key={title}
-                  className={`rounded-3xl border border-white/40 p-5 shadow-subtle ${color}`}
+                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition"
                 >
-                  <Icon className="mb-3 h-6 w-6 text-current" />
-                  <h3 className="text-lg font-semibold">{title}</h3>
-                  <p className="mt-1 text-sm">{copy}</p>
+                  <Icon className="mb-4 h-6 w-6 text-slate-900" />
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{copy}</p>
                 </article>
               ))}
             </div>
           </div>
-          <div className="space-y-6 rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-card">
+          <div className="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <h3 className="text-2xl font-semibold text-slate-900">
               Ofte stilte spørsmål
             </h3>
-            <div className="space-y-4 text-sm">
+            <div className="space-y-3">
               {faq.map((item) => (
                 <details
                   key={item.q}
-                  className="group rounded-2xl border border-slate-200 bg-white p-4"
+                  className="group rounded-2xl border border-slate-200 bg-slate-50 p-4 hover:bg-slate-100 transition"
                 >
                   <summary className="cursor-pointer text-base font-semibold text-slate-900 marker:hidden">
                     {item.q}
                   </summary>
-                  <p className="mt-3 text-sm text-slate-600">{item.a}</p>
+                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">{item.a}</p>
                 </details>
               ))}
             </div>
@@ -306,18 +308,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-slate-900 py-16">
-        <div className="container mx-auto max-w-4xl rounded-3xl bg-white px-6 py-12 text-center shadow-xl sm:px-10">
-          <h2 className="text-3xl font-semibold text-slate-900">
+      <section className="bg-slate-900 py-16 sm:py-20">
+        <div className="container mx-auto max-w-4xl rounded-3xl bg-white px-6 py-12 text-center shadow-lg sm:px-10">
+          <h2 className="text-[32px] font-semibold text-slate-900 sm:text-[36px]">
             Klar for å motta tilbud?
           </h2>
-          <p className="mt-3 text-base text-slate-600">
+          <p className="mt-4 text-base text-slate-600 sm:text-lg">
             Åpne skjemaet øverst og send inn på under ett minutt – helt gratis og
             uforpliktende.
           </p>
           <a
             href="#skjema"
-            className="mt-6 inline-flex items-center rounded-full bg-[#00895F] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#0A6F50]"
+            className="mt-6 inline-flex items-center rounded-full bg-[#3bb54a] px-8 py-3.5 text-base font-semibold text-white transition hover:bg-[#2d8f3d] shadow-sm"
           >
             Start skjema
           </a>
