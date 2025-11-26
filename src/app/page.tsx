@@ -164,7 +164,7 @@ export default function Home() {
           <div className="flex w-full max-w-[1300px] flex-col gap-6 sm:gap-12 lg:flex-row lg:items-center">
             <div className="space-y-4 sm:space-y-6 lg:w-[50%]">
               <h1 className="text-center text-[42px] font-semibold leading-[1.15] text-slate-900 sm:text-left sm:text-[48px] lg:text-[54px] lg:text-white">
-                Få tilbud fra flere trafikkskoler
+                Spar penger og finn riktig trafikkskole for deg
               </h1>
               <p className="text-center text-sm text-slate-600 sm:hidden">
                 Helt gratis og uforpliktende
@@ -188,7 +188,7 @@ export default function Home() {
             </div>
 
             <div className="w-full lg:w-[50%]">
-              <div className="rounded-[32px] bg-slate-900/85 backdrop-blur-md shadow-none lg:shadow-2xl lg:shadow-slate-900/50">
+              <div className="rounded-[32px] bg-slate-900/70 backdrop-blur-md shadow-none lg:shadow-2xl lg:shadow-slate-900/50">
                 <LeadForm />
               </div>
             </div>

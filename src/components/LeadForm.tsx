@@ -79,7 +79,7 @@ const STEP_CONFIG = {
         : "Oppgi et norsk postnummer (fire siffer).",
   },
   licenseType: {
-    question: "Hvilken førerkortklasse gjelder forespørselen?",
+    question: "Hvilket type førerkort skal du ta?",
     validator: (formData: FormState) =>
       formData.licenseType ? null : "Velg hvilken klasse du trenger.",
   },
@@ -471,6 +471,13 @@ export function LeadForm() {
 
   return (
     <div className="w-full rounded-none p-5 sm:rounded-3xl sm:p-8">
+      <h2 className="mb-2 text-2xl font-semibold text-white sm:text-3xl">
+        Motta tilbud fra flere trafikkskoler
+      </h2>
+      <p className="mb-4 text-base text-white/90 sm:text-lg">
+        Tjenesten er gratis og uforpliktende
+      </p>
+      
       <div className="mb-4">
         <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-widest text-white/70">
           <span>
