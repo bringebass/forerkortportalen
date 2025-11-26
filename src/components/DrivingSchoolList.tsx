@@ -81,11 +81,8 @@ const schools = [
 export function DrivingSchoolList() {
   return (
     <section id="trafikkskoler" className="py-16 sm:py-20">
-      <div className="container">
+      <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col gap-4 text-center sm:text-left">
-          <p className="text-xs font-semibold uppercase tracking-widest text-brand-600">
-            Trafikkskoler i Norge
-          </p>
           <div>
             <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
               Eksempler på skoler som dekker ulike behov

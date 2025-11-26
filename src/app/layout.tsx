@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-plus-jakarta-sans",
-});
 
 const siteUrl = "https://forerkortportalen.no";
 const title = "Førerkortportalen | Få tilbud fra trafikkskoler i hele Norge";
@@ -57,7 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="no" className="bg-slate-50">
-      <body className={`${plusJakartaSans.variable} antialiased`}>
+      <body className="antialiased font-sans">
         {children}
       </body>
     </html>

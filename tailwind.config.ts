@@ -19,8 +19,22 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-plus-jakarta-sans)", ...defaultTheme.fontFamily.sans],
-        display: ["var(--font-plus-jakarta-sans)", ...defaultTheme.fontFamily.sans],
+        sans: [
+          "'FrutigerLT Pro'",
+          "'Neue Frutiger'",
+          "'Helvetica Neue'",
+          "Helvetica",
+          "Arial",
+          ...defaultTheme.fontFamily.sans,
+        ],
+        display: [
+          "'FrutigerLT Pro'",
+          "'Neue Frutiger'",
+          "'Helvetica Neue'",
+          "Helvetica",
+          "Arial",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
       colors: {
         brand: {

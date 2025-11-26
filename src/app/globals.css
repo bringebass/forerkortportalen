@@ -9,7 +9,8 @@
 
 body {
   min-height: 100vh;
-  font-family: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: "FrutigerLT Pro", "Neue Frutiger", "Frutiger", "Helvetica Neue",
+    Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
   background: var(--page-bg);
   color: #0f172a;
 }
@@ -21,7 +22,7 @@ body {
 
 @layer base {
   label {
-    @apply font-medium text-sm text-slate-700;
+    @apply font-medium text-base text-slate-700;
   }
 
   h1,

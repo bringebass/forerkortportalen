@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export function Navbar() {
@@ -14,10 +15,20 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm bg-gray-50 sm:bg-white">
-      <div className="container flex items-center justify-between py-4">
-        <a href="/" className="text-xl font-bold transition">
-          <span className="text-[#00895F]">Fører</span>
-          <span className="text-slate-900">kortportalen</span>
+      <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between px-4 xl:px-0 py-4">
+        <a href="/" className="flex items-center gap-3 text-xl font-bold transition">
+          <Image
+            src="/favicon.png"
+            alt="Førerkortportalen"
+            width={32}
+            height={32}
+            className="rounded-md"
+            priority
+          />
+          <span>
+            <span className="text-[#3bb54a] text-2xl">Fører</span>
+            <span className="text-slate-900 text-2xl">kortportalen</span>
+          </span>
         </a>
 
         {/* Desktop Navigation */}
@@ -26,7 +37,7 @@ export function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-slate-700 hover:text-brand-600 transition"
+              className="text-base font-medium text-slate-700 hover:text-brand-600 transition"
             >
               {item.label}
             </a>
@@ -61,7 +72,7 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="lg:hidden border-t border-slate-200 bg-gray-200">
-          <div className="container py-4 space-y-3">
+          <div className="mx-auto flex w-full max-w-[1200px] flex-col space-y-3 px-4 py-4 sm:px-6">
             {navItems.map((item) => (
               <a
                 key={item.href}

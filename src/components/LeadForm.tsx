@@ -464,7 +464,7 @@ export function LeadForm() {
         {STEP_CONFIG[STEP_ORDER[currentStep]]?.question}
       </h3>
 
-      <form className="space-y-5" onSubmit={handleSubmit}>
+      <form className="space-y-5 text-[15px]" onSubmit={handleSubmit}>
         {renderStepContent()}
 
         {stepError && (
@@ -494,18 +494,22 @@ export function LeadForm() {
         )}
 
         <div className="flex items-center justify-between gap-3">
-          <button
-            type="button"
-            onClick={handleBack}
-            disabled={currentStep === 0 || status === "loading"}
-            className="bg-gray-200 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Tilbake
-          </button>
+          {currentStep > 0 && (
+            <button
+              type="button"
+              onClick={handleBack}
+              disabled={status === "loading"}
+              className="rounded-2xl border border-slate-200 bg-gray-200 px-4 py-3 text-base font-semibold text-slate-600 transition hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Tilbake
+            </button>
+          )}
           <button
             type="submit"
             disabled={status === "loading"}
-            className="group inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-[#00895F] px-5 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#00895F]/30 transition hover:bg-[#0A6F50] disabled:cursor-not-allowed disabled:opacity-80"
+            className={`group inline-flex items-center justify-center gap-2 rounded-2xl bg-[#3bb54a] px-5 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#00895F]/30 transition hover:bg-[#0A6F50] disabled:cursor-not-allowed disabled:opacity-80 ${
+              currentStep === 0 ? "mx-auto w-full" : "flex-1"
+            }`}
           >
             {status === "loading"
               ? "Sender inn..."

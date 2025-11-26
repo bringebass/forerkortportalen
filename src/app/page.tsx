@@ -1,21 +1,39 @@
 import DrivingSchoolList from "@/components/DrivingSchoolList";
 import LeadForm from "@/components/LeadForm";
 import { Navbar } from "@/components/Navbar";
-import Script from "next/script";
+import {
+  Award,
+  Clock3,
+  Gauge,
+  MapPin,
+  ShieldCheck,
+  Users2,
+  Sparkles,
+} from "lucide-react";
 import Image from "next/image";
+import Script from "next/script";
+
+const heroHighlights = [
+  { label: "100% gratis", icon: ShieldCheck, iconColor: "" },
+  { label: "Du velger skolen", icon: Users2, iconColor: "" },
+  { label: "Helt uforpliktende", icon: Clock3, iconColor: "" },
+];
 
 const steps = [
   {
     title: "Del behovet ditt",
     description: "Postnummer, førerkortklasse og ønsket oppstart fylles ut på under ett minutt.",
+    icon: MapPin,
   },
   {
     title: "Vi matcher deg",
     description: "Førerkortportalen sender forespørselen til trafikkskoler som dekker området og klassen.",
+    icon: Gauge,
   },
   {
     title: "Du velger skole",
     description: "Sammenlign opplegg og pris, still spørsmål og velg den læreren som passer deg best.",
+    icon: Award,
   },
 ];
 
@@ -64,6 +82,27 @@ const faq = [
   },
 ];
 
+const valuePoints = [
+  {
+    title: "Lokale skoler",
+    copy: "Vi prioriterer trafikkskoler som kjenner rutevalg og sensorer i din region.",
+    icon: MapPin,
+    color: "bg-emerald-50 text-emerald-900",
+  },
+  {
+    title: "Trygge prosesser",
+    copy: "Samarbeider bare med godkjente trafikkskoler som følger læreplanen til Statens vegvesen.",
+    icon: ShieldCheck,
+    color: "bg-sky-50 text-sky-900",
+  },
+  {
+    title: "Rask oppstart",
+    copy: "Flere skoler tilbyr intensivløp, kveldskurs og fleksible teoripakker.",
+    icon: Clock3,
+    color: "bg-amber-50 text-amber-900",
+  },
+];
+
 const siteUrl = "https://forerkortportalen.no";
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -106,60 +145,47 @@ export default function Home() {
         {JSON.stringify(faqJsonLd)}
       </Script>
       <Navbar />
-      <section className="relative flex min-h-[400px] items-center overflow-hidden bg-white lg:bg-transparent">
-        {/* Background Image - Hidden on mobile */}
+      <section className="relative overflow-hidden bg-white text-slate-900 lg:bg-slate-900 lg:text-white lg:min-h-[820px]">
+        {/* Background image */}
         <div className="absolute inset-0 z-0 hidden lg:block">
           <Image
             src="/bg-photo.png"
-            alt=""
+            alt="Elev i bil som får kjøretime"
             fill
-            className="object-cover"
             priority
             quality={90}
+            sizes="100vw"
+            className="object-cover object-[center_32%]"
           />
-          {/* Dark overlay for better contrast */}
-          <div className="absolute inset-0 bg-slate-900/60" />
+          <div className="absolute inset-0 bg-slate-900/65" />
         </div>
 
-        <div className="relative z-10 w-full lg:container lg:py-20">
-          <div className="flex flex-col lg:grid lg:grid-cols-[1fr_1fr] lg:gap-10 lg:items-center">
-            {/* Left side - Content - Hidden on mobile */}
-            <div className="hidden space-y-6 text-white lg:block">
-              <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-                Sammenlign tilbud fra flere trafikkskoler
+        <div className="relative z-10 flex w-full justify-center px-4 py-8 sm:px-6 lg:px-8 lg:py-28">
+          <div className="flex w-full max-w-[1300px] flex-col items-center gap-12 lg:flex-row lg:items-center">
+            <div className="space-y-6 lg:w-[50%]">
+              <h1 className="text-[42px] font-semibold leading-[1.15] text-slate-900 sm:text-[48px] lg:text-[54px] lg:text-white">
+                Fyll ut skjemaet og få tilbud fra flere trafikkskoler
               </h1>
-              <p className="hidden text-lg text-white/90 sm:block sm:text-xl">
-                Få uforpliktende tilbud fra kvalitetssikrede trafikkskoler i ditt
-                område. Ett skjema gir deg oversikt over flere alternativer.
+              <p className="hidden text-base text-slate-600 sm:block sm:text-lg lg:text-white/85">
+                Del behovet ditt én gang – vi kobler deg med kvalitetssikrede
+                trafikkskoler i området ditt slik at du kan sammenligne priser,
+                pakker og tilgjengelighet.
               </p>
-              <div className="hidden flex-wrap gap-3 sm:flex">
-                {["100% gratis", "Uforpliktende", "Tar under 1 minutt"].map(
-                  (label) => (
-                    <span
-                      key={label}
-                      className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm backdrop-blur-sm"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                      {label}
-                    </span>
-                  )
-                )}
+              <div className="hidden flex-wrap gap-3 md:flex">
+                {heroHighlights.map(({ label, icon: Icon, iconColor }) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm lg:bg-white/90 lg:text-slate-900"
+                  >
+                    <Icon className={`h-4 w-4 ${iconColor}`} />
+                    {label}
+                  </span>
+                ))}
               </div>
             </div>
 
-            {/* Mobile: Only show heading above form */}
-            <div className="lg:hidden">
-              <h1 className="pt-6 px-6 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
-                Sammenlign tilbud fra flere trafikkskoler
-              </h1>
-            </div>
-
-            {/* Form - Full width on mobile with borders */}
-            <div
-              id="skjema"
-              className=" bg-white pb-6 lg:mx-auto lg:max-w-md lg:border-0 lg:bg-transparent lg:py-0"
-            >
-              <div className=" lg:px-0">
+            <div className="w-full lg:w-[50%]">
+              <div className="rounded-[32px] bg-white/97">
                 <LeadForm />
               </div>
             </div>
@@ -167,13 +193,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="hvordan" className="bg-white py-16 sm:py-20 font-sans">
-        <div className="container space-y-8">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
-              Slik fungerer det
-            </p>
-            <h2 className="mt-2 text-3xl font-semibold text-slate-900 font-display">
+      <section id="hvordan" className="bg-white pt-10 pb-16 sm:pt-12 sm:pb-20 font-sans">
+        <div className="container mx-auto max-w-[1300px] space-y-10 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl text-center mx-auto space-y-3">
+            <div className="inline-flex items-center justify-center rounded-full bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700">
+              <Sparkles className="mr-2 h-4 w-4" />
+              Slik fungerer tjenesten
+            </div>
+            <h2 className="text-[32px] font-semibold text-slate-900 font-display">
               Tre steg fra behov til konkrete tilbud
             </h2>
           </div>
@@ -181,12 +208,17 @@ export default function Home() {
             {steps.map((step, index) => (
               <article
                 key={step.title}
-                className="rounded-3xl border border-slate-100 bg-white p-5 shadow-card"
+                className="rounded-3xl border border-slate-100 bg-white p-5 shadow-subtle transition hover:-translate-y-1 hover:shadow-card"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-500">
-                  Steg {index + 1}
-                </p>
-                <h3 className="mt-2 text-xl font-semibold text-slate-900 font-display">
+                <div className="flex items-center justify-between">
+                  <div className="rounded-2xl bg-brand-50 p-3 text-brand-600">
+                    <step.icon className="h-5 w-5" />
+                  </div>
+                  <span className="rounded-full bg-slate-50 px-3 py-1 text-sm font-semibold text-slate-600">
+                    Steg {index + 1}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-xl font-semibold text-slate-900 font-display">
                   {step.title}
                 </h3>
                 <p className="mt-2 text-sm text-slate-600">{step.description}</p>
@@ -199,12 +231,9 @@ export default function Home() {
       <DrivingSchoolList />
 
       <section id="klasser" className="bg-slate-50 py-16 sm:py-20">
-        <div className="container space-y-10">
+        <div className="container mx-auto max-w-[1300px] space-y-10 px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-600">
-              Førerkortklasser
-            </p>
-            <h2 className="mt-2 text-3xl font-semibold text-slate-900">
+            <h2 className="text-3xl font-semibold text-slate-900">
               Kort om de vanligste klassene
             </h2>
           </div>
@@ -233,37 +262,25 @@ export default function Home() {
       </section>
 
       <section id="faq" className="bg-white py-16">
-        <div className="container grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
-              Alt på ett sted
-            </p>
-            <h2 className="mt-2 text-3xl font-semibold text-slate-900">
-              Hvorfor velge en sammenligningstjeneste?
-            </h2>
-            <ul className="mt-6 space-y-4 text-sm text-slate-700">
-              <li className="flex gap-3">
-                <span className="text-brand-600">•</span>
-                <span>
-                  Spar tid ved å sende én forespørsel fremfor å ringe flere
-                  trafikkskoler manuelt.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-brand-600">•</span>
-                <span>
-                  Få innsyn i hvilke pakker som inkluderer intensivløp, banekurs,
-                  teoristøtte og eventuelle rabatter.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-brand-600">•</span>
-                <span>
-                  Trafikkskolene forplikter seg til å følge læreplanen til
-                  Statens vegvesen – du får dokumentert kvalitet.
-                </span>
-              </li>
-            </ul>
+        <div className="container mx-auto max-w-[1300px] grid gap-8 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-3xl font-semibold text-slate-900">
+                Hvorfor velge en sammenligningstjeneste?
+              </h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {valuePoints.map(({ title, copy, icon: Icon, color }) => (
+                <article
+                  key={title}
+                  className={`rounded-3xl border border-white/40 p-5 shadow-subtle ${color}`}
+                >
+                  <Icon className="mb-3 h-6 w-6 text-current" />
+                  <h3 className="text-lg font-semibold">{title}</h3>
+                  <p className="mt-1 text-sm">{copy}</p>
+                </article>
+              ))}
+            </div>
           </div>
           <div className="space-y-6 rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-card">
             <h3 className="text-2xl font-semibold text-slate-900">
@@ -287,7 +304,7 @@ export default function Home() {
       </section>
 
       <section className="bg-slate-900 py-16">
-        <div className="container rounded-3xl bg-white px-6 py-12 text-center shadow-xl sm:px-10">
+        <div className="container mx-auto max-w-4xl rounded-3xl bg-white px-6 py-12 text-center shadow-xl sm:px-10">
           <h2 className="text-3xl font-semibold text-slate-900">
             Klar for å motta tilbud?
           </h2>
@@ -305,18 +322,14 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-slate-100 bg-white py-8 text-sm text-slate-500">
-        <div className="container flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3 text-slate-900">
+        <div className="container mx-auto max-w-[1200px] flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <div className="flex items-center gap-3 text-slate-700">
             <p className="font-semibold">
-              <span className="text-[#00895F]">Fører</span>
-              <span className="text-slate-900">kortportalen</span>
-              {" • "}Sammenlign trafikkskoler i Norge
+              Førerkortportalen{" • "}Sammenlign trafikkskoler i Norge
             </p>
           </div>
           <p>
-            © {new Date().getFullYear()}{" "}
-            <span className="text-[#00895F]">Fører</span>
-            <span className="text-slate-900">kortportalen</span>. Tjenesten er
+            © {new Date().getFullYear()} Førerkortportalen. Tjenesten er
             uforpliktende, og data lagres sikkert i norsk sky.
           </p>
         </div>
@@ -324,3 +337,4 @@ export default function Home() {
     </main>
   );
 }
+
