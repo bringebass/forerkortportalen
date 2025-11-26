@@ -58,8 +58,8 @@ const defaultState: FormState = {
 // Step configuration - change the order here to reorder the form steps
 // Each step type is automatically matched with its question and validator
 const STEP_ORDER = [
+    "postalCode",      // Step 0
     "licenseType",    // Step 1
-  "postalCode",      // Step 0
   "startDate",      // Step 2
   "preferences",    // Step 3 (traffic course + intensive)
   "contactInfo",    // Step 4
@@ -68,7 +68,7 @@ const STEP_ORDER = [
 // Step definitions - each step type has its question and validator
 const STEP_CONFIG = {
   postalCode: {
-    question: "Hvor i Norge trenger du tilbud?",
+    question: "Hvor i Norge skal du ta førerkort?",
     validator: (formData: FormState) =>
       /^\d{4}$/.test(formData.postalCode)
         ? null
@@ -233,7 +233,7 @@ export function LeadForm() {
               autoComplete="postal-code"
               value={formData.postalCode}
               onChange={handleChange}
-              className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500"
+              className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
               placeholder="Postnummer"
             />
           </div>
@@ -255,8 +255,8 @@ export function LeadForm() {
                   }
                   className={`rounded-2xl border px-3 py-3 text-sm font-semibold transition ${
                     formData.licenseType === option.value
-                      ? "border-brand-500 bg-brand-50 text-brand-700"
-                      : "border-slate-200 text-slate-700 hover:border-brand-200"
+                      ? "border-[#3bb54a] bg-[#3bb54a]/20 text-white"
+                      : "border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
                   }`}
                 >
                   {option.label}
@@ -279,7 +279,7 @@ export function LeadForm() {
               min={minDate}
               value={formData.startDate}
               onChange={handleChange}
-              className="w-full rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500"
+              className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
             />
             <div className="flex flex-wrap gap-2">
               {quickStartOptions.map((option) => (
@@ -294,7 +294,7 @@ export function LeadForm() {
                       startDate: date.toISOString().split("T")[0],
                     }));
                   }}
-                  className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600 transition hover:border-brand-200 hover:text-brand-600"
+                  className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition hover:border-white/50 hover:bg-white/15"
                 >
                   {option.label}
                 </button>
@@ -307,7 +307,7 @@ export function LeadForm() {
         return (
           <div className="space-y-4">
             <div>
-              <p className="text-base font-semibold text-slate-800">
+              <p className="text-base font-semibold text-white">
                 Trafikalt grunnkurs
               </p>
               <div className="mt-2 flex flex-wrap gap-2">
@@ -323,8 +323,8 @@ export function LeadForm() {
                     }
                     className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
                       formData.trafficCourseStatus === option.value
-                        ? "border-brand-500 bg-brand-50 text-brand-700"
-                        : "border-slate-200 text-slate-600 hover:border-brand-200"
+                        ? "border-[#3bb54a] bg-[#3bb54a]/20 text-white"
+                        : "border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
                     }`}
                   >
                     {option.label}
@@ -334,7 +334,7 @@ export function LeadForm() {
             </div>
 
             <div>
-              <p className="text-base font-semibold text-slate-800">
+              <p className="text-base font-semibold text-white">
                 Ønsker du intensivkurs?
               </p>
               <div className="mt-2 flex flex-wrap gap-2">
@@ -350,8 +350,8 @@ export function LeadForm() {
                     }
                     className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
                       formData.intensiveCourse === option.value
-                        ? "border-brand-500 bg-brand-50 text-brand-700"
-                        : "border-slate-200 text-slate-600 hover:border-brand-200"
+                        ? "border-[#3bb54a] bg-[#3bb54a]/20 text-white"
+                        : "border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
                     }`}
                   >
                     {option.label}
@@ -367,7 +367,7 @@ export function LeadForm() {
           <div className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
-                <label htmlFor="fullName">Fullt navn</label>
+                <label htmlFor="fullName" className="text-white">Fullt navn</label>
                 <input
                   id="fullName"
                   name="fullName"
@@ -375,12 +375,12 @@ export function LeadForm() {
                   autoComplete="name"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500 ml-2"
+                  className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] ml-2"
                   placeholder="F.eks. Nora Hansen"
                 />
               </div>
               <div className="space-y-1.5">
-                <label htmlFor="phone">Telefon</label>
+                <label htmlFor="phone" className="text-white">Telefon</label>
                 <input
                   id="phone"
                   name="phone"
@@ -389,14 +389,14 @@ export function LeadForm() {
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500 ml-2"
+                  className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] ml-2"
                   placeholder="9X XX XX XX"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label htmlFor="email">E-post</label>
+              <label htmlFor="email" className="text-white">E-post</label>
               <input
                 id="email"
                 name="email"
@@ -404,31 +404,31 @@ export function LeadForm() {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500 ml-2"
+                className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] ml-2"
                 placeholder="navn@epost.no"
               />
             </div>
 
             <div className="space-y-1.5 flex flex-col gap-2">
-              <label htmlFor="message">Tilleggsinfo (valgfritt)</label>
+              <label htmlFor="message" className="text-white">Tilleggsinfo (valgfritt)</label>
               <textarea
                 id="message"
                 name="message"
                 rows={3}
                 value={formData.message}
                 onChange={handleChange}
-                className="rounded-2xl border-slate-200 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500"
+                className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                 placeholder="F.eks. ønsker automatgir eller kveldskurs."
               />
             </div>
 
-            <label className="flex items-start gap-3 rounded-2xl border border-slate-200 p-3 text-sm text-slate-600">
+            <label className="flex items-start gap-3 rounded-2xl border border-white/30 bg-white/10 p-3 text-sm text-white">
               <input
                 type="checkbox"
                 name="marketingConsent"
                 checked={formData.marketingConsent}
                 onChange={handleChange}
-                className="mt-1 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                className="mt-1 rounded border-white/30 bg-white/10 text-[#3bb54a] focus:ring-[#3bb54a]"
               />
               <span>
                 Jeg godtar at Førerkortportalen lagrer opplysningene for å koble
@@ -444,23 +444,23 @@ export function LeadForm() {
   };
 
   return (
-    <div className="w-full rounded-none bg-white p-5 sm:rounded-3xl shadow-2xl sm:ring-1 sm:ring-slate-100 sm:p-8">
+    <div className="w-full rounded-none p-5 sm:rounded-3xl sm:p-8">
       <div className="mb-4">
-        <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-widest text-slate-500">
+        <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-widest text-white/70">
           <span>
             Steg {currentStep + 1} av {STEP_ORDER.length}
           </span>
           <span>{Math.round(progress)}%</span>
         </div>
-        <div className="mt-2 h-1.5 rounded-full bg-slate-100">
+        <div className="mt-2 h-1.5 rounded-full bg-white/20">
           <div
-            className="h-full rounded-full bg-brand-500 transition-all"
+            className="h-full rounded-full bg-[#3bb54a] transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
 
-      <h3 className="m-3 text-xl font-display font-semibold text-slate-900 sm:text-2xl">
+      <h3 className="m-3 text-xl font-display font-semibold text-white sm:text-2xl">
         {STEP_CONFIG[STEP_ORDER[currentStep]]?.question}
       </h3>
 
@@ -468,7 +468,7 @@ export function LeadForm() {
         {renderStepContent()}
 
         {stepError && (
-          <p className="rounded-2xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">
+          <p className="rounded-2xl bg-rose-500/20 border border-rose-500/30 px-4 py-3 text-sm font-medium text-white">
             {stepError}
           </p>
         )}
@@ -476,7 +476,7 @@ export function LeadForm() {
         {status === "success" && (
           <p
             role="status"
-            className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700"
+            className="rounded-2xl bg-[#3bb54a]/20 border border-[#3bb54a]/30 px-4 py-3 text-sm font-medium text-white"
           >
             Takk! Vi varsler utvalgte trafikkskoler, og du blir kontaktet kort
             tid etter.
@@ -486,7 +486,7 @@ export function LeadForm() {
         {status === "error" && (
           <p
             role="status"
-            className="rounded-2xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700"
+            className="rounded-2xl bg-rose-500/20 border border-rose-500/30 px-4 py-3 text-sm font-medium text-white"
           >
             {errorMessage ??
               "Noe uventet skjedde. Oppdater siden og prøv igjen."}
@@ -499,7 +499,7 @@ export function LeadForm() {
               type="button"
               onClick={handleBack}
               disabled={status === "loading"}
-              className="rounded-2xl border border-slate-200 bg-gray-200 px-4 py-3 text-base font-semibold text-slate-600 transition hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-2xl border border-white/30 bg-white/10 px-4 py-3 text-base font-semibold text-white transition hover:border-white/50 hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Tilbake
             </button>
@@ -525,7 +525,7 @@ export function LeadForm() {
           </button>
         </div>
 
-        <p className="text-center text-xs text-slate-500">
+        <p className="text-center text-xs text-white/70">
           Helt gratis og uforpliktende. Trafikkskolene kan stille deg noen få
           oppfølgingsspørsmål før de gir et konkret tilbud.
         </p>

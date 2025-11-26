@@ -26,8 +26,8 @@ export function Navbar() {
             priority
           />
           <span>
-            <span className="text-[#3bb54a] text-2xl">Fører</span>
-            <span className="text-slate-900 text-2xl">kortportalen</span>
+            <span className="text-slate-900 text-2xl">Førerkortportalen</span>
+            <span className="text-[#3bb54a] text-2xl">.no</span>
           </span>
         </a>
 
