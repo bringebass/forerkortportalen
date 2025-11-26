@@ -2,9 +2,13 @@
 
 import { useMemo, useState } from "react";
 
-const licenseOptions = [
-  { value: "B", label: "B automat (vanlig førerkort)" },
-  { value: "B_AUT", label: "Klasse B" },
+const mainLicenseOptions = [
+  { value: "B_AUT", label: "B automat" },
+  { value: "B", label: "B manuell" },
+  { value: "OTHER", label: "Andre førerkort" },
+];
+
+const otherLicenseOptions = [
   { value: "B96", label: "B96 / B med henger" },
   { value: "BE", label: "Klasse BE" },
   { value: "A", label: "Klasse A" },
@@ -46,7 +50,7 @@ const defaultState: FormState = {
   email: "",
   phone: "",
   postalCode: "",
-  licenseType: "B",
+  licenseType: "",
   startDate: "",
   intensiveCourse: "usikker",
   preferredContact: "telefon",
@@ -57,12 +61,12 @@ const defaultState: FormState = {
 
 // Step configuration - change the order here to reorder the form steps
 // Each step type is automatically matched with its question and validator
-const STEP_ORDER = [
-    "postalCode",      // Step 0
-    "licenseType",    // Step 1
-  "startDate",      // Step 2
-  "preferences",    // Step 3 (traffic course + intensive)
-  "contactInfo",    // Step 4
+// Note: "otherLicenseType" is conditionally shown based on licenseType selection
+const BASE_STEP_ORDER = [
+  "postalCode",      // Step 0
+  "licenseType",     // Step 1
+  "startDate",       // Step 2
+  "contactInfo",     // Step 3
 ] as const;
 
 // Step definitions - each step type has its question and validator
@@ -81,15 +85,14 @@ const STEP_CONFIG = {
   },
   startDate: {
     question: "Når ønsker du å starte?",
-    validator: (formData: FormState) =>
-      formData.startDate ? null : "Velg ønsket oppstart.",
+    validator: (formData: FormState) => null, // Always valid since "Vet ikke" is an option
   },
-  preferences: {
-    question: "Tilpass opplæringen",
+  otherLicenseType: {
+    question: "Hvilken førerkortklasse gjelder forespørselen?",
     validator: (formData: FormState) =>
-      formData.trafficCourseStatus && formData.intensiveCourse
+      formData.licenseType && formData.licenseType !== "OTHER"
         ? null
-        : "Fortell om grunnkurs og intensivbehov.",
+        : "Velg hvilken klasse du trenger.",
   },
   contactInfo: {
     question: "Hvordan kontakter vi deg?",
@@ -126,7 +129,40 @@ export function LeadForm() {
     return date.toISOString().split("T")[0];
   }, []);
 
-  const progress = ((currentStep + 1) / STEP_ORDER.length) * 100;
+  // Get the actual step type for the current step index
+  const getCurrentStepType = (stepIndex: number): typeof BASE_STEP_ORDER[number] | "otherLicenseType" => {
+    let actualIndex = 0;
+    for (let i = 0; i < BASE_STEP_ORDER.length; i++) {
+      if (BASE_STEP_ORDER[i] === "licenseType") {
+        if (stepIndex === actualIndex) return "licenseType";
+        actualIndex++;
+        // If "OTHER" was selected, add the otherLicenseType step
+        if (formData.licenseType === "OTHER") {
+          if (stepIndex === actualIndex) return "otherLicenseType";
+          actualIndex++;
+        }
+      } else {
+        if (stepIndex === actualIndex) return BASE_STEP_ORDER[i];
+        actualIndex++;
+      }
+    }
+    return BASE_STEP_ORDER[BASE_STEP_ORDER.length - 1];
+  };
+
+  // Calculate total number of steps
+  const totalSteps = useMemo(() => {
+    let count = 0;
+    for (const step of BASE_STEP_ORDER) {
+      count++;
+      if (step === "licenseType" && formData.licenseType === "OTHER") {
+        count++; // Add otherLicenseType step
+      }
+    }
+    return count;
+  }, [formData.licenseType]);
+
+  const currentStepType = getCurrentStepType(currentStep);
+  const progress = ((currentStep + 1) / totalSteps) * 100;
 
   const handleChange = (
     event:
@@ -152,14 +188,11 @@ export function LeadForm() {
   };
 
   const quickStartOptions = [
-    { label: "Neste uke", offset: 7 },
-    { label: "Innen 3 uker", offset: 21 },
-    { label: "Om 1–2 mnd", offset: 45 },
+    { label: "Vet ikke", offset: null },
   ];
 
   const validateStep = () => {
-    const stepType = STEP_ORDER[currentStep];
-    const stepConfig = STEP_CONFIG[stepType];
+    const stepConfig = STEP_CONFIG[currentStepType];
     const error = stepConfig ? stepConfig.validator(formData) : null;
     setStepError(error);
     return !error;
@@ -179,7 +212,7 @@ export function LeadForm() {
       return;
     }
 
-    if (currentStep < STEP_ORDER.length - 1) {
+    if (currentStep < totalSteps - 1) {
       setCurrentStep((prev) => prev + 1);
       return;
     }
@@ -214,9 +247,7 @@ export function LeadForm() {
   };
 
   const renderStepContent = () => {
-    const stepType = STEP_ORDER[currentStep];
-    
-    switch (stepType) {
+    switch (currentStepType) {
       case "postalCode": {
         return (
           <div className="space-y-3">
@@ -242,8 +273,40 @@ export function LeadForm() {
       case "licenseType": {
         return (
           <div className="space-y-3">
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              {licenseOptions.map((option) => (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {mainLicenseOptions.map((option) => (
+                <button
+                  type="button"
+                  key={option.value}
+                  onClick={() => {
+                    const newLicenseType = option.value;
+                    setFormData((prev) => ({
+                      ...prev,
+                      licenseType: newLicenseType,
+                    }));
+                    // If "OTHER" is selected, move to next step automatically
+                    if (newLicenseType === "OTHER") {
+                      setTimeout(() => setCurrentStep((prev) => prev + 1), 100);
+                    }
+                  }}
+                  className={`rounded-2xl border px-4 py-3 text-base font-semibold transition ${
+                    formData.licenseType === option.value
+                      ? "border-[#3bb54a] bg-[#3bb54a] text-white"
+                      : "border-slate-200 bg-white text-slate-900 hover:border-[#3bb54a] hover:bg-slate-50"
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      }
+      case "otherLicenseType": {
+        return (
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {otherLicenseOptions.map((option) => (
                 <button
                   type="button"
                   key={option.value}
@@ -253,10 +316,10 @@ export function LeadForm() {
                       licenseType: option.value,
                     }))
                   }
-                  className={`rounded-2xl border px-3 py-3 text-sm font-semibold transition ${
+                  className={`rounded-2xl border px-4 py-3 text-base font-semibold transition ${
                     formData.licenseType === option.value
-                      ? "border-[#3bb54a] bg-[#3bb54a]/20 text-white"
-                      : "border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
+                      ? "border-[#3bb54a] bg-[#3bb54a] text-white"
+                      : "border-slate-200 bg-white text-slate-900 hover:border-[#3bb54a] hover:bg-slate-50"
                   }`}
                 >
                   {option.label}
@@ -282,82 +345,45 @@ export function LeadForm() {
               className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
             />
             <div className="flex flex-wrap gap-2">
-              {quickStartOptions.map((option) => (
-                <button
-                  key={option.label}
-                  type="button"
-                  onClick={() => {
-                    const date = new Date();
-                    date.setDate(date.getDate() + option.offset);
-                    setFormData((prev) => ({
-                      ...prev,
-                      startDate: date.toISOString().split("T")[0],
-                    }));
-                  }}
-                  className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition hover:border-white/50 hover:bg-white/15"
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        );
-      }
-      case "preferences": {
-        return (
-          <div className="space-y-4">
-            <div>
-              <p className="text-base font-semibold text-white">
-                Trafikalt grunnkurs
-              </p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {trafficCourseOptions.map((option) => (
+              {quickStartOptions.map((option) => {
+                const isSelected = option.offset === null
+                  ? !formData.startDate
+                  : (() => {
+                      const date = new Date();
+                      date.setDate(date.getDate() + option.offset);
+                      return formData.startDate === date.toISOString().split("T")[0];
+                    })();
+                
+                return (
                   <button
-                    key={option.value}
+                    key={option.label}
                     type="button"
-                    onClick={() =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        trafficCourseStatus: option.value,
-                      }))
-                    }
-                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
-                      formData.trafficCourseStatus === option.value
-                        ? "border-[#3bb54a] bg-[#3bb54a]/20 text-white"
+                    onClick={() => {
+                      if (option.offset === null) {
+                        // "Vet ikke" - clear the date
+                        setFormData((prev) => ({
+                          ...prev,
+                          startDate: "",
+                        }));
+                      } else {
+                        const date = new Date();
+                        date.setDate(date.getDate() + option.offset);
+                        setFormData((prev) => ({
+                          ...prev,
+                          startDate: date.toISOString().split("T")[0],
+                        }));
+                      }
+                    }}
+                    className={`rounded-full border px-3 py-1.5 text-sm font-semibold transition ${
+                      isSelected
+                        ? "border-[#3bb54a] bg-[#3bb54a] text-white"
                         : "border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
                     }`}
                   >
                     {option.label}
                   </button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <p className="text-base font-semibold text-white">
-                Ønsker du intensivkurs?
-              </p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {intensiveOptions.map((option) => (
-                  <button
-                    key={option.value}
-                    type="button"
-                    onClick={() =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        intensiveCourse: option.value,
-                      }))
-                    }
-                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
-                      formData.intensiveCourse === option.value
-                        ? "border-[#3bb54a] bg-[#3bb54a]/20 text-white"
-                        : "border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
-                    }`}
-                  >
-                    {option.label}
-                  </button>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         );
@@ -365,7 +391,7 @@ export function LeadForm() {
       case "contactInfo": {
         return (
           <div className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <label htmlFor="fullName" className="text-white">Fullt navn</label>
                 <input
@@ -375,7 +401,7 @@ export function LeadForm() {
                   autoComplete="name"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] ml-2"
+                  className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                   placeholder="F.eks. Nora Hansen"
                 />
               </div>
@@ -389,7 +415,7 @@ export function LeadForm() {
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] ml-2"
+                  className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                   placeholder="9X XX XX XX"
                 />
               </div>
@@ -404,7 +430,7 @@ export function LeadForm() {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] ml-2"
+                className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                 placeholder="navn@epost.no"
               />
             </div>
@@ -448,7 +474,7 @@ export function LeadForm() {
       <div className="mb-4">
         <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-widest text-white/70">
           <span>
-            Steg {currentStep + 1} av {STEP_ORDER.length}
+            Steg {currentStep + 1} av {totalSteps}
           </span>
           <span>{Math.round(progress)}%</span>
         </div>
@@ -461,7 +487,7 @@ export function LeadForm() {
       </div>
 
       <h3 className="m-3 text-xl font-display font-semibold text-white sm:text-2xl">
-        {STEP_CONFIG[STEP_ORDER[currentStep]]?.question}
+        {STEP_CONFIG[currentStepType]?.question}
       </h3>
 
       <form className="space-y-5 text-[15px]" onSubmit={handleSubmit}>
@@ -513,7 +539,7 @@ export function LeadForm() {
           >
             {status === "loading"
               ? "Sender inn..."
-              : currentStep === STEP_ORDER.length - 1
+              : currentStep === totalSteps - 1
                 ? "Send forespørsel"
                 : "Neste"}
             <span
