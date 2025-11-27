@@ -160,8 +160,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-slate-900/65" />
         </div>
 
-        <div className="relative z-10 flex min-h-[400px] w-full items-center justify-center px-4 py-4 sm:px-6 sm:py-8 lg:min-h-[820px] lg:px-8 lg:py-28">
-          <div className="flex w-full max-w-[1300px] flex-col gap-6 sm:gap-12 lg:flex-row lg:items-center">
+        <div className="relative z-10 flex min-h-[400px] w-full sm:px-6 sm:py-8 lg:min-h-[820px] lg:px-8 lg:py-28">
+          <div className="flex w-full max-w-[1300px] flex-col sm:gap-12 lg:flex-row lg:items-center">
             <div className="space-y-4 sm:space-y-6 lg:w-[50%]">
               <h1 className="hidden text-center text-[42px] font-semibold leading-[1.15] text-slate-900 sm:block sm:text-left sm:text-[48px] lg:text-[54px] lg:text-white">
                 Spar penger og finn riktig trafikkskole for deg
@@ -185,7 +185,7 @@ export default function Home() {
             </div>
 
             <div className="w-full lg:w-[50%]">
-              <div className="rounded-[32px] bg-slate-900/70 backdrop-blur-md shadow-none lg:shadow-2xl lg:shadow-slate-900/50">
+              <div className="lg:rounded-[32px] bg-slate-900/70 backdrop-blur-md shadow-none lg:shadow-2xl lg:shadow-slate-900/50">
                 <LeadForm />
               </div>
             </div>

@@ -117,6 +117,8 @@ const STEP_CONFIG = {
 type Status = "idle" | "loading" | "success" | "error";
 
 export function LeadForm() {
+  // NOTE: Tailwind is mobile-first here — base classes style the mobile view,
+  // while prefixes like sm:, lg:, etc. override styles on larger screens.
   const [formData, setFormData] = useState<FormState>(defaultState);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -471,10 +473,10 @@ export function LeadForm() {
 
   return (
     <div className="w-full rounded-none p-5 sm:rounded-3xl sm:p-8">
-      <h2 className="mb-2 text-2xl font-semibold text-white sm:text-3xl">
+      <h2 className="mt-6 lg:mt-0 mb-2 text-center text-4xl font-semibold text-white sm:text-3xl">
         Motta tilbud fra flere trafikkskoler
       </h2>
-      <p className="mb-4 text-base text-white/90 sm:text-lg">
+      <p className="mb-4 text-center text-base text-white/90 sm:text-lg">
         Tjenesten er gratis og uforpliktende
       </p>
       
@@ -497,7 +499,7 @@ export function LeadForm() {
         {STEP_CONFIG[currentStepType]?.question}
       </h3>
 
-      <form className="space-y-5 text-[15px]" onSubmit={handleSubmit}>
+      <form className="mb-6 lg:mb-0 space-y-5 text-[15px]" onSubmit={handleSubmit}>
         {renderStepContent()}
 
         {stepError && (
