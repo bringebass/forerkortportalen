@@ -252,7 +252,7 @@ export function LeadForm() {
     switch (currentStepType) {
       case "postalCode": {
         return (
-          <div className="space-y-3">
+          <div className="">
             <label htmlFor="postalCode" className="sr-only">
               Postnummer
             </label>
@@ -333,7 +333,7 @@ export function LeadForm() {
       }
       case "startDate": {
         return (
-          <div className="space-y-4">
+          <div className="">
             <label htmlFor="startDate" className="sr-only">
               Ønsket oppstart
             </label>
@@ -344,7 +344,7 @@ export function LeadForm() {
               min={minDate}
               value={formData.startDate}
               onChange={handleChange}
-              className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+              className="w-full mb-3 rounded-2xl border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
             />
             <div className="flex flex-wrap gap-2">
               {quickStartOptions.map((option) => {
@@ -394,7 +394,7 @@ export function LeadForm() {
         return (
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="space-y-1.5">
+              <div className="">
                 <label htmlFor="fullName" className="text-white">Fullt navn</label>
                 <input
                   id="fullName"
@@ -407,7 +407,7 @@ export function LeadForm() {
                   placeholder="F.eks. Nora Hansen"
                 />
               </div>
-              <div className="space-y-1.5">
+              <div className="">
                 <label htmlFor="phone" className="text-white">Telefon</label>
                 <input
                   id="phone"
@@ -423,7 +423,7 @@ export function LeadForm() {
               </div>
             </div>
 
-            <div className="space-y-1.5">
+            <div className="">
               <label htmlFor="email" className="text-white">E-post</label>
               <input
                 id="email"
@@ -437,18 +437,7 @@ export function LeadForm() {
               />
             </div>
 
-            <div className="space-y-1.5 flex flex-col gap-2">
-              <label htmlFor="message" className="text-white">Tilleggsinfo (valgfritt)</label>
-              <textarea
-                id="message"
-                name="message"
-                rows={3}
-                value={formData.message}
-                onChange={handleChange}
-                className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
-                placeholder="F.eks. ønsker automatgir eller kveldskurs."
-              />
-            </div>
+         
 
             <label className="flex items-start gap-3 rounded-2xl border border-white/30 bg-white/10 p-3 text-sm text-white">
               <input
@@ -495,7 +484,7 @@ export function LeadForm() {
         </div>
       </div>
 
-      <h3 className="m-3 text-xl font-display font-semibold text-white sm:text-2xl">
+      <h3 className="text-center lg:text-left my-3 text-xl font-display font-semibold text-white sm:text-2xl">
         {STEP_CONFIG[currentStepType]?.question}
       </h3>
 
