@@ -37,6 +37,7 @@ type FormState = {
   phone: string;
   postalCode: string;
   licenseType: string;
+  mainLicenseSelection: string;
   startDate: string;
   intensiveCourse: string;
   preferredContact: "telefon" | "epost";
@@ -51,6 +52,7 @@ const defaultState: FormState = {
   phone: "",
   postalCode: "",
   licenseType: "",
+  mainLicenseSelection: "",
   startDate: "",
   intensiveCourse: "usikker",
   preferredContact: "telefon",
@@ -81,7 +83,7 @@ const STEP_CONFIG = {
   licenseType: {
     question: "Hvilket type førerkort skal du ta?",
     validator: (formData: FormState) =>
-      formData.licenseType ? null : "Velg hvilken klasse du trenger.",
+      formData.mainLicenseSelection ? null : "Velg hvilken klasse du trenger.",
   },
   startDate: {
     question: "Når ønsker du å starte?",
@@ -90,9 +92,7 @@ const STEP_CONFIG = {
   otherLicenseType: {
     question: "Hvilken førerkortklasse gjelder forespørselen?",
     validator: (formData: FormState) =>
-      formData.licenseType && formData.licenseType !== "OTHER"
-        ? null
-        : "Velg hvilken klasse du trenger.",
+      formData.licenseType ? null : "Velg hvilken klasse du trenger.",
   },
   contactInfo: {
     question: "Hvordan kontakter vi deg?",
@@ -131,6 +131,8 @@ export function LeadForm() {
     return date.toISOString().split("T")[0];
   }, []);
 
+  const requiresOtherLicenseStep = formData.mainLicenseSelection === "OTHER";
+
   // Get the actual step type for the current step index
   const getCurrentStepType = (stepIndex: number): typeof BASE_STEP_ORDER[number] | "otherLicenseType" => {
     let actualIndex = 0;
@@ -139,7 +141,7 @@ export function LeadForm() {
         if (stepIndex === actualIndex) return "licenseType";
         actualIndex++;
         // If "OTHER" was selected, add the otherLicenseType step
-        if (formData.licenseType === "OTHER") {
+        if (requiresOtherLicenseStep) {
           if (stepIndex === actualIndex) return "otherLicenseType";
           actualIndex++;
         }
@@ -156,12 +158,12 @@ export function LeadForm() {
     let count = 0;
     for (const step of BASE_STEP_ORDER) {
       count++;
-      if (step === "licenseType" && formData.licenseType === "OTHER") {
+      if (step === "licenseType" && requiresOtherLicenseStep) {
         count++; // Add otherLicenseType step
       }
     }
     return count;
-  }, [formData.licenseType]);
+  }, [requiresOtherLicenseStep]);
 
   const currentStepType = getCurrentStepType(currentStep);
   const progress = ((currentStep + 1) / totalSteps) * 100;
@@ -215,6 +217,7 @@ export function LeadForm() {
     }
 
     if (currentStep < totalSteps - 1) {
+      setStepError(null);
       setCurrentStep((prev) => prev + 1);
       return;
     }
@@ -222,12 +225,14 @@ export function LeadForm() {
     setStatus("loading");
 
     try {
+      const { mainLicenseSelection, ...submissionData } = formData;
+
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submissionData),
       });
 
       const payload = await response.json();
@@ -239,6 +244,7 @@ export function LeadForm() {
       }
 
       setStatus("success");
+      setStepError(null);
       setCurrentStep(0);
       setFormData(defaultState);
     } catch (error) {
@@ -284,15 +290,14 @@ export function LeadForm() {
                     const newLicenseType = option.value;
                     setFormData((prev) => ({
                       ...prev,
-                      licenseType: newLicenseType,
+                      mainLicenseSelection: newLicenseType,
+                      licenseType:
+                        newLicenseType === "OTHER" ? "" : newLicenseType,
                     }));
-                    // If "OTHER" is selected, move to next step automatically
-                    if (newLicenseType === "OTHER") {
-                      setTimeout(() => setCurrentStep((prev) => prev + 1), 100);
-                    }
+                    setStepError(null);
                   }}
                   className={`rounded-2xl border px-4 py-3 text-base font-semibold transition ${
-                    formData.licenseType === option.value
+                    formData.mainLicenseSelection === option.value
                       ? "border-[#3bb54a] bg-[#3bb54a] text-white"
                       : "border-slate-200 bg-white text-slate-900 hover:border-[#3bb54a] hover:bg-slate-50"
                   }`}
@@ -312,12 +317,13 @@ export function LeadForm() {
                 <button
                   type="button"
                   key={option.value}
-                  onClick={() =>
+                  onClick={() => {
                     setFormData((prev) => ({
                       ...prev,
                       licenseType: option.value,
-                    }))
-                  }
+                    }));
+                    setStepError(null);
+                  }}
                   className={`rounded-2xl border px-4 py-3 text-base font-semibold transition ${
                     formData.licenseType === option.value
                       ? "border-[#3bb54a] bg-[#3bb54a] text-white"

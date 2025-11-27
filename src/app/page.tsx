@@ -161,7 +161,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 flex min-h-[400px] w-full sm:px-6 sm:py-8 lg:min-h-[820px] lg:px-8 lg:py-28">
-          <div className="flex w-full max-w-[1300px] flex-col sm:gap-12 lg:flex-row lg:items-center">
+          <div className="mx-auto flex w-full max-w-[1300px] flex-col sm:gap-12 lg:flex-row lg:items-center lg:justify-center lg:gap-16">
             <div className="space-y-4 sm:space-y-6 lg:w-[50%]">
               <h1 className="hidden text-center text-[42px] font-semibold leading-[1.15] text-slate-900 sm:block sm:text-left sm:text-[48px] lg:text-[54px] lg:text-white">
                 Spar penger og finn riktig trafikkskole for deg
