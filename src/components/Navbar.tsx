@@ -8,26 +8,25 @@ export function Navbar() {
 
   const navItems = [
     { label: "Hvordan det fungerer", href: "#hvordan" },
-    { label: "Trafikkskoler", href: "#trafikkskoler" },
     { label: "Førerkortklasser", href: "#klasser" },
     { label: "Ofte stilte spørsmål", href: "#faq" },
   ];
 
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm bg-gray-50 sm:bg-white">
-      <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between px-4 xl:px-0 py-4">
-        <a href="/" className="flex items-center gap-3 text-xl font-bold transition">
+      <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between px-4 min-[340px]:px-4 xl:px-0 py-3 min-[340px]:py-4">
+        <a href="/" className="flex items-center gap-2 min-[340px]:gap-2.5 md:gap-3 text-lg min-[340px]:text-xl md:text-xl lg:text-2xl font-bold transition flex-shrink min-w-0">
           <Image
             src="/favicon.png"
             alt="Førerkortportalen"
             width={32}
             height={32}
-            className="rounded-md"
+            className="rounded-md flex-shrink-0 w-7 h-7 min-[340px]:w-8 min-[340px]:h-8"
             priority
           />
-          <span>
-            <span className="text-[#3bb54a] text-2xl">fører</span>
-            <span className="text-slate-900 text-2xl">kortportalen.no</span>
+          <span className="flex-shrink min-w-0">
+            <span className="text-[#3bb54a]">fører</span>
+            <span className="text-slate-900">kortportalen.no</span>
           </span>
         </a>
 
@@ -48,11 +47,11 @@ export function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 text-slate-700"
+          className="lg:hidden p-2 min-[340px]:p-2.5 text-slate-700 hover:bg-slate-100 rounded-lg transition flex-shrink-0"
           aria-label="Toggle menu"
         >
           <svg
-            className="w-6 h-6"
+            className="w-5 h-5 min-[340px]:w-6 min-[340px]:h-6"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -71,19 +70,18 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-gray-200">
-          <div className="mx-auto flex w-full max-w-[1200px] flex-col space-y-3 px-4 py-4 sm:px-6">
-            {navItems.map((item) => (
+        <div className="lg:hidden border-t border-slate-200 bg-white shadow-lg">
+          <div className="mx-auto flex w-full max-w-[1200px] flex-col px-3 sm:px-4 py-3 sm:py-4">
+            {navItems.map((item, index) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block text-sm font-bold text-slate-700 hover:text-brand-600 transition py-2"
+                className="block text-sm sm:text-base font-semibold text-slate-700 hover:text-[#3bb54a] hover:bg-slate-50 transition py-2.5 sm:py-3 px-3 rounded-lg"
               >
                 {item.label}
               </a>
             ))}
-          
           </div>
         </div>
       )}

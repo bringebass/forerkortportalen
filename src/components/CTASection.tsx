@@ -2,10 +2,10 @@ export default function CTASection() {
   return (
     <section className="bg-slate-900 py-12 sm:py-16 lg:py-20">
       <div className="container mx-auto max-w-4xl rounded-3xl bg-white px-4 py-10 text-center shadow-lg sm:px-6 sm:py-12 lg:px-10">
-        <h2 className="text-[28px] font-semibold text-slate-900 sm:text-[32px] lg:text-[36px]">
+        <h2 className="text-[30px] font-semibold text-slate-900 sm:text-[32px] lg:text-[36px]">
           Klar for å motta tilbud?
         </h2>
-        <p className="mt-4 text-sm text-slate-600 sm:text-base lg:text-lg px-2">
+        <p className="mt-4 text-base text-slate-600 sm:text-base lg:text-lg px-2">
           Åpne skjemaet øverst og send inn på under ett minutt – helt gratis og
           uforpliktende.
         </p>

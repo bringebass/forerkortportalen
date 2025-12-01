@@ -26,12 +26,9 @@ export default function HowItWorksSection() {
     <section id="hvordan" className="bg-slate-50 pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 font-sans">
       <div className="container mx-auto max-w-[1300px] space-y-8 sm:space-y-10 lg:space-y-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl text-center mx-auto space-y-3 sm:space-y-4">
-          <h2 className="text-[28px] font-semibold text-slate-900 sm:text-[32px] lg:text-[36px]">
+          <h2 className="text-[30px] sm:text-[32px] lg:text-[36px] font-semibold text-slate-900">
             Tre steg fra behov til konkrete tilbud
           </h2>
-          <p className="text-sm text-slate-600 sm:text-base lg:text-lg px-2">
-            Enkel prosess som gir deg oversikt over tilgjengelige trafikkskoler
-          </p>
         </div>
         <div className="grid gap-8 sm:gap-10 md:grid-cols-3">
           {steps.map((step) => (
@@ -42,10 +39,10 @@ export default function HowItWorksSection() {
               <div className={`p-3 sm:p-4 rounded-full bg-white ${step.iconColor} shadow-sm`}>
                 <step.icon className="h-7 w-7 sm:h-8 sm:w-8 lg:h-10 lg:w-10" />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-slate-900">
+              <h3 className="text-xl sm:text-xl lg:text-2xl font-semibold text-slate-900">
                 {step.title}
               </h3>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-sm px-2">
+              <p className="text-base sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-sm px-2">
                 {step.description}
               </p>
             </div>

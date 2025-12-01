@@ -25,9 +25,10 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-slate-900/65" />
       </div>
 
-      <div className="relative z-10 flex min-h-[400px] w-full px-4 py-6 sm:px-6 sm:py-8 lg:min-h-[820px] lg:px-8 lg:py-28">
-        <div className="mx-auto flex w-full max-w-[1300px] flex-col gap-8 sm:gap-12 lg:flex-row lg:items-center lg:justify-center lg:gap-16">
-          <div className="space-y-4 sm:space-y-6 lg:w-[50%]">
+      <div className="relative z-10 flex min-h-[400px] w-full sm:px-6 sm:py-8 lg:min-h-[820px] lg:px-8 lg:py-28">
+        {/* Mobile: Form goes full width, Desktop: Container layout */}
+        <div className="sm:mx-auto sm:flex w-full max-w-[1300px] flex-col gap-8 sm:gap-12 lg:flex-row lg:items-center lg:justify-center lg:gap-16">
+          <div className="hidden sm:block space-y-4 sm:space-y-6 lg:w-[50%]">
             <h1 className="text-center text-[32px] font-semibold leading-[1.15] text-slate-900 sm:text-left sm:text-[48px] lg:text-[54px] lg:text-white">
               Spar penger og finn riktig trafikkskole for deg
             </h1>
@@ -50,7 +51,7 @@ export default function HeroSection() {
           </div>
 
           <div className="w-full lg:w-[50%]">
-            <div className="lg:rounded-[32px] bg-slate-900/70 backdrop-blur-md shadow-none lg:shadow-2xl lg:shadow-slate-900/50">
+            <div className="sm:rounded-[32px] bg-slate-900/70 backdrop-blur-md shadow-none sm:shadow-2xl sm:shadow-slate-900/50">
               <LeadForm />
             </div>
           </div>

@@ -468,7 +468,7 @@ export function LeadForm() {
   };
 
   return (
-    <div className="w-full rounded-none p-5 sm:rounded-3xl sm:p-8">
+    <div className="w-full p-4 sm:rounded-3xl sm:p-8">
       <h2 className="mt-6 lg:mt-0 mb-2 text-center text-4xl font-semibold text-white sm:text-3xl">
         Motta tilbud fra flere trafikkskoler
       </h2>

@@ -1,9 +1,9 @@
-import DrivingSchoolList from "@/components/DrivingSchoolList";
 import { Navbar } from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PopularDrivingSchools from "@/components/PopularDrivingSchools";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import LicenseClassesSection from "@/components/LicenseClassesSection";
+import InfoSection from "@/components/InfoSection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
@@ -17,8 +17,8 @@ export default function Home() {
       <HeroSection />
       <PopularDrivingSchools />
       <HowItWorksSection />
-      <DrivingSchoolList />
       <LicenseClassesSection />
+      <InfoSection />
       <FAQSection />
       <CTASection />
       <Footer />
