@@ -490,7 +490,7 @@ export function LeadForm() {
         </div>
       </div>
 
-      <h3 className="text-center lg:text-left my-3 text-xl font-display font-semibold text-white sm:text-2xl">
+      <h3 className=" my-3 text-xl font-display font-semibold text-white sm:text-2xl">
         {STEP_CONFIG[currentStepType]?.question}
       </h3>
 
