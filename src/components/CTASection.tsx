@@ -1,4 +1,14 @@
+"use client";
+
 export default function CTASection() {
+  const scrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById("skjema");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section className="bg-slate-900 py-12 sm:py-16 lg:py-20">
       <div className="container mx-auto max-w-4xl rounded-3xl bg-white px-4 py-10 text-center shadow-lg sm:px-6 sm:py-12 lg:px-10">
@@ -11,6 +21,7 @@ export default function CTASection() {
         </p>
         <a
           href="#skjema"
+          onClick={scrollToForm}
           className="mt-6 inline-flex items-center justify-center rounded-full bg-[#3bb54a] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2d8f3d] shadow-sm sm:px-8 sm:py-3.5 sm:text-base"
         >
           Start skjema

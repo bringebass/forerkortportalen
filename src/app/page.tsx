@@ -8,6 +8,7 @@ import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <FAQSection />
       <CTASection />
       <Footer />
+      <StickyMobileCTA />
     </main>
   );
 }

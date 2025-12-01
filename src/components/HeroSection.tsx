@@ -25,7 +25,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-slate-900/65" />
       </div>
 
-      <div className="relative z-10 flex min-h-[400px] w-full sm:px-6 sm:py-8 lg:min-h-[820px] lg:px-8 lg:py-28">
+      <div id="skjema" className="relative z-10 flex min-h-[400px] w-full sm:px-6 sm:py-8 lg:min-h-[820px] lg:px-8 lg:py-28 scroll-mt-20">
         {/* Mobile: Form goes full width, Desktop: Container layout */}
         <div className="sm:mx-auto sm:flex w-full max-w-[1300px] flex-col gap-8 sm:gap-12 lg:flex-row lg:items-center lg:justify-center lg:gap-16">
           <div className="hidden sm:block space-y-4 sm:space-y-6 lg:w-[50%]">
