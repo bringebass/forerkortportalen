@@ -17,6 +17,7 @@ const otherLicenseOptions = [
   { value: "AM147", label: "Klasse AM147" },
   { value: "C", label: "Klasse C" },
   { value: "D", label: "Klasse D" },
+  { value: "DontKnow", label: "Vet ikke" },
 ];
 
 const intensiveOptions = [
@@ -272,7 +273,7 @@ export function LeadForm() {
               autoComplete="postal-code"
               value={formData.postalCode}
               onChange={handleChange}
-              className="rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+              className="border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
               placeholder="Postnummer"
             />
           </div>
@@ -296,7 +297,7 @@ export function LeadForm() {
                     }));
                     setStepError(null);
                   }}
-                  className={`rounded-2xl border px-4 py-3 text-base font-semibold transition ${
+                  className={`border px-4 py-3 text-base font-semibold transition ${
                     formData.mainLicenseSelection === option.value
                       ? "border-[#3bb54a] bg-[#3bb54a] text-white"
                       : "border-slate-200 bg-white text-slate-900 hover:border-[#3bb54a] hover:bg-slate-50"
@@ -350,7 +351,7 @@ export function LeadForm() {
               min={minDate}
               value={formData.startDate}
               onChange={handleChange}
-              className="w-full mb-3 rounded-2xl border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+              className="w-full mb-3 border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
             />
             <div className="flex flex-wrap gap-2">
               {quickStartOptions.map((option) => {
@@ -409,7 +410,7 @@ export function LeadForm() {
                   autoComplete="name"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+                  className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                   placeholder="F.eks. Nora Hansen"
                 />
               </div>
@@ -423,7 +424,7 @@ export function LeadForm() {
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+                  className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                   placeholder="9X XX XX XX"
                 />
               </div>
@@ -438,7 +439,7 @@ export function LeadForm() {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full rounded-2xl border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+                className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                 placeholder="navn@epost.no"
               />
             </div>
