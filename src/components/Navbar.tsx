@@ -10,6 +10,7 @@ export function Navbar() {
     { label: "Hvordan det fungerer", href: "#hvordan" },
     { label: "Førerkortklasser", href: "#klasser" },
     { label: "Ofte stilte spørsmål", href: "#faq" },
+    { label: "Kontakt", href: "/kontakt" },
   ];
 
   const legalItems = [
