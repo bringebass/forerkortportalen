@@ -1,5 +1,3 @@
-import { Clock3, MapPin, ShieldCheck } from "lucide-react";
-
 const faq = [
   {
     category: "Om tjenesten",
@@ -60,82 +58,46 @@ const faq = [
   },
 ];
 
-const valuePoints = [
-  {
-    title: "Lokale skoler",
-    copy: "Vi prioriterer trafikkskoler som kjenner rutevalg og sensorer i din region.",
-    icon: MapPin,
-    iconColor: "text-emerald-600",
-    color: "bg-emerald-50 text-emerald-900",
-  },
-  {
-    title: "Trygge prosesser",
-    copy: "Samarbeider bare med godkjente trafikkskoler som følger læreplanen til Statens vegvesen.",
-    icon: ShieldCheck,
-    iconColor: "text-blue-600",
-    color: "bg-sky-50 text-sky-900",
-  },
-  {
-    title: "Rask oppstart",
-    copy: "Flere skoler tilbyr intensivløp, kveldskurs og fleksible teoripakker.",
-    icon: Clock3,
-    iconColor: "text-amber-600",
-    color: "bg-amber-50 text-amber-900",
-  },
-];
-
 export default function FAQSection() {
+  // Flatten all FAQ items from all categories
+  const allFaqItems = faq.flatMap((category) => category.items);
+
   return (
-    <section id="faq" className="bg-slate-50 py-12 sm:py-16 lg:py-20">
-      <div className="container mx-auto max-w-[1300px] grid gap-6 sm:gap-8 px-3 sm:px-4 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-        <div className="space-y-6 min-w-0">
-          <div>
-            <h2 className="text-[28px] sm:text-[30px] font-semibold text-slate-900 lg:text-[32px] xl:text-[36px] mb-3 break-words">
-              Hvorfor velge en sammenligningstjeneste?
+    <section id="faq" className="bg-white py-12 sm:py-16 lg:py-20">
+      <div className="container mx-auto max-w-[1300px] px-3 sm:px-4 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+            <h2 className="text-[28px] sm:text-[30px] font-semibold text-slate-900 lg:text-[32px] xl:text-[36px] mb-3">
+              Ofte stilte spørsmål
             </h2>
-            <p className="text-base text-slate-600 sm:text-base lg:text-lg">
-              Vi gjør det enkelt å finne og sammenligne trafikkskoler
+            <p className="text-base sm:text-base lg:text-lg text-slate-600">
+              Alt du lurer på om Førerkortportalen og vår tjeneste
             </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {valuePoints.map(({ title, copy, icon: Icon, iconColor }) => (
-              <article
-                key={title}
-                className="rounded-3xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition min-w-0"
+          
+          <div className="space-y-4">
+            {allFaqItems.map((item, index) => (
+              <details
+                key={index}
+                className="group rounded-2xl border-2 border-slate-200 bg-white p-5 sm:p-6 hover:border-emerald-400 hover:shadow-md transition-all duration-200"
               >
-                <Icon className={`mb-4 h-6 w-6 sm:h-6 sm:w-6 ${iconColor} flex-shrink-0`} />
-                <h3 className="text-lg sm:text-lg lg:text-xl font-semibold text-slate-900 mb-2 break-words">{title}</h3>
-                <p className="text-sm sm:text-sm lg:text-base text-slate-600 leading-relaxed break-words">{copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-        <div className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm min-w-0">
-          <h3 className="text-xl sm:text-xl lg:text-2xl font-semibold text-slate-900 break-words mb-4">
-            Ofte stilte spørsmål
-          </h3>
-          <div className="space-y-6">
-            {faq.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="space-y-3">
-                <h4 className="text-sm sm:text-base font-semibold text-slate-900 uppercase tracking-wide">
-                  {category.category}
-                </h4>
-                <div className="space-y-3">
-                  {category.items.map((item, itemIndex) => (
-                    <details
-                      key={`${categoryIndex}-${itemIndex}`}
-                      className="group rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-4 hover:bg-slate-100 transition"
-                    >
-                      <summary className="cursor-pointer text-sm sm:text-base lg:text-base font-semibold text-slate-900 marker:hidden break-words">
-                        Spørsmål: {item.q}
-                      </summary>
-                      <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed break-words">
-                        Svar: {item.a}
-                      </p>
-                    </details>
-                  ))}
+                <summary className="cursor-pointer text-base sm:text-lg lg:text-xl font-semibold text-slate-900 marker:hidden list-none flex items-center justify-between gap-4">
+                  <span className="flex-1">{item.q}</span>
+                  <svg
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400 group-open:text-emerald-600 group-open:rotate-180 transition-transform duration-200 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="mt-4 pt-4 border-t border-slate-200">
+                  <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed">
+                    {item.a}
+                  </p>
                 </div>
-              </div>
+              </details>
             ))}
           </div>
         </div>

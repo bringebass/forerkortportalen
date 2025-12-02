@@ -11,9 +11,9 @@ Hvis du bruker Outlook/Office 365 (bringedal@dbinfo.no), legg til følgende i `.
 ```env
 SMTP_HOST=smtp.office365.com
 SMTP_PORT=587
-SMTP_USER=bringedal@dbinfo.no
-SMTP_PASS=ditt-outlook-passord
-SMTP_FROM=bringedal@dbinfo.no
+SMTP_USER=help@dbinfo.no
+SMTP_PASS=
+SMTP_FROM=help@dbinfo.no
 ```
 
 ### Viktige notater for Outlook:
