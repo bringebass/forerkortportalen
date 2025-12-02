@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { useFormContext, FormState } from "@/contexts/FormContext";
 
 const mainLicenseOptions = [
   { value: "B_AUT", label: "B automat" },
@@ -31,36 +32,6 @@ const trafficCourseOptions = [
   { value: "pagar", label: "Pågår" },
   { value: "ikke", label: "Trenger kurs" },
 ];
-
-type FormState = {
-  fullName: string;
-  email: string;
-  phone: string;
-  postalCode: string;
-  licenseType: string;
-  mainLicenseSelection: string;
-  startDate: string;
-  intensiveCourse: string;
-  preferredContact: "telefon" | "epost";
-  trafficCourseStatus: string;
-  message: string;
-  marketingConsent: boolean;
-};
-
-const defaultState: FormState = {
-  fullName: "",
-  email: "",
-  phone: "",
-  postalCode: "",
-  licenseType: "",
-  mainLicenseSelection: "",
-  startDate: "",
-  intensiveCourse: "usikker",
-  preferredContact: "telefon",
-  trafficCourseStatus: "fullfort",
-  message: "",
-  marketingConsent: false,
-};
 
 // Step configuration - change the order here to reorder the form steps
 // Each step type is automatically matched with its question and validator
@@ -120,11 +91,44 @@ type Status = "idle" | "loading" | "success" | "error";
 export function LeadForm() {
   // NOTE: Tailwind is mobile-first here — base classes style the mobile view,
   // while prefixes like sm:, lg:, etc. override styles on larger screens.
-  const [formData, setFormData] = useState<FormState>(defaultState);
+  const { isFullscreen, setIsFullscreen, setHasStartedFilling, formData, setFormData, resetFormData } = useFormContext();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [stepError, setStepError] = useState<string | null>(null);
+  const activeElementIdRef = useRef<string | null>(null);
+  const postalCodeInputRef = useRef<HTMLInputElement>(null);
+
+  // Activate fullscreen on mobile when user starts interacting
+  const activateFullscreenIfNeeded = () => {
+    if (window.innerWidth < 640 && !isFullscreen) {
+      // Store the ID of the currently focused element
+      const activeEl = document.activeElement as HTMLElement;
+      if (activeEl?.id) {
+        activeElementIdRef.current = activeEl.id;
+      }
+      setIsFullscreen(true);
+      setHasStartedFilling(true);
+    }
+  };
+
+  // Restore focus when fullscreen mode activates
+  useEffect(() => {
+    if (isFullscreen && activeElementIdRef.current && window.innerWidth < 640) {
+      // Small delay to ensure the element is rendered in fullscreen view
+      setTimeout(() => {
+        const element = document.getElementById(activeElementIdRef.current || '');
+        if (element) {
+          element.focus();
+          // If it's an input, move cursor to end
+          if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+            const length = element.value.length;
+            element.setSelectionRange(length, length);
+          }
+        }
+      }, 150);
+    }
+  }, [isFullscreen]);
 
   const minDate = useMemo(() => {
     const date = new Date();
@@ -186,6 +190,9 @@ export function LeadForm() {
     const isCheckbox =
       target instanceof HTMLInputElement && target.type === "checkbox";
 
+    // Activate fullscreen on mobile when user starts filling out the form
+    activateFullscreenIfNeeded();
+
     setFormData((prev) => ({
       ...prev,
       [name]: isCheckbox ? target.checked : value,
@@ -211,6 +218,10 @@ export function LeadForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
+    // Activate fullscreen on mobile when clicking Next
+    activateFullscreenIfNeeded();
+    
     setErrorMessage(null);
 
     if (!validateStep()) {
@@ -247,7 +258,7 @@ export function LeadForm() {
       setStatus("success");
       setStepError(null);
       setCurrentStep(0);
-      setFormData(defaultState);
+      resetFormData();
     } catch (error) {
       console.error("Lead form submission failed", error);
       setStatus("error");
@@ -264,6 +275,7 @@ export function LeadForm() {
               Postnummer
             </label>
             <input
+              ref={postalCodeInputRef}
               id="postalCode"
               name="postalCode"
               type="text"
@@ -273,6 +285,7 @@ export function LeadForm() {
               autoComplete="postal-code"
               value={formData.postalCode}
               onChange={handleChange}
+              onFocus={activateFullscreenIfNeeded}
               className="border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
               placeholder="Postnummer"
             />
@@ -288,6 +301,7 @@ export function LeadForm() {
                   type="button"
                   key={option.value}
                   onClick={() => {
+                    activateFullscreenIfNeeded();
                     const newLicenseType = option.value;
                     setFormData((prev) => ({
                       ...prev,
@@ -319,6 +333,7 @@ export function LeadForm() {
                   type="button"
                   key={option.value}
                   onClick={() => {
+                    activateFullscreenIfNeeded();
                     setFormData((prev) => ({
                       ...prev,
                       licenseType: option.value,
@@ -368,6 +383,7 @@ export function LeadForm() {
                     key={option.label}
                     type="button"
                     onClick={() => {
+                      activateFullscreenIfNeeded();
                       if (option.offset === null) {
                         // "Vet ikke" - clear the date
                         setFormData((prev) => ({
@@ -410,6 +426,7 @@ export function LeadForm() {
                   autoComplete="name"
                   value={formData.fullName}
                   onChange={handleChange}
+                  onFocus={activateFullscreenIfNeeded}
                   className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                   placeholder="F.eks. Nora Hansen"
                 />
@@ -424,6 +441,7 @@ export function LeadForm() {
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
+                  onFocus={activateFullscreenIfNeeded}
                   className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                   placeholder="9X XX XX XX"
                 />
@@ -439,6 +457,7 @@ export function LeadForm() {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
+                onFocus={activateFullscreenIfNeeded}
                 className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                 placeholder="navn@epost.no"
               />
@@ -467,8 +486,33 @@ export function LeadForm() {
     }
   };
 
+  const handleClose = () => {
+    setIsFullscreen(false);
+  };
+
   return (
-    <div className="w-full p-4 sm:rounded-3xl sm:p-8">
+    <div className="w-full p-4 sm:rounded-3xl sm:p-8 relative">
+      {/* Close button - only show on mobile fullscreen */}
+      {isFullscreen && (
+        <button
+          onClick={handleClose}
+          className="absolute top-2 right-2 sm:hidden p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition z-10"
+          aria-label="Lukk skjema"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      )}
+      
       <h2 className="mt-6 lg:mt-0 mb-2 text-center text-4xl font-semibold text-white sm:text-3xl">
         Motta tilbud fra flere trafikkskoler
       </h2>

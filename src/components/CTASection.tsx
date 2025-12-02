@@ -1,11 +1,25 @@
 "use client";
 
+import { useFormContext } from "@/contexts/FormContext";
+
 export default function CTASection() {
+  const { setIsFullscreen, setHasStartedFilling } = useFormContext();
+
   const scrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const element = document.getElementById("skjema");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    
+    // On mobile, activate fullscreen mode
+    if (window.innerWidth < 640) {
+      setIsFullscreen(true);
+      setHasStartedFilling(true);
+      // Scroll to top to show the form
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // On desktop, just scroll to form
+      const element = document.getElementById("skjema");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 

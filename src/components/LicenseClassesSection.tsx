@@ -47,17 +47,17 @@ export default function LicenseClassesSection() {
           {licenseInfo.map((license) => (
             <article
               key={license.title}
-              className="rounded-3xl bg-slate-900 p-5 sm:p-6 shadow-lg transition hover:shadow-xl"
+              className="rounded-3xl bg-slate-100 border-2 border-slate-200 p-5 sm:p-6 shadow-md transition hover:shadow-lg hover:border-slate-300"
             >
-              <h3 className="text-xl sm:text-xl lg:text-2xl font-bold mb-3 text-white">
+              <h3 className="text-xl sm:text-xl lg:text-2xl font-bold mb-3 text-slate-800">
                 {license.title}
               </h3>
-              <p className="text-base sm:text-base lg:text-lg text-white/90 mb-4 leading-relaxed font-medium">{license.content}</p>
-              <ul className="space-y-3 text-sm sm:text-base text-white/85">
+              <p className="text-base sm:text-base lg:text-lg text-slate-700 mb-4 leading-relaxed">{license.content}</p>
+              <ul className="space-y-3 text-sm sm:text-base text-slate-600">
                 {license.bullets.map((bullet) => (
                   <li key={bullet} className="flex items-start gap-3">
                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#3bb54a] flex-shrink-0" />
-                    <span className="leading-relaxed font-medium">{bullet}</span>
+                    <span className="leading-relaxed">{bullet}</span>
                   </li>
                 ))}
               </ul>

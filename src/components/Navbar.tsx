@@ -21,7 +21,10 @@ export function Navbar() {
             alt="Førerkortportalen"
             width={32}
             height={32}
-            className="rounded-md flex-shrink-0 w-7 h-7 min-[340px]:w-8 min-[340px]:h-8"
+            className="rounded-md flex-shrink-0 h-7 w-7 min-[340px]:h-8 min-[340px]:w-8"
+            style={{
+              objectFit: 'contain',
+            }}
             priority
           />
           <span className="flex-shrink min-w-0">

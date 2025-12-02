@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { FormProvider } from "@/contexts/FormContext";
 
 const siteUrl = "https://forerkortportalen.no";
 const title = "Førerkortportalen | Få tilbud fra trafikkskoler i hele Norge";
@@ -52,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="no" className="bg-slate-50">
       <body className="antialiased font-sans">
-        {children}
+        <FormProvider>{children}</FormProvider>
       </body>
     </html>
   );

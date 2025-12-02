@@ -1,13 +1,5 @@
 import Image from "next/image";
 
-const logos = [
-  { src: "/A-team logo.png", alt: "A-team trafikkskole" },
-  { src: "/AB trafikksenter logo.png", alt: "AB trafikksenter" },
-  { src: "/Best trafikkskole logo.png", alt: "Best trafikkskole" },
-  { src: "/Svein Svendsen logo.png", alt: "Svein Svendsen trafikkskole" },
-  { src: "/wright logo.jpeg", alt: "Wright trafikkskole" },
-];
-
 export default function InfoSection() {
   return (
     <section className="bg-slate-50 py-12 sm:py-16 lg:py-20">
@@ -61,41 +53,15 @@ export default function InfoSection() {
             </div>
           </div>
 
-          {/* Image and logos */}
-          <div className="space-y-8">
-            {/* Image */}
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
-              <Image
-                src="/car-in-circle.png"
-                alt="Bil i sirkel"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-
-            {/* Partner logos */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-              <p className="text-sm font-semibold text-slate-700 mb-4 text-center">
-                Vi samarbeider med trafikkskoler over hele Norge
-              </p>
-              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
-                {logos.slice(0, 3).map((logo, index) => (
-                  <div
-                    key={index}
-                    className="relative h-8 w-20 sm:h-10 sm:w-24 flex-shrink-0 grayscale opacity-60"
-                  >
-                    <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      fill
-                      className="object-contain"
-                      sizes="96px"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Image */}
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+            <Image
+              src="/car-in-circle.png"
+              alt="Bil i sirkel"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
           </div>
         </div>
       </div>
