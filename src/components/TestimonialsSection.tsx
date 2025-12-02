@@ -68,7 +68,7 @@ export default function TestimonialsSection() {
 
                 {/* Testimonial Text */}
                 <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                  "{testimonial.text}"
+                  &ldquo;{testimonial.text}&rdquo;
                 </p>
 
                 {/* Name */}
