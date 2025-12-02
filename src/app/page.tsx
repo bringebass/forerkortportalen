@@ -9,18 +9,20 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import CompactFormCTA from "@/components/CompactFormCTA";
 
 export default function Home() {
   return (
     <main>
       <StructuredData />
       <Navbar />
+      <CompactFormCTA />
       <HeroSection />
       <PopularDrivingSchools />
       <HowItWorksSection />
-      <LicenseClassesSection />
       <InfoSection />
       <FAQSection />
+      <LicenseClassesSection />
       <CTASection />
       <Footer />
       <StickyMobileCTA />

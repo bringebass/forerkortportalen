@@ -41,6 +41,8 @@ interface FormContextType {
   formData: FormState;
   setFormData: (data: FormState | ((prev: FormState) => FormState)) => void;
   resetFormData: () => void;
+  currentStep: number;
+  setCurrentStep: (step: number | ((prev: number) => number)) => void;
 }
 
 const FormContext = createContext<FormContextType | undefined>(undefined);
@@ -49,9 +51,11 @@ export function FormProvider({ children }: { children: ReactNode }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [hasStartedFilling, setHasStartedFilling] = useState(false);
   const [formData, setFormData] = useState<FormState>(defaultFormState);
+  const [currentStep, setCurrentStep] = useState(0);
 
   const resetFormData = () => {
     setFormData(defaultFormState);
+    setCurrentStep(0);
   };
 
   return (
@@ -64,6 +68,8 @@ export function FormProvider({ children }: { children: ReactNode }) {
         formData,
         setFormData,
         resetFormData,
+        currentStep,
+        setCurrentStep,
       }}
     >
       {children}

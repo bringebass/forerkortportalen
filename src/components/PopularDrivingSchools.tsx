@@ -16,7 +16,7 @@ export default function PopularDrivingSchools() {
     <section className="bg-white py-10 sm:py-12 lg:py-16">
       <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-[28px] sm:text-[28px] font-semibold text-slate-900 mb-6 sm:mb-8 lg:text-[32px] lg:mb-10">
-          Populære kjøreskoler
+          Populære trafikkskoler
         </h2>
         
         {/* Mobile view - show all 5 logos: 3 on top row, 2 on bottom */}

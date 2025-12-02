@@ -9,6 +9,12 @@ export default function StickyMobileCTA() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Don't show if user has started filling (CompactFormCTA handles that)
+      if (hasStartedFilling) {
+        setShow(false);
+        return;
+      }
+
       // Always show if form is in fullscreen mode
       if (isFullscreen) {
         setShow(true);
@@ -30,7 +36,7 @@ export default function StickyMobileCTA() {
     handleScroll(); // Check initial position
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isFullscreen]);
+  }, [isFullscreen, hasStartedFilling]);
 
   const scrollToForm = () => {
     if (hasStartedFilling) {

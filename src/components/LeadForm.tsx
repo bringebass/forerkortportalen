@@ -91,10 +91,9 @@ type Status = "idle" | "loading" | "success" | "error";
 export function LeadForm() {
   // NOTE: Tailwind is mobile-first here — base classes style the mobile view,
   // while prefixes like sm:, lg:, etc. override styles on larger screens.
-  const { isFullscreen, setIsFullscreen, setHasStartedFilling, formData, setFormData, resetFormData } = useFormContext();
+  const { isFullscreen, setIsFullscreen, setHasStartedFilling, formData, setFormData, resetFormData, currentStep, setCurrentStep } = useFormContext();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [currentStep, setCurrentStep] = useState(0);
   const [stepError, setStepError] = useState<string | null>(null);
   const activeElementIdRef = useRef<string | null>(null);
   const postalCodeInputRef = useRef<HTMLInputElement>(null);
@@ -258,6 +257,7 @@ export function LeadForm() {
       setStatus("success");
       setStepError(null);
       setCurrentStep(0);
+      setHasStartedFilling(false);
       resetFormData();
     } catch (error) {
       console.error("Lead form submission failed", error);
@@ -488,6 +488,11 @@ export function LeadForm() {
 
   const handleClose = () => {
     setIsFullscreen(false);
+    // Store the currently focused element before closing
+    const activeEl = document.activeElement as HTMLElement;
+    if (activeEl?.id) {
+      activeElementIdRef.current = activeEl.id;
+    }
   };
 
   return (
