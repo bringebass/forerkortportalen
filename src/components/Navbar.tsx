@@ -12,6 +12,11 @@ export function Navbar() {
     { label: "Ofte stilte spørsmål", href: "#faq" },
   ];
 
+  const legalItems = [
+    { label: "Brukervilkår", href: "/brukervilkar" },
+    { label: "Personvern", href: "/personvern" },
+  ];
+
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm bg-gray-50 sm:bg-white">
       <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between px-4 min-[340px]:px-4 xl:px-0 py-3 min-[340px]:py-4">
@@ -39,12 +44,21 @@ export function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-base font-medium text-slate-700 hover:text-brand-600 transition"
+              className="text-base font-medium text-slate-700 hover:text-[#3bb54a] transition"
             >
               {item.label}
             </a>
           ))}
-        
+          <div className="h-4 w-px bg-slate-300 mx-2"></div>
+          {legalItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-slate-500 hover:text-[#3bb54a] transition"
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
 
         {/* Mobile Menu Button */}
@@ -81,6 +95,17 @@ export function Navbar() {
                 href={item.href}
                 onClick={() => setIsOpen(false)}
                 className="block text-sm sm:text-base font-semibold text-slate-700 hover:text-[#3bb54a] hover:bg-slate-50 transition py-2.5 sm:py-3 px-3 rounded-lg"
+              >
+                {item.label}
+              </a>
+            ))}
+            <div className="border-t border-slate-200 my-2"></div>
+            {legalItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-sm sm:text-base font-medium text-slate-500 hover:text-[#3bb54a] hover:bg-slate-50 transition py-2.5 sm:py-3 px-3 rounded-lg"
               >
                 {item.label}
               </a>

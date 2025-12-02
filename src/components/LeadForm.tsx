@@ -129,12 +129,6 @@ export function LeadForm() {
     }
   }, [isFullscreen]);
 
-  const minDate = useMemo(() => {
-    const date = new Date();
-    date.setDate(date.getDate() + 7);
-    return date.toISOString().split("T")[0];
-  }, []);
-
   const requiresOtherLicenseStep = formData.mainLicenseSelection === "OTHER";
 
   // Get the actual step type for the current step index
@@ -198,9 +192,26 @@ export function LeadForm() {
     }));
   };
 
-  const quickStartOptions = [
-    { label: "Vet ikke", offset: null },
-  ];
+const quickStartOptions = [
+  { label: "Så fort som mulig", value: "asap" },
+  { label: "Innen en måned", value: "within_month" },
+  { label: "Senere / Vet ikke", value: "later" },
+];
+
+const countryCodes = [
+  { code: "+47", country: "🇳🇴" },
+  { code: "+46", country: "🇸🇪" },
+  { code: "+45", country: "🇩🇰" },
+  { code: "+358", country: "🇫🇮" },
+  { code: "+49", country: "🇩🇪" },
+  { code: "+44", country: "🇬🇧" },
+  { code: "+1", country: "🇺🇸" },
+  { code: "+33", country: "🇫🇷" },
+  { code: "+34", country: "🇪🇸" },
+  { code: "+39", country: "🇮🇹" },
+  { code: "+31", country: "🇳🇱" },
+  { code: "+32", country: "🇧🇪" },
+];
 
   const validateStep = () => {
     const stepConfig = STEP_CONFIG[currentStepType];
@@ -236,7 +247,17 @@ export function LeadForm() {
     setStatus("loading");
 
     try {
-      const { mainLicenseSelection, ...submissionData } = formData;
+      const { mainLicenseSelection, phoneCountryCode, phone, ...restData } = formData;
+      
+      // Combine country code and phone number for submission
+      const fullPhoneNumber = phoneCountryCode && phone 
+        ? `${phoneCountryCode} ${phone}`.trim()
+        : phone;
+
+      const submissionData = {
+        ...restData,
+        phone: fullPhoneNumber,
+      };
 
       const response = await fetch("/api/leads", {
         method: "POST",
@@ -286,8 +307,8 @@ export function LeadForm() {
               value={formData.postalCode}
               onChange={handleChange}
               onFocus={activateFullscreenIfNeeded}
-              className="border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
-              placeholder="Postnummer"
+              className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+              placeholder="Postnummer (4 siffer)"
             />
           </div>
         );
@@ -355,54 +376,27 @@ export function LeadForm() {
       }
       case "startDate": {
         return (
-          <div className="">
-            <label htmlFor="startDate" className="sr-only">
-              Ønsket oppstart
-            </label>
-            <input
-              id="startDate"
-              name="startDate"
-              type="date"
-              min={minDate}
-              value={formData.startDate}
-              onChange={handleChange}
-              className="w-full mb-3 border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
-            />
-            <div className="flex flex-wrap gap-2">
+          <div className="space-y-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               {quickStartOptions.map((option) => {
-                const isSelected = option.offset === null
-                  ? !formData.startDate
-                  : (() => {
-                      const date = new Date();
-                      date.setDate(date.getDate() + option.offset);
-                      return formData.startDate === date.toISOString().split("T")[0];
-                    })();
+                const isSelected = formData.startDate === option.value;
                 
                 return (
                   <button
-                    key={option.label}
+                    key={option.value}
                     type="button"
                     onClick={() => {
                       activateFullscreenIfNeeded();
-                      if (option.offset === null) {
-                        // "Vet ikke" - clear the date
-                        setFormData((prev) => ({
-                          ...prev,
-                          startDate: "",
-                        }));
-                      } else {
-                        const date = new Date();
-                        date.setDate(date.getDate() + option.offset);
-                        setFormData((prev) => ({
-                          ...prev,
-                          startDate: date.toISOString().split("T")[0],
-                        }));
-                      }
+                      setFormData((prev) => ({
+                        ...prev,
+                        startDate: option.value,
+                      }));
+                      setStepError(null);
                     }}
-                    className={`rounded-full border px-3 py-1.5 text-sm font-semibold transition ${
+                    className={`border px-4 py-3 text-base font-semibold transition ${
                       isSelected
                         ? "border-[#3bb54a] bg-[#3bb54a] text-white"
-                        : "border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
+                        : "border-slate-200 bg-white text-slate-900 hover:border-[#3bb54a] hover:bg-slate-50"
                     }`}
                   >
                     {option.label}
@@ -416,23 +410,42 @@ export function LeadForm() {
       case "contactInfo": {
         return (
           <div className="space-y-4">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="">
-                <label htmlFor="fullName" className="text-white">Fullt navn</label>
-                <input
-                  id="fullName"
-                  name="fullName"
-                  type="text"
-                  autoComplete="name"
-                  value={formData.fullName}
+            <div className="">
+              <label htmlFor="fullName" className="text-white">Fullt navn</label>
+              <input
+                id="fullName"
+                name="fullName"
+                type="text"
+                autoComplete="name"
+                value={formData.fullName}
+                onChange={handleChange}
+                onFocus={activateFullscreenIfNeeded}
+                className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+                placeholder="F.eks. Nora Hansen"
+              />
+            </div>
+            <div className="">
+              <label htmlFor="phone" className="text-white">Telefon</label>
+              <div className="flex gap-2">
+                <select
+                  id="phoneCountryCode"
+                  name="phoneCountryCode"
+                  value={formData.phoneCountryCode}
                   onChange={handleChange}
                   onFocus={activateFullscreenIfNeeded}
-                  className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
-                  placeholder="F.eks. Nora Hansen"
-                />
-              </div>
-              <div className="">
-                <label htmlFor="phone" className="text-white">Telefon</label>
+                  className="flex-shrink-0 w-20 border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] rounded-md pl-2 pr-6 py-2 appearance-none bg-no-repeat bg-right bg-[length:16px_16px]"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                    backgroundPosition: 'right 0.25rem center',
+                    paddingRight: '1.75rem'
+                  }}
+                >
+                  {countryCodes.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.code} {country.country}
+                    </option>
+                  ))}
+                </select>
                 <input
                   id="phone"
                   name="phone"
@@ -442,7 +455,7 @@ export function LeadForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   onFocus={activateFullscreenIfNeeded}
-                  className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+                  className="flex-1 border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                   placeholder="9X XX XX XX"
                 />
               </div>

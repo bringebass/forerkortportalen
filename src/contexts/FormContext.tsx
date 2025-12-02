@@ -7,6 +7,7 @@ export type FormState = {
   fullName: string;
   email: string;
   phone: string;
+  phoneCountryCode: string;
   postalCode: string;
   licenseType: string;
   mainLicenseSelection: string;
@@ -22,6 +23,7 @@ const defaultFormState: FormState = {
   fullName: "",
   email: "",
   phone: "",
+  phoneCountryCode: "+47",
   postalCode: "",
   licenseType: "",
   mainLicenseSelection: "",

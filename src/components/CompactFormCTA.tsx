@@ -63,7 +63,11 @@ export default function CompactFormCTA() {
               </div>
             )}
             {formData.startDate && (
-              <div>Start: {new Date(formData.startDate).toLocaleDateString('no-NO', { day: 'numeric', month: 'short' })}</div>
+              <div>
+                {formData.startDate === "asap" ? "Så fort som mulig" :
+                 formData.startDate === "within_month" ? "Innen en måned" :
+                 formData.startDate === "later" ? "Senere / Vet ikke" : ""}
+              </div>
             )}
           </div>
         </div>
