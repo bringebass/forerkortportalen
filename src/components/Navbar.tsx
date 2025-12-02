@@ -7,9 +7,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: "Hvordan det fungerer", href: "#hvordan" },
-    { label: "Førerkortklasser", href: "#klasser" },
-    { label: "Ofte stilte spørsmål", href: "#faq" },
+    { label: "Om oss", href: "/om-oss" },
+    { label: "Artikler", href: "/artikler" },
     { label: "Kontakt", href: "/kontakt" },
   ];
 

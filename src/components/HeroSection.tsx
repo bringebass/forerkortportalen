@@ -13,7 +13,7 @@ const heroHighlights = [
 ];
 
 export default function HeroSection() {
-  const { isFullscreen, hasStartedFilling } = useFormContext();
+  const { isFullscreen, setIsFullscreen, setHasStartedFilling, hasStartedFilling } = useFormContext();
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if mobile on mount
@@ -25,6 +25,17 @@ export default function HeroSection() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Check if form should open fullscreen from navigation
+  useEffect(() => {
+    const shouldOpenForm = sessionStorage.getItem("openFullscreenForm");
+    if (shouldOpenForm === "true" && isMobile) {
+      sessionStorage.removeItem("openFullscreenForm");
+      setIsFullscreen(true);
+      setHasStartedFilling(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [isMobile, setIsFullscreen, setHasStartedFilling]);
 
   // Lock scroll on mobile when form is fullscreen
   useEffect(() => {
