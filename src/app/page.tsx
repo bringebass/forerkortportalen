@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PopularDrivingSchools from "@/components/PopularDrivingSchools";
 import HowItWorksSection from "@/components/HowItWorksSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import LicenseClassesSection from "@/components/LicenseClassesSection";
 import InfoSection from "@/components/InfoSection";
 import FAQSection from "@/components/FAQSection";
@@ -21,6 +22,7 @@ export default function Home() {
       <PopularDrivingSchools />
       <HowItWorksSection />
       <InfoSection />
+      <TestimonialsSection />
       <FAQSection />
       <LicenseClassesSection />
       <CTASection />

@@ -5,13 +5,14 @@ export const leadSchema = z.object({
   email: z.string().email("Ugyldig e-post"),
   phone: z
     .string()
-    .min(8, "Oppgi telefonnummer")
-    .max(15, "Telefonnummer er for langt"),
+    .min(8, "Oppgi telefonnummer") // Phone number with country code can be longer
+    .max(25, "Telefonnummer er for langt"),
   postalCode: z
     .string()
     .regex(/^\d{4}$/, "Oppgi et norsk postnummer på fire siffer"),
   licenseType: z.string().min(1),
-  startDate: z.string().min(1, "Velg ønsket oppstart"),
+  mainLicenseSelection: z.string().optional(), // B, B_AUT, OTHER
+  startDate: z.string().min(1, "Velg ønsket oppstart"), // "asap", "within_month", "later"
   intensiveCourse: z.enum(["ja", "nei", "usikker"]),
   preferredContact: z.enum(["telefon", "epost"]),
   trafficCourseStatus: z.enum(["fullfort", "pagar", "ikke"]),
@@ -23,7 +24,7 @@ export const leadSchema = z.object({
     }),
   sourcePage: z
     .string()
-    .default("forerkorttilbud.no")
+    .default("forerkortportalen.no")
     .optional(),
 });
 

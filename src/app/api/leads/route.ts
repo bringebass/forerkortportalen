@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
     await Lead.create({
       ...parsed.data,
-      sourcePage: parsed.data.sourcePage ?? "forerkorttilbud.no",
+      sourcePage: parsed.data.sourcePage ?? "forerkortportalen.no",
     });
 
     return NextResponse.json(
