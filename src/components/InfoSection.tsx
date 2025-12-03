@@ -56,7 +56,7 @@ export default function InfoSection() {
           {/* Image */}
           <div className="relative aspect-[4/4]">
             <Image
-              src="/student.svg"
+              src="/student1.svg"
               alt="Bil i sirkel"
               fill
               className="object-cover"
