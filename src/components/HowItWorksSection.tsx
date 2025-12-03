@@ -1,58 +1,105 @@
-import { Award, Gauge, MapPin, Star } from "lucide-react";
+"use client";
 
-const steps = [
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+
+const features = [
   {
-    title: "Del behovet ditt",
-    description: "Postnummer, førerkortklasse og ønsket oppstart fylles ut på under ett minutt.",
-    icon: MapPin,
-    iconColor: "text-emerald-600",
+    text: "Fyll ut én enkel forespørsel",
+    highlight: "under ett minutt",
   },
   {
-    title: "Vi matcher deg",
-    description: "Førerkortportalen sender forespørselen til trafikkskoler som dekker området og klassen.",
-    icon: Gauge,
-    iconColor: "text-blue-600",
+    text: "Få tilbud fra flere",
+    highlight: "kvalitetssikrede trafikkskoler",
   },
   {
-    title: "Du velger skole",
-    description: "Sammenlign opplegg og pris, still spørsmål og velg den læreren som passer deg best.",
-    icon: Award,
-    iconColor: "text-amber-600",
+    text: "Sammenlign og velg",
+    highlight: "den som passer deg best",
   },
 ];
 
 export default function HowItWorksSection() {
   return (
-    <section id="hvordan" className="bg-slate-50 pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 font-sans">
-      <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-        <div className="space-y-8 sm:space-y-10 lg:space-y-12">
-          <div className="max-w-2xl text-center mx-auto space-y-3 sm:space-y-4">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <Star className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-[#3bb54a]" />
-              <h2 className="text-[30px] sm:text-[32px] lg:text-[36px] font-semibold text-slate-900">
-                Tre steg fra behov til konkrete tilbud
-              </h2>
+    <section id="hvordan" className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-32 font-sans">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left side - Image */}
+          <div className="relative order-2 lg:order-1">
+            <div className="relative aspect-square max-w-lg mx-auto lg:max-w-none">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-blue-400/20 rounded-3xl blur-2xl transform rotate-6"></div>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white/50 backdrop-blur-sm border border-white/20 p-8 lg:p-12">
+                <img
+                  src="/offers.svg"
+                  alt="Hvordan tjenesten fungerer"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           </div>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-3">
-            {steps.map((step) => (
-              <div
-                key={step.title}
-                className="rounded-2xl bg-white p-6 sm:p-8 shadow-sm hover:shadow-md transition border border-slate-200"
-              >
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <div className={`p-3 sm:p-4 rounded-full bg-white ${step.iconColor} shadow-sm`}>
-                    <step.icon className="h-7 w-7 sm:h-8 sm:w-8 lg:h-10 lg:w-10" />
-                  </div>
-                  <h3 className="text-xl sm:text-xl lg:text-2xl font-semibold text-slate-900">
-                    {step.title}
-                  </h3>
-                  <p className="text-base sm:text-base lg:text-lg text-slate-600 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+
+          {/* Right side - Content */}
+          <div className="space-y-8 order-1 lg:order-2">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/50">
+                <Sparkles className="h-4 w-4 text-emerald-600" />
+                <span className="text-sm font-semibold text-emerald-700">Så enkelt er det</span>
               </div>
-            ))}
+              
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
+                Fra behov til{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10 bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                    konkrete tilbud
+                  </span>
+                  <span className="absolute bottom-2 left-0 right-0 h-3 bg-emerald-200/40 -z-0 transform -skew-x-12"></span>
+                </span>
+              </h2>
+              
+              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-xl">
+                Førerkortportalen gjør det enkelt å finne den perfekte trafikkskolen. 
+                Fyll ut én forespørsel og få tilbud fra flere skoler i ditt område.
+              </p>
+            </div>
+
+            {/* Features list */}
+            <div className="space-y-4 pt-4">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="group flex items-start gap-4 p-5 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/50 hover:border-emerald-300/50 hover:bg-white/80 transition-all duration-300 hover:shadow-lg"
+                >
+                  <div className="flex-shrink-0 mt-0.5">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/25 group-hover:scale-110 transition-transform">
+                      <CheckCircle2 className="h-5 w-5 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex-1 pt-1">
+                    <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+                      {feature.text}{" "}
+                      <span className="font-semibold text-emerald-700">
+                        {feature.highlight}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="pt-6">
+              <a
+                href="#form"
+                className="group inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-105"
+              >
+                <span>Kom i gang nå</span>
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

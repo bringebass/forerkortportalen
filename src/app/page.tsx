@@ -20,13 +20,13 @@ export default function Home() {
       <Navbar />
       <CompactFormCTA />
       <HeroSection />
-      <PopularDrivingSchools />
       <HowItWorksSection />
       <InfoSection />
+      <PopularDrivingSchools />
       <WhyChooseSection />
       <TestimonialsSection />
       <FAQSection />
-      <LicenseClassesSection />
+      {/* <LicenseClassesSection /> */}
       <CTASection />
       <Footer />
       <StickyMobileCTA />
