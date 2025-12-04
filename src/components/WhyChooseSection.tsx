@@ -34,16 +34,18 @@ const valuePoints = [
 
 export default function WhyChooseSection() {
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20">
+    <section className="bg-white pt-6 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20">
       <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <div className="text-left mb-6 sm:mb-10 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 leading-tight sm:hidden">
-              Fordeler
-            </h2>
-            <p className="text-sm text-slate-600 sm:hidden">
-              3 grunner til å benytte førerkortportalen.
-            </p>
+          <div className="text-left mb-2 sm:mb-10 sm:mb-12">
+            {/* Mobile: SVG header full-width */}
+            <div className="-mx-4 mb-4 sm:hidden">
+              <img
+                src="/3reasons.svg"
+                alt="Tre grunner til å velge Førerkortportalen"
+                className="w-full h-auto"
+              />
+            </div>
             <div className="hidden sm:block">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight">
                 Hvorfor bruke førerkortportalen?
