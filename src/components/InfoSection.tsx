@@ -13,7 +13,7 @@ export default function InfoSection() {
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
                 Sammenlign trafikkskoler og{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-blue-600">
+                  <span className="relative z-10 text-[#3bb54a]">
                     spar penger
                   </span>
                   <span className=""></span>

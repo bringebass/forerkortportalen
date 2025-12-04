@@ -61,10 +61,10 @@ export default function OmOssPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="bg-white py-12 sm:py-16 lg:py-20 border-b border-slate-200">
+      <section className="bg-white pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8">
         <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold text-slate-900 mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold text-slate-900 mb-3 sm:mb-4">
               Om Førerkortportalen
             </h1>
             <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-slate-600 leading-relaxed max-w-3xl">
@@ -75,7 +75,7 @@ export default function OmOssPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="pt-0 pb-12 sm:pb-16 lg:pb-20">
         <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-12">
             

@@ -20,9 +20,16 @@ SMTP_FROM=help@dbinfo.no
 
 1. **Passord**: Bruk ditt vanlige Outlook/Office 365 passord
 2. **Multi-Factor Authentication (MFA)**: Hvis du har MFA aktivert, må du:
-   - Enten deaktivere MFA for denne applikasjonen (ikke anbefalt for sikkerhet)
-   - Eller opprette en "App Password" i Microsoft Account settings
-3. **Office 365 Admin**: Hvis dette er en organisasjonskonto, kan det hende at administratoren må aktivere SMTP AUTH i Exchange Admin Center
+   - Opprette en "App Password" i Microsoft Account settings (anbefalt)
+   - Gå til https://account.microsoft.com/security → "App passwords" → "Create a new app password"
+   - Bruk app-passordet i `SMTP_PASS` i stedet for ditt vanlige passord
+3. **Microsoft Security Defaults**: Hvis du får feilmelding "user is locked by your organization's security defaults policy":
+   - **Løsning 1 (Anbefalt)**: Opprett en app-passord hvis MFA er aktivert
+   - **Løsning 2**: Kontakt Microsoft 365 administrator for å aktivere SMTP AUTH for kontoen i Exchange Admin Center
+   - **Løsning 3**: Bruk en annen e-posttjeneste (SendGrid, Resend, etc.) - se alternativer nedenfor
+4. **Office 365 Admin**: Hvis dette er en organisasjonskonto, kan det hende at administratoren må:
+   - Aktivere SMTP AUTH i Exchange Admin Center (Settings → Mail → SMTP AUTH)
+   - Eller opprette en dedikert e-postkonto for applikasjonen
 
 ## Alternativer hvis Outlook ikke fungerer:
 

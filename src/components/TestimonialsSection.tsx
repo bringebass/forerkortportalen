@@ -44,7 +44,7 @@ export default function TestimonialsSection() {
       <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl text-center mx-auto mb-12 sm:mb-14 lg:mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
-            <span className="text-blue-600">Hva sier</span>{" "}brukerne våre?
+            <span className="text-[#3bb54a]">Hva sier</span>{" "}brukerne våre?
           </h2>
           <p className="text-lg sm:text-xl text-slate-600">
             Over 1000 fornøyde brukere har funnet sin perfekte trafikkskole gjennom oss

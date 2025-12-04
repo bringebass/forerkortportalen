@@ -86,8 +86,8 @@ export default function Footer() {
               </p>
             </div>
             <div className="text-xs sm:text-sm text-slate-500">
-              <p>© {new Date().getFullYear()} Førerkortportalen</p>
-              <p className="mt-1">Tjenesten er uforpliktende</p>
+              <p>© {new Date().getFullYear()} DB media AS</p>
+              <p className="mt-1">Org.nr: 936 445 594</p>
             </div>
           </div>
         </div>

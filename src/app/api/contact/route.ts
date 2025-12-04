@@ -90,12 +90,22 @@ export async function POST(request: Request) {
     );
   } catch (error: any) {
     console.error("Failed to send contact email", error);
+    
+    // Provide more specific error messages
+    let errorMessage = "Vi klarte ikke å sende meldingen akkurat nå. Prøv igjen om litt.";
+    
+    if (error.code === "EAUTH" || error.message?.includes("Authentication unsuccessful")) {
+      if (error.message?.includes("security defaults policy")) {
+        errorMessage = "E-post autentisering feilet: Kontoen er låst av Microsoft Security Defaults. Du må enten opprette en app-passord (hvis MFA er aktivert) eller kontakte administrator for å aktivere SMTP AUTH.";
+      } else {
+        errorMessage = "E-post autentisering feilet: Sjekk at brukernavn og passord er riktig. Hvis MFA er aktivert, må du bruke en app-passord.";
+      }
+    } else if (error.message?.includes("Invalid login")) {
+      errorMessage = "E-post konfigurasjon er feil. Sjekk brukernavn og passord i .env.local.";
+    }
+    
     return NextResponse.json(
-      {
-        message: error.message?.includes("Invalid login") 
-          ? "E-post konfigurasjon er feil. Kontakt systemadministrator."
-          : "Vi klarte ikke å sende meldingen akkurat nå. Prøv igjen om litt.",
-      },
+      { message: errorMessage },
       { status: 500 }
     );
   }
