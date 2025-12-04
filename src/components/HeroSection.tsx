@@ -12,18 +12,10 @@ const heroHighlights = [
   { label: "Helt uforpliktende", icon: Clock3, iconColor: "" },
 ];
 
-const heroLogos = [
-  { src: "/A-team logo.png", alt: "A-team trafikkskole" },
-  { src: "/AB trafikksenter logo.png", alt: "AB trafikksenter" },
-  { src: "/Best trafikkskole logo.png", alt: "Best trafikkskole" },
-  { src: "/Svein Svendsen logo.png", alt: "Svein Svendsen trafikkskole" },
-  { src: "/wright logo.jpeg", alt: "Wright trafikkskole" },
-];
 
 export default function HeroSection() {
   const { isFullscreen, setIsFullscreen, setHasStartedFilling, hasStartedFilling } = useFormContext();
   const [isMobile, setIsMobile] = useState(false);
-  const [isLogoPaused, setIsLogoPaused] = useState(false);
 
   // Check if mobile on mount
   useEffect(() => {
@@ -120,52 +112,10 @@ export default function HeroSection() {
                 <LeadForm />
               </div>
 
-              {/* Logo slider - mobile only, auto-scroll + pause on interaction */}
-              <div className="mt-6 sm:hidden">
-                <div className="overflow-hidden">
-                  <div
-                    className="flex min-w-max items-center gap-8 px-8 py-2"
-                    style={{
-                      animation: "logo-marquee 24s linear infinite",
-                      animationPlayState: isLogoPaused ? "paused" : "running",
-                    }}
-                    onMouseEnter={() => setIsLogoPaused(true)}
-                    onMouseLeave={() => setIsLogoPaused(false)}
-                    onTouchStart={() => setIsLogoPaused(true)}
-                    onTouchEnd={() => setIsLogoPaused(false)}
-                  >
-                    {heroLogos.concat(heroLogos).map((logo, index) => (
-                      <div
-                        key={`${logo.src}-${index}`}
-                        className="flex-shrink-0 h-6 w-20 flex items-center justify-center"
-                      >
-                        <Image
-                          src={logo.src}
-                          alt={logo.alt}
-                          width={80}
-                          height={24}
-                          className="object-contain grayscale opacity-80"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="border-t border-slate-300 mx-8 mt-4" />
-              </div>
             </div>
           </div>
         </div>
       </section>
-      <style jsx>{`
-        @keyframes logo-marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-      `}</style>
     </>
   );
 }

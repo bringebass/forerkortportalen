@@ -13,6 +13,7 @@ import StructuredData from "@/components/StructuredData";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import CompactFormCTA from "@/components/CompactFormCTA";
 import { ScrollToFormButton } from "@/components/ScrollToFormButton";
+import LogoCarousel from "@/components/LogoCarousel";
 
 export default function Home() {
   return (
@@ -21,6 +22,11 @@ export default function Home() {
       <Navbar />
       <CompactFormCTA />
       <HeroSection />
+      
+      {/* Logo Carousel - Mobile only, positioned after form */}
+      {/* <div className="mt-6 sm:hidden">
+        <LogoCarousel />
+      </div> */}
       <WhyChooseSection />
       <HowItWorksSection />
       <InfoSection />
