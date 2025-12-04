@@ -12,6 +12,32 @@ const heroHighlights = [
   { label: "Helt uforpliktende", icon: Clock3, iconColor: "" },
 ];
 
+// ============================================
+// MOBILE FORM BACKGROUND COLOR
+// Change this value to experiment with different colors:
+// SOLID COLORS:
+//   "bg-slate-900"        - Dark gray (same as CTA section: "Klar til å finne din perfekte trafikkskole?")
+//   "bg-slate-800"        - Slightly lighter gray
+//   "bg-blue-900"         - Dark blue
+//   "bg-emerald-900"      - Dark green
+//   "bg-indigo-900"       - Dark indigo
+//   "bg-purple-900"       - Dark purple
+//   "bg-slate-700"        - Medium gray
+//
+// GRADIENT OPTIONS:
+//   "bg-gradient-to-br from-blue-900 to-blue-800"                    - Blue gradient
+//   "bg-gradient-to-br from-purple-900 to-purple-800"                - Purple gradient
+//   "bg-gradient-to-br from-indigo-900 to-indigo-800"                - Indigo gradient
+//   "bg-gradient-to-br from-emerald-900 to-emerald-800"              - Green gradient
+//   "bg-gradient-to-br from-slate-900 to-slate-800"                  - Gray gradient
+//   "bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900"   - Multi-color gradient
+//   "bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"     - Blue-gray gradient
+//   "bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"  - Purple-pink gradient
+//   "bg-gradient-to-br from-teal-900 to-cyan-800"                    - Teal-cyan gradient
+//   "bg-gradient-to-br from-violet-900 to-purple-900"                - Violet-purple gradient
+// ============================================
+const MOBILE_FORM_BG = "bg-gradient-to-br from-slate-900 to-slate-600";
+
 
 export default function HeroSection() {
   const { isFullscreen, setIsFullscreen, setHasStartedFilling, hasStartedFilling } = useFormContext();
@@ -58,7 +84,7 @@ export default function HeroSection() {
           <div className="min-h-screen flex flex-col">
             <div className="flex-1 flex items-start justify-center p-4 pt-6">
               <div className="w-full max-w-lg">
-                <div className="bg-slate-900 shadow-none">
+                <div className={`${MOBILE_FORM_BG} shadow-none`}>
                   <LeadForm />
                 </div>
               </div>
@@ -108,7 +134,8 @@ export default function HeroSection() {
             </div>
 
             <div className={`w-full lg:w-[50%] ${isFullscreen || (hasStartedFilling && isMobile) ? 'sm:block hidden' : ''}`}>
-              <div className="sm:rounded-[32px] bg-slate-900/70 backdrop-blur-md shadow-none sm:shadow-2xl sm:shadow-slate-900/50">
+              {/* Desktop form uses bg-slate-900/70, mobile uses MOBILE_FORM_BG constant above */}
+              <div className={`sm:rounded-[32px] ${MOBILE_FORM_BG} sm:bg-slate-900/70 backdrop-blur-md shadow-none sm:shadow-2xl sm:shadow-slate-900/50`}>
                 <LeadForm />
               </div>
 
