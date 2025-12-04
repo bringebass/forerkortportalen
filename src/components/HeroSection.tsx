@@ -1,7 +1,7 @@
 "use client";
 
 import LeadForm from "@/components/LeadForm";
-import { Clock3, ShieldCheck, Users2 } from "lucide-react";
+import { Clock3, ShieldCheck, Users2, Shield } from "lucide-react";
 import Image from "next/image";
 import { useFormContext } from "@/contexts/FormContext";
 import { useEffect, useState } from "react";
@@ -109,6 +109,16 @@ export default function HeroSection() {
             <div className={`w-full lg:w-[50%] ${isFullscreen || (hasStartedFilling && isMobile) ? 'sm:block hidden' : ''}`}>
               <div className="sm:rounded-[32px] bg-slate-900/70 backdrop-blur-md shadow-none sm:shadow-2xl sm:shadow-slate-900/50">
                 <LeadForm />
+              </div>
+              
+              {/* Privacy notice - mobile only, centered under form */}
+              <div className="w-full sm:hidden mt-6">
+                <div className="flex items-center justify-center gap-2 text-sm text-slate-600 mb-6">
+                  <Shield className="h-4 w-4 text-slate-500" />
+                  <span className="font-bold">Ditt personvern er ivaretatt</span>
+                </div>
+                {/* Divider line */}
+                <div className="border-t border-slate-300 mx-8"></div>
               </div>
             </div>
           </div>

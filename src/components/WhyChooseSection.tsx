@@ -1,6 +1,6 @@
 "use client";
 
-import { TrendingUp, Users, ShieldCheck, Sparkles } from "lucide-react";
+import { TrendingUp, Users, ShieldCheck, Sparkles, Shield } from "lucide-react";
 
 const valuePoints = [
   {
@@ -42,10 +42,12 @@ export default function WhyChooseSection() {
               <Sparkles className="h-4 w-4 text-emerald-600" />
               <span className="text-sm font-semibold text-emerald-700">Fordeler ved å benytte tjenesten</span>
             </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
+              Fordeler
+            </h2>
             <div className="hidden sm:block">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight">
-                Hvorfor bruke{" "}
-                <span className="text-blue-600">førerkortportalen</span>?
+                Hvorfor bruke førerkortportalen?
               </h2>
               <p className="text-base sm:text-lg text-slate-600 max-w-2xl">
                 Tre gode grunner til å sammenligne trafikkskoler før du velger
@@ -67,11 +69,11 @@ export default function WhyChooseSection() {
                   
                   {/* Stat */}
                   <div className="flex items-baseline gap-1.5 sm:block">
-                    <span className={`text-2xl sm:text-3xl font-bold ${statColor} leading-none`}>
+                    <span className="text-2xl sm:text-3xl font-bold text-slate-900 leading-none">
                       {stat}
                     </span>
                     {statUnit && (
-                      <span className={`text-lg font-semibold ${statColor} opacity-80`}>
+                      <span className="text-lg font-semibold text-slate-900 opacity-80">
                         {statUnit}
                       </span>
                     )}
@@ -79,7 +81,7 @@ export default function WhyChooseSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-tight">
+                <h3 className="text-sm sm:text-base font-normal text-slate-900 leading-tight">
                   {title}
                 </h3>
               </article>
