@@ -1,70 +1,85 @@
-import { Clock3, MapPin, ShieldCheck } from "lucide-react";
+"use client";
+
+import { TrendingUp, Users, ShieldCheck, Sparkles } from "lucide-react";
 
 const valuePoints = [
   {
-    title: "Lokale skoler",
-    copy: "Vi prioriterer trafikkskoler som kjenner rutevalg og sensorer i din region.",
-    icon: MapPin,
+    title: "Spar opptil 20 000 kr",
+    stat: "20 000",
+    statUnit: "kr",
+    icon: TrendingUp,
+    iconBg: "bg-emerald-50",
     iconColor: "text-emerald-600",
-    color: "bg-emerald-50 text-emerald-900",
+    statColor: "text-emerald-600",
   },
   {
-    title: "Trygge prosesser",
-    copy: "Samarbeider bare med godkjente trafikkskoler som følger læreplanen til Statens vegvesen.",
-    icon: ShieldCheck,
+    title: "Finn en lærer du kommer godt overens med",
+    stat: "100%",
+    statUnit: "",
+    icon: Users,
+    iconBg: "bg-blue-50",
     iconColor: "text-blue-600",
-    color: "bg-sky-50 text-sky-900",
+    statColor: "text-blue-600",
   },
   {
-    title: "Rask oppstart",
-    copy: "Flere skoler tilbyr intensivløp, kveldskurs og fleksible teoripakker.",
-    icon: Clock3,
-    iconColor: "text-amber-600",
-    color: "bg-amber-50 text-amber-900",
+    title: "Kun kvalitetssikrede trafikkskoler",
+    stat: "Alle",
+    statUnit: "",
+    icon: ShieldCheck,
+    iconBg: "bg-slate-50",
+    iconColor: "text-slate-700",
+    statColor: "text-slate-700",
   },
 ];
 
 export default function WhyChooseSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/30 py-8 sm:py-12 lg:py-16">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -right-40 w-96 h-96 bg-emerald-200/15 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 -left-40 w-96 h-96 bg-blue-200/15 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 sm:mb-14 lg:mb-16">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
-              Hvorfor bruke førerkortportalen?
-              <span className="relative inline-block">
-                <span className="">
-               
-                </span>
-                <span className=""></span>
-              </span>
+    <section className="bg-white py-12 sm:py-16 lg:py-20">
+      <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-left mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/50 mb-4">
+              <Sparkles className="h-4 w-4 text-emerald-600" />
+              <span className="text-sm font-semibold text-emerald-700">Fordeler</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight">
+              Hvorfor bruke{" "}
+              <span className="text-blue-600">førerkortportalen</span>?
             </h2>
-            <p className="text-lg sm:text-xl text-slate-600">
-              Vi gjør det enkelt å finne og sammenligne trafikkskoler
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl">
+              Tre gode grunner til å sammenligne trafikkskoler før du velger
             </p>
           </div>
           
-          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {valuePoints.map(({ title, copy, icon: Icon, iconColor }) => (
+          <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
+            {valuePoints.map(({ title, stat, statUnit, icon: Icon, iconBg, iconColor, statColor }, index) => (
               <article
-                key={title}
-                className="group relative rounded-3xl border border-slate-200/50 bg-white/60 backdrop-blur-sm p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-emerald-300/50 hover:bg-white/80 transition-all duration-300 min-w-0"
+                key={index}
+                className="group relative bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-md hover:border-emerald-300 hover:shadow-lg transition-all duration-300"
               >
-                <div className={`mb-5 inline-flex p-3 rounded-2xl bg-gradient-to-br ${iconColor === "text-emerald-600" ? "from-emerald-500/10 to-emerald-600/10" : iconColor === "text-blue-600" ? "from-blue-500/10 to-blue-600/10" : "from-amber-500/10 to-amber-600/10"} group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon className={`h-7 w-7 sm:h-8 sm:w-8 ${iconColor} flex-shrink-0`} />
+                {/* Icon */}
+                <div className={`mb-3 w-10 h-10 ${iconBg} rounded-lg flex items-center justify-center ${iconColor} group-hover:scale-110 transition-transform duration-300`}>
+                  <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="text-xl sm:text-xl lg:text-2xl font-bold text-slate-900 mb-3 break-words">
+
+                {/* Stat */}
+                <div className="mb-3">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className={`text-2xl sm:text-3xl font-bold ${statColor} leading-none`}>
+                      {stat}
+                    </span>
+                    {statUnit && (
+                      <span className={`text-lg font-semibold ${statColor} opacity-80`}>
+                        {statUnit}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-tight">
                   {title}
                 </h3>
-                <p className="text-base sm:text-base lg:text-lg text-slate-600 leading-relaxed break-words">
-                  {copy}
-                </p>
               </article>
             ))}
           </div>

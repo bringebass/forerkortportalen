@@ -21,8 +21,8 @@ export default function Home() {
       <Navbar />
       <CompactFormCTA />
       <HeroSection />
-      <HowItWorksSection />
       <WhyChooseSection />
+      <HowItWorksSection />
       <InfoSection />
       {/* <PopularDrivingSchools /> */}
       <TestimonialsSection />
