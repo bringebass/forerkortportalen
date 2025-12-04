@@ -34,13 +34,19 @@ const StarRating = () => {
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20">
-      <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl text-center mx-auto mb-8 sm:mb-10 lg:mb-12">
-          <h2 className="text-[28px] sm:text-[30px] lg:text-[36px] font-semibold text-slate-900 mb-3">
-            Hva sier brukerne våre?
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/20 py-8 sm:py-12 lg:py-16">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-200/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl text-center mx-auto mb-12 sm:mb-14 lg:mb-16">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
+            <span className="text-blue-600">Hva sier</span>{" "}brukerne våre?
           </h2>
-          <p className="text-base sm:text-base lg:text-lg text-slate-600">
+          <p className="text-lg sm:text-xl text-slate-600">
             Over 1000 fornøyde brukere har funnet sin perfekte trafikkskole gjennom oss
           </p>
         </div>
@@ -49,17 +55,17 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-slate-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-slate-200 hover:shadow-lg transition-shadow"
+              className="group relative bg-white/60 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-slate-200/50 hover:shadow-xl hover:border-emerald-300/50 hover:bg-white/80 transition-all duration-300"
             >
-              <div className="flex flex-col items-center text-center space-y-4">
+              <div className="flex flex-col items-center text-center space-y-5">
                 {/* Profile Image */}
-                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden ring-2 ring-slate-200">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden ring-4 ring-emerald-100/50 group-hover:ring-emerald-200/70 transition-all duration-300 shadow-lg">
                   <Image
                     src={testimonial.image}
                     alt={testimonial.name}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 640px) 64px, 80px"
+                    sizes="(max-width: 640px) 80px, 96px"
                   />
                 </div>
 
@@ -67,12 +73,12 @@ export default function TestimonialsSection() {
                 <StarRating />
 
                 {/* Testimonial Text */}
-                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
 
                 {/* Name */}
-                <p className="text-sm sm:text-base font-semibold text-slate-900">
+                <p className="text-base sm:text-lg font-bold text-slate-900">
                   — {testimonial.name}
                 </p>
               </div>

@@ -63,14 +63,20 @@ export default function FAQSection() {
   const allFaqItems = faq.flatMap((category) => category.items);
 
   return (
-    <section id="faq" className="bg-white py-12 sm:py-16 lg:py-20">
-      <div className="container mx-auto max-w-[1300px] px-3 sm:px-4 lg:px-8">
+    <section id="faq" className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-blue-50/20 py-8 sm:py-12 lg:py-16">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 -left-40 w-96 h-96 bg-emerald-200/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 -right-40 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container relative mx-auto max-w-[1300px] px-3 sm:px-4 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-            <h2 className="text-[28px] sm:text-[30px] font-semibold text-slate-900 lg:text-[32px] xl:text-[36px] mb-3">
+          <div className="text-center mb-12 sm:mb-14 lg:mb-16">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
               Ofte stilte spørsmål
             </h2>
-            <p className="text-base sm:text-base lg:text-lg text-slate-600">
+            <p className="text-lg sm:text-xl text-slate-600">
               Alt du lurer på om Førerkortportalen og vår tjeneste
             </p>
           </div>
@@ -79,21 +85,22 @@ export default function FAQSection() {
             {allFaqItems.map((item, index) => (
               <details
                 key={index}
-                className="group rounded-2xl border-2 border-slate-200 bg-white p-5 sm:p-6 hover:border-emerald-400 hover:shadow-md transition-all duration-200"
+                className="group rounded-2xl border border-slate-200/50 bg-white/60 backdrop-blur-sm p-6 sm:p-7 hover:border-emerald-300/50 hover:bg-white/80 hover:shadow-lg transition-all duration-300"
               >
-                <summary className="cursor-pointer text-base sm:text-lg lg:text-xl font-semibold text-slate-900 marker:hidden list-none flex items-center justify-between gap-4">
-                  <span className="flex-1">{item.q}</span>
+                <summary className="cursor-pointer text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 marker:hidden list-none flex items-center justify-between gap-4">
+                  <span className="flex-1 pr-4">{item.q}</span>
                   <svg
-                    className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400 group-open:text-emerald-600 group-open:rotate-180 transition-transform duration-200 flex-shrink-0"
+                    className="w-6 h-6 sm:w-7 sm:h-7 text-slate-400 group-open:text-emerald-600 group-open:rotate-180 transition-all duration-300 flex-shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    strokeWidth={2.5}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <div className="mt-4 pt-4 border-t border-slate-200">
-                  <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed">
+                <div className="mt-5 pt-5 border-t border-slate-200/50">
+                  <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed">
                     {item.a}
                   </p>
                 </div>

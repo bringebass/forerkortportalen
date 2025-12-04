@@ -26,14 +26,26 @@ const valuePoints = [
 
 export default function WhyChooseSection() {
   return (
-    <section className="bg-slate-50 py-12 sm:py-16 lg:py-20">
-      <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-            <h2 className="text-[28px] sm:text-[30px] font-semibold text-slate-900 lg:text-[32px] xl:text-[36px] mb-3">
-              Hvorfor velge en sammenligningstjeneste?
+    <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/30 py-8 sm:py-12 lg:py-16">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 -right-40 w-96 h-96 bg-emerald-200/15 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 -left-40 w-96 h-96 bg-blue-200/15 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12 sm:mb-14 lg:mb-16">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
+              Hvorfor velge en{" "}
+              <span className="relative inline-block">
+                <span className="">
+                  sammenligningstjeneste?
+                </span>
+                <span className=""></span>
+              </span>
             </h2>
-            <p className="text-base text-slate-600 sm:text-base lg:text-lg">
+            <p className="text-lg sm:text-xl text-slate-600">
               Vi gjør det enkelt å finne og sammenligne trafikkskoler
             </p>
           </div>
@@ -42,13 +54,15 @@ export default function WhyChooseSection() {
             {valuePoints.map(({ title, copy, icon: Icon, iconColor }) => (
               <article
                 key={title}
-                className="rounded-3xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition min-w-0"
+                className="group relative rounded-3xl border border-slate-200/50 bg-white/60 backdrop-blur-sm p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-emerald-300/50 hover:bg-white/80 transition-all duration-300 min-w-0"
               >
-                <Icon className={`mb-4 h-6 w-6 sm:h-7 sm:w-7 ${iconColor} flex-shrink-0`} />
-                <h3 className="text-lg sm:text-lg lg:text-xl font-semibold text-slate-900 mb-2 break-words">
+                <div className={`mb-5 inline-flex p-3 rounded-2xl bg-gradient-to-br ${iconColor === "text-emerald-600" ? "from-emerald-500/10 to-emerald-600/10" : iconColor === "text-blue-600" ? "from-blue-500/10 to-blue-600/10" : "from-amber-500/10 to-amber-600/10"} group-hover:scale-110 transition-transform duration-300`}>
+                  <Icon className={`h-7 w-7 sm:h-8 sm:w-8 ${iconColor} flex-shrink-0`} />
+                </div>
+                <h3 className="text-xl sm:text-xl lg:text-2xl font-bold text-slate-900 mb-3 break-words">
                   {title}
                 </h3>
-                <p className="text-sm sm:text-sm lg:text-base text-slate-600 leading-relaxed break-words">
+                <p className="text-base sm:text-base lg:text-lg text-slate-600 leading-relaxed break-words">
                   {copy}
                 </p>
               </article>

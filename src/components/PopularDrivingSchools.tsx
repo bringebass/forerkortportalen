@@ -13,46 +13,61 @@ export default function PopularDrivingSchools() {
   const allLogos = logos;
 
   return (
-    <section className="bg-white py-10 sm:py-12 lg:py-16">
-      <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-[28px] sm:text-[28px] font-semibold text-slate-900 mb-6 sm:mb-8 lg:text-[32px] lg:mb-10">
-          Populære trafikkskoler
-        </h2>
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/20 py-8 sm:py-12 lg:py-16">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-200/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-200/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-12 lg:mb-14">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-3">
+            Populære trafikkskoler
+          </h2>
+          <p className="text-base sm:text-lg text-slate-600">
+            Vi samarbeider med kvalitetssikrede trafikkskoler over hele Norge
+          </p>
+        </div>
         
         {/* Mobile view - show all 5 logos: 3 on top row, 2 on bottom */}
-        <div className="flex flex-col items-center gap-4 sm:hidden">
+        <div className="flex flex-col items-center gap-6 sm:hidden">
           {/* Top row: 3 logos */}
-          <div className="flex flex-wrap justify-center items-center gap-3">
+          <div className="flex flex-wrap justify-center items-center gap-4">
             {allLogos.slice(0, 3).map((logo, index) => (
               <div
                 key={index}
-                className="relative h-10 w-20 flex-shrink-0 grayscale opacity-60"
+                className="group relative h-12 w-24 flex-shrink-0 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/50 p-3 hover:border-emerald-300/50 hover:bg-white/80 hover:shadow-lg transition-all duration-300"
               >
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  fill
-                  className="object-contain"
-                  sizes="80px"
-                />
-              </div>
-            ))}
-          </div>
-          {/* Bottom row: 2 logos */}
-          {allLogos.length > 3 && (
-            <div className="flex flex-wrap justify-center items-center gap-3">
-              {allLogos.slice(3, 5).map((logo, index) => (
-                <div
-                  key={index + 3}
-                  className="relative h-10 w-20 flex-shrink-0 grayscale opacity-60"
-                >
+                <div className="relative h-full w-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
                     className="object-contain"
-                    sizes="80px"
+                    sizes="96px"
                   />
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Bottom row: 2 logos */}
+          {allLogos.length > 3 && (
+            <div className="flex flex-wrap justify-center items-center gap-4">
+              {allLogos.slice(3, 5).map((logo, index) => (
+                <div
+                  key={index + 3}
+                  className="group relative h-12 w-24 flex-shrink-0 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/50 p-3 hover:border-emerald-300/50 hover:bg-white/80 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="relative h-full w-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      fill
+                      className="object-contain"
+                      sizes="96px"
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -60,19 +75,21 @@ export default function PopularDrivingSchools() {
         </div>
 
         {/* Desktop view - show all logos */}
-        <div className="hidden sm:flex flex-wrap justify-center items-center gap-6 lg:gap-8 xl:gap-12">
+        <div className="hidden sm:flex flex-wrap justify-center items-center gap-6 lg:gap-8 xl:gap-10">
           {allLogos.map((logo, index) => (
             <div
               key={index}
-              className="relative h-14 w-28 sm:h-16 sm:w-32 lg:h-20 lg:w-40 flex-shrink-0 grayscale opacity-60"
+              className="group relative h-16 w-32 sm:h-18 sm:w-36 lg:h-20 lg:w-40 flex-shrink-0 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/50 p-4 hover:border-emerald-300/50 hover:bg-white/80 hover:shadow-lg transition-all duration-300"
             >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 128px, 160px"
-              />
+              <div className="relative h-full w-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 144px, 160px"
+                />
+              </div>
             </div>
           ))}
         </div>

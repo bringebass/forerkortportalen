@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { useFormContext } from "@/contexts/FormContext";
 
 const features = [
   {
@@ -12,14 +13,33 @@ const features = [
     highlight: "kvalitetssikrede trafikkskoler",
   },
   {
-    text: "Sammenlign og velg",
-    highlight: "den som passer deg best",
+    text: "Tjenesten er",
+    highlight: "helt gratis og uforpliktende",
   },
 ];
 
 export default function HowItWorksSection() {
+  const { setIsFullscreen, setHasStartedFilling } = useFormContext();
+
+  const scrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    // On mobile, activate fullscreen mode
+    if (window.innerWidth < 640) {
+      setIsFullscreen(true);
+      setHasStartedFilling(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // On desktop, just scroll to form
+      const element = document.getElementById("skjema");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
   return (
-    <section id="hvordan" className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-32 font-sans">
+    <section id="hvordan" className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20 font-sans">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200/20 rounded-full blur-3xl"></div>
@@ -30,15 +50,12 @@ export default function HowItWorksSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left side - Image */}
           <div className="relative order-2 lg:order-1">
-            <div className="relative aspect-square max-w-lg mx-auto lg:max-w-none">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-blue-400/20 rounded-3xl blur-2xl transform rotate-6"></div>
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white/50 backdrop-blur-sm border border-white/20 p-8 lg:p-12">
-                <img
-                  src="/offers.svg"
-                  alt="Hvordan tjenesten fungerer"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+            <div className="relative w-full max-w-2xl mx-auto lg:max-w-3xl">
+              <img
+                src="/offers.svg"
+                alt="Hvordan tjenesten fungerer"
+                className="w-full h-auto object-contain"
+              />
             </div>
           </div>
 
@@ -51,12 +68,12 @@ export default function HowItWorksSection() {
               </div>
               
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
-                Fra behov til{" "}
+                Slik fungerer{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
-                    konkrete tilbud
+                  <span className="relative z-10 text-blue-600">
+                     tjenesten
                   </span>
-                  <span className="absolute bottom-2 left-0 right-0 h-3 bg-emerald-200/40 -z-0 transform -skew-x-12"></span>
+                  <span className=""></span>
                 </span>
               </h2>
               
@@ -93,8 +110,9 @@ export default function HowItWorksSection() {
             {/* CTA */}
             <div className="pt-6">
               <a
-                href="#form"
-                className="group inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-105"
+                href="#skjema"
+                onClick={scrollToForm}
+                className="group inline-flex items-center gap-3 px-6 py-4 bg-[#3bb54a] text-white font-semibold rounded-xl shadow-lg shadow-[#3bb54a]/25 hover:shadow-xl hover:shadow-[#3bb54a]/30 transition-all duration-300 hover:scale-105"
               >
                 <span>Kom i gang nå</span>
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
