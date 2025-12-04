@@ -426,7 +426,7 @@ const countryCodes = [
             </div>
             <div className="">
               <label htmlFor="phone" className="text-white">Telefon</label>
-              <div className="flex gap-2">
+              <div className="flex gap-2 w-full">
                 <select
                   id="phoneCountryCode"
                   name="phoneCountryCode"
@@ -455,7 +455,7 @@ const countryCodes = [
                   value={formData.phone}
                   onChange={handleChange}
                   onFocus={activateFullscreenIfNeeded}
-                  className="flex-1 border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+                  className="flex-1 min-w-0 border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] rounded-md"
                   placeholder="9X XX XX XX"
                 />
               </div>

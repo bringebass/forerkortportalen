@@ -22,9 +22,9 @@ const valuePoints = [
     statColor: "text-blue-600",
   },
   {
-    title: "Vi samarbeider kun med kvalitetssikrede trafikkskoler",
-    stat: "Kvalitets",
-    statUnit: "skoler",
+    title: "Det er helt gratis og uforpliktende",
+    stat: "100%",
+    statUnit: "gratis",
     icon: ShieldCheck,
     iconBg: "bg-slate-50",
     iconColor: "text-slate-700",
