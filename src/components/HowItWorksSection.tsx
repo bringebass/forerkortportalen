@@ -68,13 +68,7 @@ export default function HowItWorksSection() {
               </div>
               
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
-                Slik fungerer{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 text-blue-600">
-                     tjenesten
-                  </span>
-                  <span className=""></span>
-                </span>
+                Slik fungerer det
               </h2>
               
               <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-xl">

@@ -42,7 +42,7 @@ export default function WhyChooseSection() {
               <Sparkles className="h-4 w-4 text-emerald-600" />
               <span className="text-sm font-semibold text-emerald-700">Fordeler ved å benytte tjenesten</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight sm:hidden">
               Fordeler
             </h2>
             <div className="hidden sm:block">
