@@ -37,10 +37,10 @@ export default function WhyChooseSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 sm:mb-14 lg:mb-16">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
-              Hvorfor velge en{" "}
+              Hvorfor bruke førerkortportalen?
               <span className="relative inline-block">
                 <span className="">
-                  sammenligningstjeneste?
+               
                 </span>
                 <span className=""></span>
               </span>
