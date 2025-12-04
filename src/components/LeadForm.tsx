@@ -308,7 +308,7 @@ const countryCodes = [
               value={formData.postalCode}
               onChange={handleChange}
               onFocus={activateFullscreenIfNeeded}
-              className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
+                className="w-full border-2 border-slate-300 sm:border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a]"
               placeholder="Postnummer (4 siffer)"
             />
           </div>
@@ -483,7 +483,7 @@ const countryCodes = [
                 name="marketingConsent"
                 checked={formData.marketingConsent}
                 onChange={handleChange}
-                className="mt-1 rounded border-white/30 bg-white/10 text-[#3bb54a] focus:ring-[#3bb54a]"
+                className="mt-1 rounded border-slate-300 sm:border-white/30 bg-white sm:bg-white/10 text-[#3bb54a] focus:ring-[#3bb54a]"
               />
               <span>
                 Jeg godtar at Førerkortportalen lagrer opplysningene for å koble
@@ -618,13 +618,12 @@ const countryCodes = [
         </div>
 
         <p className="text-center text-xs text-white/70">
-          Helt gratis og uforpliktende. Trafikkskolene kan stille deg noen få
-          oppfølgingsspørsmål før de gir et konkret tilbud.
+    
         </p>
 
         <div className="mt-2 flex items-center justify-center gap-2 text-[11px] sm:text-xs text-white/80">
           <Shield className="h-3.5 w-3.5 text-[#3bb54a]" />
-          <span className="font-semibold">Ditt personvern er ivaretatt</span>
+          <span className="font-semibold">Ditt personvern er ivaretatt. All data behandles i henhold til GDPR.</span>
         </div>
       </form>
     </div>

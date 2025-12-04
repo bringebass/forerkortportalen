@@ -43,7 +43,7 @@ const heroHighlights = [
 //   "bg-gradient-to-br from-teal-900 to-cyan-800"                    - Teal-cyan gradient
 //   "bg-gradient-to-br from-violet-900 to-purple-900"                - Violet-purple gradient
 // ============================================
-const MOBILE_FORM_BG = "bg-gradient-to-br from-slate-900 to-slate-600";
+const MOBILE_FORM_BG = "bg-gradient-to-br from-slate-900 to-slate-600"; // Visible mobile form background - gradient with white text
 const MOBILE_FULLSCREEN_BG = "bg-slate-900"; // Fullscreen overlay background - use solid color for seamless look
 
 
