@@ -39,9 +39,9 @@ export default function HowItWorksSection() {
   };
 
   return (
-    <section id="hvordan" className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20 font-sans">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <section id="hvordan" className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20 font-sans">
+      {/* Decorative background elements - desktop only */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200/20 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl"></div>
       </div>
@@ -50,7 +50,7 @@ export default function HowItWorksSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left side - Image */}
           <div className="relative order-2 lg:order-1">
-            <div className="relative w-full max-w-2xl mx-auto lg:max-w-3xl">
+            <div className="relative w-full max-w-md sm:max-w-2xl mx-auto lg:max-w-3xl">
               <img
                 src="/offers.svg"
                 alt="Hvordan tjenesten fungerer"

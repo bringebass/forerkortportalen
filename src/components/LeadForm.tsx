@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect, useRef } from "react";
+import { Shield } from "lucide-react";
 import { useFormContext, FormState } from "@/contexts/FormContext";
 
 const mainLicenseOptions = [
@@ -476,8 +477,6 @@ const countryCodes = [
               />
             </div>
 
-         
-
             <label className="flex items-start gap-3 rounded-2xl border border-white/30 bg-white/10 p-3 text-sm text-white">
               <input
                 type="checkbox"
@@ -622,6 +621,11 @@ const countryCodes = [
           Helt gratis og uforpliktende. Trafikkskolene kan stille deg noen få
           oppfølgingsspørsmål før de gir et konkret tilbud.
         </p>
+
+        <div className="mt-2 flex items-center justify-center gap-2 text-[11px] sm:text-xs text-white/80">
+          <Shield className="h-3.5 w-3.5 text-[#3bb54a]" />
+          <span className="font-semibold">Ditt personvern er ivaretatt</span>
+        </div>
       </form>
     </div>
   );

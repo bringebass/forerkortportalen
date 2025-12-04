@@ -4,14 +4,8 @@ import { CheckCircle2 } from "lucide-react";
 
 export default function InfoSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-emerald-50/20 py-8 sm:py-12 lg:py-16">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -left-40 w-96 h-96 bg-blue-200/15 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 -right-40 w-96 h-96 bg-emerald-200/15 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-8 sm:py-12 lg:py-16">
+      <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Text content */}
           <div className="space-y-8 order-1 lg:order-1">
@@ -65,16 +59,13 @@ export default function InfoSection() {
           </div>
 
           {/* Image */}
-          <div className="relative order-2 lg:order-2">
-            <div className="relative aspect-square max-w-lg mx-auto lg:max-w-none">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-emerald-400/20 rounded-3xl blur-2xl transform -rotate-6"></div>
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white/50 backdrop-blur-sm border border-white/20 p-8 lg:p-12">
-                <img
-                  src="/student1.svg"
-                  alt="Bil i sirkel"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+          <div className="order-2 lg:order-2">
+            <div className="max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+              <img
+                src="/student1.svg"
+                alt="Bil i sirkel"
+                className="w-full h-auto object-contain"
+              />
             </div>
           </div>
         </div>

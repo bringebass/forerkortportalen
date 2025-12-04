@@ -38,13 +38,12 @@ export default function WhyChooseSection() {
       <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-left mb-6 sm:mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/50 mb-4">
-              <Sparkles className="h-4 w-4 text-emerald-600" />
-              <span className="text-sm font-semibold text-emerald-700">Fordeler ved å benytte tjenesten</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight sm:hidden">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 leading-tight sm:hidden">
               Fordeler
             </h2>
+            <p className="text-sm text-slate-600 sm:hidden">
+              3 grunner til å benytte førerkortportalen.
+            </p>
             <div className="hidden sm:block">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight">
                 Hvorfor bruke førerkortportalen?
