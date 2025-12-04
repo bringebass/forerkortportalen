@@ -13,8 +13,15 @@ const heroHighlights = [
 ];
 
 // ============================================
-// MOBILE FORM BACKGROUND COLOR
-// Change this value to experiment with different colors:
+// MOBILE FORM BACKGROUND COLORS
+// Change these values to experiment with different colors:
+//
+// MOBILE_FORM_BG - The form container background (visible form box)
+// MOBILE_FULLSCREEN_BG - The fullscreen overlay background (when user clicks into form)
+// 
+// For seamless look, use the same color for both, or use a solid color for fullscreen
+// and gradient for form, or vice versa.
+//
 // SOLID COLORS:
 //   "bg-slate-900"        - Dark gray (same as CTA section: "Klar til å finne din perfekte trafikkskole?")
 //   "bg-slate-800"        - Slightly lighter gray
@@ -36,7 +43,8 @@ const heroHighlights = [
 //   "bg-gradient-to-br from-teal-900 to-cyan-800"                    - Teal-cyan gradient
 //   "bg-gradient-to-br from-violet-900 to-purple-900"                - Violet-purple gradient
 // ============================================
-const MOBILE_FORM_BG = "bg-gradient-to-br from-slate-900 to-slate-600";
+const MOBILE_FORM_BG = "bg-slate-900";
+const MOBILE_FULLSCREEN_BG = "bg-slate-900"; // Fullscreen overlay background - use solid color for seamless look
 
 
 export default function HeroSection() {
@@ -79,12 +87,13 @@ export default function HeroSection() {
   return (
     <>
       {/* Fullscreen overlay on mobile */}
-      <div className={`fixed inset-0 z-50 bg-slate-900 sm:hidden transition-opacity duration-300 ${isFullscreen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`fixed inset-0 z-50 ${MOBILE_FULLSCREEN_BG} sm:hidden transition-opacity duration-300 ${isFullscreen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div className="h-full overflow-y-auto">
           <div className="min-h-screen flex flex-col">
             <div className="flex-1 flex items-start justify-center p-4 pt-6">
               <div className="w-full max-w-lg">
-                <div className={`${MOBILE_FORM_BG} shadow-none`}>
+                {/* Form container - transparent on fullscreen to blend with background */}
+                <div className="shadow-none">
                   <LeadForm />
                 </div>
               </div>
@@ -134,8 +143,8 @@ export default function HeroSection() {
             </div>
 
             <div className={`w-full lg:w-[50%] ${isFullscreen || (hasStartedFilling && isMobile) ? 'sm:block hidden' : ''}`}>
-              {/* Desktop form uses bg-slate-900/70, mobile uses MOBILE_FORM_BG constant above */}
-              <div className={`sm:rounded-[32px] ${MOBILE_FORM_BG} sm:bg-slate-900/70 backdrop-blur-md shadow-none sm:shadow-2xl sm:shadow-slate-900/50`}>
+              {/* Desktop form uses original bg-slate-900/70, mobile uses MOBILE_FORM_BG constant above */}
+              <div className={`${MOBILE_FORM_BG} sm:rounded-[32px] backdrop-blur-md shadow-none sm:shadow-2xl sm:shadow-slate-900/50 desktop-form-bg`}>
                 <LeadForm />
               </div>
 
@@ -143,6 +152,13 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
+      <style jsx global>{`
+        @media (min-width: 640px) {
+          .desktop-form-bg {
+            background: rgb(15 23 42 / 0.7) !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
