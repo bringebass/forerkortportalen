@@ -13,8 +13,8 @@ const valuePoints = [
     statColor: "text-emerald-600",
   },
   {
-    title: "Finn en lærer du kommer godt overens med",
-    stat: "100%",
+    title: "Du bestemmer helt selv om du vil benytte deg av tilbudene du mottar",
+    stat: "Uforpliktende",
     statUnit: "",
     icon: Users,
     iconBg: "bg-blue-50",
@@ -22,9 +22,9 @@ const valuePoints = [
     statColor: "text-blue-600",
   },
   {
-    title: "Det er helt gratis og uforpliktende",
-    stat: "100%",
-    statUnit: "gratis",
+    title: "Tjenesten koster ingenting, du betaler kun til den skolen du eventuelt velger",
+    stat: "Gratis",
+    statUnit: "",
     icon: ShieldCheck,
     iconBg: "bg-slate-50",
     iconColor: "text-slate-700",
@@ -39,7 +39,7 @@ export default function WhyChooseSection() {
         <div className="max-w-5xl mx-auto">
           <div className="text-left mb-2 sm:mb-10 sm:mb-12">
             {/* Mobile: SVG header full-width */}
-            <div className="-mx-4 mb-4 sm:hidden">
+            <div className="-mx-4 mb-0 sm:hidden">
               <img
                 src="/3reasons.svg"
                 alt="Tre grunner til å velge Førerkortportalen"
@@ -48,7 +48,7 @@ export default function WhyChooseSection() {
             </div>
             <div className="hidden sm:block">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight">
-                Hvorfor bruke førerkortportalen?
+                Hvorfor benytte førerkortportalen?
               </h2>
               <p className="text-base sm:text-lg text-slate-600 max-w-2xl">
                 Tre gode grunner til å sammenligne trafikkskoler før du velger
@@ -56,7 +56,7 @@ export default function WhyChooseSection() {
             </div>
           </div>
           
-          <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 lg:grid-cols-3 -mt-4 sm:mt-0">
             {valuePoints.map(({ title, stat, statUnit, icon: Icon, iconBg, iconColor, statColor }, index) => (
               <article
                 key={index}
