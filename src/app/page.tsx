@@ -22,8 +22,8 @@ export default function Home() {
       <CompactFormCTA />
       <HeroSection />
       <HowItWorksSection />
-      <InfoSection />
       <WhyChooseSection />
+      <InfoSection />
       {/* <PopularDrivingSchools /> */}
       <TestimonialsSection />
       <FAQSection />
