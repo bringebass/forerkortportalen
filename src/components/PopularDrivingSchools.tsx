@@ -23,8 +23,8 @@ export default function PopularDrivingSchools() {
       <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-12 lg:mb-14">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-3">
-            Populære trafikkskoler
-          </h2>
+          Populære trafikkskoler
+        </h2>
           <p className="text-base sm:text-lg text-slate-600">
             Vi samarbeider med kvalitetssikrede trafikkskoler over hele Norge
           </p>
@@ -40,13 +40,13 @@ export default function PopularDrivingSchools() {
                 className="group relative h-12 w-24 flex-shrink-0 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/50 p-3 hover:border-emerald-300/50 hover:bg-white/80 hover:shadow-lg transition-all duration-300"
               >
                 <div className="relative h-full w-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    fill
-                    className="object-contain"
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  fill
+                  className="object-contain"
                     sizes="96px"
-                  />
+                />
                 </div>
               </div>
             ))}
@@ -60,13 +60,13 @@ export default function PopularDrivingSchools() {
                   className="group relative h-12 w-24 flex-shrink-0 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/50 p-3 hover:border-emerald-300/50 hover:bg-white/80 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="relative h-full w-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-                    <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      fill
-                      className="object-contain"
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    className="object-contain"
                       sizes="96px"
-                    />
+                  />
                   </div>
                 </div>
               ))}
@@ -82,13 +82,13 @@ export default function PopularDrivingSchools() {
               className="group relative h-16 w-32 sm:h-18 sm:w-36 lg:h-20 lg:w-40 flex-shrink-0 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/50 p-4 hover:border-emerald-300/50 hover:bg-white/80 hover:shadow-lg transition-all duration-300"
             >
               <div className="relative h-full w-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  fill
-                  className="object-contain"
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                fill
+                className="object-contain"
                   sizes="(max-width: 1024px) 144px, 160px"
-                />
+              />
               </div>
             </div>
           ))}

@@ -4,6 +4,9 @@ import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ScrollToFormButton } from "@/components/ScrollToFormButton";
 import { Target, Users, Zap, Heart, CheckCircle2, Star } from "lucide-react";
+import { FormProvider } from "@/contexts/FormContext";
+import ArticleStickyCTA from "@/components/ArticleStickyCTA";
+import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 
 export default function OmOssPage() {
   const values = [
@@ -57,8 +60,11 @@ export default function OmOssPage() {
   ];
 
   return (
+    <FormProvider>
     <main className="min-h-screen bg-white">
       <Navbar />
+      <ArticleFormOverlay />
+      <ArticleStickyCTA />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8">
@@ -210,6 +216,7 @@ export default function OmOssPage() {
 
       <Footer />
     </main>
+    </FormProvider>
   );
 }
 

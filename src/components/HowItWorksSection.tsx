@@ -95,10 +95,10 @@ export default function HowItWorksSection() {
                       <span className="font-semibold text-emerald-700">
                         {feature.highlight}
                       </span>
-                    </p>
-                  </div>
+                  </p>
                 </div>
-              ))}
+              </div>
+            ))}
             </div>
 
             {/* CTA */}

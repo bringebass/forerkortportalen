@@ -5,6 +5,9 @@ import Footer from "@/components/Footer";
 import { FileText, Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { FormProvider } from "@/contexts/FormContext";
+import ArticleStickyCTA from "@/components/ArticleStickyCTA";
+import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 
 // Placeholder artikler - du kan erstatte disse med faktiske artikler senere
 const articles = [
@@ -66,8 +69,11 @@ const articles = [
 
 export default function ArtiklerPage() {
   return (
+    <FormProvider>
     <main className="min-h-screen bg-white">
       <Navbar />
+      <ArticleFormOverlay />
+      <ArticleStickyCTA />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 py-12 sm:py-16 lg:py-20">
@@ -119,35 +125,35 @@ export default function ArtiklerPage() {
                 )}
                 
                 <div className="p-6 sm:p-8">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
-                      {article.category}
-                    </span>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                    {article.category}
+                  </span>
+                </div>
+                
+                <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-3 group-hover:text-[#3bb54a] transition">
+                  {article.title}
+                </h2>
+                
+                <p className="text-base text-slate-600 leading-relaxed mb-4 line-clamp-3">
+                  {article.excerpt}
+                </p>
+                
+                <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="h-4 w-4" />
+                    <span>{article.date}</span>
                   </div>
-                  
-                  <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-3 group-hover:text-[#3bb54a] transition">
-                    {article.title}
-                  </h2>
-                  
-                  <p className="text-base text-slate-600 leading-relaxed mb-4 line-clamp-3">
-                    {article.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="h-4 w-4" />
-                      <span>{article.date}</span>
-                    </div>
-                    <span>•</span>
-                    <span>{article.readTime}</span>
-                  </div>
-                  
+                  <span>•</span>
+                  <span>{article.readTime}</span>
+                </div>
+                
                   <div className="inline-flex items-center gap-2 text-[#3bb54a] font-semibold group-hover:gap-3 transition-all">
-                    Les mer
+                  Les mer
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </Link>
+                </Link>
             ))}
           </div>
 
@@ -163,6 +169,7 @@ export default function ArtiklerPage() {
 
       <Footer />
     </main>
+    </FormProvider>
   );
 }
 

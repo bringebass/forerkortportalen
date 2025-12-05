@@ -9,6 +9,8 @@ import Image from "next/image";
 import LeadForm from "@/components/LeadForm";
 import { FormProvider } from "@/contexts/FormContext";
 import { useMemo } from "react";
+import ArticleStickyCTA from "@/components/ArticleStickyCTA";
+import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 
 const articles: Record<string, {
   id: number;
@@ -473,49 +475,51 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
 
   return (
     <FormProvider>
-      <main className="min-h-screen bg-white">
-        <Navbar />
-        
-        <article className="py-8 sm:py-12 lg:py-16 bg-slate-50">
+    <main className="min-h-screen bg-white">
+      <Navbar />
+      <ArticleFormOverlay />
+      <ArticleStickyCTA />
+      
+      <article className="py-8 sm:py-12 lg:py-16 bg-slate-50">
           <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-              
+          
               {/* Main Article Content */}
               <div className="lg:col-span-7">
-                {/* Back Link */}
-                <div className="mb-6 sm:mb-8">
-                  <Link
-                    href="/artikler"
-                    className="inline-flex items-center gap-2 text-slate-600 hover:text-[#3bb54a] transition text-sm sm:text-base"
-                  >
-                    <ArrowLeft className="h-4 w-4" />
-                    <span>Tilbake til artikler</span>
-                  </Link>
-                </div>
+          {/* Back Link */}
+          <div className="mb-6 sm:mb-8">
+            <Link
+              href="/artikler"
+              className="inline-flex items-center gap-2 text-slate-600 hover:text-[#3bb54a] transition text-sm sm:text-base"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span>Tilbake til artikler</span>
+            </Link>
+          </div>
 
-                {/* Article Card */}
-                <div className="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden">
-                  
-                  {/* Header */}
-                  <header className="px-6 sm:px-8 lg:px-10 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 border-b border-slate-200">
-                    <div className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-semibold mb-4">
-                      {article.category}
-                    </div>
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-slate-900 mb-4 sm:mb-6 leading-tight">
-                      {article.title}
-                    </h1>
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-600">
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="h-4 w-4" />
-                        <span>{article.date}</span>
-                      </div>
-                      <span>•</span>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="h-4 w-4" />
-                        <span>{article.readTime}</span>
-                      </div>
-                    </div>
-                  </header>
+          {/* Article Card */}
+          <div className="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden">
+            
+            {/* Header */}
+            <header className="px-6 sm:px-8 lg:px-10 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 border-b border-slate-200">
+              <div className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-semibold mb-4">
+                {article.category}
+              </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-slate-900 mb-4 sm:mb-6 leading-tight">
+                {article.title}
+              </h1>
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-600">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4" />
+                  <span>{article.date}</span>
+                </div>
+                <span>•</span>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="h-4 w-4" />
+                  <span>{article.readTime}</span>
+                </div>
+              </div>
+            </header>
 
                   {/* Article Image */}
                   {article.image && (
@@ -561,18 +565,18 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
                     </div>
                   )}
 
-                  {/* Content */}
-                  <div className="px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
-                    <div
-                      className="prose prose-slate prose-lg max-w-none 
-                        prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:mt-8 prose-headings:mb-4
-                        prose-h2:text-2xl sm:prose-h2:text-3xl
-                        prose-h3:text-xl sm:prose-h3:text-2xl
-                        prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4
-                        prose-a:text-[#3bb54a] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
-                        prose-strong:text-slate-900 prose-strong:font-semibold
-                        prose-ul:text-slate-700 prose-ul:my-4
-                        prose-li:mb-2
+            {/* Content */}
+            <div className="px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
+              <div
+                className="prose prose-slate prose-lg max-w-none 
+                  prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:mt-8 prose-headings:mb-4
+                  prose-h2:text-2xl sm:prose-h2:text-3xl
+                  prose-h3:text-xl sm:prose-h3:text-2xl
+                  prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4
+                  prose-a:text-[#3bb54a] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                  prose-strong:text-slate-900 prose-strong:font-semibold
+                  prose-ul:text-slate-700 prose-ul:my-4
+                  prose-li:mb-2
                         prose-lead:text-lg sm:prose-lead:text-xl prose-lead:font-medium prose-lead:text-slate-800
                         prose-img:rounded-xl prose-img:shadow-md prose-img:my-8"
                       dangerouslySetInnerHTML={{ 
@@ -589,25 +593,13 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
                           }
                         )
                       }}
-                    />
-                  </div>
+              />
+            </div>
 
-                  {/* Footer with CTA - Mobile only */}
-                  <div className="lg:hidden px-6 sm:px-8 lg:px-10 pb-8 sm:pb-10 lg:pb-12 pt-6 sm:pt-8 border-t border-slate-200 bg-slate-50">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-3">
-                      Klar til å finne din perfekte trafikkskole?
-                    </h2>
-                    <p className="text-sm sm:text-base text-slate-600 mb-6">
-                      Fyll ut skjemaet på forsiden og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.
-                    </p>
-                    <ScrollToFormButton className="inline-flex items-center justify-center rounded-full bg-[#3bb54a] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#3bb54a]/30 transition hover:bg-[#2d8f3d]">
-                      Gå til skjemaet
-                    </ScrollToFormButton>
-                  </div>
                 </div>
               </div>
 
-              {/* Sticky Form Sidebar - Desktop only */}
+              {/* Form Sidebar - Mobile and Desktop */}
               <div className="lg:col-span-5">
                 <div className="lg:sticky lg:top-24">
                   <div className="bg-gradient-to-br from-slate-900 to-slate-600 backdrop-blur-md rounded-3xl shadow-2xl shadow-slate-900/50 p-6 sm:p-8">
@@ -620,13 +612,13 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
                     <LeadForm />
                   </div>
                 </div>
-              </div>
             </div>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <Footer />
-      </main>
+      <Footer />
+    </main>
     </FormProvider>
   );
 }

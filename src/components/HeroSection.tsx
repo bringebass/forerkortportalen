@@ -44,7 +44,7 @@ const heroHighlights = [
 //   "bg-gradient-to-br from-violet-900 to-purple-900"                - Violet-purple gradient
 // ============================================
 const MOBILE_FORM_BG = "bg-gradient-to-br from-slate-900 to-slate-600"; // Visible mobile form background - gradient with white text
-const MOBILE_FULLSCREEN_BG = "bg-gradient-to-br from-slate-900 to-slate-600"; // Fullscreen overlay background - use solid color for seamless look
+const MOBILE_FULLSCREEN_BG = "bg-slate-900"; // Fullscreen overlay background - use solid color for seamless look
 
 
 export default function HeroSection() {

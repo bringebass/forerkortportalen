@@ -2,6 +2,7 @@
 
 import { useFormContext } from "@/contexts/FormContext";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface ScrollToFormButtonProps {
   className?: string;
@@ -10,22 +11,33 @@ interface ScrollToFormButtonProps {
 
 export function ScrollToFormButton({ className, children }: ScrollToFormButtonProps) {
   const { setIsFullscreen, setHasStartedFilling } = useFormContext();
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // On mobile, activate fullscreen mode when navigating
+    // On mobile, activate fullscreen mode
     if (typeof window !== "undefined" && window.innerWidth < 640) {
-      sessionStorage.setItem("openFullscreenForm", "true");
+      e.preventDefault();
       setIsFullscreen(true);
       setHasStartedFilling(true);
     } else {
-      // On desktop, just navigate - will scroll to form on home page
-      e.preventDefault();
-      window.location.href = "/#skjema";
+      // On desktop, navigate to home page form if not already there
+      if (!isHomePage) {
+        e.preventDefault();
+        window.location.href = "/#skjema";
+      } else {
+        // Already on home page, just scroll
+        e.preventDefault();
+        const element = document.getElementById("skjema");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
     }
   };
 
   return (
-    <Link href="/#skjema" onClick={handleClick} className={className}>
+    <Link href={isHomePage ? "/#skjema" : "/#skjema"} onClick={handleClick} className={className}>
       {children}
     </Link>
   );
