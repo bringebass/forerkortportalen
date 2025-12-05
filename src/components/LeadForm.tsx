@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Shield } from "lucide-react";
 import { useFormContext, FormState } from "@/contexts/FormContext";
 
@@ -76,8 +77,22 @@ const STEP_CONFIG = {
       if (!/.+@.+\..+/.test(formData.email)) {
         return "Oppgi en gyldig e-postadresse.";
       }
-      if (!/^\d{8,}$/.test(formData.phone.replace(/\s+/g, ""))) {
-        return "Telefonnummeret må ha minst åtte siffer.";
+      // If country code is "-" (Annet), allow any format
+      if (formData.phoneCountryCode === "-") {
+        if (!formData.phone || formData.phone.trim().length === 0) {
+          return "Vennligst oppgi telefonnummer.";
+        }
+      } else if (formData.phoneCountryCode === "+47") {
+        // Norwegian phone numbers must be exactly 8 digits
+        const phoneDigits = formData.phone.replace(/\s+/g, "");
+        if (!/^\d{8}$/.test(phoneDigits)) {
+          return "Norsk telefonnummer må være nøyaktig 8 siffer.";
+        }
+      } else {
+        // For other known country codes, validate phone number format
+        if (!/^\d{8,}$/.test(formData.phone.replace(/\s+/g, ""))) {
+          return "Telefonnummeret må ha minst åtte siffer.";
+        }
       }
       if (!formData.marketingConsent) {
         return "Godta samtykke for å sende inn.";
@@ -89,15 +104,31 @@ const STEP_CONFIG = {
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function LeadForm() {
+interface LeadFormProps {
+  hideHeading?: boolean;
+}
+
+export function LeadForm({ hideHeading = false }: LeadFormProps = {}) {
   // NOTE: Tailwind is mobile-first here — base classes style the mobile view,
   // while prefixes like sm:, lg:, etc. override styles on larger screens.
-  const { isFullscreen, setIsFullscreen, setHasStartedFilling, formData, setFormData, resetFormData, currentStep, setCurrentStep } = useFormContext();
+  const router = useRouter();
+  const { isFullscreen, setIsFullscreen, setHasStartedFilling, formData, setFormData, resetFormData, currentStep, setCurrentStep, isDesktopFocused, setIsDesktopFocused } = useFormContext();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [stepError, setStepError] = useState<string | null>(null);
   const activeElementIdRef = useRef<string | null>(null);
+  const focusedInputIdRef = useRef<string | null>(null);
   const postalCodeInputRef = useRef<HTMLInputElement>(null);
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  // Set background color immediately when desktop focused to prevent flash
+  useLayoutEffect(() => {
+    if (isDesktopFocused && formContainerRef.current) {
+      const element = formContainerRef.current;
+      element.style.setProperty('background', 'rgb(15 23 42 / 0.7)', 'important');
+      element.style.setProperty('background-image', 'none', 'important');
+    }
+  }, [isDesktopFocused]);
 
   // Activate fullscreen on mobile when user starts interacting
   const activateFullscreenIfNeeded = () => {
@@ -111,6 +142,123 @@ export function LeadForm() {
       setHasStartedFilling(true);
     }
   };
+
+  // Activate desktop focus mode when user clicks on input fields
+  const activateDesktopFocusIfNeeded = (inputId?: string, event?: React.FocusEvent) => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
+      if (inputId && event) {
+        // Store the input ID
+        focusedInputIdRef.current = inputId;
+        const target = event.target as HTMLElement;
+        
+        // Ensure the input is focused first
+        if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement) {
+          target.focus();
+          
+          // For text inputs, set cursor position
+          if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+            const length = target.value.length;
+            target.setSelectionRange(length, length);
+          }
+        }
+        
+        // Activate desktop focus mode after ensuring input is focused
+        // Use requestAnimationFrame to ensure focus is set before state change
+        requestAnimationFrame(() => {
+          setIsDesktopFocused(true);
+        });
+      } else {
+        setIsDesktopFocused(true);
+      }
+    }
+  };
+
+  // Focus the input field when desktop focus mode activates
+  useEffect(() => {
+    if (isDesktopFocused && focusedInputIdRef.current) {
+      const inputId = focusedInputIdRef.current;
+      
+      // Function to focus the input with visual feedback
+      const focusInput = (element: HTMLElement) => {
+        if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement || element instanceof HTMLSelectElement) {
+          // Focus the element
+          element.focus();
+          
+          // For text inputs, set cursor position at the end
+          if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+            const length = element.value.length;
+            element.setSelectionRange(length, length);
+          }
+          
+          // Apply focus styles with !important
+          element.style.setProperty('border-color', '#3bb54a', 'important');
+          element.style.setProperty('outline', '2px solid rgba(59, 181, 74, 0.2)', 'important');
+          element.style.setProperty('outline-offset', '2px', 'important');
+          element.style.setProperty('box-shadow', '0 0 0 2px rgba(59, 181, 74, 0.2)', 'important');
+          
+          // Ensure caret is visible and green
+          if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+            element.style.setProperty('caret-color', '#3bb54a', 'important');
+          }
+          
+          // Add class for CSS support
+          element.classList.add('desktop-focused-input');
+        }
+      };
+      
+      // Try to focus with multiple attempts - the form might take time to render
+      let attempts = 0;
+      const maxAttempts = 20;
+      let timeoutIds: NodeJS.Timeout[] = [];
+      
+      const tryFocus = () => {
+        attempts++;
+        const element = document.getElementById(inputId);
+        
+        if (element) {
+          // Check if element is in the DOM and visible
+          const rect = element.getBoundingClientRect();
+          const isVisible = rect.width > 0 && rect.height > 0 && element.offsetParent !== null;
+          
+          if (isVisible) {
+            // Use requestAnimationFrame to ensure DOM is ready
+            requestAnimationFrame(() => {
+              focusInput(element);
+              // Try again after a frame to ensure it sticks
+              requestAnimationFrame(() => {
+                focusInput(element);
+              });
+            });
+            focusedInputIdRef.current = null;
+            // Clear all timeouts
+            timeoutIds.forEach(clearTimeout);
+            return true;
+          }
+        }
+        
+        // Try again if not found or not visible yet
+        if (attempts < maxAttempts) {
+          const timeoutId = setTimeout(tryFocus, 25);
+          timeoutIds.push(timeoutId);
+        } else {
+          focusedInputIdRef.current = null;
+        }
+        return false;
+      };
+      
+      // Start trying immediately and also after delays
+      tryFocus();
+      const timeoutId1 = setTimeout(tryFocus, 50);
+      const timeoutId2 = setTimeout(tryFocus, 150);
+      const timeoutId3 = setTimeout(tryFocus, 300);
+      const timeoutId4 = setTimeout(tryFocus, 500);
+      timeoutIds.push(timeoutId1, timeoutId2, timeoutId3, timeoutId4);
+      
+      return () => {
+        timeoutIds.forEach(clearTimeout);
+      };
+    }
+  }, [isDesktopFocused]);
 
   // Restore focus when fullscreen mode activates
   useEffect(() => {
@@ -187,6 +335,41 @@ export function LeadForm() {
     // Activate fullscreen on mobile when user starts filling out the form
     activateFullscreenIfNeeded();
 
+    // Handle phone number with country code (e.g., Chrome autofill with +47)
+    if (name === "phone" && value.startsWith("+")) {
+      // Sort country codes by length (longest first) to match correctly
+      // (e.g., +358 should match before +35)
+      const sortedCountryCodes = [...countryCodes]
+        .filter(country => country.code !== "-")
+        .sort((a, b) => b.code.length - a.code.length);
+      
+      // Find matching country code (longest match first)
+      const matchedCountry = sortedCountryCodes.find((country) => {
+        return value.startsWith(country.code);
+      });
+
+      if (matchedCountry) {
+        // Extract country code and remaining phone number
+        const remainingNumber = value.substring(matchedCountry.code.length).trim();
+        
+        setFormData((prev) => ({
+          ...prev,
+          phoneCountryCode: matchedCountry.code,
+          phone: remainingNumber,
+        }));
+        return;
+      } else {
+        // No matching country code found, use "Annet" option
+        // Keep the full number in phone field when country code is "-"
+        setFormData((prev) => ({
+          ...prev,
+          phoneCountryCode: "-",
+          phone: value,
+        }));
+        return;
+      }
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: isCheckbox ? target.checked : value,
@@ -212,6 +395,7 @@ const countryCodes = [
   { code: "+39", country: "🇮🇹" },
   { code: "+31", country: "🇳🇱" },
   { code: "+32", country: "🇧🇪" },
+  { code: "-", country: "Annet" },
 ];
 
   const validateStep = () => {
@@ -230,12 +414,20 @@ const countryCodes = [
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    // Activate fullscreen on mobile when clicking Next
-    activateFullscreenIfNeeded();
-    
     setErrorMessage(null);
 
-    if (!validateStep()) {
+    // Validate first
+    const isValid = validateStep();
+    
+    // Activate fullscreen on mobile when clicking Next (even if validation fails)
+    activateFullscreenIfNeeded();
+    
+    // Activate desktop focus mode when clicking Next (even if validation fails)
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
+      setIsDesktopFocused(true);
+    }
+
+    if (!isValid) {
       return;
     }
 
@@ -251,7 +443,8 @@ const countryCodes = [
       const { mainLicenseSelection, phoneCountryCode, phone, ...restData } = formData;
       
       // Combine country code and phone number for submission
-      const fullPhoneNumber = phoneCountryCode && phone 
+      // If country code is "-" (Annet), just use the phone number as is
+      const fullPhoneNumber = phoneCountryCode && phone && phoneCountryCode !== "-"
         ? `${phoneCountryCode} ${phone}`.trim()
         : phone;
 
@@ -278,9 +471,9 @@ const countryCodes = [
 
       setStatus("success");
       setStepError(null);
-      setCurrentStep(0);
-      setHasStartedFilling(false);
-      resetFormData();
+      
+      // Redirect immediately to success page
+      router.push("/takk");
     } catch (error) {
       console.error("Lead form submission failed", error);
       setStatus("error");
@@ -302,13 +495,15 @@ const countryCodes = [
               name="postalCode"
               type="text"
               inputMode="numeric"
-              pattern="[0-9]{4}"
               maxLength={4}
               autoComplete="postal-code"
               value={formData.postalCode}
               onChange={handleChange}
-              onFocus={activateFullscreenIfNeeded}
-                className="w-full border-2 border-slate-300 sm:border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a]"
+              onFocus={(e) => {
+                activateFullscreenIfNeeded();
+                activateDesktopFocusIfNeeded('postalCode', e);
+              }}
+              className="w-full border-2 border-slate-300 sm:border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a]"
               placeholder="Postnummer (4 siffer)"
             />
           </div>
@@ -420,7 +615,10 @@ const countryCodes = [
                 autoComplete="name"
                 value={formData.fullName}
                 onChange={handleChange}
-                onFocus={activateFullscreenIfNeeded}
+                onFocus={(e) => {
+                  activateFullscreenIfNeeded();
+                  activateDesktopFocusIfNeeded('fullName', e);
+                }}
                 className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                 placeholder="F.eks. Nora Hansen"
               />
@@ -433,7 +631,10 @@ const countryCodes = [
                   name="phoneCountryCode"
                   value={formData.phoneCountryCode}
                   onChange={handleChange}
-                  onFocus={activateFullscreenIfNeeded}
+                  onFocus={(e) => {
+                    activateFullscreenIfNeeded();
+                    activateDesktopFocusIfNeeded('phoneCountryCode', e);
+                  }}
                   className="flex-shrink-0 w-20 border-slate-200 bg-white text-slate-900 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] rounded-md pl-2 pr-6 py-2 appearance-none bg-no-repeat bg-right bg-[length:16px_16px]"
                   style={{
                     backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
@@ -443,7 +644,7 @@ const countryCodes = [
                 >
                   {countryCodes.map((country) => (
                     <option key={country.code} value={country.code}>
-                      {country.code} {country.country}
+                      {country.code === "-" ? country.country : `${country.code} ${country.country}`}
                     </option>
                   ))}
                 </select>
@@ -455,7 +656,10 @@ const countryCodes = [
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  onFocus={activateFullscreenIfNeeded}
+                  onFocus={(e) => {
+                    activateFullscreenIfNeeded();
+                    activateDesktopFocusIfNeeded('phone', e);
+                  }}
                   className="flex-1 min-w-0 border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a] rounded-md"
                   placeholder="9X XX XX XX"
                 />
@@ -471,19 +675,22 @@ const countryCodes = [
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
-                onFocus={activateFullscreenIfNeeded}
+                onFocus={(e) => {
+                  activateFullscreenIfNeeded();
+                  activateDesktopFocusIfNeeded('email', e);
+                }}
                 className="w-full border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-[#3bb54a]"
                 placeholder="navn@epost.no"
               />
             </div>
 
-            <label className="flex items-start gap-3 rounded-2xl border border-white/30 bg-white/10 p-3 text-sm text-white">
+            <label className="flex items-start gap-3 rounded-2xl border border-white/30 bg-white/10 p-3 text-sm text-white cursor-pointer">
               <input
                 type="checkbox"
                 name="marketingConsent"
                 checked={formData.marketingConsent}
                 onChange={handleChange}
-                className="mt-1 rounded border-slate-300 sm:border-white/30 bg-white sm:bg-white/10 text-[#3bb54a] focus:ring-[#3bb54a]"
+                className="mt-1 rounded border-slate-300 sm:border-white/30 bg-white sm:bg-white/10 text-[#3bb54a] focus:ring-[#3bb54a] cursor-pointer"
               />
               <span>
                 Jeg godtar at Førerkortportalen lagrer opplysningene for å koble
@@ -508,7 +715,49 @@ const countryCodes = [
   };
 
   return (
-    <div className="w-full p-4 sm:rounded-3xl sm:p-8 relative">
+    <div 
+      ref={formContainerRef} 
+      className="w-full p-4 sm:rounded-3xl sm:p-8 relative"
+      style={isDesktopFocused ? { 
+        background: 'rgb(15 23 42 / 0.7)',
+        backgroundImage: 'none'
+      } : undefined}
+    >
+      {/* Loading/Success Overlay */}
+      {(status === "loading" || status === "success") && (
+        <div className="absolute inset-0 bg-slate-900/95 backdrop-blur-sm rounded-3xl flex items-center justify-center z-50 animate-fadeIn">
+          <div className="text-center">
+            <div className="relative mb-6">
+              <div className="absolute inset-0 bg-[#3bb54a] rounded-full blur-xl opacity-30 animate-pulse"></div>
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 mx-auto">
+                {status === "loading" ? (
+                  <div className="w-full h-full border-4 border-[#3bb54a]/30 border-t-[#3bb54a] rounded-full animate-spin"></div>
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-[#3bb54a] to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-[#3bb54a]/25">
+                    <svg
+                      className="w-10 h-10 sm:w-12 sm:h-12 text-white"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            </div>
+            <p className="text-xl sm:text-2xl font-semibold text-white mb-2">
+              {status === "loading" ? "Sender inn..." : "Sendt!"}
+            </p>
+            <p className="text-sm sm:text-base text-white/70">
+              {status === "loading" ? "Vennligst vent" : "Omdirigerer..."}
+            </p>
+          </div>
+        </div>
+      )}
       {/* Close button - only show on mobile fullscreen */}
       {isFullscreen && (
         <button
@@ -530,12 +779,16 @@ const countryCodes = [
         </button>
       )}
       
-      <h2 className="mt-6 lg:mt-0 mb-2 text-center text-4xl font-semibold text-white sm:text-3xl">
-        Motta tilbud fra flere trafikkskoler
-      </h2>
-      <p className="mb-4 text-center text-base text-white/90 sm:text-lg">
-        Tjenesten er gratis og uforpliktende
-      </p>
+      {!hideHeading && (
+        <>
+          <h2 className="mt-6 lg:mt-0 mb-2 text-center text-4xl font-semibold text-white sm:text-3xl">
+            Motta tilbud fra flere trafikkskoler
+          </h2>
+          <p className="mb-4 text-center text-base text-white/90 sm:text-lg">
+            Tjenesten er gratis og uforpliktende
+          </p>
+        </>
+      )}
       
       <div className="mb-4">
         <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-widest text-white/70">
@@ -556,7 +809,7 @@ const countryCodes = [
         {STEP_CONFIG[currentStepType]?.question}
       </h3>
 
-      <form className="mb-6 lg:mb-0 space-y-5 text-[15px]" onSubmit={handleSubmit}>
+      <form className="mb-6 lg:mb-0 space-y-5 text-[15px]" onSubmit={handleSubmit} noValidate>
         {renderStepContent()}
 
         {stepError && (
@@ -565,15 +818,6 @@ const countryCodes = [
           </p>
         )}
 
-        {status === "success" && (
-          <p
-            role="status"
-            className="rounded-2xl bg-[#3bb54a]/20 border border-[#3bb54a]/30 px-4 py-3 text-sm font-medium text-white"
-          >
-            Takk! Vi varsler utvalgte trafikkskoler, og du blir kontaktet kort
-            tid etter.
-          </p>
-        )}
 
         {status === "error" && (
           <p

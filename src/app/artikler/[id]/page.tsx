@@ -7,10 +7,12 @@ import { Calendar, Clock, ArrowLeft, Share2, List } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import LeadForm from "@/components/LeadForm";
-import { FormProvider } from "@/contexts/FormContext";
-import { useMemo } from "react";
+import { FormProvider, useFormContext } from "@/contexts/FormContext";
+import { useMemo, useState, useEffect } from "react";
 import ArticleStickyCTA from "@/components/ArticleStickyCTA";
 import ArticleFormOverlay from "@/components/ArticleFormOverlay";
+import CompactFormCTA from "@/components/CompactFormCTA";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 const articles: Record<string, {
   id: number;
@@ -439,14 +441,66 @@ function extractHeadings(htmlContent: string): Array<{ id: string; text: string 
   return headings;
 }
 
-export default function ArticlePage({ params }: { params: { id: string } }) {
+function ArticleFormWrapper() {
+  const { isDesktopFocused, setIsDesktopFocused } = useFormContext();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <div 
+      className={`bg-gradient-to-br from-slate-900 to-slate-600 backdrop-blur-md rounded-3xl shadow-2xl shadow-slate-900/50 p-6 sm:p-8 transition-all duration-300 cursor-pointer ${isDesktopFocused && !isMobile ? 'opacity-0 pointer-events-none' : ''}`}
+      onClick={(e) => {
+        if (!isMobile && !isDesktopFocused) {
+          const target = e.target as HTMLElement;
+          // Check if the click is on an interactive form element
+          const interactiveElement = target.closest('input, button, select, textarea, a, label, [role="button"], [type="submit"]');
+          
+          // Only trigger focus mode if NOT clicking on interactive elements
+          if (!interactiveElement) {
+            setIsDesktopFocused(true);
+          }
+        }
+      }}
+    >
+      <h2 className="text-2xl font-semibold text-white mb-0.5">
+        Motta tilbud fra flere trafikkskoler
+      </h2>
+      <p className="text-base text-slate-300 mb-0.5 text-center">
+        Tjenesten er gratis og uforpliktende
+      </p>
+      <LeadForm hideHeading={true} />
+    </div>
+  );
+}
+
+function ArticleContent({ params }: { params: { id: string } }) {
   const article = articles[params.id];
+  const { isDesktopFocused } = useFormContext();
+  const [isMobile, setIsMobile] = useState(false);
   
   // Extract headings for table of contents
   const headings = useMemo(() => {
     if (!article) return [];
     return extractHeadings(article.content);
   }, [article]);
+
+  // Check if mobile on mount
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   if (!article) {
     return (
@@ -474,13 +528,14 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <FormProvider>
-    <main className="min-h-screen bg-white">
+    <>
       <Navbar />
       <ArticleFormOverlay />
       <ArticleStickyCTA />
+      <CompactFormCTA />
+      <StickyMobileCTA />
       
-      <article className="py-8 sm:py-12 lg:py-16 bg-slate-50">
+      <article className={`py-8 sm:py-12 lg:py-16 bg-slate-50 transition-all duration-500 ${isDesktopFocused && !isMobile ? 'blur-md' : ''}`}>
           <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           
@@ -602,15 +657,7 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
               {/* Form Sidebar - Mobile and Desktop */}
               <div className="lg:col-span-5">
                 <div className="lg:sticky lg:top-24">
-                  <div className="bg-gradient-to-br from-slate-900 to-slate-600 backdrop-blur-md rounded-3xl shadow-2xl shadow-slate-900/50 p-6 sm:p-8">
-                    <h2 className="text-2xl font-semibold text-white mb-2">
-                      Motta tilbud fra flere trafikkskoler
-                    </h2>
-                    <p className="text-base text-slate-300 mb-6">
-                      Tjenesten er gratis og uforpliktende
-                    </p>
-                    <LeadForm />
-                  </div>
+                  <ArticleFormWrapper />
                 </div>
             </div>
           </div>
@@ -618,7 +665,16 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
       </article>
 
       <Footer />
-    </main>
+    </>
+  );
+}
+
+export default function ArticlePage({ params }: { params: { id: string } }) {
+  return (
+    <FormProvider>
+      <main className="min-h-screen bg-white">
+        <ArticleContent params={params} />
+      </main>
     </FormProvider>
   );
 }

@@ -4,11 +4,26 @@ import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ScrollToFormButton } from "@/components/ScrollToFormButton";
 import { Target, Users, Zap, Heart, CheckCircle2, Star } from "lucide-react";
-import { FormProvider } from "@/contexts/FormContext";
+import { FormProvider, useFormContext } from "@/contexts/FormContext";
 import ArticleStickyCTA from "@/components/ArticleStickyCTA";
 import ArticleFormOverlay from "@/components/ArticleFormOverlay";
+import CompactFormCTA from "@/components/CompactFormCTA";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
+import { useState, useEffect } from "react";
 
-export default function OmOssPage() {
+function OmOssContent() {
+  const { isDesktopFocused } = useFormContext();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const values = [
     {
       icon: Target,
@@ -60,14 +75,15 @@ export default function OmOssPage() {
   ];
 
   return (
-    <FormProvider>
-    <main className="min-h-screen bg-white">
+    <>
       <Navbar />
       <ArticleFormOverlay />
       <ArticleStickyCTA />
+      <CompactFormCTA />
+      <StickyMobileCTA />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8">
+      <section className={`relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8 transition-all duration-500 ${isDesktopFocused && !isMobile ? 'blur-md' : ''}`}>
         {/* Decorative background elements - desktop only */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200/20 rounded-full blur-3xl"></div>
@@ -91,7 +107,7 @@ export default function OmOssPage() {
       </section>
 
       {/* Main Content */}
-      <section className="pt-0 pb-12 sm:pb-16 lg:pb-20">
+      <section className={`pt-0 pb-12 sm:pb-16 lg:pb-20 transition-all duration-500 ${isDesktopFocused && !isMobile ? 'blur-md' : ''}`}>
         <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-12">
             
@@ -214,8 +230,19 @@ export default function OmOssPage() {
         </div>
       </section>
 
-      <Footer />
-    </main>
+      <div className={isDesktopFocused && !isMobile ? 'blur-md transition-all duration-500' : ''}>
+        <Footer />
+      </div>
+    </>
+  );
+}
+
+export default function OmOssPage() {
+  return (
+    <FormProvider>
+      <main className="min-h-screen bg-white">
+        <OmOssContent />
+      </main>
     </FormProvider>
   );
 }

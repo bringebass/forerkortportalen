@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
-import { useFormContext } from "@/contexts/FormContext";
+import { ScrollToFormButton } from "@/components/ScrollToFormButton";
 
 const features = [
   {
@@ -19,24 +19,6 @@ const features = [
 ];
 
 export default function HowItWorksSection() {
-  const { setIsFullscreen, setHasStartedFilling } = useFormContext();
-
-  const scrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    
-    // On mobile, activate fullscreen mode
-    if (window.innerWidth < 640) {
-      setIsFullscreen(true);
-      setHasStartedFilling(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      // On desktop, just scroll to form
-      const element = document.getElementById("skjema");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  };
 
   return (
     <section id="hvordan" className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20 font-sans">
@@ -103,14 +85,10 @@ export default function HowItWorksSection() {
 
             {/* CTA */}
             <div className="pt-6">
-              <a
-                href="#skjema"
-                onClick={scrollToForm}
-                className="group inline-flex items-center gap-3 px-6 py-4 bg-[#3bb54a] text-white font-semibold rounded-xl shadow-lg shadow-[#3bb54a]/25 hover:shadow-xl hover:shadow-[#3bb54a]/30 transition-all duration-300 hover:scale-105"
-              >
+              <ScrollToFormButton className="group inline-flex items-center gap-3 px-6 py-4 bg-[#3bb54a] text-white font-semibold rounded-xl shadow-lg shadow-[#3bb54a]/25 hover:shadow-xl hover:shadow-[#3bb54a]/30 transition-all duration-300 hover:scale-105">
                 <span>Kom i gang nå</span>
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </ScrollToFormButton>
             </div>
           </div>
         </div>

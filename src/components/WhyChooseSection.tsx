@@ -5,8 +5,8 @@ import { TrendingUp, Users, ShieldCheck, Sparkles, Shield } from "lucide-react";
 const valuePoints = [
   {
     title: "Spar opptil 20 000 kr på å velge riktig skole",
-    stat: "20 000",
-    statUnit: "kr",
+    stat: "Spar penger",
+    statUnit: "",
     icon: TrendingUp,
     iconBg: "bg-emerald-50",
     iconColor: "text-emerald-600",

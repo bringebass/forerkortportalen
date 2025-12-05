@@ -8,6 +8,8 @@ import Image from "next/image";
 import { FormProvider } from "@/contexts/FormContext";
 import ArticleStickyCTA from "@/components/ArticleStickyCTA";
 import ArticleFormOverlay from "@/components/ArticleFormOverlay";
+import CompactFormCTA from "@/components/CompactFormCTA";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 // Placeholder artikler - du kan erstatte disse med faktiske artikler senere
 const articles = [
@@ -74,6 +76,8 @@ export default function ArtiklerPage() {
       <Navbar />
       <ArticleFormOverlay />
       <ArticleStickyCTA />
+      <CompactFormCTA />
+      <StickyMobileCTA />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 py-12 sm:py-16 lg:py-20">

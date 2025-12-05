@@ -24,11 +24,14 @@ export default function StickyMobileCTA() {
       const formElement = document.getElementById("skjema");
       
       if (formElement) {
+        // On main page - show button when form is scrolled past
         const formBottom = formElement.getBoundingClientRect().bottom;
-        
-        // Show button when form is scrolled past - always show it, even at bottom
         const shouldShow = formBottom < 0;
         setShow(shouldShow);
+      } else {
+        // On article/om-oss pages (no skjema element) - show button after scrolling down a bit
+        const scrollY = window.scrollY || window.pageYOffset;
+        setShow(scrollY > 200); // Show after scrolling 200px
       }
     };
 
@@ -44,15 +47,20 @@ export default function StickyMobileCTA() {
       setIsFullscreen(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      // Otherwise, just scroll to form
+      // Check if we're on main page (has skjema element) or article/om-oss page
       const element = document.getElementById("skjema");
       if (element) {
+        // Main page - scroll to form first, then activate fullscreen
         element.scrollIntoView({ behavior: "smooth", block: "start" });
-        // Activate fullscreen after a short delay
         setTimeout(() => {
           setIsFullscreen(true);
           setHasStartedFilling(true);
         }, 300);
+      } else {
+        // Article/om-oss pages - directly activate fullscreen form
+        setIsFullscreen(true);
+        setHasStartedFilling(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
   };

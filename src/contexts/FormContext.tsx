@@ -40,6 +40,8 @@ interface FormContextType {
   setIsFullscreen: (value: boolean) => void;
   hasStartedFilling: boolean;
   setHasStartedFilling: (value: boolean) => void;
+  isDesktopFocused: boolean;
+  setIsDesktopFocused: (value: boolean) => void;
   formData: FormState;
   setFormData: (data: FormState | ((prev: FormState) => FormState)) => void;
   resetFormData: () => void;
@@ -52,6 +54,7 @@ const FormContext = createContext<FormContextType | undefined>(undefined);
 export function FormProvider({ children }: { children: ReactNode }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [hasStartedFilling, setHasStartedFilling] = useState(false);
+  const [isDesktopFocused, setIsDesktopFocused] = useState(false);
   const [formData, setFormData] = useState<FormState>(defaultFormState);
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -67,6 +70,8 @@ export function FormProvider({ children }: { children: ReactNode }) {
         setIsFullscreen,
         hasStartedFilling,
         setHasStartedFilling,
+        isDesktopFocused,
+        setIsDesktopFocused,
         formData,
         setFormData,
         resetFormData,

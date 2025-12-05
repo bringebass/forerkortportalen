@@ -70,6 +70,20 @@ const config: Config = {
         "hero-radial":
           "radial-gradient(circle at top, rgba(95,115,242,0.25), transparent 55%)",
       },
+      keyframes: {
+        fadeInScale: {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        fadeInScale: "fadeInScale 0.5s ease-out",
+        fadeIn: "fadeIn 0.3s ease-out",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],
