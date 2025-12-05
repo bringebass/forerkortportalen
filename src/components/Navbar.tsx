@@ -22,7 +22,7 @@ export function Navbar() {
       <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between px-4 min-[340px]:px-4 xl:px-0 py-3 min-[340px]:py-4">
         <a href="/" className="flex items-center gap-2 min-[340px]:gap-2.5 md:gap-3 text-lg min-[340px]:text-xl md:text-xl lg:text-2xl font-bold transition flex-shrink min-w-0">
           <Image
-            src="/favicon.png"
+            src="/logo.png"
             alt="Førerkortportalen"
             width={32}
             height={32}
