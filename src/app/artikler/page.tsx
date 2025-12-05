@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FileText, Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Placeholder artikler - du kan erstatte disse med faktiske artikler senere
 const articles = [
@@ -14,6 +15,7 @@ const articles = [
     date: "15. januar 2024",
     readTime: "5 min lesing",
     category: "Guider",
+    image: "/Article-photo1.png",
   },
   {
     id: 2,
@@ -22,6 +24,7 @@ const articles = [
     date: "10. januar 2024",
     readTime: "8 min lesing",
     category: "Førerkortklasser",
+    image: "/Article-photo2.png",
   },
   {
     id: 3,
@@ -30,6 +33,7 @@ const articles = [
     date: "5. januar 2024",
     readTime: "6 min lesing",
     category: "Kursformer",
+    image: "/Article-photo3.png",
   },
   {
     id: 4,
@@ -38,6 +42,7 @@ const articles = [
     date: "1. januar 2024",
     readTime: "7 min lesing",
     category: "Økonomi",
+    image: "/Article-photo4.png",
   },
   {
     id: 5,
@@ -46,6 +51,7 @@ const articles = [
     date: "28. desember 2023",
     readTime: "5 min lesing",
     category: "Tips",
+    image: "/Article-photo5.png",
   },
   {
     id: 6,
@@ -54,17 +60,8 @@ const articles = [
     date: "20. desember 2023",
     readTime: "4 min lesing",
     category: "Etter opplæring",
+    image: "/Article-photo6.png",
   },
-];
-
-const categories = [
-  "Alle",
-  "Guider",
-  "Førerkortklasser",
-  "Kursformer",
-  "Økonomi",
-  "Tips",
-  "Etter opplæring",
 ];
 
 export default function ArtiklerPage() {
@@ -73,17 +70,24 @@ export default function ArtiklerPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="bg-white py-12 sm:py-16 lg:py-20 border-b border-slate-200">
-        <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 py-12 sm:py-16 lg:py-20">
+        {/* Decorative background elements - desktop only */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-emerald-100 mb-4 sm:mb-6">
-              <FileText className="h-6 w-6 sm:h-8 sm:w-8 text-[#3bb54a]" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/50 mb-6 sm:mb-8">
+              <FileText className="h-4 w-4 text-emerald-600" />
+              <span className="text-sm font-semibold text-emerald-700">Artikler og guider</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold text-slate-900 mb-4 sm:mb-6">
-              Artikler og guider
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
+              Nyttige artikler om førerkort
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-slate-600 leading-relaxed max-w-3xl">
-              Nyttige artikler og guider om førerkort, trafikkskoler og føreropplæring
+            <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
+              Lær alt du trenger å vite om førerkort, trafikkskoler og føreropplæring
             </p>
           </div>
         </div>
@@ -92,63 +96,58 @@ export default function ArtiklerPage() {
       {/* Articles Section */}
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          
-          {/* Categories */}
-          <div className="mb-8 sm:mb-12">
-            <div className="flex flex-wrap gap-3 justify-center">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                    category === "Alle"
-                      ? "bg-[#3bb54a] text-white"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Articles Grid */}
           <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
-              <article
+              <Link
                 key={article.id}
-                className="group rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-200 hover:border-emerald-300"
+                href={`/artikler/${article.id}`}
+                className="group rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 hover:border-emerald-300 block"
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
-                    {article.category}
-                  </span>
-                </div>
-                
-                <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-3 group-hover:text-[#3bb54a] transition">
-                  {article.title}
-                </h2>
-                
-                <p className="text-base text-slate-600 leading-relaxed mb-4 line-clamp-3">
-                  {article.excerpt}
-                </p>
-                
-                <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="h-4 w-4" />
-                    <span>{article.date}</span>
+                {/* Article Image */}
+                {article.image && (
+                  <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-slate-100">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                   </div>
-                  <span>•</span>
-                  <span>{article.readTime}</span>
-                </div>
+                )}
                 
-                <Link
-                  href={`/artikler/${article.id}`}
-                  className="inline-flex items-center gap-2 text-[#3bb54a] font-semibold hover:gap-3 transition-all group/link"
-                >
-                  Les mer
-                  <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
-                </Link>
-              </article>
+                <div className="p-6 sm:p-8">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                      {article.category}
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-3 group-hover:text-[#3bb54a] transition">
+                    {article.title}
+                  </h2>
+                  
+                  <p className="text-base text-slate-600 leading-relaxed mb-4 line-clamp-3">
+                    {article.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="h-4 w-4" />
+                      <span>{article.date}</span>
+                    </div>
+                    <span>•</span>
+                    <span>{article.readTime}</span>
+                  </div>
+                  
+                  <div className="inline-flex items-center gap-2 text-[#3bb54a] font-semibold group-hover:gap-3 transition-all">
+                    Les mer
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
 

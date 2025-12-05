@@ -31,7 +31,7 @@ export default function PersonvernPage() {
                   <span className="font-semibold">1.1</span> Førerkortportalen er ansvarlig for behandling av personopplysninger som samles inn via vår nettside.
                 </p>
                 <p className="leading-relaxed">
-                  <span className="font-semibold">1.2</span> Dersom du har spørsmål om personvern, ønsker innsyn, sletting eller retting av data, kan du kontakte oss på e-post: kontakt@forerkortportalen.no — eventuelt via post/organisasjon dersom relevant.
+                  <span className="font-semibold">1.2</span> Dersom du har spørsmål om personvern, ønsker innsyn, sletting eller retting av data, kan du kontakte oss på e-post: help@dbinfo.no — eventuelt via post/organisasjon dersom relevant.
                 </p>
               </div>
             </section>
@@ -160,9 +160,10 @@ export default function PersonvernPage() {
                   Har du spørsmål om hvordan vi behandler dine opplysninger, ønsker innsyn eller vil be om sletting, ta kontakt med oss:
                 </p>
                 <ul className="list-none space-y-1 ml-4">
-                  <li><span className="font-semibold">E-post:</span> kontakt@forerkortportalen.no</li>
-                  <li><span className="font-semibold">Organisasjonsnummer / Firma:</span> [sett inn hvis relevant]</li>
-                  <li><span className="font-semibold">Adresse:</span> [sett inn hvis relevant]</li>
+                  <li><span className="font-semibold">E-post:</span> help@dbinfo.no</li>
+                  <li><span className="font-semibold">Firma: </span>DB media AS</li>
+                  <li><span className="font-semibold">Organisasjonsnummer: </span>936 445 594</li>
+        
                 </ul>
               </div>
             </section>

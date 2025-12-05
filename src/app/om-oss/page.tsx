@@ -61,13 +61,23 @@ export default function OmOssPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="bg-white pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8">
-        <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8">
+        {/* Decorative background elements - desktop only */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold text-slate-900 mb-3 sm:mb-4">
-              Om Førerkortportalen
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/50 mb-6 sm:mb-8">
+              <Users className="h-4 w-4 text-emerald-600" />
+              <span className="text-sm font-semibold text-emerald-700">Om oss</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
+              Om <span className="text-[#3bb54a]">fører</span>kortportalen
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-slate-600 leading-relaxed max-w-3xl">
+            <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
               Vi gjør det enkelt å finne og sammenligne trafikkskoler i hele Norge
             </p>
           </div>

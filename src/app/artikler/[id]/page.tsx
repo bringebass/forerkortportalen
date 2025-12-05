@@ -3,8 +3,12 @@
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ScrollToFormButton } from "@/components/ScrollToFormButton";
-import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2, List } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import LeadForm from "@/components/LeadForm";
+import { FormProvider } from "@/contexts/FormContext";
+import { useMemo } from "react";
 
 const articles: Record<string, {
   id: number;
@@ -14,6 +18,7 @@ const articles: Record<string, {
   readTime: string;
   category: string;
   content: string;
+  image: string;
 }> = {
   "1": {
     id: 1,
@@ -22,6 +27,7 @@ const articles: Record<string, {
     date: "15. januar 2024",
     readTime: "5 min lesing",
     category: "Guider",
+    image: "/Article-photo1.png",
     content: `
       <p class="lead">Å velge riktig trafikkskole er et viktig valg som kan påvirke hele føreropplæringen din. Med så mange alternativer kan det være utfordrende å vite hvor man skal begynne. Her er en guide til hva du bør se etter.</p>
       
@@ -53,6 +59,7 @@ const articles: Record<string, {
     date: "10. januar 2024",
     readTime: "8 min lesing",
     category: "Førerkortklasser",
+    image: "/Article-photo2.png",
     content: `
       <p class="lead">Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg rett til å kjøre personbil. Her er alt du trenger å vite før du starter opplæringen.</p>
       
@@ -108,6 +115,7 @@ const articles: Record<string, {
     date: "5. januar 2024",
     readTime: "6 min lesing",
     category: "Kursformer",
+    image: "/Article-photo3.png",
     content: `
       <p class="lead">Når du skal ta førerkort har du to hovedalternativer: intensivkurs eller et mer tradisjonelt opplegg. Begge har sine fordeler, og valget avhenger av din situasjon og preferanser.</p>
       
@@ -181,6 +189,7 @@ const articles: Record<string, {
     date: "1. januar 2024",
     readTime: "7 min lesing",
     category: "Økonomi",
+    image: "/Article-photo4.png",
     content: `
       <p class="lead">Å ta førerkort er en investering, og det er viktig å ha realistiske forventninger til kostnadene. Her er en oversikt over hva du kan forvente å betale i 2024.</p>
       
@@ -258,6 +267,7 @@ const articles: Record<string, {
     date: "28. desember 2023",
     readTime: "5 min lesing",
     category: "Tips",
+    image: "/Article-photo5.png",
     content: `
       <p class="lead">Førerprøven (oppkjøringen) er det siste steget før du får førerkortet. Her er tips for å forberede deg best mulig og øke sjansene for å bestå på første forsøk.</p>
       
@@ -332,6 +342,7 @@ const articles: Record<string, {
     date: "20. desember 2023",
     readTime: "4 min lesing",
     category: "Etter opplæring",
+    image: "/Article-photo6.png",
     content: `
       <p class="lead">Gratulerer! Du har bestått førerprøven. Men hva skjer nå? Her er en guide til hva du må gjøre for å få førerkortet ditt og hva du bør vite som ny fører.</p>
       
@@ -406,8 +417,34 @@ const articles: Record<string, {
   },
 };
 
+// Function to extract headings from HTML content
+function extractHeadings(htmlContent: string): Array<{ id: string; text: string }> {
+  const headingRegex = /<h2[^>]*>(.*?)<\/h2>/gi;
+  const headings: Array<{ id: string; text: string }> = [];
+  let match;
+
+  while ((match = headingRegex.exec(htmlContent)) !== null) {
+    const text = match[1]
+      .replace(/<[^>]*>/g, '') // Remove HTML tags
+      .trim();
+    const id = text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+    headings.push({ id, text });
+  }
+
+  return headings;
+}
+
 export default function ArticlePage({ params }: { params: { id: string } }) {
   const article = articles[params.id];
+  
+  // Extract headings for table of contents
+  const headings = useMemo(() => {
+    if (!article) return [];
+    return extractHeadings(article.content);
+  }, [article]);
 
   if (!article) {
     return (
@@ -435,82 +472,162 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
-      
-      <article className="py-8 sm:py-12 lg:py-16 bg-slate-50">
-        <div className="container mx-auto max-w-[900px] px-4 sm:px-6 lg:px-8">
-          
-          {/* Back Link */}
-          <div className="mb-6 sm:mb-8">
-            <Link
-              href="/artikler"
-              className="inline-flex items-center gap-2 text-slate-600 hover:text-[#3bb54a] transition text-sm sm:text-base"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Tilbake til artikler</span>
-            </Link>
-          </div>
-
-          {/* Article Card */}
-          <div className="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden">
-            
-            {/* Header */}
-            <header className="px-6 sm:px-8 lg:px-10 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 border-b border-slate-200">
-              <div className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-semibold mb-4">
-                {article.category}
-              </div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-slate-900 mb-4 sm:mb-6 leading-tight">
-                {article.title}
-              </h1>
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4" />
-                  <span>{article.date}</span>
+    <FormProvider>
+      <main className="min-h-screen bg-white">
+        <Navbar />
+        
+        <article className="py-8 sm:py-12 lg:py-16 bg-slate-50">
+          <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+              
+              {/* Main Article Content */}
+              <div className="lg:col-span-7">
+                {/* Back Link */}
+                <div className="mb-6 sm:mb-8">
+                  <Link
+                    href="/artikler"
+                    className="inline-flex items-center gap-2 text-slate-600 hover:text-[#3bb54a] transition text-sm sm:text-base"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    <span>Tilbake til artikler</span>
+                  </Link>
                 </div>
-                <span>•</span>
-                <div className="flex items-center gap-1.5">
-                  <Clock className="h-4 w-4" />
-                  <span>{article.readTime}</span>
+
+                {/* Article Card */}
+                <div className="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden">
+                  
+                  {/* Header */}
+                  <header className="px-6 sm:px-8 lg:px-10 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 border-b border-slate-200">
+                    <div className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-semibold mb-4">
+                      {article.category}
+                    </div>
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-slate-900 mb-4 sm:mb-6 leading-tight">
+                      {article.title}
+                    </h1>
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-600">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="h-4 w-4" />
+                        <span>{article.date}</span>
+                      </div>
+                      <span>•</span>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="h-4 w-4" />
+                        <span>{article.readTime}</span>
+                      </div>
+                    </div>
+                  </header>
+
+                  {/* Article Image */}
+                  {article.image && (
+                    <div className="relative w-full h-64 sm:h-80 lg:h-96 overflow-hidden bg-slate-100">
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        priority
+                      />
+                    </div>
+                  )}
+
+                  {/* Table of Contents */}
+                  {headings.length > 0 && (
+                    <div className="mx-6 sm:mx-8 lg:mx-10 mt-8 mb-6 p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+                      <div className="flex items-center gap-2 mb-4">
+                        <List className="h-5 w-5 text-[#3bb54a]" />
+                        <h3 className="text-lg font-semibold text-slate-900">Innholdsfortegnelse</h3>
+                      </div>
+                      <nav className="space-y-2">
+                        {headings.map((heading, index) => (
+                          <a
+                            key={index}
+                            href={`#${heading.id}`}
+                            className="block text-sm sm:text-base text-slate-700 hover:text-[#3bb54a] transition py-1.5 pl-4 border-l-2 border-slate-200 hover:border-[#3bb54a]"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const element = document.getElementById(heading.id);
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                // Update URL without scrolling
+                                window.history.pushState(null, '', `#${heading.id}`);
+                              }
+                            }}
+                          >
+                            {heading.text}
+                          </a>
+                        ))}
+                      </nav>
+                    </div>
+                  )}
+
+                  {/* Content */}
+                  <div className="px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
+                    <div
+                      className="prose prose-slate prose-lg max-w-none 
+                        prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:mt-8 prose-headings:mb-4
+                        prose-h2:text-2xl sm:prose-h2:text-3xl
+                        prose-h3:text-xl sm:prose-h3:text-2xl
+                        prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4
+                        prose-a:text-[#3bb54a] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                        prose-strong:text-slate-900 prose-strong:font-semibold
+                        prose-ul:text-slate-700 prose-ul:my-4
+                        prose-li:mb-2
+                        prose-lead:text-lg sm:prose-lead:text-xl prose-lead:font-medium prose-lead:text-slate-800
+                        prose-img:rounded-xl prose-img:shadow-md prose-img:my-8"
+                      dangerouslySetInnerHTML={{ 
+                        __html: article.content.replace(
+                          /<h2([^>]*)>(.*?)<\/h2>/gi,
+                          (match, attrs, text) => {
+                            const id = text
+                              .replace(/<[^>]*>/g, '')
+                              .trim()
+                              .toLowerCase()
+                              .replace(/[^a-z0-9]+/g, '-')
+                              .replace(/^-|-$/g, '');
+                            return `<h2 id="${id}"${attrs} class="scroll-mt-24">${text}</h2>`;
+                          }
+                        )
+                      }}
+                    />
+                  </div>
+
+                  {/* Footer with CTA - Mobile only */}
+                  <div className="lg:hidden px-6 sm:px-8 lg:px-10 pb-8 sm:pb-10 lg:pb-12 pt-6 sm:pt-8 border-t border-slate-200 bg-slate-50">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-3">
+                      Klar til å finne din perfekte trafikkskole?
+                    </h2>
+                    <p className="text-sm sm:text-base text-slate-600 mb-6">
+                      Fyll ut skjemaet på forsiden og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.
+                    </p>
+                    <ScrollToFormButton className="inline-flex items-center justify-center rounded-full bg-[#3bb54a] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#3bb54a]/30 transition hover:bg-[#2d8f3d]">
+                      Gå til skjemaet
+                    </ScrollToFormButton>
+                  </div>
                 </div>
               </div>
-            </header>
 
-            {/* Content */}
-            <div className="px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
-              <div
-                className="prose prose-slate prose-lg max-w-none 
-                  prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:mt-8 prose-headings:mb-4
-                  prose-h2:text-2xl sm:prose-h2:text-3xl
-                  prose-h3:text-xl sm:prose-h3:text-2xl
-                  prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4
-                  prose-a:text-[#3bb54a] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-slate-900 prose-strong:font-semibold
-                  prose-ul:text-slate-700 prose-ul:my-4
-                  prose-li:mb-2
-                  prose-lead:text-lg sm:prose-lead:text-xl prose-lead:font-medium prose-lead:text-slate-800"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              />
-            </div>
-
-            {/* Footer with CTA */}
-            <div className="px-6 sm:px-8 lg:px-10 pb-8 sm:pb-10 lg:pb-12 pt-6 sm:pt-8 border-t border-slate-200 bg-slate-50">
-              <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-3">
-                Klar til å finne din perfekte trafikkskole?
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 mb-6">
-                Fyll ut skjemaet på forsiden og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.
-              </p>
-              <ScrollToFormButton className="inline-flex items-center justify-center rounded-full bg-[#3bb54a] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#3bb54a]/30 transition hover:bg-[#2d8f3d]">
-                Gå til skjemaet
-              </ScrollToFormButton>
+              {/* Sticky Form Sidebar - Desktop only */}
+              <div className="lg:col-span-5">
+                <div className="lg:sticky lg:top-24">
+                  <div className="bg-gradient-to-br from-slate-900 to-slate-600 backdrop-blur-md rounded-3xl shadow-2xl shadow-slate-900/50 p-6 sm:p-8">
+                    <h2 className="text-2xl font-semibold text-white mb-2">
+                      Motta tilbud fra flere trafikkskoler
+                    </h2>
+                    <p className="text-base text-slate-300 mb-6">
+                      Tjenesten er gratis og uforpliktende
+                    </p>
+                    <LeadForm />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </FormProvider>
   );
 }
 
