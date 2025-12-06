@@ -62,8 +62,8 @@ export default function Footer() {
                 {section.title}
               </h3>
               <ul className="space-y-2">
-                {section.links.map((link) => (
-                  <li key={link.href}>
+                {section.links.map((link, index) => (
+                  <li key={`${section.title}-${link.label}-${index}`}>
                     <Link
                       href={link.href}
                       className="text-slate-600 hover:text-[#3bb54a] transition"

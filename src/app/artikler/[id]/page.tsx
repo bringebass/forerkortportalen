@@ -8,7 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import LeadForm from "@/components/LeadForm";
 import { FormProvider, useFormContext } from "@/contexts/FormContext";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, use } from "react";
 import ArticleStickyCTA from "@/components/ArticleStickyCTA";
 import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 import CompactFormCTA from "@/components/CompactFormCTA";
@@ -669,11 +669,12 @@ function ArticleContent({ params }: { params: { id: string } }) {
   );
 }
 
-export default function ArticlePage({ params }: { params: { id: string } }) {
+export default function ArticlePage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params);
   return (
     <FormProvider>
       <main className="min-h-screen bg-white">
-        <ArticleContent params={params} />
+        <ArticleContent params={resolvedParams} />
       </main>
     </FormProvider>
   );
