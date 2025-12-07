@@ -35,9 +35,9 @@ App-passord kan kun brukes til SMTP og gir ikke tilgang til resten av kontoen, m
 ```env
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=forerkortportalen@gmail.com
-SMTP_PASS=xxxx xxxx xxxx xxxx
-SMTP_FROM=forerkortportalen@gmail.com
+SMTP_USER=din-epost@gmail.com
+SMTP_PASS=ditt-16-sifrede-app-passord-her
+SMTP_FROM=din-epost@gmail.com
 ```
 
 ### Alternativ B: Privat Gmail-konto (Mindre anbefalt)
@@ -51,9 +51,9 @@ Hvis du må bruke din private Gmail-konto, følg samme steg som over, men vær k
 ```env
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=minepost@gmail.com
-SMTP_PASS=abcd efgh ijkl mnop
-SMTP_FROM=minepost@gmail.com
+SMTP_USER=din-epost@gmail.com
+SMTP_PASS=ditt-16-sifrede-app-passord-uten-mellomrom
+SMTP_FROM=din-epost@gmail.com
 ```
 
 ## Alternativer:
