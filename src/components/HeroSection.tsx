@@ -47,7 +47,19 @@ const MOBILE_FORM_BG = "bg-gradient-to-br from-slate-900 to-slate-600"; // Visib
 const MOBILE_FULLSCREEN_BG = "bg-slate-900"; // Fullscreen overlay background - use solid color for seamless look
 
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  headline?: string;
+  description?: string;
+  formHeading?: string;
+  postalCodeQuestion?: string;
+}
+
+export default function HeroSection({ 
+  headline = "Spar penger og finn riktig trafikkskole for deg",
+  description = "Del behovet ditt én gang – vi kobler deg med kvalitetssikrede trafikkskoler i området ditt slik at du kan sammenligne priser, pakker og tilgjengelighet.",
+  formHeading = "Motta tilbud fra flere trafikkskoler",
+  postalCodeQuestion = "Hvor i Norge skal du ta førerkort?"
+}: HeroSectionProps = {}) {
   const { isFullscreen, setIsFullscreen, setHasStartedFilling, hasStartedFilling, isDesktopFocused, setIsDesktopFocused } = useFormContext();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -96,7 +108,10 @@ export default function HeroSection() {
               <div className="w-full max-w-lg">
                 {/* Form container - transparent on fullscreen to blend with background */}
                 <div className="shadow-none">
-                  <LeadForm />
+                  <LeadForm 
+                  formHeading={formHeading}
+                  postalCodeQuestion={postalCodeQuestion}
+                />
                 </div>
               </div>
             </div>
@@ -160,12 +175,10 @@ export default function HeroSection() {
           <div className="sm:mx-auto sm:flex w-full max-w-[1300px] flex-col gap-8 sm:gap-12 lg:flex-row lg:items-center lg:justify-center lg:gap-16">
             <div className={`hidden sm:block space-y-4 sm:space-y-6 lg:w-[50%] transition-opacity duration-500 ${isDesktopFocused && !isMobile ? 'opacity-40' : ''}`}>
               <h1 className="text-center text-[32px] font-semibold leading-[1.15] text-slate-900 sm:text-left sm:text-[48px] lg:text-[54px] lg:text-white">
-                Spar penger og finn riktig trafikkskole for deg
+                {headline}
               </h1>
               <p className="text-center text-base text-slate-600 sm:text-left sm:text-lg lg:text-white/85">
-                Del behovet ditt én gang – vi kobler deg med kvalitetssikrede
-                trafikkskoler i området ditt slik at du kan sammenligne priser,
-                pakker og tilgjengelighet.
+                {description}
               </p>
               <div className="hidden flex-wrap gap-3 md:flex">
                 {heroHighlights.map(({ label, icon: Icon, iconColor }) => (
@@ -198,7 +211,10 @@ export default function HeroSection() {
                   }
                 }}
               >
-                <LeadForm />
+                <LeadForm 
+                  formHeading={formHeading}
+                  postalCodeQuestion={postalCodeQuestion}
+                />
               </div>
 
             </div>

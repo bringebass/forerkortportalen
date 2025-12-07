@@ -1,16 +1,8 @@
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    turbopack: {
-      // Explicitly set the root directory to silence the lockfile warning
-      root: resolve(__dirname),
-    },
+  images: {
+    // Max 20 elements allowed, include quality 90 for hero images
+    qualities: [70, 75, 80, 85, 90, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70],
   },
 };
 

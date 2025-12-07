@@ -2,7 +2,13 @@
 
 import { CheckCircle2 } from "lucide-react";
 
-export default function InfoSection() {
+interface InfoSectionProps {
+  description?: string;
+}
+
+export default function InfoSection({ 
+  description = "Førerkortportalen er din vei til å finne den beste trafikkskolen til riktig pris. I stedet for å kontakte flere skoler individuelt, kan du fylle ut én enkel forespørsel og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område."
+}: InfoSectionProps = {}) {
   return (
     <section className="bg-white py-8 sm:py-12 lg:py-16">
       <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
@@ -21,9 +27,7 @@ export default function InfoSection() {
             </h2>
               <div className="space-y-5 text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed">
               <p>
-                Førerkortportalen er din vei til å finne den beste trafikkskolen til riktig pris. 
-                I stedet for å kontakte flere skoler individuelt, kan du fylle ut én enkel forespørsel 
-                og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.
+                {description}
               </p>
               <p>
                 Vi samarbeider med et bredt utvalg av trafikkskoler over hele Norge, fra lokale 

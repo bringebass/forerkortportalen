@@ -45,15 +45,8 @@ const BASE_STEP_ORDER = [
   "contactInfo",     // Step 3
 ] as const;
 
-// Step definitions - each step type has its question and validator
-const STEP_CONFIG = {
-  postalCode: {
-    question: "Hvor i Norge skal du ta førerkort?",
-    validator: (formData: FormState) =>
-      /^\d{4}$/.test(formData.postalCode)
-        ? null
-        : "Oppgi et norsk postnummer (fire siffer).",
-  },
+// Base step definitions - postalCode question will be set dynamically
+const BASE_STEP_CONFIG = {
   licenseType: {
     question: "Hvilket type førerkort skal du ta?",
     validator: (formData: FormState) =>
@@ -106,9 +99,15 @@ type Status = "idle" | "loading" | "success" | "error";
 
 interface LeadFormProps {
   hideHeading?: boolean;
+  formHeading?: string;
+  postalCodeQuestion?: string;
 }
 
-export function LeadForm({ hideHeading = false }: LeadFormProps = {}) {
+export function LeadForm({ 
+  hideHeading = false,
+  formHeading = "Motta tilbud fra flere trafikkskoler",
+  postalCodeQuestion = "Hvor i Norge skal du ta førerkort?"
+}: LeadFormProps = {}) {
   // NOTE: Tailwind is mobile-first here — base classes style the mobile view,
   // while prefixes like sm:, lg:, etc. override styles on larger screens.
   const router = useRouter();
@@ -314,6 +313,18 @@ export function LeadForm({ hideHeading = false }: LeadFormProps = {}) {
 
   const currentStepType = getCurrentStepType(currentStep);
   const progress = ((currentStep + 1) / totalSteps) * 100;
+
+  // Create STEP_CONFIG with dynamic postalCode question
+  const STEP_CONFIG = useMemo(() => ({
+    postalCode: {
+      question: postalCodeQuestion,
+      validator: (formData: FormState) =>
+        /^\d{4}$/.test(formData.postalCode)
+          ? null
+          : "Oppgi et norsk postnummer (fire siffer).",
+    },
+    ...BASE_STEP_CONFIG,
+  }), [postalCodeQuestion]);
 
   const handleChange = (
     event:
@@ -782,7 +793,7 @@ const countryCodes = [
       {!hideHeading && (
         <>
           <h2 className="mt-6 lg:mt-0 mb-2 text-center text-4xl font-semibold text-white sm:text-3xl">
-            Motta tilbud fra flere trafikkskoler
+            {formHeading}
           </h2>
           <p className="mb-4 text-center text-base text-white/90 sm:text-lg">
             Tjenesten er gratis og uforpliktende
