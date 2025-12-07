@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 
 const heroHighlights = [
   { label: "100% gratis", icon: ShieldCheck, iconColor: "" },
-  { label: "Du velger skolen", icon: Users2, iconColor: "" },
   { label: "Helt uforpliktende", icon: Clock3, iconColor: "" },
+  { label: "Du velger skolen", icon: Users2, iconColor: "" },
 ];
 
 // ============================================

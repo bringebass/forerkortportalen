@@ -40,7 +40,7 @@ export default function Home() {
       <section className="w-full bg-slate-900 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1300px] mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-4">
-            Klar til å finne din perfekte trafikkskole?
+            Klar for å motta tilbud fra ulike trafikkskoler?
           </h2>
           <p className="text-base sm:text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
             Fyll ut skjemaet på forsiden og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.

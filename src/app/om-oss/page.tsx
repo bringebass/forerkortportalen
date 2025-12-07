@@ -217,10 +217,10 @@ function OmOssContent() {
             {/* CTA Section */}
             <div className="text-center bg-slate-900 rounded-3xl p-8 sm:p-10 lg:p-12">
               <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
-                Klar til å finne din perfekte trafikkskole?
+                Klar for å motta tilbud fra ulike trafikkskoler?
               </h2>
               <p className="text-base sm:text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
-                Fyll ut skjemaet på forsiden og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.
+                Fyll ut skjema og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.
               </p>
               <ScrollToFormButton className="inline-flex items-center justify-center rounded-full bg-[#3bb54a] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#3bb54a]/30 transition hover:bg-[#2d8f3d]">
                 Gå til skjemaet

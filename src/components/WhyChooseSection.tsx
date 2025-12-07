@@ -51,7 +51,7 @@ export default function WhyChooseSection() {
                 Hvorfor benytte førerkortportalen?
               </h2>
               <p className="text-base sm:text-lg text-slate-600 max-w-2xl">
-                Tre gode grunner til å sammenligne trafikkskoler før du velger
+                Tre gode grunner til å benytte seg av førerkortportalen
               </p>
             </div>
           </div>

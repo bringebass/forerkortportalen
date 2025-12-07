@@ -7,14 +7,25 @@ function getTransporter() {
     return null;
   }
 
+  // Remove spaces from app password if present
+  const password = process.env.SMTP_PASS.replace(/\s/g, '');
+
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.office365.com", // Outlook/Office 365
+    host: process.env.SMTP_HOST || "smtp.gmail.com", // Gmail (works better than Outlook with Security Defaults)
     port: parseInt(process.env.SMTP_PORT || "587"),
     secure: false, // true for 465, false for other ports (587 uses STARTTLS)
+    requireTLS: true, // Force TLS
     auth: {
       user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      pass: password,
     },
+    tls: {
+      // Don't reject unauthorized certificates (some orgs use self-signed)
+      rejectUnauthorized: false,
+    },
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
   });
 }
 
@@ -52,15 +63,32 @@ export async function POST(request: Request) {
       );
     }
 
+    // Verify connection before sending
+    try {
+      await transporter.verify();
+      console.log("SMTP connection verified successfully");
+    } catch (verifyError: any) {
+      console.error("SMTP verification failed:", {
+        code: verifyError.code,
+        command: verifyError.command,
+        message: verifyError.message,
+        response: verifyError.response,
+      });
+      throw verifyError;
+    }
+
     // Email addresses to send to
     const recipients = ["bringedal@dbinfo.no", "dahler@dbinfo.no"];
 
     // Sanitize subject for email
     const emailSubject = `Kontakt fra Førerkortportalen: ${subject}`;
 
+    // Use SMTP_USER as from address to match authenticated user
+    const fromAddress = process.env.SMTP_FROM || process.env.SMTP_USER;
+
     // Email content
     const mailOptions = {
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      from: fromAddress,
       to: recipients.join(", "),
       subject: emailSubject,
       html: `
@@ -89,23 +117,48 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error: any) {
-    console.error("Failed to send contact email", error);
+    // Detailed error logging for debugging
+    console.error("Failed to send contact email - Full error:", {
+      code: error.code,
+      command: error.command,
+      message: error.message,
+      response: error.response,
+      responseCode: error.responseCode,
+      stack: error.stack,
+      smtpHost: process.env.SMTP_HOST || "smtp.office365.com",
+      smtpUser: process.env.SMTP_USER ? `${process.env.SMTP_USER.substring(0, 3)}***` : "not set",
+      hasPassword: !!process.env.SMTP_PASS,
+    });
     
     // Provide more specific error messages
     let errorMessage = "Vi klarte ikke å sende meldingen akkurat nå. Prøv igjen om litt.";
     
-    if (error.code === "EAUTH" || error.message?.includes("Authentication unsuccessful")) {
+    if (error.code === "EAUTH" || error.message?.includes("Authentication unsuccessful") || error.responseCode === 535) {
       if (error.message?.includes("security defaults policy")) {
-        errorMessage = "E-post autentisering feilet: Kontoen er låst av Microsoft Security Defaults. Du må enten opprette en app-passord (hvis MFA er aktivert) eller kontakte administrator for å aktivere SMTP AUTH.";
+        errorMessage = "E-post autentisering feilet: Kontoen er låst av Microsoft Security Defaults. Kontakt administrator for å aktivere SMTP AUTH.";
       } else {
-        errorMessage = "E-post autentisering feilet: Sjekk at brukernavn og passord er riktig. Hvis MFA er aktivert, må du bruke en app-passord.";
+        errorMessage = "E-post autentisering feilet: Sjekk at brukernavn og app-passord er riktig. Husk at app-passordet ikke skal ha mellomrom.";
       }
-    } else if (error.message?.includes("Invalid login")) {
-      errorMessage = "E-post konfigurasjon er feil. Sjekk brukernavn og passord i .env.local.";
+    } else if (error.code === "ECONNECTION" || error.code === "ETIMEDOUT") {
+      errorMessage = "Kunne ikke koble til e-postserveren. Sjekk at SMTP_HOST og SMTP_PORT er riktig, og at port 587 ikke er blokkert.";
+    } else if (error.code === "EENVELOPE" || error.responseCode === 550) {
+      errorMessage = "E-postadressen er ugyldig eller avvist av serveren. Sjekk at SMTP_FROM matcher den autentiserte brukeren.";
+    } else if (error.message?.includes("Invalid login") || error.responseCode === 535) {
+      errorMessage = "E-post autentisering feilet: Sjekk at brukernavn og app-passord er riktig i .env.local. App-passordet skal ikke ha mellomrom.";
     }
     
     return NextResponse.json(
-      { message: errorMessage },
+      { 
+        message: errorMessage,
+        // Include error code in development for debugging
+        ...(process.env.NODE_ENV === 'development' && { 
+          debug: {
+            code: error.code,
+            responseCode: error.responseCode,
+            message: error.message,
+          }
+        })
+      },
       { status: 500 }
     );
   }

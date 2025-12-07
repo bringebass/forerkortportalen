@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { SearchBar } from "@/components/SearchBar";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +40,9 @@ export function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-4 flex-1 max-w-md mx-6">
+          <SearchBar />
+        </div>
         <div className="hidden lg:flex items-center gap-6">
           {navItems.map((item) => (
             <a
@@ -89,6 +93,11 @@ export function Navbar() {
       {isOpen && (
         <div className="lg:hidden border-t border-slate-200 bg-white shadow-lg">
           <div className="mx-auto flex w-full max-w-[1200px] flex-col px-3 sm:px-4 py-3 sm:py-4">
+            {/* Mobile Search */}
+            <div className="mb-4">
+              <SearchBar />
+            </div>
+            <div className="border-b border-slate-200 mb-2"></div>
             {navItems.map((item, index) => (
               <a
                 key={item.href}

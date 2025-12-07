@@ -5,8 +5,8 @@ import { ScrollToFormButton } from "@/components/ScrollToFormButton";
 
 const features = [
   {
-    text: "Fyll ut én enkel forespørsel",
-    highlight: "under ett minutt",
+    text: "Fyll ut et enkelt skjema",
+    highlight: "på under ett minutt",
   },
   {
     text: "Få tilbud fra flere",
