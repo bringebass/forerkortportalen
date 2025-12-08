@@ -21,7 +21,7 @@ export default function OsloPage() {
         <CompactFormCTA />
         <HeroSection 
           headline="Finn riktig trafikkskole for deg i Oslo"
-          description="Vi samarbeider med trafikkskoler i hele Oslo, fyll inn skjemaet og motta tilbud fra de forskjellige"
+          description="Vi samarbeider med trafikkskoler i hele Oslo, fyll inn skjemaet og motta tilbud fra flere forskjellige"
           formHeading="Få tilbud fra flere trafikkskoler i Oslo"
           postalCodeQuestion="Hvor i Oslo bor du?"
         />
@@ -29,7 +29,7 @@ export default function OsloPage() {
         <WhyChooseSection />
         <HowItWorksSection />
         <InfoSection 
-          description="Vi samarbeider med trafikkskoler i hele Oslo, fyll inn skjemaet og motta tilbud fra de forskjellige"
+          description="Vi samarbeider med trafikkskoler i hele Oslo, fyll inn skjemaet og motta tilbud fra flere forskjellige"
         />
         <TestimonialsSection />
         <FAQSection />
