@@ -194,22 +194,9 @@ export default function HeroSection({
             </div>
 
             <div className={`w-full lg:w-[50%] ${isFullscreen || (hasStartedFilling && isMobile) ? 'sm:block hidden' : ''} ${isDesktopFocused && !isMobile ? 'lg:opacity-0 lg:pointer-events-none' : ''}`}>
-              {/* Desktop form uses original bg-slate-900/70, mobile uses MOBILE_FORM_BG constant above */}
+              {/* Desktop form - users can fill directly, no auto-focus */}
               <div 
-                className={`${MOBILE_FORM_BG} sm:rounded-[32px] backdrop-blur-md shadow-none sm:shadow-2xl sm:shadow-slate-900/50 desktop-form-bg transition-transform duration-300 ${isDesktopFocused && !isMobile ? 'lg:scale-95' : 'lg:hover:scale-[1.02]'} relative ${!isMobile && !isDesktopFocused ? 'lg:cursor-pointer' : ''}`}
-                onClick={(e) => {
-                  if (!isMobile && !isDesktopFocused) {
-                    const target = e.target as HTMLElement;
-                    // Check if the click is on an interactive form element
-                    const interactiveElement = target.closest('input, button, select, textarea, a, label, [role="button"], [type="submit"]');
-                    
-                    // Only trigger focus mode if NOT clicking on interactive elements
-                    // Interactive elements will trigger focus mode through their onFocus handlers
-                    if (!interactiveElement) {
-                      setIsDesktopFocused(true);
-                    }
-                  }
-                }}
+                className={`${MOBILE_FORM_BG} sm:rounded-[32px] backdrop-blur-md shadow-none sm:shadow-2xl sm:shadow-slate-900/50 desktop-form-bg transition-transform duration-300 lg:hover:scale-[1.02] relative`}
               >
                 <LeadForm 
                   formHeading={formHeading}

@@ -3,7 +3,7 @@
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ScrollToFormButton } from "@/components/ScrollToFormButton";
-import { Calendar, Clock, ArrowLeft, Share2, List } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2, List, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import LeadForm from "@/components/LeadForm";
@@ -14,7 +14,7 @@ import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 import CompactFormCTA from "@/components/CompactFormCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 
-const articles: Record<string, {
+export const articles: Record<string, {
   id: number;
   title: string;
   excerpt: string;
@@ -29,31 +29,188 @@ const articles: Record<string, {
     title: "Hvordan velge riktig trafikkskole",
     excerpt: "Lær hva du bør se etter når du velger trafikkskole, og få tips om hvordan du kan sammenligne tilbud.",
     date: "15. januar 2024",
-    readTime: "5 min lesing",
+    readTime: "12 min lesing",
     category: "Guider",
     image: "/Article-photo1.png",
     content: `
-      <p class="lead">Å velge riktig trafikkskole er et viktig valg som kan påvirke hele føreropplæringen din. Med så mange alternativer kan det være utfordrende å vite hvor man skal begynne. Her er en guide til hva du bør se etter.</p>
+      <p class="lead">Å velge riktig trafikkskole er et av de viktigste valgene du tar når du skal ta førerkort. Dette valget kan påvirke hele føreropplæringen din, hvor raskt du får førerkortet, og ikke minst hvor mye du må betale. Med så mange alternativer på markedet kan det være utfordrende å vite hvor man skal begynne. Denne omfattende guiden tar deg gjennom alt du trenger å vite for å velge den beste trafikkskolen for deg.</p>
       
-      <h2>1. Godkjennelse og kvalitet</h2>
-      <p>Det aller viktigste er at trafikkskolen er godkjent av Statens vegvesen. Alle seriøse skoler vil ha denne godkjenningen, og uten den kan du ikke få gyldig førerkort. I tillegg bør skolen følge læreplanen til Statens vegvesen for å sikre at du får riktig opplæring.</p>
+      <h2>Hvorfor er valget av trafikkskole så viktig?</h2>
+      <p>Føreropplæring er en betydelig investering både når det gjelder tid og penger. En god trafikkskole gir deg ikke bare solid opplæring, men også trygghet og selvtillit bak rattet. En dårlig opplevelse kan derimot føre til frustrasjon, ekstra kostnader og lengre ventetid før du får førerkortet.</p>
+      
+      <blockquote>
+        <p><strong>Viktig:</strong> Ta deg tid til å vurdere alternativene grundig. Dette er en investering i din fremtid, og det er verdt å velge riktig skole fra starten.</p>
+      </blockquote>
+
+      <h2>1. Godkjennelse og kvalitetssikring</h2>
+      <p>Det aller første du må sjekke er at trafikkskolen er godkjent av Statens vegvesen. Dette er ikke bare en anbefaling – det er et absolutt krav. Uten denne godkjenningen kan du ikke få gyldig førerkort, uansett hvor mye opplæring du har tatt.</p>
+      
+      <h3>Hva betyr godkjenning fra Statens vegvesen?</h3>
+      <p>Når en trafikkskole er godkjent, betyr det at:</p>
+      <ul>
+        <li>Skolen følger læreplanen til Statens vegvesen</li>
+        <li>Instruktørene er sertifiserte og kvalifiserte</li>
+        <li>Skolen oppfyller krav til opplæringskvalitet</li>
+        <li>Du kan få gyldig førerkort etter fullført opplæring</li>
+      </ul>
+      
+      <p><em>Alle seriøse trafikkskoler vil ha denne godkjenningen tydelig markert på nettsiden sin og i markedsføringen.</em></p>
+      
+      <h3>Kvalitetssikring og sertifisering</h3>
+      <p>I tillegg til godkjenning, bør du også sjekke om skolen har tilleggssertifiseringer eller er medlem av bransjeorganisasjoner. Dette kan være tegn på at skolen tar kvalitet på alvor og holder seg oppdatert på beste praksis.</p>
+      
+      <figure class="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo1.png" alt="Velg riktig trafikkskole" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Riktig trafikkskole gir trygghet, tempo og bedre læring fra start.
+        </figcaption>
+      </figure>
       
       <h2>2. Lokasjon og praktiskhet</h2>
-      <p>Velg en skole som ligger praktisk til for deg. Tenk på hvor du skal ta kjøretimene – det er praktisk hvis skolen er i nærheten av ditt område. Mange skoler tilbyr også henting, men det kan være mer praktisk med en lokal skole som kjenner rutevalg og sensorer i din region.</p>
+      <p>Lokasjonen til trafikkskolen kan ha stor betydning for din opplevelse. Selv om mange skoler tilbyr henting, er det ofte mer praktisk med en skole som ligger i nærheten av ditt område.</p>
       
-      <h2>3. Pris og verdi</h2>
-      <p>Prisen varierer mye mellom trafikkskoler, men husk at den billigste ikke alltid er den beste. Se på hva som er inkludert i prisen: teoriundervisning, kjøretimer, oppkjøring, biler osv. Sammenlign totale pakker fra flere skoler for å finne best verdi.</p>
+      <h3>Fordeler med lokal trafikkskole</h3>
+      <ul>
+        <li><strong>Kjennskap til området:</strong> Lokale skoler kjenner ofte rutevalg og sensorer i din region bedre</li>
+        <li><strong>Mindre reisetid:</strong> Du sparer tid på transport til og fra kjøretimene</li>
+        <li><strong>Fleksibilitet:</strong> Lettere å planlegge kjøretimer når skolen er nær</li>
+        <li><strong>Kontinuitet:</strong> Du kjører i kjente omgivelser, noe som kan gi trygghet</li>
+      </ul>
+      
+      <h3>Henting og transport</h3>
+      <p>Mange trafikkskoler tilbyr henting, men vurder om dette er praktisk for deg. Hvis du bor langt unna, kan henting ta mye tid fra kjøretimen. Spør også om det er ekstra kostnader knyttet til henting.</p>
+      
+      <h2>3. Pris og verdi – ikke bare den billigste</h2>
+      <p>Prisen varierer mye mellom trafikkskoler, og det kan være fristende å velge den billigste. Men husk: den billigste løsningen er ikke alltid den beste. Det er viktig å se på hva du faktisk får for pengene.</p>
+      
+      <h3>Hva skal være inkludert i prisen?</h3>
+      <p>Når du sammenligner priser, sjekk hva som er inkludert:</p>
+      <ul>
+        <li>Trafikalt grunnkurs (19 timer teoriundervisning)</li>
+        <li>Antall kjøretimer inkludert</li>
+        <li>Bruksavgift for bil under kjøretimer</li>
+        <li>Bruksavgift for bil under oppkjøring</li>
+        <li>Forberedelse til teoriprøve</li>
+        <li>Forberedelse til førerprøve</li>
+        <li>Ekstra støtte og oppfølging</li>
+      </ul>
+      
+      <blockquote>
+        <p><strong>Tips:</strong> Sammenlign totale pakker, ikke bare prisen per kjøretime. En pakke som ser dyrere ut kan faktisk være billigere totalt sett hvis den inkluderer mer.</p>
+      </blockquote>
+      
+      <h3>Skjulte kostnader å være oppmerksom på</h3>
+      <p>Noen skoler kan ha skjulte kostnader som:</p>
+      <ul>
+        <li>Ekstra betaling for bil under oppkjøring</li>
+        <li>Administrasjonsgebyrer</li>
+        <li>Kostnader for bøker og læremateriell</li>
+        <li>Ekstra kostnader hvis du trenger flere kjøretimer</li>
+      </ul>
+      
+      <p><em>Spør alltid om en fullstendig prisoversikt før du bestemmer deg.</em></p>
       
       <h2>4. Tilgjengelighet og oppstart</h2>
-      <p>Sjekk når skolen kan tilby oppstart. Noen skoler har ventetider, mens andre kan starte raskt. Spesielt hvis du ønsker intensivkurs, må du sjekke om skolen tilbyr dette og når neste kurs starter. Vurder også hvilke tidsalternativer de har – kveldskurs kan være praktisk hvis du jobber.</p>
+      <p>Når du skal ta førerkort, er tidsaspektet ofte viktig. Noen trenger førerkortet raskt, mens andre har mer tid. Uansett bør du sjekke skolens tilgjengelighet og når de kan tilby oppstart.</p>
+      
+      <h3>Ventetider og oppstart</h3>
+      <p>Spør alltid om:</p>
+      <ul>
+        <li>Når neste oppstart er</li>
+        <li>Hvor lang ventetid det er for kjøretimer</li>
+        <li>Hvor raskt du kan få time til teoriprøve</li>
+        <li>Hvor raskt du kan få time til førerprøve</li>
+      </ul>
+      
+      <h3>Intensivkurs vs. tradisjonelt opplegg</h3>
+      <p>Hvis du ønsker intensivkurs, må du spesifikt sjekke om skolen tilbyr dette. Ikke alle skoler har intensivkurs, og de som har det kan ha begrenset kapasitet. Spør også om når neste intensivkurs starter.</p>
+      
+      <h3>Fleksible tidsalternativer</h3>
+      <p>For de som jobber eller går på skole, kan fleksible tidsalternativer være avgjørende. Spør om:</p>
+      <ul>
+        <li>Kveldskurs</li>
+        <li>Helgekurs</li>
+        <li>Mulighet for å flytte timer</li>
+        <li>Avbestillingsregler</li>
+      </ul>
       
       <h2>5. Anbefalinger og anmeldelser</h2>
-      <p>Spør venner, familie eller kolleger om anbefalinger. Personlige erfaringer kan gi deg verdifull innsikt. Les også anmeldelser online for å få et bredere bilde av skolens rykte og kundetilfredshet.</p>
+      <p>Personlige anbefalinger og anmeldelser kan gi deg verdifull innsikt i hva du kan forvente av en trafikkskole.</p>
       
-      <h2>Sammenlign tilbud enkelt</h2>
-      <p>Ved å bruke Førerkortportalen kan du enkelt få tilbud fra flere trafikkskoler i ditt område. Fyll ut ett skjema, og vi sender forespørselen din til relevante skoler. Du får da tilbud som du kan sammenligne på pris, tilgjengelighet og tjenester – alt uten å kontakte skolene én og én.</p>
+      <h3>Spør i nettverket ditt</h3>
+      <p>Start med å spørre venner, familie eller kolleger om deres erfaringer. Personlige anbefalinger er ofte mer pålitelige enn markedsføring, og du kan få konkrete eksempler på både positive og negative sider.</p>
       
-      <p><strong>Husk:</strong> Ta deg tid til å vurdere tilbudene grundig. Føreropplæring er en investering i din fremtid, så det er verdt å velge riktig skole.</p>
+      <h3>Les anmeldelser online</h3>
+      <p>Les anmeldelser på nettet, men vær kritisk. Se etter:</p>
+      <ul>
+        <li>Gjentakende temaer i anmeldelsene (både positive og negative)</li>
+        <li>Nylige anmeldelser (situasjonen kan ha endret seg)</li>
+        <li>Balanserte anmeldelser (ikke bare ekstreme tilfeller)</li>
+        <li>Skolens svar på negative anmeldelser</li>
+      </ul>
+      
+      <h3>Testimonials og referanser</h3>
+      <p>Mange trafikkskoler viser testimonials på nettsiden sin. Dette kan gi deg en idé om hva andre elever har opplevd, men husk at skoler naturligvis viser frem de beste eksemplene.</p>
+      
+      <h2>6. Instruktører og opplæringskvalitet</h2>
+      <p>Kvaliteten på instruktørene er avgjørende for din læringsopplevelse. En god instruktør kan gjøre stor forskjell for både din trygghet og din læring.</p>
+      
+      <h3>Hva skal du se etter i en instruktør?</h3>
+      <ul>
+        <li><strong>Erfaring:</strong> Hvor lenge har instruktøren jobbet?</li>
+        <li><strong>Pedagogikk:</strong> Kan instruktøren forklare på en måte du forstår?</li>
+        <li><strong>Tålmodighet:</strong> Er instruktøren tålmodig og støttende?</li>
+        <li><strong>Kommunikasjon:</strong> Føler du deg komfortabel med instruktøren?</li>
+      </ul>
+      
+      <h3>Kan du velge instruktør?</h3>
+      <p>Noen trafikkskoler lar deg velge instruktør, mens andre tildeler deg en. Spør om dette, spesielt hvis du har spesielle behov eller preferanser.</p>
+      
+      <h2>7. Biler og utstyr</h2>
+      <p>Kvaliteten på bilene og utstyret kan også påvirke din opplevelse. Moderne biler med godt utstyr kan gjøre læringen lettere og tryggere.</p>
+      
+      <h3>Hva skal du sjekke?</h3>
+      <ul>
+        <li>Hvilke bilmerker og modeller bruker skolen?</li>
+        <li>Er bilene moderne og i god stand?</li>
+        <li>Har bilene nødvendig sikkerhetsutstyr?</li>
+        <li>Bruker skolen automat eller manuell girkasse?</li>
+        <li>Kan du velge type bil?</li>
+      </ul>
+      
+      <h2>8. Sammenlign tilbud enkelt med Førerkortportalen</h2>
+      <p>Å kontakte flere trafikkskoler individuelt kan være tidkrevende og overveldende. Førerkortportalen forenkler denne prosessen betydelig.</p>
+      
+      <h3>Hvordan fungerer det?</h3>
+      <p>Ved å bruke Førerkortportalen kan du:</p>
+      <ul>
+        <li>Fylle ut ett enkelt skjema med dine behov</li>
+        <li>Få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område</li>
+        <li>Sammenligne priser, pakker og tilgjengelighet side ved side</li>
+        <li>Spare tid på å kontakte skoler individuelt</li>
+        <li>Få uforpliktende tilbud du kan vurdere i din egen tid</li>
+      </ul>
+      
+      <blockquote>
+        <p><strong>Husk:</strong> Tjenesten er helt gratis og uforpliktende. Du velger selv om du vil takke ja til et tilbud, og du kan vente på flere tilbud før du bestemmer deg.</p>
+      </blockquote>
+      
+      <h3>Hva får du i tilbudene?</h3>
+      <p>Når du får tilbud fra trafikkskoler gjennom Førerkortportalen, vil de typisk inneholde:</p>
+      <ul>
+        <li>Totalpris for opplæringen</li>
+        <li>Hva som er inkludert i prisen</li>
+        <li>Tilgjengelighet og oppstartstidspunkt</li>
+        <li>Informasjon om kursformer (intensiv, tradisjonell, kveldskurs)</li>
+        <li>Kontaktinformasjon for videre dialog</li>
+      </ul>
+      
+      <h2>Konklusjon: Ta deg tid til å velge riktig</h2>
+      <p>Valget av trafikkskole er et viktig valg som bør tas grundig. Ta deg tid til å vurdere alle faktorene vi har gått gjennom: godkjenning, lokasjon, pris, tilgjengelighet, anbefalinger, instruktører og utstyr.</p>
+      
+      <p><em>Føreropplæring er en investering i din fremtid som gir deg frihet og muligheter. Det er verdt å velge en trafikkskole som gir deg solid opplæring og trygghet bak rattet.</em></p>
+      
+      <p>Ved å bruke Førerkortportalen kan du enkelt få oversikt over flere alternativer og sammenligne dem på en strukturert måte. Dette gjør det lettere å ta en informert beslutning som passer din situasjon og behov.</p>
     `,
   },
   "2": {
@@ -61,55 +218,255 @@ const articles: Record<string, {
     title: "Alt du trenger å vite om førerkort klasse B",
     excerpt: "En komplett guide til å ta førerkort klasse B, inkludert teori, praksis og hva du kan forvente.",
     date: "10. januar 2024",
-    readTime: "8 min lesing",
+    readTime: "15 min lesing",
     category: "Førerkortklasser",
     image: "/Article-photo2.png",
     content: `
-      <p class="lead">Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg rett til å kjøre personbil. Her er alt du trenger å vite før du starter opplæringen.</p>
+      <p class="lead">Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg rett til å kjøre personbil. Dette er førerkortet de fleste tar når de skal lære å kjøre bil. Denne omfattende guiden tar deg gjennom alt du trenger å vite om førerkort klasse B – fra krav og prosess til kostnader og valg mellom automat og manuell.</p>
+
+      <h2>Hva er førerkort klasse B?</h2>
+      <p>Førerkort klasse B er det standard førerkortet for personbiler i Norge. Med dette førerkortet kan du kjøre personbil med en totalvekt på inntil 3500 kg. Dette dekker de fleste vanlige personbiler på norske veier.</p>
       
-      <h2>Hva er klasse B?</h2>
-      <p>Førerkort klasse B gir deg rett til å kjøre personbil med en totalvekt på inntil 3500 kg. Du kan også kjøre bil med tilhenger hvis den totale vekten ikke overstiger 3500 kg, og tilhengeren veier maks 750 kg. Med klasse B kan du kjøre opptil 8 personer (inkludert sjåfør).</p>
+      <h3>Hva kan du kjøre med klasse B?</h3>
+      <p>Med førerkort klasse B kan du:</p>
+      <ul>
+        <li>Kjøre personbil med totalvekt inntil 3500 kg</li>
+        <li>Kjøre bil med tilhenger hvis totalvekten ikke overstiger 3500 kg</li>
+        <li>Kjøre tilhenger som veier maks 750 kg</li>
+        <li>Kjøre opptil 8 personer inkludert sjåfør</li>
+      </ul>
+      
+      <blockquote>
+        <p><strong>Viktig:</strong> Klasse B gir deg ikke rett til å kjøre motorsykkel (klasse A), lastebil (klasse C) eller buss (klasse D). For disse kjøretøyene trenger du spesialiserte førerkortklasser.</p>
+      </blockquote>
+
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo2.png" alt="Førerkort klasse B – personbil" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Klasse B dekker de fleste vanlige personbiler opptil 3 500 kg totalvekt.
+        </figcaption>
+      </figure>
       
       <h2>Krav for å ta førerkort klasse B</h2>
+      <p>Før du kan begynne opplæringen for førerkort klasse B, må du oppfylle visse grunnleggende krav. Disse er satt av Statens vegvesen for å sikre at alle som tar førerkort har nødvendig forutsetninger.</p>
+      
+      <h3>Alderskrav</h3>
+      <p>Du må være minst 18 år for å begynne opplæringen for førerkort klasse B. Dette er et absolutt krav, og du kan ikke starte før du har fylt 18 år.</p>
+      
+      <h3>Obligatoriske steg</h3>
+      <p>For å få førerkort klasse B må du gjennomføre følgende steg i rekkefølge:</p>
+      <ol>
+        <li><strong>Trafikalt grunnkurs:</strong> 19 timer obligatorisk teoriundervisning</li>
+        <li><strong>Teoriprøve:</strong> Bestå teoriprøven med minst 38 av 45 riktige svar</li>
+        <li><strong>Kjøreopplæring:</strong> Minimum 13 kjøretimer á 45 minutter</li>
+        <li><strong>Førerprøve:</strong> Bestå praktisk oppkjøring</li>
+      </ol>
+      
+      <p><em>Hvert steg må fullføres før du kan gå videre til neste. Det er ikke mulig å hoppe over steg eller gjøre dem i annen rekkefølge.</em></p>
+      
+      <h2>1. Trafikalt grunnkurs – teoriundervisning</h2>
+      <p>Trafikalt grunnkurs er det første steget i prosessen. Dette er en obligatorisk teoriundervisning på 19 timer som må fullføres før du kan ta teoriprøven.</p>
+      
+      <h3>Hva lærer du på trafikalt grunnkurs?</h3>
+      <p>Kurset dekker fire hovedområder:</p>
       <ul>
-        <li>Du må være minst 18 år for å begynne opplæringen</li>
-        <li>Du må ha fullført trafikalt grunnkurs (obligatorisk teoriundervisning)</li>
-        <li>Du må bestå teoriprøven</li>
-        <li>Du må fullføre obligatorisk kjøreopplæring (minimum 13 kjøretimer)</li>
-        <li>Du må bestå førerprøven (praktisk oppkjøring)</li>
+        <li><strong>Trafikkregler:</strong> Veiregler, skilt, forkjørsrett, og hvordan du skal oppføre deg i trafikken</li>
+        <li><strong>Miljø:</strong> Miljøvennlig kjøring, utslipp, og miljøpåvirkning fra bilkjøring</li>
+        <li><strong>Sikkerhet:</strong> Trafikksikkerhet, ulykkesforebygging, og hvordan du unngår farlige situasjoner</li>
+        <li><strong>Kjøretøyteknikk:</strong> Hvordan bilen fungerer, vedlikehold, og grunnleggende mekanikk</li>
       </ul>
       
-      <h2>1. Trafikalt grunnkurs</h2>
-      <p>Trafikalt grunnkurs består av 19 timer obligatorisk teoriundervisning. Dette kurset må fullføres før du kan ta teoriprøven. Kurset dekker trafikkregler, miljø, sikkerhet og kjøretøyteknikk. Mange trafikkskoler tilbyr dette som en del av opplæringen.</p>
+      <h3>Hvor tar du trafikalt grunnkurs?</h3>
+      <p>De fleste trafikkskoler tilbyr trafikalt grunnkurs som en del av opplæringen. Du kan også ta kurset hos andre leverandører, men det er ofte praktisk å ta det hos samme skole som gir deg kjøreopplæringen.</p>
       
-      <h2>2. Teoriprøven</h2>
-      <p>Etter å ha fullført trafikalt grunnkurs kan du ta teoriprøven. Prøven består av 45 spørsmål, og du må ha minst 38 riktige for å bestå. Du har 45 minutter på deg. Teoriprøven må bestås innen 3 år etter at trafikalt grunnkurs er fullført.</p>
+      <blockquote>
+        <p><strong>Tips:</strong> Mange trafikkskoler inkluderer trafikalt grunnkurs i totalpakken sin. Sjekk om dette er inkludert når du sammenligner tilbud.</p>
+      </blockquote>
       
-      <h2>3. Kjøreopplæring</h2>
-      <p>Obligatorisk kjøreopplæring består av minimum 13 kjøretimer á 45 minutter. Opplæringen må inkludere:</p>
+      <h3>Varighet og opplegg</h3>
+      <p>Trafikalt grunnkurs kan tas på ulike måter:</p>
       <ul>
-        <li>Kjøring i bytrafikk</li>
-        <li>Kjøring på landevei</li>
-        <li>Kjøring på motorvei</li>
-        <li>Kjøring i mørke</li>
-      </ul>
-      <p>Mange trenger flere timer enn minimum for å bli trygge på å kjøre. Dette er helt normalt – alle lærer i sitt eget tempo.</p>
-      
-      <h2>4. Førerprøven</h2>
-      <p>Førerprøven (oppkjøringen) varer ca. 45-60 minutter og testes av en sensor fra Statens vegvesen. Du må demonstrere at du behersker bilen trygt og kan håndtere ulike trafikksituasjoner. Prøven må bestås innen 12 måneder etter at du bestod teoriprøven.</p>
-      
-      <h2>Kostnader</h2>
-      <p>Totale kostnader for førerkort klasse B varierer, men forvent å betale mellom 25 000 og 50 000 kroner alt inkludert. Dette inkluderer trafikalt grunnkurs, teoriprøve, kjøreopplæring, førerprøve og forskjellige avgifter til Statens vegvesen.</p>
-      
-      <h2>Klasse B automat vs. manuell</h2>
-      <p>Du kan ta førerkort på enten automat eller manuell girkasse:</p>
-      <ul>
-        <li><strong>Klasse B automat:</strong> Raskere å lære, men gir kun rett til å kjøre automatbiler</li>
-        <li><strong>Klasse B manuell:</strong> Tar litt lenger tid å lære, men gir rett til å kjøre både manuelle og automatbiler</li>
+        <li><strong>Intensivkurs:</strong> Alle 19 timene på 2-3 dager</li>
+        <li><strong>Kveldskurs:</strong> Spredt over flere uker med timer på kvelden</li>
+        <li><strong>Helgekurs:</strong> Timer på lørdager og søndager</li>
+        <li><strong>Online/Blended:</strong> Kombinasjon av online og fysisk undervisning</li>
       </ul>
       
-      <h2>Få tilbud fra flere skoler</h2>
-      <p>Førerkortportalen hjelper deg å finne og sammenligne trafikkskoler som tilbyr opplæring i klasse B. Fyll ut skjemaet vårt, og få tilbud fra flere skoler i ditt område slik at du kan velge det som passer best for deg.</p>
+      <h2>2. Teoriprøven – test din kunnskap</h2>
+      <p>Etter å ha fullført trafikalt grunnkurs kan du ta teoriprøven. Dette er en datamaskinbasert prøve som tester din kunnskap om trafikkregler, sikkerhet og kjøretøyteknikk.</p>
+      
+      <h3>Hvordan fungerer teoriprøven?</h3>
+      <p>Teoriprøven består av:</p>
+      <ul>
+        <li><strong>45 spørsmål</strong> totalt</li>
+        <li><strong>45 minutter</strong> på å svare</li>
+        <li><strong>Minst 38 riktige</strong> for å bestå (84% riktig)</li>
+        <li>Flervalgsspørsmål med bilder og situasjoner</li>
+      </ul>
+      
+      <h3>Hvordan består du teoriprøven?</h3>
+      <p>For å bestå teoriprøven bør du:</p>
+      <ul>
+        <li><strong>Lese læreboken grundig:</strong> Gjennomgå alle kapitler flere ganger</li>
+        <li><strong>Øve med prøveeksamen:</strong> Bruk apper eller nettsider med prøveeksamener</li>
+        <li><strong>Fokusere på vanskelige områder:</strong> Identifiser hvor du sliter og øv ekstra</li>
+        <li><strong>Ta deg tid:</strong> Les spørsmålene nøye og tenk gjennom svarene</li>
+      </ul>
+      
+      <p><em>Mange elever bruker 2-4 uker på forberedelse etter trafikalt grunnkurs. Ta den tiden du trenger.</em></p>
+      
+      <h3>Gyldighetstid</h3>
+      <p>Teoriprøven må bestås innen 3 år etter at trafikalt grunnkurs er fullført. Hvis du ikke består innen denne tiden, må du ta trafikalt grunnkurs på nytt.</p>
+      
+      <h2>3. Kjøreopplæring – lær å kjøre</h2>
+      <p>Etter å ha bestått teoriprøven kan du begynne på kjøreopplæringen. Dette er det praktiske steget der du faktisk lærer å kjøre bil.</p>
+      
+      <h3>Obligatorisk minimum</h3>
+      <p>Du må ta minimum 13 kjøretimer á 45 minutter. Disse timene må dekke:</p>
+      <ul>
+        <li><strong>Kjøring i bytrafikk:</strong> Bygater, kryss, rundkjøringer, parkering</li>
+        <li><strong>Kjøring på landevei:</strong> Fartsgrenser, forbikjøring, møting</li>
+        <li><strong>Kjøring på motorvei:</strong> Innkjøring, kjøring i høy hastighet, filbytte</li>
+        <li><strong>Kjøring i mørke:</strong> Bruk av lys, kjøring i mørketid</li>
+      </ul>
+      
+      <h3>Hvor mange timer trenger du?</h3>
+      <p>Selv om minimum er 13 timer, trenger de fleste flere timer for å bli trygge nok til førerprøven. Dette er helt normalt og forventet.</p>
+      
+      <blockquote>
+        <p><strong>Statistikk:</strong> Gjennomsnittlig antall kjøretimer i Norge er rundt 20-30 timer. Noen trenger færre, andre trenger flere. Det viktigste er at du føler deg trygg bak rattet.</p>
+      </blockquote>
+      
+      <h3>Faktorer som påvirker antall timer</h3>
+      <p>Flere faktorer kan påvirke hvor mange kjøretimer du trenger:</p>
+      <ul>
+        <li><strong>Erfaring:</strong> Har du kjørt med privat person før?</li>
+        <li><strong>Selvtillit:</strong> Hvor trygg føler du deg bak rattet?</li>
+        <li><strong>Læringstempo:</strong> Alle lærer i sitt eget tempo</li>
+        <li><strong>Kompleksitet i området:</strong> Er det mye trafikk der du skal kjøre?</li>
+        <li><strong>Type girkasse:</strong> Manuell tar ofte litt lengre tid å lære</li>
+      </ul>
+      
+      <h3>Kjøring med privat person</h3>
+      <p>Du kan også kjøre med en privat person (venn eller familie) som har minst 5 års erfaring. Dette kan redusere kostnadene betydelig, men husk:</p>
+      <ul>
+        <li>Du må fortsatt ta minimum antall obligatoriske kjøretimer hos trafikkskole</li>
+        <li>Den private personen må ha gyldig førerkort og være minst 25 år</li>
+        <li>Du må ha en "L"-skilt på bilen</li>
+        <li>Du kan ikke kjøre alene før du har førerkort</li>
+      </ul>
+      
+      <h2>4. Førerprøven – det siste steget</h2>
+      <p>Førerprøven, også kalt oppkjøring, er det siste steget før du får førerkortet. Dette er en praktisk prøve der du demonstrerer at du kan kjøre trygt og behersker bilen.</p>
+      
+      <h3>Hvordan fungerer førerprøven?</h3>
+      <p>Førerprøven:</p>
+      <ul>
+        <li>Varer ca. 45-60 minutter</li>
+        <li>Testes av en sensor fra Statens vegvesen</li>
+        <li>Inkluderer ulike trafikksituasjoner og manøvrer</li>
+        <li>Du får umiddelbar tilbakemelding på om du bestod</li>
+      </ul>
+      
+      <h3>Hva ser sensoren etter?</h3>
+      <p>Sensoren vurderer:</p>
+      <ul>
+        <li><strong>Sikkerhet:</strong> Kjører du trygt og forsvarlig?</li>
+        <li><strong>Kjøreteknikk:</strong> Behersker du bilen og kjøretøyet?</li>
+        <li><strong>Trafikkforståelse:</strong> Forstår du trafikksituasjoner og reagerer riktig?</li>
+        <li><strong>Observasjon:</strong> Ser du deg rundt og sjekker blindsoner?</li>
+        <li><strong>Fartsanpassing:</strong> Holder du riktig hastighet?</li>
+      </ul>
+      
+      <h3>Gyldighetstid</h3>
+      <p>Førerprøven må bestås innen 12 måneder etter at du bestod teoriprøven. Hvis du ikke består innen denne tiden, må du ta teoriprøven på nytt.</p>
+      
+      <h2>Kostnader ved å ta førerkort klasse B</h2>
+      <p>Å ta førerkort klasse B er en betydelig investering. Det er viktig å ha realistiske forventninger til kostnadene og budsjettere riktig.</p>
+      
+      <h3>Totale kostnader</h3>
+      <p>Totale kostnader varierer mye, men du bør regne med å betale mellom 25 000 og 50 000 kroner alt inkludert. Dette avhenger av:</p>
+      <ul>
+        <li>Antall kjøretimer du trenger</li>
+        <li>Lokasjon (storbyer er ofte dyrere)</li>
+        <li>Type kurs (intensiv vs. tradisjonell)</li>
+        <li>Om du trenger å ta prøver på nytt</li>
+      </ul>
+      
+      <h3>Kostnadsoversikt</h3>
+      <p>Typiske kostnader inkluderer:</p>
+      <ul>
+        <li><strong>Trafikalt grunnkurs:</strong> 3 000 - 5 000 kr</li>
+        <li><strong>Teoriprøve:</strong> 550 kr</li>
+        <li><strong>Kjøretimer:</strong> 15 000 - 35 000 kr (avhengig av antall timer)</li>
+        <li><strong>Førerprøve:</strong> 1 890 kr</li>
+        <li><strong>Utstedelse av førerkort:</strong> ca. 500 kr</li>
+        <li><strong>Lærebøker og materielle:</strong> 500 - 1 000 kr</li>
+      </ul>
+      
+      <h2>Klasse B automat vs. manuell – hvilket skal du velge?</h2>
+      <p>Et viktig valg du må ta er om du skal ta førerkort på automat eller manuell girkasse. Dette valget påvirker både opplæringen og hva du kan kjøre etterpå.</p>
+      
+      <h3>Klasse B automat</h3>
+      <p>Førerkort på automat gir deg rett til å kjøre automatbiler. Dette er ofte raskere å lære siden du ikke trenger å tenke på giring.</p>
+      
+      <p><strong>Fordeler:</strong></p>
+      <ul>
+        <li>Raskere å lære (færre kjøretimer ofte nødvendig)</li>
+        <li>Enklere å fokusere på trafikk når du ikke trenger å tenke på giring</li>
+        <li>Mindre risiko for å stoppe motoren</li>
+        <li>Moderne biler er ofte automat</li>
+      </ul>
+      
+      <p><strong>Ulemper:</strong></p>
+      <ul>
+        <li>Gir kun rett til å kjøre automatbiler</li>
+        <li>Kan være begrensende hvis du skal leie eller låne bil</li>
+        <li>Færre biler å velge mellom i bruktbilmarkedet</li>
+      </ul>
+      
+      <h3>Klasse B manuell</h3>
+      <p>Førerkort på manuell gir deg rett til å kjøre både manuelle og automatbiler. Dette gir deg størst fleksibilitet.</p>
+      
+      <p><strong>Fordeler:</strong></p>
+      <ul>
+        <li>Gir rett til å kjøre både manuelle og automatbiler</li>
+        <li>Større utvalg i bruktbilmarkedet</li>
+        <li>Mer fleksibilitet ved leie eller lån av bil</li>
+        <li>Ofte billigere biler i bruktmarkedet</li>
+      </ul>
+      
+      <p><strong>Ulemper:</strong></p>
+      <ul>
+        <li>Tar litt lengre tid å lære</li>
+        <li>Kan kreve flere kjøretimer</li>
+        <li>Mer komplekst å mestre giring og kobling</li>
+      </ul>
+      
+      <blockquote>
+        <p><strong>Anbefaling:</strong> Hvis du er usikker, velg manuell. Det gir deg størst fleksibilitet, og du kan alltid kjøre automatbiler med manuelt førerkort. Det motsatte gjelder ikke.</p>
+      </blockquote>
+      
+      <h2>Få tilbud fra flere trafikkskoler</h2>
+      <p>Når du skal ta førerkort klasse B, er det viktig å finne en trafikkskole som passer deg. Førerkortportalen gjør det enkelt å sammenligne tilbud fra flere skoler.</p>
+      
+      <h3>Hvordan fungerer det?</h3>
+      <p>Ved å fylle ut skjemaet vårt kan du:</p>
+      <ul>
+        <li>Få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område</li>
+        <li>Sammenligne priser, pakker og tilgjengelighet</li>
+        <li>Se hvilke skoler som tilbyr intensivkurs, kveldskurs eller andre løsninger</li>
+        <li>Få uforpliktende tilbud du kan vurdere i din egen tid</li>
+      </ul>
+      
+      <p><em>Tjenesten er helt gratis og uforpliktende. Du velger selv om du vil takke ja til et tilbud.</em></p>
+      
+      <h2>Konklusjon</h2>
+      <p>Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg frihet til å kjøre personbil. Prosessen består av fire hovedsteg: trafikalt grunnkurs, teoriprøve, kjøreopplæring og førerprøve.</p>
+      
+      <p>Ta deg tid til å forberede deg grundig på hvert steg, og ikke nøl med å ta flere kjøretimer hvis du trenger det. Det viktigste er at du føler deg trygg bak rattet når du skal ta førerprøven.</p>
+      
+      <p>Ved å bruke Førerkortportalen kan du enkelt finne og sammenligne trafikkskoler som tilbyr opplæring i klasse B. Dette gjør det lettere å velge en skole som passer din situasjon, behov og budsjett.</p>
     `,
   },
   "3": {
@@ -121,69 +478,128 @@ const articles: Record<string, {
     category: "Kursformer",
     image: "/Article-photo3.png",
     content: `
-      <p class="lead">Når du skal ta førerkort har du to hovedalternativer: intensivkurs eller et mer tradisjonelt opplegg. Begge har sine fordeler, og valget avhenger av din situasjon og preferanser.</p>
+      <p class="lead">Når du skal ta førerkort har du to hovedalternativer: et intensivt løp eller et mer tradisjonelt opplegg. Begge har fordeler og ulemper, og det riktige valget avhenger av tid, budsjett, læringsstil og mål. Denne guiden gir deg en praktisk beslutningsramme, konkrete eksempler og sjekklister.</p>
       
-      <h2>Intensivkurs – komprimert opplæring</h2>
-      <p>Intensivkurs er en komprimert form for føreropplæring der du fullfører alt på kort tid, ofte i løpet av 2-4 uker. Du har kjøretimer og teori daglig eller nesten daglig.</p>
+      <h2>Intensivkurs – når du vil bli ferdig raskt</h2>
+      <p>Et intensivkurs komprimerer hele løpet til 2–4 uker med teori og kjøring nesten hver dag. Det krever fokus, men kan være gull verdt hvis du har en tidsfrist (for eksempel ny jobb eller flytting).</p>
       
-      <h3>Fordeler ved intensivkurs:</h3>
+      <h3>Fordeler med intensivkurs</h3>
       <ul>
-        <li><strong>Rask oppstart:</strong> Du kan få førerkortet mye raskere</li>
-        <li><strong>Kontinuitet:</strong> Du bygger opp rutine raskt siden du kjører ofte</li>
-        <li><strong>Mindre tid utenfor hverdagen:</strong> Alt er konsentrert på kort tid</li>
-        <li><strong>Full fokus:</strong> Du er hele tiden i "kjøremodus"</li>
+        <li><strong>Rask progresjon:</strong> Du holder momentet oppe og blir trygg raskt.</li>
+        <li><strong>Forutsigbar tidsplan:</strong> Alt er satt opp på forhånd.</li>
+        <li><strong>Mindre glemsel:</strong> Kortere pauser gjør at du husker mer fra time til time.</li>
+        <li><strong>Motiverende:</strong> Du ser tydelig fremgang hver uke.</li>
       </ul>
       
-      <h3>Ulemper ved intensivkurs:</h3>
+      <h3>Ulemper med intensivkurs</h3>
       <ul>
-        <li>Kan være mentalt slitsomt med så mye kjøring</li>
-        <li>Krever at du har mye ledig tid i perioden</li>
-        <li>Ikke like fleksibelt hvis du har andre forpliktelser</li>
-        <li>Kan være dyrere totalt sett</li>
+        <li><strong>Krever fri:</strong> Du må ofte sette av hele dager.</li>
+        <li><strong>Mentalt krevende:</strong> Mange timer på kort tid kan være slitsomt.</li>
+        <li><strong>Potensielt dyrere:</strong> Pakkene kan koste mer, og om du trenger ekstra timer kommer de på toppen.</li>
+        <li><strong>Lite fleksibilitet:</strong> Vanskeligere å flytte timer hvis noe dukker opp.</li>
       </ul>
       
-      <h2>Vanlig førerkortkurs – tradisjonelt opplegg</h2>
-      <p>Et tradisjonelt førerkortkurs spres ut over lengre tid, ofte 3-6 måneder eller mer. Du tar kjøretimer 1-2 ganger i uken og har mer tid til å fordøye det du lærer.</p>
-      
-      <h3>Fordeler ved tradisjonelt opplegg:</h3>
+      <h3>Passer intensivkurs for deg?</h3>
       <ul>
-        <li><strong>Mer fleksibelt:</strong> Lettere å kombinere med jobb eller skole</li>
-        <li><strong>Mindre press:</strong> Du har mer tid mellom kjøretimene</li>
-        <li><strong>Bedre for å lære grundig:</strong> Mer tid til å øve seg</li>
-        <li><strong>Ofte billigere:</strong> Du kan betale etter hvert som du går</li>
+        <li>Du har en klar deadline og kan sette av 2–4 uker.</li>
+        <li>Du liker å lære raskt og tåler høyt tempo.</li>
+        <li>Du har økonomisk buffer til en pakkepris og eventuelle ekstratimer.</li>
+        <li>Du kan møte uthvilt og fokusert hver dag.</li>
       </ul>
       
-      <h3>Ulemper ved tradisjonelt opplegg:</h3>
+      <figure class="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo3.png" alt="Intensivkurs vs. tradisjonelt førerkortløp" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Intensivløp passer når tiden er knapp; tradisjonelt løp gir fleksibilitet.
+        </figcaption>
+      </figure>
+
+      <h2>Tradisjonelt løp – når du vil ha fleksibilitet</h2>
+      <p>Et tradisjonelt opplegg går ofte over 3–6 måneder med 1–2 kjøretimer i uken. Du får tid til å øve privat, fordøye stoffet og spre kostnadene.</p>
+      
+      <h3>Fordeler med tradisjonelt opplegg</h3>
       <ul>
-        <li>Tar lengre tid før du får førerkortet</li>
-        <li>Kan være vanskelig å holde kontinuiteten</li>
-        <li>Kan bli utsatt hvis du har lange pauser</li>
+        <li><strong>Fleksibelt:</strong> Lettere å kombinere med jobb, studier og familie.</li>
+        <li><strong>Bedre innlæring for mange:</strong> Tid til å øve mellom timene.</li>
+        <li><strong>Økonomisk forutsigbart:</strong> Du kan betale etter hvert.</li>
+        <li><strong>Mindre stress:</strong> Lavere tempo gir rom for refleksjon.</li>
       </ul>
       
-      <h2>Hvilket skal du velge?</h2>
-      <p>Valget avhenger av flere faktorer:</p>
-      
-      <p><strong>Velg intensivkurs hvis du:</strong></p>
+      <h3>Ulemper med tradisjonelt opplegg</h3>
       <ul>
-        <li>Har mulighet til å sette av 2-4 uker</li>
-        <li>Vil ha førerkortet så raskt som mulig</li>
-        <li>Foretrekker å få det overstått</li>
-        <li>Har god kapasitet for å lære raskt</li>
+        <li><strong>Takes longer:</strong> Du må holde motivasjonen oppe over tid.</li>
+        <li><strong>Kontinuitet:</strong> Lange pauser kan gjøre at du glemmer ferdigheter.</li>
+        <li><strong>Flere timebestillinger:</strong> Du må løpende finne tidspunkt som passer.</li>
       </ul>
       
-      <p><strong>Velg tradisjonelt opplegg hvis du:</strong></p>
+      <h3>Passer tradisjonelt opplegg for deg?</h3>
       <ul>
-        <li>Jobber eller går på skole</li>
-        <li>Foretrekker å ta det mer rolig</li>
-        <li>Har begrenset med penger å betale av</li>
-        <li>Trenger mer tid til å øve</li>
+        <li>Du har en travel kalender og trenger fleksibilitet.</li>
+        <li>Du lærer best med tid til repetisjon.</li>
+        <li>Du vil spre kostnadene over flere måneder.</li>
+        <li>Du har mulighet til å øve privat mellom timene.</li>
       </ul>
       
-      <h2>Kveldskurs og fleksible løsninger</h2>
-      <p>Mange trafikkskoler tilbyr også kveldskurs eller fleksible løsninger som gir deg noe av det beste fra begge verdener. Du kan ta kjøretimer på kvelden eller i helgene, slik at du kan kombinere det med jobb eller skole.</p>
+      <h2>Hybrid og kveldskurs – best av begge verdener</h2>
+      <p>Mange skoler tilbyr kveldskurs eller komprimerte perioder kombinert med roligere uker. Det kan gi tempo uten å kreve full permisjon.</p>
       
-      <h2>Finn riktig løsning for deg</h2>
-      <p>Uansett hva du velger, er det viktig å finne en trafikkskole som tilbyr det opplegget som passer deg. Førerkortportalen hjelper deg å finne og sammenligne trafikkskoler som tilbyr både intensivkurs og tradisjonelle opplegg, slik at du kan velge det som passer din situasjon best.</p>
+      <h3>Slik ser et hybridløp ut</h3>
+      <ul>
+        <li>Teori på kveldstid (online eller fysisk).</li>
+        <li>2–3 intensive uker med kjøring når det passer.</li>
+        <li>Planlagte pauser for å øve privat.</li>
+      </ul>
+      
+      <h2>Beslutningsguide – 6 raske spørsmål</h2>
+      <ul>
+        <li><strong>Deadline?</strong> Trenger du førerkort innen 1–2 måneder? Velg intensiv.</li>
+        <li><strong>Hverdag?</strong> Fulltidsjobb eller studier? Velg tradisjonelt eller hybrid.</li>
+        <li><strong>Budsjett?</strong> Stramt budsjett? Velg tradisjonelt og betal underveis.</li>
+        <li><strong>Læringsstil?</strong> Liker du høyt tempo? Velg intensiv eller hybrid.</li>
+        <li><strong>Øvelse privat?</strong> Har du øvingspartner? Tradisjonelt kan da bli rimeligere.</li>
+        <li><strong>Stressnivå?</strong> Blir du lett stresset? Velg tradisjonelt/hybrid.</li>
+      </ul>
+      
+      <h2>Ekstra elementer som påvirker valget</h2>
+      <h3>Tilgang til bil og øvingspartner</h3>
+      <p>Har du en øvingspartner (over 25 år med 5 års førerrett)? Det kan redusere antall skoletimer, særlig i tradisjonelt løp.</p>
+      
+      <h3>Sesong og vær</h3>
+      <p>Vinterkjøring kan være krevende. Et intensivkurs midt i vinteren gir verdifull erfaring, men også høyere belastning. Et tradisjonelt løp kan spre vinterkjøring over flere uker.</p>
+      
+      <h3>By vs. landevei</h3>
+      <p>Kjører du mest i by, kan intensivkurs gi mange repetisjoner på by-scenarier. På landet kan fleksible løp med flere veityper være nyttig.</p>
+      
+      <h2>Case-eksempler</h2>
+      <h3>Case 1: Student med sommerferie</h3>
+      <p>Har 4 ukers ferie og vil bli ferdig raskt. Velger intensivkurs med tett oppfølging og planlagt oppkjøring i slutten av perioden.</p>
+      
+      <h3>Case 2: Pendler med fulltidsjobb</h3>
+      <p>Har kun kvelder tilgjengelig. Velger hybrid: teori online, kjøring to kvelder i uken, og en kort intensivperiode før oppkjøring.</p>
+      
+      <h3>Case 3: Stramt budsjett</h3>
+      <p>Velger tradisjonelt løp, øver mye privat for å redusere antall timer, og betaler fortløpende.</p>
+      
+      <h2>Visuelle pauser i teksten</h2>
+      <p><strong>Tips:</strong> Se etter skoler som tilbyr:</p>
+      <ul>
+        <li>Progressjonsplan i app (du ser nøyaktig hva som gjenstår).</li>
+        <li>Tydelig timebank og kostnadsoversikt.</li>
+        <li>Mulighet for både automat og manuell underveis.</li>
+      </ul>
+      
+      <h2>Oppsummering</h2>
+      <p>Intensivkurs passer når tid er viktigst og du tåler høyt tempo. Tradisjonelt opplegg passer når fleksibilitet, kostnadskontroll og roligere læring er viktigst. Hybrid gir en miks. Velg det som passer din kalender, økonomi og læringsstil.</p>
+      
+      <h3>Neste steg</h3>
+      <ul>
+        <li>Avklar deadline, budsjett og tilgjengelig tid.</li>
+        <li>Bestem om du vil lære på automat eller manuell.</li>
+        <li>Bruk Førerkortportalen for å innhente flere tilbud.</li>
+        <li>Sammenlign pris, oppstart, fleksibilitet og oppfølging.</li>
+      </ul>
+      
+      <p>Førerkortportalen hjelper deg å finne trafikkskoler som tilbyr både intensiv, tradisjonell og hybride løp. Fyll ut skjemaet, få tilbud og velg det som passer deg best.</p>
     `,
   },
   "4": {
@@ -195,73 +611,111 @@ const articles: Record<string, {
     category: "Økonomi",
     image: "/Article-photo4.png",
     content: `
-      <p class="lead">Å ta førerkort er en investering, og det er viktig å ha realistiske forventninger til kostnadene. Her er en oversikt over hva du kan forvente å betale i 2024.</p>
+      <p class="lead">Å ta førerkort er en investering, og gode valg kan spare deg flere tusen kroner. Her får du en detaljert oversikt over kostnadene i 2024, hva som driver prisen opp eller ned, og konkrete grep for å holde budsjettet.</p>
       
-      <h2>Oversikt over kostnader</h2>
-      <p>Totale kostnader for førerkort klasse B varierer mye, men du bør regne med å betale mellom 25 000 og 50 000 kroner alt inkludert. Dette avhenger av flere faktorer:</p>
+      <h2>Kostnadsbildet – hva du bør forvente</h2>
+      <p>For førerkort klasse B bør du forvente totalt 25 000–50 000 kroner. Spennet avhenger av hvor mange timer du trenger, hvor du bor, og hvilken kursform du velger.</p>
       
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo4.png" alt="Kostnader ved førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Kostnader styres av timer, lokasjon, kursform og forberedelser.
+        </figcaption>
+      </figure>
+
+      <h3>Grunnleggende kostnader</h3>
+      <ul>
+        <li><strong>Trafikalt grunnkurs:</strong> 3 000–5 000 kr</li>
+        <li><strong>Teoriprøve:</strong> 550 kr</li>
+        <li><strong>Kjøreopplæring:</strong> 15 000–35 000 kr (avhengig av antall timer)</li>
+        <li><strong>Førerprøve (oppkjøring):</strong> 1 890 kr</li>
+        <li><strong>Utstedelse av førerkort:</strong> ca. 500 kr</li>
+        <li><strong>Læremateriell:</strong> 500–1 000 kr</li>
+      </ul>
+      
+      <h3>Variabler som påvirker totalen</h3>
+      <ul>
+        <li><strong>Antall kjøretimer:</strong> Flesteparten trenger 20–30 timer, ikke bare minimum 13.</li>
+        <li><strong>Lokasjon:</strong> Storbyer har ofte høyere timepris.</li>
+        <li><strong>Kursform:</strong> Intensiv kan koste mer, men gir rask ferdigstilling.</li>
+        <li><strong>Girvalg:</strong> Manuell kan kreve litt mer tid enn automat.</li>
+      </ul>
+      
+      <h2>Detaljert gjennomgang</h2>
       <h3>1. Trafikalt grunnkurs</h3>
-      <p><strong>Kostnad: 3 000 - 5 000 kr</strong></p>
-      <p>Obligatorisk teoriundervisning på 19 timer. Mange trafikkskoler inkluderer dette i totalpakken, mens andre tar ekstra betaling.</p>
+      <p>Obligatorisk 19 timer teori. Sjekk om skolen tilbyr pakkeløsning som inkluderer kurset – det kan være rimeligere.</p>
       
       <h3>2. Teoriprøve</h3>
-      <p><strong>Kostnad: 550 kr</strong></p>
-      <p>Standard sats fra Statens vegvesen. Du betaler denne avgiften når du bestiller tid til teoriprøven.</p>
+      <p>550 kr. Unngå stryk ved å øve med prøveeksamener; hvert forsøk koster.</p>
       
       <h3>3. Kjøreopplæring</h3>
-      <p><strong>Kostnad: 15 000 - 35 000 kr</strong></p>
-      <p>Dette er hvor kostnadene varierer mest. Minimum er 13 kjøretimer, men de fleste trenger 20-30 timer. Pris per kjøretime varierer typisk mellom 800 og 1200 kroner.</p>
+      <p>Pris per time (45 min) ligger ofte mellom 800 og 1 200 kr. Planlegg for 20–30 timer hvis du ikke har mye privat øving.</p>
       
-      <h3>4. Førerprøve (oppkjøring)</h3>
-      <p><strong>Kostnad: 1 890 kr</strong></p>
-      <p>Standard sats fra Statens vegvesen for førerprøven. Hvis du må ta prøven på nytt, må du betale igjen.</p>
+      <h3>4. Førerprøve</h3>
+      <p>1 890 kr. Husk at noen skoler tar leie av bil til oppkjøringen i tillegg.</p>
       
-      <h3>5. Andre kostnader</h3>
-      <p>I tillegg kommer:</p>
+      <h3>5. Ekstrakostnader</h3>
       <ul>
-        <li>Utstedelse av førerkort: ca. 500 kr</li>
-        <li>Lærebøker og læremateriell: 500 - 1 000 kr</li>
-        <li>Eventuelle ekstra kjøretimer hvis du trenger det</li>
+        <li>Leie av bil til oppkjøring (hvis ikke inkludert)</li>
+        <li>Påfyllstimer dersom du utsetter oppkjøring</li>
+        <li>Eventuelle gebyrer ved avbestilling av timer</li>
       </ul>
       
-      <h2>Faktorer som påvirker kostnadene</h2>
+      <h2>Prisdrivere du kan påvirke</h2>
+      <h3>Antall timer</h3>
+      <p>Jo bedre du forbereder deg privat, desto færre skoletimer trenger du. Øv på start/stopp, giring, observasjon og rundkjøringer.</p>
       
-      <h3>Antall kjøretimer</h3>
-      <p>Det største variabelen er antall kjøretimer du trenger. Noen lærer raskt og trenger bare minimum, mens andre trenger mer tid. Det er helt normalt å trenge 20-30 timer.</p>
+      <h3>Forberedelse til teori</h3>
+      <p>Bestå på første forsøk. Sett av 2–3 uker med daglig øving og bruk prøveeksamener.</p>
       
-      <h3>Lokasjon</h3>
-      <p>Prisene varierer mellom regioner. Storbyområder som Oslo, Bergen og Trondheim har ofte høyere priser enn mindre byer og bygder.</p>
+      <h3>Tidspunkt</h3>
+      <p>Høysesong kan gi lengre ventetid og flere timer. Planlegg og reserver tidlig.</p>
       
-      <h3>Kursform</h3>
-      <p>Intensivkurs kan være dyrere totalt sett, men du får det gjort raskt. Tradisjonelle kurs kan være billigere, men tar lengre tid.</p>
+      <h2>Slik sparer du penger</h2>
+      <h3>1) Sammenlign tilbud</h3>
+      <p>Prisene varierer. Bruk Førerkortportalen for å få flere tilbud og sammenlign timepris, pakker og hva som er inkludert.</p>
       
-      <h2>Hvordan kan du spare penger?</h2>
+      <h3>2) Pakkeløsninger</h3>
+      <p>Pakkene kan inkludere grunnkurs, x timer, teori- og førerprøve. Sjekk hva som faktisk er med, og om ekstra timer er rimelige.</p>
       
-      <h3>1. Sammenlign tilbud</h3>
-      <p>Prisene varierer mye mellom trafikkskoler. Bruk Førerkortportalen til å få tilbud fra flere skoler i ditt område, slik at du kan sammenligne priser og velge det som gir best verdi.</p>
+      <h3>3) Øv privat</h3>
+      <p>Med øvingspartner (over 25 år, 5 års førerrett) kan du redusere antall betalte timer. Husk L-skilt og god plan.</p>
       
-      <h3>2. Se på totalpakker</h3>
-      <p>Mange skoler tilbyr totalpakker som inkluderer alt – trafikalt grunnkurs, kjøretimer, teori- og førerprøve. Dette kan være billigere enn å betale for hver tjeneste separat.</p>
+      <h3>4) Spør om rabatter</h3>
+      <p>Studentrabatt, morgen-/dagtidsrabatt eller kampanjer kan finnes. Spør alltid.</p>
       
-      <h3>3. Vurder kjøreopplæring med privat person</h3>
-      <p>Du kan ta noen av kjøretimene med en privat person (venn/familie med minst 5 års erfaring). Dette kan redusere kostnadene betydelig. Husk at du fortsatt må ta minimum antall obligatoriske kjøretimer hos trafikkskole.</p>
+      <h3>5) Planlegg avbestilling</h3>
+      <p>Unngå gebyrer ved å avbestille innen frist. Ha kalenderpåminnelser.</p>
       
-      <h3>4. Spør om studentrabatt</h3>
-      <p>Noen trafikkskoler tilbyr rabatt for studenter. Det er verdt å spørre om dette når du sammenligner tilbud.</p>
-      
-      <h3>5. Undersøk støtteordninger</h3>
-      <p>Noen kommuner tilbyr støtte til føreropplæring for unge. Sjekk om dette er tilgjengelig i din kommune.</p>
-      
-      <h2>Tips for budsjettering</h2>
+      <h2>Budsjettmal (eksempel)</h2>
       <ul>
-        <li>Regn med at du kan trenge flere kjøretimer enn minimum</li>
-        <li>Legg inn en buffer i budsjettet ditt for uventede kostnader</li>
-        <li>Vurder om du kan betale i avdrag eller om du trenger full finansiering</li>
-        <li>Spør trafikkskolen om fleksible betalingsordninger</li>
+        <li>Grunnkurs: 4 000 kr</li>
+        <li>Teori: 550 kr</li>
+        <li>25 kjøretimer à 950 kr: 23 750 kr</li>
+        <li>Førerprøve: 1 890 kr</li>
+        <li>Utstedelse: 500 kr</li>
+        <li>Bøker/apper: 800 kr</li>
+      </ul>
+      <p><strong>Sum:</strong> ca. 31 490 kr. Med privat øving kan du kutte 5–10 timer og spare 5 000–10 000 kr.</p>
+      
+      <h2>Vanlige fallgruver (unngå ekstra kostnader)</h2>
+      <ul>
+        <li>For få øvingstimer privat – gir flere skoletimer.</li>
+        <li>Utsette oppkjøring – krever flere vedlikeholdstimer.</li>
+        <li>Stryk på teori – hvert forsøk koster.</li>
+        <li>Avbestillingsgebyr – glemte timer kan bli dyre.</li>
       </ul>
       
-      <h2>Verdt å investere i</h2>
-      <p>Selv om førerkort er dyrt, er det en investering som gir deg stor frihet og muligheter. Det er verdt å velge en god trafikkskole som gir deg solid opplæring, selv om den kanskje ikke er den billigste.</p>
+      <h2>Hurtigsjekk før du bestiller</h2>
+      <ul>
+        <li>Er grunnkurs inkludert i pakken?</li>
+        <li>Hva koster ekstra timer?</li>
+        <li>Inkluderer pakken bil til oppkjøring?</li>
+        <li>Har skolen ledig kapasitet når du trenger det?</li>
+      </ul>
+      
+      <h2>Oppsummering</h2>
+      <p>Sett et realistisk budsjett, øv privat for å kutte timebehovet, og sammenlign flere skoler. Med god planlegging kan du få et solid førerkortløp uten å betale mer enn nødvendig.</p>
     `,
   },
   "5": {
@@ -277,6 +731,13 @@ const articles: Record<string, {
       
       <h2>Før prøven – praktisk forberedelse</h2>
       
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo5.png" alt="Forberedelser til førerprøven" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          God forberedelse før oppkjøring øker sjansen for å bestå på første forsøk.
+        </figcaption>
+      </figure>
+
       <h3>1. Øv deg grundig</h3>
       <p>Ta nok kjøretimer til at du føler deg trygg bak rattet. Det er bedre å ta noen ekstra timer enn å prøve for tidlig. Sørg for at du har kjørt i ulike situasjoner: bytrafikk, landevei, motorvei, i mørke, i dårlig vær.</p>
       
@@ -360,6 +821,13 @@ const articles: Record<string, {
       
       <h2>2. Ventetid</h2>
       <p>Det tar vanligvis 1-2 uker før førerkortet er klart. Du får beskjed når det er klart for henting. I mellomtiden har du ikke lov til å kjøre bil, så du må vente med å kjøre alene til du har fått førerkortet.</p>
+
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo6.png" alt="Etter bestått førerprøve" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Etter bestått prøve gjenstår bestilling, ventetid og trygg oppstart som ny sjåfør.
+        </figcaption>
+      </figure>
       
       <h2>3. Henting av førerkort</h2>
       <p>Når førerkortet er klart, kan du hente det på det trafikantkontoret du bestilte det til. Husk å ta med gyldig legitimasjon når du henter det.</p>
@@ -421,21 +889,22 @@ const articles: Record<string, {
   },
 };
 
-// Function to extract headings from HTML content
-function extractHeadings(htmlContent: string): Array<{ id: string; text: string }> {
-  const headingRegex = /<h2[^>]*>(.*?)<\/h2>/gi;
-  const headings: Array<{ id: string; text: string }> = [];
+// Function to extract headings from HTML content (H2 and H3)
+function extractHeadings(htmlContent: string): Array<{ id: string; text: string; level: number }> {
+  const headingRegex = /<h([23])[^>]*>(.*?)<\/h[23]>/gi;
+  const headings: Array<{ id: string; text: string; level: number }> = [];
   let match;
 
   while ((match = headingRegex.exec(htmlContent)) !== null) {
-    const text = match[1]
+    const level = parseInt(match[1]);
+    const text = match[2]
       .replace(/<[^>]*>/g, '') // Remove HTML tags
       .trim();
     const id = text
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
-    headings.push({ id, text });
+    headings.push({ id, text, level });
   }
 
   return headings;
@@ -464,13 +933,14 @@ function ArticleFormWrapper() {
           const interactiveElement = target.closest('input, button, select, textarea, a, label, [role="button"], [type="submit"]');
           
           // Only trigger focus mode if NOT clicking on interactive elements
+          // Interactive elements will trigger focus mode through their onFocus handlers
           if (!interactiveElement) {
             setIsDesktopFocused(true);
           }
         }
       }}
     >
-      <h2 className="text-2xl font-semibold text-white mb-0.5">
+      <h2 className="text-2xl font-semibold text-white mb-0.5 text-center lg:text-center">
         Motta tilbud fra flere trafikkskoler
       </h2>
       <p className="text-base text-slate-300 mb-0.5 text-center">
@@ -527,8 +997,39 @@ function ArticleContent({ params }: { params: { id: string } }) {
     );
   }
 
+  // Generate structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.excerpt,
+    "image": article.image ? `https://forerkortportalen.no${article.image}` : undefined,
+    "datePublished": article.date,
+    "author": {
+      "@type": "Organization",
+      "name": "Førerkortportalen"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Førerkortportalen",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://forerkortportalen.no/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://forerkortportalen.no/artikler/${article.id}`
+    }
+  };
+
   return (
     <>
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <Navbar />
       <ArticleFormOverlay />
       <ArticleStickyCTA />
@@ -540,7 +1041,7 @@ function ArticleContent({ params }: { params: { id: string } }) {
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           
               {/* Main Article Content */}
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-8">
           {/* Back Link */}
           <div className="mb-6 sm:mb-8">
             <Link
@@ -590,33 +1091,49 @@ function ArticleContent({ params }: { params: { id: string } }) {
                     </div>
                   )}
 
-                  {/* Table of Contents */}
+                  {/* Table of Contents - SEO-friendly with details/summary */}
                   {headings.length > 0 && (
-                    <div className="mx-6 sm:mx-8 lg:mx-10 mt-8 mb-6 p-6 bg-slate-50 border border-slate-200 rounded-2xl">
-                      <div className="flex items-center gap-2 mb-4">
-                        <List className="h-5 w-5 text-[#3bb54a]" />
-                        <h3 className="text-lg font-semibold text-slate-900">Innholdsfortegnelse</h3>
-                      </div>
-                      <nav className="space-y-2">
-                        {headings.map((heading, index) => (
-                          <a
-                            key={index}
-                            href={`#${heading.id}`}
-                            className="block text-sm sm:text-base text-slate-700 hover:text-[#3bb54a] transition py-1.5 pl-4 border-l-2 border-slate-200 hover:border-[#3bb54a]"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              const element = document.getElementById(heading.id);
-                              if (element) {
-                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                // Update URL without scrolling
-                                window.history.pushState(null, '', `#${heading.id}`);
-                              }
-                            }}
+                    <div className="mx-6 sm:mx-8 lg:mx-10 mt-8 mb-6">
+                      <details className="group">
+                        <summary className="w-full flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm hover:border-[#3bb54a] transition cursor-pointer list-none">
+                          <div className="flex items-center gap-2 text-slate-900 font-semibold">
+                            <List className="h-5 w-5 text-[#3bb54a]" />
+                            Innholdsfortegnelse
+                          </div>
+                          <svg
+                            className="h-4 w-4 text-slate-500 transition-transform group-open:rotate-180"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           >
-                            {heading.text}
-                          </a>
-                        ))}
-                      </nav>
+                            <path d="M6 8l4 4 4-4" />
+                          </svg>
+                        </summary>
+                        <nav className="space-y-2 px-4 py-3 overflow-y-auto max-h-[70vh] border border-slate-200 border-t-0 rounded-b-xl bg-white">
+                          {headings.map((heading, index) => (
+                            <a
+                              key={index}
+                              href={`#${heading.id}`}
+                              className={`block text-sm text-slate-700 hover:text-[#3bb54a] transition py-1.5 border-l-2 border-slate-200 hover:border-[#3bb54a] ${
+                                heading.level === 2 ? 'pl-3 font-semibold' : 'pl-6 text-slate-600'
+                              }`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                const element = document.getElementById(heading.id);
+                                if (element) {
+                                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                  window.history.pushState(null, '', `#${heading.id}`);
+                                }
+                              }}
+                            >
+                              {heading.text}
+                            </a>
+                          ))}
+                        </nav>
+                      </details>
                     </div>
                   )}
 
@@ -624,29 +1141,46 @@ function ArticleContent({ params }: { params: { id: string } }) {
             <div className="px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
               <div
                 className="prose prose-slate prose-lg max-w-none 
-                  prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:mt-8 prose-headings:mb-4
-                  prose-h2:text-2xl sm:prose-h2:text-3xl
-                  prose-h3:text-xl sm:prose-h3:text-2xl
-                  prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4
+                  prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:mt-12 prose-headings:mb-6
+                  prose-h1:text-3xl sm:prose-h1:text-4xl prose-h1:font-bold prose-h1:mt-14 prose-h1:mb-7
+                  prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:font-bold prose-h2:scroll-mt-24
+                  prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mt-9 prose-h3:mb-5 prose-h3:font-semibold prose-h3:text-slate-900 prose-h3:scroll-mt-24
+                  prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-5 prose-p:text-base sm:prose-p:text-lg
                   prose-a:text-[#3bb54a] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-slate-900 prose-strong:font-semibold
-                  prose-ul:text-slate-700 prose-ul:my-4
-                  prose-li:mb-2
-                        prose-lead:text-lg sm:prose-lead:text-xl prose-lead:font-medium prose-lead:text-slate-800
-                        prose-img:rounded-xl prose-img:shadow-md prose-img:my-8"
+                  prose-em:text-slate-600 prose-em:italic
+                  prose-ul:text-slate-700 prose-ul:my-5 prose-ul:space-y-2
+                  prose-li:mb-2 prose-li:pl-1
+                  prose-blockquote:border-l-4 prose-blockquote:border-[#3bb54a] prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-4 prose-blockquote:bg-emerald-50 prose-blockquote:rounded-r-lg prose-blockquote:my-6 prose-blockquote:italic prose-blockquote:text-slate-700
+                  prose-lead:text-lg sm:prose-lead:text-xl prose-lead:font-medium prose-lead:text-slate-800 prose-lead:mb-6
+                  prose-img:rounded-xl prose-img:shadow-md prose-img:my-8 prose-img:w-full
+                  prose-hr:border-slate-200 prose-hr:my-8"
                       dangerouslySetInnerHTML={{ 
-                        __html: article.content.replace(
-                          /<h2([^>]*)>(.*?)<\/h2>/gi,
-                          (match, attrs, text) => {
-                            const id = text
-                              .replace(/<[^>]*>/g, '')
-                              .trim()
-                              .toLowerCase()
-                              .replace(/[^a-z0-9]+/g, '-')
-                              .replace(/^-|-$/g, '');
-                            return `<h2 id="${id}"${attrs} class="scroll-mt-24">${text}</h2>`;
-                          }
-                        )
+                        __html: article.content
+                          .replace(
+                            /<h2([^>]*)>(.*?)<\/h2>/gi,
+                            (match, attrs, text) => {
+                              const id = text
+                                .replace(/<[^>]*>/g, '')
+                                .trim()
+                                .toLowerCase()
+                                .replace(/[^a-z0-9]+/g, '-')
+                                .replace(/^-|-$/g, '');
+                              return `<h2 id="${id}"${attrs} class="scroll-mt-24">${text}</h2>`;
+                            }
+                          )
+                          .replace(
+                            /<h3([^>]*)>(.*?)<\/h3>/gi,
+                            (match, attrs, text) => {
+                              const id = text
+                                .replace(/<[^>]*>/g, '')
+                                .trim()
+                                .toLowerCase()
+                                .replace(/[^a-z0-9]+/g, '-')
+                                .replace(/^-|-$/g, '');
+                              return `<h3 id="${id}"${attrs} class="scroll-mt-24">${text}</h3>`;
+                            }
+                          )
                       }}
               />
             </div>
@@ -654,10 +1188,43 @@ function ArticleContent({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              {/* Form Sidebar - Mobile and Desktop */}
-              <div className="lg:col-span-5">
-                <div className="lg:sticky lg:top-24">
+              {/* Form Sidebar */}
+              <div className="lg:col-span-4 mt-8 lg:mt-14">
+                <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-96px)] lg:overflow-y-auto lg:pr-1 space-y-6">
                   <ArticleFormWrapper />
+
+                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
+                    <h3 className="text-lg font-semibold text-slate-900 mb-3">3 gode grunner til å velge Førerkortportalen</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3">
+                        <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                          <CheckCircle2 className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900">Flere tilbud – ett skjema</p>
+                          <p className="text-sm text-slate-600">Få tilbud fra kvalitetssikrede trafikkskoler uten å ringe rundt.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                          <ShieldCheck className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900">Trygt og uforpliktende</p>
+                          <p className="text-sm text-slate-600">Ingen kostnad for deg – velg tilbudet som passer best.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-amber-50 text-amber-600">
+                          <Sparkles className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900">Spar tid og penger</p>
+                          <p className="text-sm text-slate-600">Sammenlign pris, oppstart og fleksibilitet på ett sted.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
           </div>

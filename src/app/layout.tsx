@@ -39,6 +39,14 @@ export const metadata: Metadata = {
     siteName: "Førerkortportalen",
     locale: "nb_NO",
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/logo.png`,
+        width: 1200,
+        height: 630,
+        alt: "Førerkortportalen - Få tilbud fra trafikkskoler i hele Norge",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

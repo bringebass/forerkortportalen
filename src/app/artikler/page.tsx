@@ -94,10 +94,10 @@ export default function ArtiklerPage() {
               <span className="text-sm font-semibold text-emerald-700">Artikler og guider</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
-              Nyttige artikler om førerkort
+              Artikler
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
-              Lær alt du trenger å vite om førerkort, trafikkskoler og føreropplæring
+              Nyttige guider om førerkort, trafikkskoler, føreropplæring, trafikkregler og erfaringer fra kjøretimer
             </p>
           </div>
         </div>

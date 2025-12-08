@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect, useRef, useLayoutEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Shield } from "lucide-react";
 import { useFormContext, FormState } from "@/contexts/FormContext";
 
@@ -111,6 +111,8 @@ export function LeadForm({
   // NOTE: Tailwind is mobile-first here — base classes style the mobile view,
   // while prefixes like sm:, lg:, etc. override styles on larger screens.
   const router = useRouter();
+  const pathname = usePathname();
+  const isArticlePage = pathname?.startsWith("/artikler");
   const { isFullscreen, setIsFullscreen, setHasStartedFilling, formData, setFormData, resetFormData, currentStep, setCurrentStep, isDesktopFocused, setIsDesktopFocused } = useFormContext();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -142,9 +144,10 @@ export function LeadForm({
     }
   };
 
-  // Activate desktop focus mode when user clicks on input fields
+  // Activate desktop focus mode when user clicks on input fields (only on article pages)
+  // On homepage, users can fill in the form directly without auto-focus/blur
   const activateDesktopFocusIfNeeded = (inputId?: string, event?: React.FocusEvent) => {
-    if (typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
+    if (isArticlePage && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
       if (inputId && event) {
         // Store the input ID
         focusedInputIdRef.current = inputId;
@@ -169,6 +172,9 @@ export function LeadForm({
       } else {
         setIsDesktopFocused(true);
       }
+    } else if (inputId && event) {
+      // On homepage, just store the input ID for compatibility
+      focusedInputIdRef.current = inputId;
     }
   };
 
@@ -433,8 +439,9 @@ const countryCodes = [
     // Activate fullscreen on mobile when clicking Next (even if validation fails)
     activateFullscreenIfNeeded();
     
-    // Activate desktop focus mode when clicking Next (even if validation fails)
-    if (typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
+    // Activate desktop focus mode on article pages when clicking Next
+    // On homepage, users can fill in the form directly without blur/overlay
+    if (isArticlePage && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
       setIsDesktopFocused(true);
     }
 
