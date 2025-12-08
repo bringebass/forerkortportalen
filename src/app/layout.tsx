@@ -31,6 +31,14 @@ export const metadata: Metadata = {
       { url: '/favicon.png', type: 'image/png', sizes: '180x180' },
     ],
     shortcut: '/favicon.png',
+    // Support for transparent favicon
+    other: [
+      {
+        rel: 'icon',
+        type: 'image/png',
+        url: '/favicon.png',
+      },
+    ],
   },
   openGraph: {
     title,
