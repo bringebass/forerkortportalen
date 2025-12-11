@@ -11,7 +11,7 @@ export type FormState = {
   postalCode: string;
   licenseType: string;
   mainLicenseSelection: string;
-  startDate: string;
+  additionalInfo: string;
   intensiveCourse: string;
   preferredContact: "telefon" | "epost";
   trafficCourseStatus: string;
@@ -27,7 +27,7 @@ const defaultFormState: FormState = {
   postalCode: "",
   licenseType: "",
   mainLicenseSelection: "",
-  startDate: "",
+  additionalInfo: "",
   intensiveCourse: "usikker",
   preferredContact: "telefon",
   trafficCourseStatus: "fullfort",

@@ -8,7 +8,7 @@ const LeadSchema = new Schema(
     postalCode: { type: String, required: true },
     licenseType: { type: String, required: true },
     mainLicenseSelection: { type: String }, // B, B_AUT, OTHER
-    startDate: { type: String, required: true }, // "asap", "within_month", "later"
+    additionalInfo: { type: String }, // Optional free text field for additional information
     intensiveCourse: { type: String, enum: ["ja", "nei", "usikker"], required: true },
     preferredContact: { type: String, enum: ["telefon", "epost"], required: true },
     trafficCourseStatus: {

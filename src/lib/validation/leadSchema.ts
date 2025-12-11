@@ -12,7 +12,7 @@ export const leadSchema = z.object({
     .regex(/^\d{4}$/, "Oppgi et norsk postnummer på fire siffer"),
   licenseType: z.string().min(1),
   mainLicenseSelection: z.string().optional(), // B, B_AUT, OTHER
-  startDate: z.string().min(1, "Velg ønsket oppstart"), // "asap", "within_month", "later"
+  additionalInfo: z.string().max(800).optional().or(z.literal("")), // Optional free text field
   intensiveCourse: z.enum(["ja", "nei", "usikker"]),
   preferredContact: z.enum(["telefon", "epost"]),
   trafficCourseStatus: z.enum(["fullfort", "pagar", "ikke"]),

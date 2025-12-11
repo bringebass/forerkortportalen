@@ -41,7 +41,7 @@ const trafficCourseOptions = [
 const BASE_STEP_ORDER = [
   "postalCode",      // Step 0
   "licenseType",     // Step 1
-  "startDate",       // Step 2
+  "additionalInfo",  // Step 2
   "contactInfo",     // Step 3
 ] as const;
 
@@ -52,9 +52,9 @@ const BASE_STEP_CONFIG = {
     validator: (formData: FormState) =>
       formData.mainLicenseSelection ? null : "Velg hvilken klasse du trenger.",
   },
-  startDate: {
-    question: "Når ønsker du å starte?",
-    validator: (formData: FormState) => null, // Always valid since "Vet ikke" is an option
+  additionalInfo: {
+    question: "Er det noe annet vi må vite?",
+    validator: (formData: FormState) => null, // Optional field
   },
   otherLicenseType: {
     question: "Hvilken førerkortklasse gjelder forespørselen?",
@@ -393,11 +393,6 @@ export function LeadForm({
     }));
   };
 
-const quickStartOptions = [
-  { label: "Så fort som mulig", value: "asap" },
-  { label: "Innen en måned", value: "within_month" },
-  { label: "Senere / Vet ikke", value: "later" },
-];
 
 const countryCodes = [
   { code: "+47", country: "🇳🇴" },
@@ -510,7 +505,7 @@ const countryCodes = [
           license_type: formData.mainLicenseSelection || formData.licenseType || "unknown",
           postal_code: formData.postalCode,
           intensive_course: formData.intensiveCourse,
-          start_date: formData.startDate,
+          additional_info: formData.additionalInfo || "",
           source_page: pathname || window.location.pathname,
         });
       }
@@ -613,36 +608,25 @@ const countryCodes = [
           </div>
         );
       }
-      case "startDate": {
+      case "additionalInfo": {
         return (
-          <div className="space-y-3">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-              {quickStartOptions.map((option) => {
-                const isSelected = formData.startDate === option.value;
-                
-                return (
-                  <button
-                    key={option.value}
-                    type="button"
-                    onClick={() => {
-                      activateFullscreenIfNeeded();
-                      setFormData((prev) => ({
-                        ...prev,
-                        startDate: option.value,
-                      }));
-                      setStepError(null);
-                    }}
-                    className={`border px-4 py-3 text-base font-semibold transition ${
-                      isSelected
-                        ? "border-[#3bb54a] bg-[#3bb54a] text-white"
-                        : "border-slate-200 bg-white text-slate-900 hover:border-[#3bb54a] hover:bg-slate-50"
-                    }`}
-                  >
-                    {option.label}
-                  </button>
-                );
-              })}
-            </div>
+          <div className="">
+            <label htmlFor="additionalInfo" className="sr-only">
+              Ekstra informasjon
+            </label>
+            <textarea
+              id="additionalInfo"
+              name="additionalInfo"
+              rows={4}
+              value={formData.additionalInfo}
+              onChange={handleChange}
+              onFocus={(e) => {
+                activateFullscreenIfNeeded();
+                activateDesktopFocusIfNeeded('additionalInfo', e);
+              }}
+              className="w-full border-2 border-slate-300 sm:border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a] resize-none"
+              placeholder="Ønsket oppstart, spesielle behov eller annet..."
+            />
           </div>
         );
       }

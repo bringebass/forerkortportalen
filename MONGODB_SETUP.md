@@ -49,7 +49,7 @@ Database struktur er allerede definert i `src/lib/models/Lead.ts`:
 - `phone` (String, required)
 - `postalCode` (String, required)
 - `licenseType` (String, required)
-- `startDate` (String, required)
+- `additionalInfo` (String, optional) - Free text field for additional information like desired start date, special needs, etc.
 - `intensiveCourse` (enum: ja, nei, usikker)
 - `preferredContact` (enum: telefon, epost)
 - `trafficCourseStatus` (enum: fullfort, pagar, ikke)

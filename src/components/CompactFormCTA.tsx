@@ -32,7 +32,7 @@ export default function CompactFormCTA() {
 
   // Calculate total steps (same logic as in LeadForm)
   const requiresOtherLicenseStep = formData.mainLicenseSelection === "OTHER";
-  const BASE_STEP_COUNT = 4; // postalCode, licenseType, startDate, contactInfo
+  const BASE_STEP_COUNT = 4; // postalCode, licenseType, additionalInfo, contactInfo
   const totalSteps = requiresOtherLicenseStep ? BASE_STEP_COUNT + 1 : BASE_STEP_COUNT;
   const progress = totalSteps > 0 ? ((currentStep + 1) / totalSteps) * 100 : 0;
 
@@ -62,11 +62,11 @@ export default function CompactFormCTA() {
                  formData.mainLicenseSelection === "OTHER" && formData.licenseType ? formData.licenseType : "Annet"}
               </div>
             )}
-            {formData.startDate && (
-              <div>
-                {formData.startDate === "asap" ? "Så fort som mulig" :
-                 formData.startDate === "within_month" ? "Innen en måned" :
-                 formData.startDate === "later" ? "Senere / Vet ikke" : ""}
+            {formData.additionalInfo && (
+              <div className="truncate">
+                {formData.additionalInfo.length > 30 
+                  ? `${formData.additionalInfo.substring(0, 30)}...` 
+                  : formData.additionalInfo}
               </div>
             )}
           </div>
