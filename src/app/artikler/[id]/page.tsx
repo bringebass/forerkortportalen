@@ -1174,7 +1174,15 @@ function ArticleContent({ params }: { params: { id: string } }) {
                                 .toLowerCase()
                                 .replace(/[^a-z0-9]+/g, '-')
                                 .replace(/^-|-$/g, '');
-                              return `<h2 id="${id}"${attrs} class="scroll-mt-24">${text}</h2>`;
+                              // Preserve existing classes and add scroll-mt-24
+                              const hasClass = /class=["']/.test(attrs);
+                              const scrollClass = 'scroll-mt-24';
+                              if (hasClass) {
+                                const newAttrs = attrs.replace(/class=["']([^"']*)["']/, `class="$1 ${scrollClass}"`);
+                                return `<h2 id="${id}"${newAttrs}>${text}</h2>`;
+                              } else {
+                                return `<h2 id="${id}"${attrs} class="${scrollClass}">${text}</h2>`;
+                              }
                             }
                           )
                           .replace(
@@ -1186,7 +1194,15 @@ function ArticleContent({ params }: { params: { id: string } }) {
                                 .toLowerCase()
                                 .replace(/[^a-z0-9]+/g, '-')
                                 .replace(/^-|-$/g, '');
-                              return `<h3 id="${id}"${attrs} class="scroll-mt-24">${text}</h3>`;
+                              // Preserve existing classes and add scroll-mt-24
+                              const hasClass = /class=["']/.test(attrs);
+                              const scrollClass = 'scroll-mt-24';
+                              if (hasClass) {
+                                const newAttrs = attrs.replace(/class=["']([^"']*)["']/, `class="$1 ${scrollClass}"`);
+                                return `<h3 id="${id}"${newAttrs}>${text}</h3>`;
+                              } else {
+                                return `<h3 id="${id}"${attrs} class="${scrollClass}">${text}</h3>`;
+                              }
                             }
                           )
                       }}
