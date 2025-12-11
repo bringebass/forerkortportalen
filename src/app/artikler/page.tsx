@@ -42,10 +42,10 @@ const articles = [
   },
   {
     id: 4,
-    title: "Kostnader ved å ta førerkort i 2024",
-    excerpt: "Oversikt over hva det koster å ta førerkort, og hvordan du kan spare penger på opplæringen.",
-    date: "1. januar 2024",
-    readTime: "7 min lesing",
+    title: "Hva koster førerkort i Norge? (oppdatert guide 2025)",
+    excerpt: "Oppdatert oversikt over kostnader ved førerkort klasse B i 2025, obligatoriske utgifter, skjulte kostnader og hvordan du kan spare penger.",
+    date: "15. januar 2025",
+    readTime: "8 min lesing",
     category: "Økonomi",
     image: "/Article-photo4.png",
   },
@@ -80,7 +80,7 @@ export default function ArtiklerPage() {
       <StickyMobileCTA />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 py-12 sm:py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-white sm:bg-gradient-to-br sm:from-slate-50 sm:via-white sm:to-emerald-50/30 pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8 lg:pb-10">
         {/* Decorative background elements - desktop only */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200/20 rounded-full blur-3xl"></div>
@@ -104,7 +104,7 @@ export default function ArtiklerPage() {
       </section>
 
       {/* Articles Section */}
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-20">
         <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
 
           {/* Articles Grid */}

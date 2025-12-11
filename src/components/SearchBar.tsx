@@ -30,8 +30,8 @@ const articles = [
   },
   {
     id: 4,
-    title: "Kostnader ved å ta førerkort i 2024",
-    excerpt: "Oversikt over hva det koster å ta førerkort, og hvordan du kan spare penger på opplæringen.",
+    title: "Hva koster førerkort i Norge? (oppdatert guide 2025)",
+    excerpt: "Oppdatert oversikt over kostnader ved førerkort klasse B i 2025, obligatoriske utgifter, skjulte kostnader og hvordan du kan spare penger.",
     category: "Økonomi",
     href: "/artikler/4",
   },

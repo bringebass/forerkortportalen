@@ -490,6 +490,31 @@ const countryCodes = [
       setStatus("success");
       setStepError(null);
       
+      // Track lead form submission in Google Analytics
+      // Using the service is considered implicit consent, so we track regardless of banner acceptance
+      if (typeof window !== "undefined" && window.gtag) {
+        // Update consent to granted since user is using the service (implicit consent)
+        window.gtag("consent", "update", {
+          analytics_storage: "granted",
+        });
+        
+        // Also save to localStorage for future visits
+        localStorage.setItem("cookie-consent-accepted", "true");
+        
+        // Track form submission event with detailed information
+        window.gtag("event", "form_submission", {
+          event_category: "Lead Form",
+          event_label: "Lead Submitted",
+          value: 1,
+          // Custom parameters for better analytics
+          license_type: formData.mainLicenseSelection || formData.licenseType || "unknown",
+          postal_code: formData.postalCode,
+          intensive_course: formData.intensiveCourse,
+          start_date: formData.startDate,
+          source_page: pathname || window.location.pathname,
+        });
+      }
+      
       // Redirect immediately to success page
       router.push("/takk");
     } catch (error) {

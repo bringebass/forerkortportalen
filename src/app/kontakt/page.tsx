@@ -97,10 +97,10 @@ export default function KontaktPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-300 shadow-sm">
+            <div className="bg-gradient-to-br from-slate-900 to-slate-600 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-2xl shadow-slate-900/50">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
                     Navn *
                   </label>
                   <input
@@ -110,13 +110,13 @@ export default function KontaktPage() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-slate-400 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a]/20 transition"
+                    className="w-full px-4 py-3 border-0 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#3bb54a]/30 shadow-sm transition"
                     placeholder="Ditt navn"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
                     E-post *
                   </label>
                   <input
@@ -126,13 +126,13 @@ export default function KontaktPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-slate-400 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a]/20 transition"
+                    className="w-full px-4 py-3 border-0 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#3bb54a]/30 shadow-sm transition"
                     placeholder="din@epost.no"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label htmlFor="phone" className="block text-sm font-semibold text-white mb-2">
                     Telefon
                   </label>
                   <input
@@ -141,13 +141,13 @@ export default function KontaktPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-slate-400 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a]/20 transition"
+                    className="w-full px-4 py-3 border-0 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#3bb54a]/30 shadow-sm transition"
                     placeholder="9X XX XX XX"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-semibold text-white mb-2">
                     Emne *
                   </label>
                   <select
@@ -156,7 +156,7 @@ export default function KontaktPage() {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-slate-400 rounded-xl bg-white text-slate-900 focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a]/20 transition"
+                    className="w-full px-4 py-3 border-0 rounded-xl bg-white text-slate-900 focus:ring-2 focus:ring-[#3bb54a]/30 shadow-sm transition"
                   >
                     <option value="">Velg emne</option>
                     <option value="sporsmal">Spørsmål om tjenesten</option>
@@ -167,7 +167,7 @@ export default function KontaktPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
                     Melding *
                   </label>
                   <textarea
@@ -177,7 +177,7 @@ export default function KontaktPage() {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-slate-400 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a]/20 transition resize-none"
+                    className="w-full px-4 py-3 border-0 rounded-xl bg-white text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#3bb54a]/30 shadow-sm transition resize-none"
                     placeholder="Skriv meldingen din her..."
                   />
                 </div>

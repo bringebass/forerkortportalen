@@ -604,118 +604,126 @@ export const articles: Record<string, {
   },
   "4": {
     id: 4,
-    title: "Kostnader ved å ta førerkort i 2024",
-    excerpt: "Oversikt over hva det koster å ta førerkort, og hvordan du kan spare penger på opplæringen.",
-    date: "1. januar 2024",
-    readTime: "7 min lesing",
+    title: "Hva koster førerkort i Norge? (oppdatert guide 2025)",
+    excerpt: "Oppdatert oversikt over kostnader ved førerkort klasse B i 2025, obligatoriske utgifter, skjulte kostnader og hvordan du kan spare penger.",
+    date: "15. januar 2025",
+    readTime: "8 min lesing",
     category: "Økonomi",
     image: "/Article-photo4.png",
     content: `
-      <p class="lead">Å ta førerkort er en investering, og gode valg kan spare deg flere tusen kroner. Her får du en detaljert oversikt over kostnadene i 2024, hva som driver prisen opp eller ned, og konkrete grep for å holde budsjettet.</p>
+      <p class="lead">Å ta førerkort i Norge er litt som å planlegge en lang tur: du vet omtrent hvor du skal, men du aner aldri helt hvor mye det faktisk kommer til å koste før du er midt i det. Prisene endrer seg smått hvert år, og 2025 er ikke noe unntak. Samtidig er det mange som blir overrasket – enten positivt eller negativt – når de ser den faktiske totalsummen.</p>
       
-      <h2>Kostnadsbildet – hva du bør forvente</h2>
-      <p>For førerkort klasse B bør du forvente totalt 25 000–50 000 kroner. Spennet avhenger av hvor mange timer du trenger, hvor du bor, og hvilken kursform du velger.</p>
+      <p>Så la oss rydde opp i forvirringen og gå gjennom hva du faktisk må betale.</p>
       
       <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
         <img src="/Article-photo4.png" alt="Kostnader ved førerkort" class="w-full h-auto object-cover" loading="lazy" />
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
-          Kostnader styres av timer, lokasjon, kursform og forberedelser.
+          Førerkort er en betydelig investering, men med god planlegging kan du holde kostnadene under kontroll.
         </figcaption>
       </figure>
-
-      <h3>Grunnleggende kostnader</h3>
+      
+      <h2>Hvorfor er førerkort så dyrt i Norge?</h2>
+      
+      <p>Du har kanskje hørt folk si at det er nesten dyrere å ta lappen enn å kjøpe en brukt bil. Og ja, det kan det være. Men grunnen er egentlig ganske logisk: Norge har et av verdens grundigste opplæringsløp for nye sjåfører. Det betyr flere obligatoriske moduler, strenge sensorkrav og høyt fokus på trafikksikkerhet.</p>
+      
+      <p>Her er tingen: du betaler ikke bare for timer. Du betaler for kvalitet – og for å bli trygg nok til at du ikke skader deg selv eller andre. I tillegg varierer prisene mellom kjøreskoler, ofte fordi noen skoler bruker nyere biler, har mer erfarne lærere eller ligger i områder med høyere kostnader.</p>
+      
+      <h2>Hva koster førerkort klasse B i 2025? (snittpris)</h2>
+      
+      <p>La oss hoppe rett på kjernen: den typiske totalprisen i 2025. Selvfølgelig varierer det, men her er en realistisk og oppdatert oversikt:</p>
+      
       <ul>
-        <li><strong>Trafikalt grunnkurs:</strong> 3 000–5 000 kr</li>
-        <li><strong>Teoriprøve:</strong> 550 kr</li>
-        <li><strong>Kjøreopplæring:</strong> 15 000–35 000 kr (avhengig av antall timer)</li>
-        <li><strong>Førerprøve (oppkjøring):</strong> 1 890 kr</li>
-        <li><strong>Utstedelse av førerkort:</strong> ca. 500 kr</li>
-        <li><strong>Læremateriell:</strong> 500–1 000 kr</li>
+        <li><strong>Billigst (lite behov for kjøretimer):</strong> 20 000–25 000 kr</li>
+        <li><strong>Normalt for de fleste elever:</strong> 30 000–40 000 kr</li>
+        <li><strong>Høyt for elever som trenger mange timer:</strong> 45 000–60 000 kr</li>
       </ul>
       
-      <h3>Variabler som påvirker totalen</h3>
+      <p>De fleste havner rundt 30–40 000 kr, og det er rett og slett fordi de fleste trenger mer enn bare de obligatoriske timene. Det kan føles litt surt, men kjøreferdigheter er som alt annet: dette handler om trening, ikke flaks.</p>
+      
+      <h2>Obligatoriske kostnader du ikke slipper unna</h2>
+      
+      <p>Dette er posten alle må igjennom, uansett hvor flink du er:</p>
+      
       <ul>
-        <li><strong>Antall kjøretimer:</strong> Flesteparten trenger 20–30 timer, ikke bare minimum 13.</li>
-        <li><strong>Lokasjon:</strong> Storbyer har ofte høyere timepris.</li>
-        <li><strong>Kursform:</strong> Intensiv kan koste mer, men gir rask ferdigstilling.</li>
-        <li><strong>Girvalg:</strong> Manuell kan kreve litt mer tid enn automat.</li>
+        <li><strong>Trinnvurdering trinn 2 og 3</strong> – Evalueringer som sikrer at du faktisk er klar for neste steg.</li>
+        <li><strong>Sikkerhetskurs på bane (glattkjøring)</strong> – Mange syns det er gøy, andre får høy puls, men det er utrolig nyttig.</li>
+        <li><strong>Sikkerhetskurs på vei (langkjøring + refleksjon)</strong> – En av de mest lærerike dagene i opplæringen.</li>
+        <li><strong>Leie av bil til oppkjøring</strong> – Skolen stiller bil du kjenner fra før.</li>
+        <li><strong>Statlige gebyrer</strong> – Teoriprøve, oppkjøring og utstedelse av førerkort.</li>
       </ul>
       
-      <h2>Detaljert gjennomgang</h2>
-      <h3>1. Trafikalt grunnkurs</h3>
-      <p>Obligatorisk 19 timer teori. Sjekk om skolen tilbyr pakkeløsning som inkluderer kurset – det kan være rimeligere.</p>
+      <p>Bare disse postene lander ofte på 12 000–15 000 kr. Og her er det ikke mye slingringsmonn, det er obligatorisk alt sammen.</p>
       
-      <h3>2. Teoriprøve</h3>
-      <p>550 kr. Unngå stryk ved å øve med prøveeksamener; hvert forsøk koster.</p>
+      <h2>Variabel kostnad: kjøretimer – den store joker'n</h2>
       
-      <h3>3. Kjøreopplæring</h3>
-      <p>Pris per time (45 min) ligger ofte mellom 800 og 1 200 kr. Planlegg for 20–30 timer hvis du ikke har mye privat øving.</p>
+      <p>Her varierer det mest. Noen tar lappen nesten uten ekstra timer, mens andre trenger tid på å bli trygge. Det handler ikke om intelligens; det handler om erfaring, stressnivå, trafikksans og noen ganger ren dagsform.</p>
       
-      <h3>4. Førerprøve</h3>
-      <p>1 890 kr. Husk at noen skoler tar leie av bil til oppkjøringen i tillegg.</p>
+      <p>For de fleste ligger dette på 10–20 ekstra timer, som gjerne betyr:</p>
       
-      <h3>5. Ekstrakostnader</h3>
       <ul>
-        <li>Leie av bil til oppkjøring (hvis ikke inkludert)</li>
-        <li>Påfyllstimer dersom du utsetter oppkjøring</li>
-        <li>Eventuelle gebyrer ved avbestilling av timer</li>
+        <li><strong>10 timer:</strong> ca. 8 000–10 000 kr</li>
+        <li><strong>20 timer:</strong> ca. 16 000–20 000 kr</li>
       </ul>
       
-      <h2>Prisdrivere du kan påvirke</h2>
-      <h3>Antall timer</h3>
-      <p>Jo bedre du forbereder deg privat, desto færre skoletimer trenger du. Øv på start/stopp, giring, observasjon og rundkjøringer.</p>
+      <p>Vil du redusere antallet? Øv privat – men øv riktig. Mange øver på det de allerede kan, og da blir det som å trene biceps hver dag uten å ta en eneste knebøy.</p>
       
-      <h3>Forberedelse til teori</h3>
-      <p>Bestå på første forsøk. Sett av 2–3 uker med daglig øving og bruk prøveeksamener.</p>
+      <h2>Skjulte kostnader mange glemmer</h2>
       
-      <h3>Tidspunkt</h3>
-      <p>Høysesong kan gi lengre ventetid og flere timer. Planlegg og reserver tidlig.</p>
+      <p>Her er de klassiske glemte utgiftene som plutselig dukker opp:</p>
       
-      <h2>Slik sparer du penger</h2>
-      <h3>1) Sammenlign tilbud</h3>
-      <p>Prisene varierer. Bruk Førerkortportalen for å få flere tilbud og sammenlign timepris, pakker og hva som er inkludert.</p>
-      
-      <h3>2) Pakkeløsninger</h3>
-      <p>Pakkene kan inkludere grunnkurs, x timer, teori- og førerprøve. Sjekk hva som faktisk er med, og om ekstra timer er rimelige.</p>
-      
-      <h3>3) Øv privat</h3>
-      <p>Med øvingspartner (over 25 år, 5 års førerrett) kan du redusere antall betalte timer. Husk L-skilt og god plan.</p>
-      
-      <h3>4) Spør om rabatter</h3>
-      <p>Studentrabatt, morgen-/dagtidsrabatt eller kampanjer kan finnes. Spør alltid.</p>
-      
-      <h3>5) Planlegg avbestilling</h3>
-      <p>Unngå gebyrer ved å avbestille innen frist. Ha kalenderpåminnelser.</p>
-      
-      <h2>Budsjettmal (eksempel)</h2>
       <ul>
-        <li>Grunnkurs: 4 000 kr</li>
-        <li>Teori: 550 kr</li>
-        <li>25 kjøretimer à 950 kr: 23 750 kr</li>
-        <li>Førerprøve: 1 890 kr</li>
-        <li>Utstedelse: 500 kr</li>
-        <li>Bøker/apper: 800 kr</li>
-      </ul>
-      <p><strong>Sum:</strong> ca. 31 490 kr. Med privat øving kan du kutte 5–10 timer og spare 5 000–10 000 kr.</p>
-      
-      <h2>Vanlige fallgruver (unngå ekstra kostnader)</h2>
-      <ul>
-        <li>For få øvingstimer privat – gir flere skoletimer.</li>
-        <li>Utsette oppkjøring – krever flere vedlikeholdstimer.</li>
-        <li>Stryk på teori – hvert forsøk koster.</li>
-        <li>Avbestillingsgebyr – glemte timer kan bli dyre.</li>
+        <li>Helseattest fra lege</li>
+        <li>Bompenger under kjøreskolekjøring</li>
+        <li>Teoribok eller app (f.eks. Teoritentamen)</li>
+        <li>Ekstra bilder til førerkortet</li>
+        <li>Ekstra oppkjøring hvis du stryker</li>
       </ul>
       
-      <h2>Hurtigsjekk før du bestiller</h2>
+      <p>Det er aldri gøy å få slike regninger "på tampen", men de dukker opp for de fleste.</p>
+      
+      <h2>Hvordan spare penger på førerkort i 2025</h2>
+      
+      <p>Du kan faktisk redusere kostnadene ganske mye:</p>
+      
       <ul>
-        <li>Er grunnkurs inkludert i pakken?</li>
-        <li>Hva koster ekstra timer?</li>
-        <li>Inkluderer pakken bil til oppkjøring?</li>
-        <li>Har skolen ledig kapasitet når du trenger det?</li>
+        <li><strong>Start med teorien tidlig.</strong> Du lærer raskere når du forstår reglene.</li>
+        <li><strong>Finn en skole med gode pakker.</strong> Mange kjøreskoler tilbyr rimeligere timespriser ved kjøp av klipppekort.</li>
+        <li><strong>Øv privat – men planlagt.</strong> Bruk godkjent ekstra speil, hold struktur, og unngå å "bare kjøre en tur".</li>
+        <li><strong>Unngå lange pauser.</strong> Mange mister flyten og ender opp med flere nye timer.</li>
       </ul>
       
-      <h2>Oppsummering</h2>
-      <p>Sett et realistisk budsjett, øv privat for å kutte timebehovet, og sammenlign flere skoler. Med god planlegging kan du få et solid førerkortløp uten å betale mer enn nødvendig.</p>
+      <p>Kjøreopplæring er litt som trening: kontinuitet slår alt.</p>
+      
+      <h2>Hva koster førerkort i ulike byer?</h2>
+      
+      <p>Prisene varierer faktisk mer enn mange tror:</p>
+      
+      <ul>
+        <li><strong>Oslo:</strong> Høyest pris – høy etterspørsel, dyrt å drive skole.</li>
+        <li><strong>Bergen & Trondheim:</strong> Litt rimeligere, men fortsatt høyt nivå.</li>
+        <li><strong>Mindre byer og distrikter:</strong> Lavest pris – ofte mindre trafikk og lavere kostnader.</li>
+      </ul>
+      
+      <p>Noen drar faktisk "på førerkortutveksling" til mindre steder for å spare penger. Det er ikke alltid praktisk, men økonomisk kan det være smart.</p>
+      
+      <h2>Hva bør du se etter i en kjøreskole?</h2>
+      
+      <p>Pris er viktig, men ikke alt. En god lærer kan redusere timeforbruket dramatisk. Sjekk:</p>
+      
+      <ul>
+        <li>Omdømme på Google</li>
+        <li>Hvor tydelige de er om forventet timebruk</li>
+        <li>Om læreren virker trygg og rolig</li>
+        <li>Om skolen tilbyr pakkeløsninger</li>
+      </ul>
+      
+      <p>Dynamikken mellom elev og lærer betyr mer enn man tror. En trygg elev lærer fortere.</p>
+      
+      <h2>Så hva må du regne med i 2025?</h2>
+      
+      <p>Kort fortalt: de fleste betaler 30 000–40 000 kr for førerkort klasse B i 2025. Det kan være litt mer, litt mindre, men dette er det mest realistiske snittet.</p>
+      
+      <p>Hvis du planlegger godt og er disiplinert med øvelseskjøring, kan du spare mye. Og husk – målet er ikke bare å få lappen, men å bli en trygg sjåfør som faktisk mestrer veien.</p>
     `,
   },
   "5": {
