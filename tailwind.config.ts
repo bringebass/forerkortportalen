@@ -48,6 +48,9 @@ const config: Config = {
           700: "#3942b0",
           800: "#2c348c",
           900: "#252c72",
+          primary: "#3bb54a", // Main brand green color
+          "primary-dark": "#2d8f3d", // Darker green for hover
+          "primary-darker": "#0A6F50", // Even darker green
         },
         accent: {
           50: "#f0fdfa",

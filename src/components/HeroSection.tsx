@@ -42,9 +42,10 @@ const heroHighlights = [
 //   "bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"  - Purple-pink gradient
 //   "bg-gradient-to-br from-teal-900 to-cyan-800"                    - Teal-cyan gradient
 //   "bg-gradient-to-br from-violet-900 to-purple-900"                - Violet-purple gradient
+//   "bg-slate-900"                                                   - Dark blue for form
 // ============================================
 const MOBILE_FORM_BG = "bg-gradient-to-br from-slate-900 to-slate-600"; // Visible mobile form background - gradient with white text
-const MOBILE_FULLSCREEN_BG = "bg-slate-900"; // Fullscreen overlay background - use solid color for seamless look
+const MOBILE_FULLSCREEN_BG = "bg-gradient-to-br from-slate-900 to-slate-600"; // Fullscreen overlay background - use solid color for seamless look
 
 
 interface HeroSectionProps {

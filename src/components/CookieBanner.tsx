@@ -2,27 +2,61 @@
 
 import { useState, useEffect } from "react";
 import Script from "next/script";
-import { X } from "lucide-react";
+import { X, Settings } from "lucide-react";
 
 const COOKIE_CONSENT_KEY = "cookie-consent-accepted";
+const COOKIE_CATEGORIES_KEY = "cookie-categories";
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
+
+type CookieCategory = {
+  id: string;
+  name: string;
+  description: string;
+  required: boolean;
+};
+
+const COOKIE_CATEGORIES: CookieCategory[] = [
+  {
+    id: "necessary",
+    name: "Strengt nødvendig",
+    description: "Disse cookies er nødvendige for at nettstedet skal fungere og kan ikke deaktiveres.",
+    required: true,
+  },
+  {
+    id: "performance",
+    name: "Ytelse",
+    description: "Disse cookies hjelper oss å forstå hvordan besøkende bruker nettstedet ved å samle anonym informasjon.",
+    required: false,
+  },
+];
 
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   const [hasAccepted, setHasAccepted] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState<Record<string, boolean>>({
+    necessary: true, // Always selected and disabled
+    performance: false,
+  });
 
   useEffect(() => {
     // Check if user has already accepted cookies
     if (typeof window !== "undefined") {
       const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+      const categories = localStorage.getItem(COOKIE_CATEGORIES_KEY);
+      
       if (consent === "true") {
         setHasAccepted(true);
-        // Initialize GA if already accepted
-        if (GA_MEASUREMENT_ID && window.gtag) {
-          window.gtag("consent", "update", {
-            analytics_storage: "granted",
-          });
+        // Load saved categories
+        if (categories) {
+          try {
+            setSelectedCategories(JSON.parse(categories));
+          } catch (e) {
+            // Use defaults if parsing fails
+          }
         }
+        // Initialize GA if already accepted
+        updateGoogleAnalytics(categories ? JSON.parse(categories) : selectedCategories);
       } else {
         // Small delay to ensure page has rendered
         setTimeout(() => {
@@ -32,27 +66,62 @@ export default function CookieBanner() {
     }
   }, []);
 
-  const handleAccept = () => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem(COOKIE_CONSENT_KEY, "true");
-      setShowBanner(false);
-      setHasAccepted(true);
-      
-      // Initialize Google Analytics after acceptance
-      if (GA_MEASUREMENT_ID && window.gtag) {
-        window.gtag("consent", "update", {
-          analytics_storage: "granted",
-        });
-      }
+  const updateGoogleAnalytics = (categories: Record<string, boolean>) => {
+    if (GA_MEASUREMENT_ID && window.gtag) {
+      const analyticsGranted = categories.performance === true;
+      window.gtag("consent", "update", {
+        analytics_storage: analyticsGranted ? "granted" : "denied",
+      });
     }
   };
 
-  // Load Google Analytics script (will be blocked until consent is granted)
-  const shouldLoadGA = hasAccepted && GA_MEASUREMENT_ID;
+  const handleCategoryChange = (categoryId: string, checked: boolean) => {
+    // Prevent unchecking necessary cookies
+    if (categoryId === "necessary") return;
+    
+    setSelectedCategories((prev) => ({
+      ...prev,
+      [categoryId]: checked,
+    }));
+  };
+
+  const handleAcceptAll = () => {
+    const allAccepted = {
+      necessary: true,
+      performance: true,
+    };
+    saveConsent(allAccepted);
+  };
+
+  const handleRejectAll = () => {
+    // Only accept necessary cookies
+    const onlyNecessary = {
+      necessary: true,
+      performance: false,
+    };
+    saveConsent(onlyNecessary);
+  };
+
+  const handleSavePreferences = () => {
+    saveConsent(selectedCategories);
+  };
+
+  const saveConsent = (categories: Record<string, boolean>) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(COOKIE_CONSENT_KEY, "true");
+      localStorage.setItem(COOKIE_CATEGORIES_KEY, JSON.stringify(categories));
+      setShowBanner(false);
+      setHasAccepted(true);
+      setSelectedCategories(categories);
+      
+      // Update Google Analytics consent
+      updateGoogleAnalytics(categories);
+    }
+  };
 
   return (
     <>
-      {/* Google Analytics - Equivalent to the standard gtag.js snippet */}
+      {/* Google Analytics - Load script, but block tracking until consent is granted */}
       {GA_MEASUREMENT_ID && (
         <>
           <Script
@@ -70,11 +139,21 @@ export default function CookieBanner() {
                 
                 // Check if user has already accepted cookies
                 const hasAccepted = localStorage.getItem('${COOKIE_CONSENT_KEY}') === 'true';
+                const categoriesJson = localStorage.getItem('${COOKIE_CATEGORIES_KEY}');
+                let categories = { necessary: true, performance: false };
+                
+                if (categoriesJson) {
+                  try {
+                    categories = JSON.parse(categoriesJson);
+                  } catch (e) {
+                    // Use defaults
+                  }
+                }
                 
                 // Configure GA with consent mode
                 gtag('config', '${GA_MEASUREMENT_ID}', {
                   page_path: window.location.pathname,
-                  analytics_storage: hasAccepted ? 'granted' : 'denied'
+                  analytics_storage: categories.performance === true ? 'granted' : 'denied'
                 });
               `,
             }}
@@ -90,38 +169,103 @@ export default function CookieBanner() {
           aria-label="Cookie-samtykke"
         >
           <div className="mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6">
-          <div className="bg-white border border-slate-200 rounded-xl shadow-lg p-3.5 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-            {/* Content */}
-            <div className="flex-1 text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <p>
-                Vi bruker cookies for å forbedre opplevelsen din og analysere trafikken.{" "}
+            <div className="bg-white border border-slate-200 rounded-xl shadow-lg p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900">
+                  Dette nettstedet bruker informasjonskapsler
+                </h2>
+                <button
+                  onClick={() => setShowBanner(false)}
+                  className="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors flex-shrink-0"
+                  aria-label="Lukk"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Description */}
+              <p className="text-sm sm:text-base text-slate-700 mb-6 leading-relaxed">
+                Vi bruker informasjonskapsler for å tilpasse innhold, annonser og analysere trafikken vår. 
+                Vi deler også informasjon om din bruk av nettstedet vårt med våre annonserings- og analysepartnere 
+                som kan kombinere den med annen informasjon du har gitt dem eller som de har samlet inn fra din bruk av tjenestene deres.{" "}
                 <a
                   href="/personvern"
                   className="text-[#3bb54a] hover:text-emerald-600 underline font-medium transition"
                 >
-                  Les mer
+                  Personvernerklæring
                 </a>
                 .
               </p>
-            </div>
 
-            {/* Actions */}
-            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto flex-shrink-0">
+              {/* Cookie Categories */}
+              {showDetails && (
+                <div className="mb-6 space-y-4">
+                  {COOKIE_CATEGORIES.map((category) => (
+                    <div key={category.id} className="flex items-start gap-3">
+                      <div className="flex items-center pt-0.5">
+                        <input
+                          type="checkbox"
+                          id={`cookie-${category.id}`}
+                          checked={selectedCategories[category.id] || false}
+                          onChange={(e) => handleCategoryChange(category.id, e.target.checked)}
+                          disabled={category.required}
+                          className={`h-5 w-5 rounded border-slate-300 text-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a] ${
+                            category.required ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+                          }`}
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <label
+                          htmlFor={`cookie-${category.id}`}
+                          className={`text-sm sm:text-base font-semibold text-slate-900 block mb-1 ${
+                            category.required ? "cursor-not-allowed" : "cursor-pointer"
+                          }`}
+                        >
+                          {category.name}
+                        </label>
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                          {category.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <button
+                  onClick={handleAcceptAll}
+                  className="px-5 py-2.5 sm:px-6 sm:py-3 bg-[#3bb54a] text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors text-sm sm:text-base whitespace-nowrap shadow-sm"
+                >
+                  Godta alle
+                </button>
+                <button
+                  onClick={handleRejectAll}
+                  className="px-5 py-2.5 sm:px-6 sm:py-3 bg-white border-2 border-slate-300 text-slate-900 font-semibold rounded-lg hover:bg-slate-50 transition-colors text-sm sm:text-base whitespace-nowrap"
+                >
+                  Avvis alle
+                </button>
+                {showDetails && (
+                  <button
+                    onClick={handleSavePreferences}
+                    className="px-5 py-2.5 sm:px-6 sm:py-3 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors text-sm sm:text-base whitespace-nowrap"
+                  >
+                    Lagre innstillinger
+                  </button>
+                )}
+              </div>
+
+              {/* Show Details Link */}
               <button
-                onClick={handleAccept}
-                className="px-4 py-2 sm:px-5 sm:py-2.5 bg-[#3bb54a] text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors text-xs sm:text-sm whitespace-nowrap shadow-sm"
+                onClick={() => setShowDetails(!showDetails)}
+                className="mt-4 flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors mx-auto"
               >
-                Aksepter
-              </button>
-              <button
-                onClick={handleAccept}
-                className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors flex-shrink-0"
-                aria-label="Lukk"
-              >
-                <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                <Settings className="h-4 w-4" />
+                {showDetails ? "Skjul detaljer" : "Vis detaljer"}
               </button>
             </div>
-          </div>
           </div>
         </div>
       )}

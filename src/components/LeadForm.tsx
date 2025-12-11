@@ -5,6 +5,11 @@ import { useRouter, usePathname } from "next/navigation";
 import { Shield } from "lucide-react";
 import { useFormContext, FormState } from "@/contexts/FormContext";
 
+// Brand colors - Change these to update form colors
+const BRAND_COLOR = "#3bb54a"; // Primary green color
+const BRAND_COLOR_DARK = "#2d8f3d"; // Darker green for hover states
+const BRAND_COLOR_LIGHT = "#0A6F50"; // Even darker for some hover states
+
 const mainLicenseOptions = [
   { value: "B_AUT", label: "B automat" },
   { value: "B", label: "B manuell" },
@@ -196,14 +201,14 @@ export function LeadForm({
           }
           
           // Apply focus styles with !important
-          element.style.setProperty('border-color', '#3bb54a', 'important');
+          element.style.setProperty('border-color', BRAND_COLOR, 'important');
           element.style.setProperty('outline', '2px solid rgba(59, 181, 74, 0.2)', 'important');
           element.style.setProperty('outline-offset', '2px', 'important');
           element.style.setProperty('box-shadow', '0 0 0 2px rgba(59, 181, 74, 0.2)', 'important');
           
           // Ensure caret is visible and green
           if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
-            element.style.setProperty('caret-color', '#3bb54a', 'important');
+            element.style.setProperty('caret-color', BRAND_COLOR, 'important');
           }
           
           // Add class for CSS support
