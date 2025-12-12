@@ -495,17 +495,9 @@ const countryCodes = [
       
       // Track lead form submission in Google Analytics
       // Using the service is considered implicit consent, so we track regardless of banner acceptance
-      if (typeof window !== "undefined" && window.gtag) {
-        // Update consent to granted since user is using the service (implicit consent)
-        window.gtag("consent", "update", {
-          analytics_storage: "granted",
-        });
-        
-        // Also save to localStorage for future visits
-        localStorage.setItem("cookie-consent-accepted", "true");
-        
-        // Track form submission event with detailed information
-        window.gtag("event", "form_submission", {
+      if (typeof window !== "undefined") {
+        // Prepare event data
+        const eventData = {
           event_category: "Lead Form",
           event_label: "Lead Submitted",
           value: 1,
@@ -515,11 +507,37 @@ const countryCodes = [
           intensive_course: formData.intensiveCourse,
           additional_info: formData.additionalInfo || "",
           source_page: pathname || window.location.pathname,
-        });
+        };
+        
+        // Update consent to granted since user is using the service (implicit consent)
+        if (window.gtag) {
+          window.gtag("consent", "update", {
+            analytics_storage: "granted",
+          });
+        }
+        
+        // Also save to localStorage for future visits
+        localStorage.setItem("cookie-consent-accepted", "true");
+        
+        // Push to dataLayer first (most reliable)
+        if (window.dataLayer) {
+          window.dataLayer.push({
+            event: "form_submission",
+            ...eventData,
+          });
+          console.log("[GA Event] form_submission", { event: "form_submission", ...eventData });
+        }
+        
+        // Also send via gtag if available
+        if (window.gtag) {
+          window.gtag("event", "form_submission", eventData);
+        }
       }
       
-      // Redirect immediately to success page
-      router.push("/takk");
+      // Small delay to ensure event is sent before redirect
+      setTimeout(() => {
+        router.push("/takk");
+      }, 300);
     } catch (error) {
       console.error("Lead form submission failed", error);
       setStatus("error");
