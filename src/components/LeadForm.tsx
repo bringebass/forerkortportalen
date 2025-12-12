@@ -328,8 +328,19 @@ export function LeadForm({
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
   // Helper function to track events - works even if gtag isn't ready yet
+  // Use a ref to track if we've already tracked form_start to prevent double logging
+  const hasTrackedFormStartRef = useRef(false);
+
   const trackEvent = useCallback((eventName: string, eventParams: Record<string, unknown>) => {
     if (typeof window === "undefined") return;
+    
+    // For form_start, only track once
+    if (eventName === "form_start" && hasTrackedFormStartRef.current) {
+      return;
+    }
+    if (eventName === "form_start") {
+      hasTrackedFormStartRef.current = true;
+    }
     
     // Prepare event data for GA4
     const eventData = {
@@ -367,18 +378,17 @@ export function LeadForm({
 
   // Track form start when user first interacts
   useEffect(() => {
-    if (currentStep > 0 || formData.postalCode) {
-      if (!hasStartedFormRef.current) {
-        hasStartedFormRef.current = true;
-        // Track form start
-        trackEvent("form_start", {
-          event_category: "Lead Form",
-          event_label: "Form Started",
-          source_page: pathname || window.location?.pathname || "",
-        });
-      }
+    // Only track if form was actually started (user interaction happened)
+    if ((currentStep > 0 || formData.postalCode) && !hasStartedFormRef.current) {
+      hasStartedFormRef.current = true;
+      // Track form start
+      trackEvent("form_start", {
+        event_category: "Lead Form",
+        event_label: "Form Started",
+        source_page: pathname || window.location?.pathname || "",
+      });
     }
-  }, [currentStep, formData.postalCode, pathname]);
+  }, [currentStep, formData.postalCode, pathname, trackEvent]);
 
   // Track form abandonment - use refs to avoid triggering on step changes
   const previousPathnameRef = useRef(pathname);
@@ -407,14 +417,19 @@ export function LeadForm({
       hasTrackedAbandonmentRef.current = true;
       const stepTypeForAbandonment = getCurrentStepType(abandonmentStepRef.current);
       
-      trackEvent("form_abandoned", {
+      const abandonmentData = {
         event_category: "Lead Form",
         event_label: "Form Abandoned",
         step_number: abandonmentStepRef.current + 1,
         step_name: stepTypeForAbandonment,
         total_steps: abandonmentTotalStepsRef.current,
         source_page: previousPathname || window.location?.pathname || "",
-      });
+      };
+      
+      // Log to console with a persistent message
+      console.log(`[GA Event] form_abandoned - Navigation from ${previousPathname} to ${pathname}`, abandonmentData);
+      
+      trackEvent("form_abandoned", abandonmentData);
     }
     
     previousPathnameRef.current = pathname;
