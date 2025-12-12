@@ -128,6 +128,7 @@ export function LeadForm({
   const formContainerRef = useRef<HTMLDivElement>(null);
   const hasStartedFormRef = useRef(false);
   const hasTrackedAbandonmentRef = useRef(false);
+  const hasTrackedFormStartRef = useRef(false);
 
   // Set background color immediately when desktop focused to prevent flash
   useLayoutEffect(() => {
@@ -328,18 +329,13 @@ export function LeadForm({
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
   // Helper function to track events - works even if gtag isn't ready yet
-  // Use a ref to track if we've already tracked form_start to prevent double logging
-  const hasTrackedFormStartRef = useRef(false);
-
   const trackEvent = useCallback((eventName: string, eventParams: Record<string, unknown>) => {
     if (typeof window === "undefined") return;
     
-    // For form_start, only track once
+    // Safety check: Prevent duplicate form_start events
+    // (Main check should be in useEffect, this is just a safety net)
     if (eventName === "form_start" && hasTrackedFormStartRef.current) {
       return;
-    }
-    if (eventName === "form_start") {
-      hasTrackedFormStartRef.current = true;
     }
     
     // Prepare event data for GA4
@@ -379,8 +375,17 @@ export function LeadForm({
   // Track form start when user first interacts
   useEffect(() => {
     // Only track if form was actually started (user interaction happened)
-    if ((currentStep > 0 || formData.postalCode) && !hasStartedFormRef.current) {
+    if (currentStep > 0 || formData.postalCode) {
+      // Set ref FIRST to prevent race conditions (React Strict Mode can run effects twice)
+      // If ref is already set, skip tracking (atomic check-and-set)
+      if (hasTrackedFormStartRef.current) {
+        return;
+      }
+      
+      // Mark as started and tracked BEFORE calling trackEvent to prevent double tracking
       hasStartedFormRef.current = true;
+      hasTrackedFormStartRef.current = true;
+      
       // Track form start
       trackEvent("form_start", {
         event_category: "Lead Form",
