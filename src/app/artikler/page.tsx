@@ -15,10 +15,10 @@ import StickyMobileCTA from "@/components/StickyMobileCTA";
 const articles = [
   {
     id: 1,
-    title: "Hvordan velge riktig trafikkskole",
-    excerpt: "Lær hva du bør se etter når du velger trafikkskole, og få tips om hvordan du kan sammenligne tilbud.",
-    date: "15. januar 2024",
-    readTime: "5 min lesing",
+    title: "Billigste måte å ta førerkort på – myter vs. fakta (2025-guide)",
+    excerpt: "En ærlig guide som rydder opp i myter om billig førerkort. Lær hva som faktisk sparer deg penger og hva som bare høres lure ut.",
+    date: "20. januar 2025",
+    readTime: "10 min lesing",
     category: "Guider",
     image: "/Article-photo1.png",
   },

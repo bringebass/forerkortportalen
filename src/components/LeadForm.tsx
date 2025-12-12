@@ -358,8 +358,19 @@ export function LeadForm({
       target instanceof HTMLInputElement && target.type === "checkbox";
 
     // Track form start when user first interacts (only once)
+    // Using the service is considered implicit consent, so we track regardless of banner acceptance
     if (!hasTrackedFormStartRef.current && typeof window !== "undefined") {
       hasTrackedFormStartRef.current = true;
+      
+      // Update consent to granted since user is using the service (implicit consent)
+      if (window.gtag) {
+        window.gtag("consent", "update", {
+          analytics_storage: "granted",
+        });
+      }
+      
+      // Also save to localStorage for future visits
+      localStorage.setItem("cookie-consent-accepted", "true");
       
       const eventData = {
         event_category: "Lead Form",
@@ -367,18 +378,13 @@ export function LeadForm({
         source_page: pathname || window.location?.pathname || "",
       };
       
-      // Push to dataLayer first (most reliable)
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          event: "form_start",
-          ...eventData,
-        });
-        console.log("[GA Event] form_start", { event: "form_start", ...eventData });
-      }
-      
-      // Also send via gtag if available
+      // Send event via gtag (standard GA4 method)
+      // Note: gtag internally uses dataLayer.push(), so we only need to call gtag
       if (window.gtag) {
         window.gtag("event", "form_start", eventData);
+        console.log("[GA Event] form_start", eventData);
+      } else {
+        console.warn("[GA Warning] gtag not available for form_start");
       }
     }
 
@@ -548,18 +554,13 @@ const countryCodes = [
         // Also save to localStorage for future visits
         localStorage.setItem("cookie-consent-accepted", "true");
         
-        // Push to dataLayer first (most reliable)
-        if (window.dataLayer) {
-          window.dataLayer.push({
-            event: "form_submission",
-            ...eventData,
-          });
-          console.log("[GA Event] form_submission", { event: "form_submission", ...eventData });
-        }
-        
-        // Also send via gtag if available
+        // Send event via gtag (standard GA4 method)
+        // Note: gtag internally uses dataLayer.push(), so we only need to call gtag
         if (window.gtag) {
           window.gtag("event", "form_submission", eventData);
+          console.log("[GA Event] form_submission", eventData);
+        } else {
+          console.warn("[GA Warning] gtag not available for form_submission");
         }
       }
       

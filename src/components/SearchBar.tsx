@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 const articles = [
   {
     id: 1,
-    title: "Hvordan velge riktig trafikkskole",
-    excerpt: "Lær hva du bør se etter når du velger trafikkskole, og få tips om hvordan du kan sammenligne tilbud.",
+    title: "Billigste måte å ta førerkort på – myter vs. fakta (2025-guide)",
+    excerpt: "En ærlig guide som rydder opp i myter om billig førerkort. Lær hva som faktisk sparer deg penger og hva som bare høres lure ut.",
     category: "Guider",
     href: "/artikler/1",
   },

@@ -41,8 +41,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articlePages = [
     {
       id: 1,
-      title: 'Hvordan velge riktig trafikkskole',
-      date: '2024-01-15',
+      title: 'Billigste måte å ta førerkort på – myter vs. fakta (2025-guide)',
+      date: '2025-01-20',
     },
     {
       id: 2,
