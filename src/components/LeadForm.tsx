@@ -126,6 +126,7 @@ export function LeadForm({
   const focusedInputIdRef = useRef<string | null>(null);
   const postalCodeInputRef = useRef<HTMLInputElement>(null);
   const formContainerRef = useRef<HTMLDivElement>(null);
+  const hasStartedFormRef = useRef(false);
 
   // Set background color immediately when desktop focused to prevent flash
   useLayoutEffect(() => {
@@ -325,6 +326,43 @@ export function LeadForm({
   const currentStepType = getCurrentStepType(currentStep);
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
+  // Track form start when user first interacts
+  useEffect(() => {
+    if (currentStep > 0 || formData.postalCode) {
+      if (!hasStartedFormRef.current) {
+        hasStartedFormRef.current = true;
+        // Track form start
+        if (typeof window !== "undefined" && window.gtag) {
+          window.gtag("event", "form_started", {
+            event_category: "Lead Form",
+            event_label: "Form Started",
+            source_page: pathname || window.location.pathname,
+          });
+        }
+      }
+    }
+  }, [currentStep, formData.postalCode, pathname]);
+
+  // Track form abandonment when component unmounts or user navigates away
+  useEffect(() => {
+    const currentStepTypeForAbandonment = getCurrentStepType(currentStep);
+    const totalStepsForAbandonment = totalSteps;
+    
+    return () => {
+      // Only track abandonment if form was started but not completed
+      if (hasStartedFormRef.current && status !== "success" && typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "form_abandoned", {
+          event_category: "Lead Form",
+          event_label: "Form Abandoned",
+          step_number: currentStep + 1,
+          step_name: currentStepTypeForAbandonment,
+          total_steps: totalStepsForAbandonment,
+          source_page: pathname || window.location.pathname,
+        });
+      }
+    };
+  }, [currentStep, status, pathname, totalSteps, getCurrentStepType]);
+
   // Create STEP_CONFIG with dynamic postalCode question
   const STEP_CONFIG = useMemo(() => ({
     postalCode: {
@@ -425,7 +463,21 @@ const countryCodes = [
   const handleBack = () => {
     if (currentStep === 0 || status === "loading") return;
     setStepError(null);
-    setCurrentStep((prev) => prev - 1);
+    const previousStep = currentStep - 1;
+    setCurrentStep(previousStep);
+    
+    // Track step navigation (back)
+    if (typeof window !== "undefined" && window.gtag) {
+      const currentStepTypeName = getCurrentStepType(previousStep);
+      window.gtag("event", "form_step_navigation", {
+        event_category: "Lead Form",
+        event_label: "Step Back",
+        step_number: previousStep + 1,
+        step_name: currentStepTypeName,
+        total_steps: totalSteps,
+        source_page: pathname || window.location.pathname,
+      });
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -451,7 +503,22 @@ const countryCodes = [
 
     if (currentStep < totalSteps - 1) {
       setStepError(null);
-      setCurrentStep((prev) => prev + 1);
+      const nextStep = currentStep + 1;
+      setCurrentStep(nextStep);
+      
+      // Track step progression
+      if (typeof window !== "undefined" && window.gtag) {
+        const nextStepTypeName = getCurrentStepType(nextStep);
+        window.gtag("event", "form_step_progression", {
+          event_category: "Lead Form",
+          event_label: "Step Forward",
+          step_number: nextStep + 1,
+          step_name: nextStepTypeName,
+          total_steps: totalSteps,
+          source_page: pathname || window.location.pathname,
+        });
+      }
+      
       return;
     }
 
@@ -489,6 +556,16 @@ const countryCodes = [
 
       setStatus("success");
       setStepError(null);
+      
+      // Track successful form completion
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "form_completed", {
+          event_category: "Lead Form",
+          event_label: "Form Completed",
+          total_steps: totalSteps,
+          source_page: pathname || window.location.pathname,
+        });
+      }
       
       // Track lead form submission in Google Analytics
       // Using the service is considered implicit consent, so we track regardless of banner acceptance
