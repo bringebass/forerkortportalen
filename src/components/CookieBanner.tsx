@@ -151,9 +151,11 @@ export default function CookieBanner() {
                 }
                 
                 // Configure GA with consent mode
+                // Using implicit consent: visiting/using the site is considered consent
+                // So we default to 'granted' for analytics_storage
                 gtag('config', '${GA_MEASUREMENT_ID}', {
                   page_path: window.location.pathname,
-                  analytics_storage: categories.performance === true ? 'granted' : 'denied'
+                  analytics_storage: 'granted'
                 });
               `,
             }}
