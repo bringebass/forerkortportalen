@@ -118,33 +118,44 @@ export default function CookieBanner() {
 
   return (
     <>
-      {/* Google Analytics - Load script, but block tracking until consent is granted */}
+      {/* Google Analytics - Set consent FIRST (before GA script loads) */}
       {GA_MEASUREMENT_ID && (
         <>
+          {/* Step 1: Set default consent mode BEFORE loading GA script */}
           <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          />
-          <Script
-            id="google-analytics"
-            strategy="afterInteractive"
+            id="ga-consent"
+            strategy="beforeInteractive"
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                
-                // Set consent mode FIRST (before config)
-                // Using implicit consent: visiting/using the site is considered consent
-                // Analytics is ALWAYS granted - cookie banner is only for UI, not for blocking tracking
+                window.gtag = gtag;
+                // Set consent mode FIRST - using implicit consent: visiting site = consent
+                // Analytics is ALWAYS granted - cookie banner is only for UI display
                 gtag('consent', 'default', {
-                  analytics_storage: 'granted'
+                  'analytics_storage': 'granted'
                 });
-                
-                // Configure GA with granted consent
-                gtag('config', '${GA_MEASUREMENT_ID}', {
-                  page_path: window.location.pathname
-                });
+              `,
+            }}
+          />
+          {/* Step 2: Load GA script */}
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          />
+          {/* Step 3: Configure GA (runs after GA script loads) */}
+          <Script
+            id="google-analytics-config"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                // The GA script should have loaded and defined gtag by now
+                if (typeof gtag !== 'undefined') {
+                  gtag('js', new Date());
+                  gtag('config', '${GA_MEASUREMENT_ID}', {
+                    page_path: window.location.pathname
+                  });
+                }
               `,
             }}
           />
