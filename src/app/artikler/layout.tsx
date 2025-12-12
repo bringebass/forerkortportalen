@@ -32,3 +32,4 @@ export default function ArtiklerLayout({
   return children;
 }
 
+

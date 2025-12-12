@@ -126,9 +126,6 @@ export function LeadForm({
   const focusedInputIdRef = useRef<string | null>(null);
   const postalCodeInputRef = useRef<HTMLInputElement>(null);
   const formContainerRef = useRef<HTMLDivElement>(null);
-  const hasStartedFormRef = useRef(false);
-  const hasTrackedAbandonmentRef = useRef(false);
-  const hasTrackedFormStartRef = useRef(false);
 
   // Set background color immediately when desktop focused to prevent flash
   useLayoutEffect(() => {
@@ -328,172 +325,6 @@ export function LeadForm({
   const currentStepType = getCurrentStepType(currentStep);
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
-  // Helper function to track events - works even if gtag isn't ready yet
-  const trackEvent = useCallback((eventName: string, eventParams: Record<string, unknown>) => {
-    if (typeof window === "undefined") return;
-    
-    // Safety check: Prevent duplicate form_start events
-    // (Main check should be in useEffect, this is just a safety net)
-    if (eventName === "form_start" && hasTrackedFormStartRef.current) {
-      return;
-    }
-    
-    // Prepare event data for GA4
-    const eventData = {
-      event: eventName,
-      ...eventParams,
-    };
-    
-    // Always push to dataLayer first (works immediately and is most reliable)
-    if (window.dataLayer) {
-      window.dataLayer.push(eventData);
-      console.log(`[GA Event] ${eventName}`, eventData);
-    }
-    
-    // Also send via gtag (GA4 standard format)
-    if (window.gtag) {
-      // Extract standard GA4 parameters
-      const {
-        event_category,
-        event_label,
-        value,
-        ...customParams
-      } = eventParams;
-      
-      const gtagParams: Record<string, unknown> = {};
-      if (event_category) gtagParams.event_category = event_category;
-      if (event_label) gtagParams.event_label = event_label;
-      if (value !== undefined) gtagParams.value = value;
-      
-      // Add all custom parameters
-      Object.assign(gtagParams, customParams);
-      
-      window.gtag("event", eventName, gtagParams);
-    }
-  }, []);
-
-  // Track form start when user first interacts
-  useEffect(() => {
-    // Only track if form was actually started (user interaction happened)
-    if (currentStep > 0 || formData.postalCode) {
-      // Set ref FIRST to prevent race conditions (React Strict Mode can run effects twice)
-      // If ref is already set, skip tracking (atomic check-and-set)
-      if (hasTrackedFormStartRef.current) {
-        return;
-      }
-      
-      // Mark as started and tracked BEFORE calling trackEvent to prevent double tracking
-      hasStartedFormRef.current = true;
-      hasTrackedFormStartRef.current = true;
-      
-      // Track form start
-      trackEvent("form_start", {
-        event_category: "Lead Form",
-        event_label: "Form Started",
-        source_page: pathname || window.location?.pathname || "",
-      });
-    }
-  }, [currentStep, formData.postalCode, pathname, trackEvent]);
-
-  // Track form abandonment - use refs to avoid triggering on step changes
-  const previousPathnameRef = useRef(pathname);
-  const abandonmentStepRef = useRef(currentStep);
-  const abandonmentTotalStepsRef = useRef(totalSteps);
-
-  // Update refs when values change (for use in abandonment tracking)
-  useEffect(() => {
-    abandonmentStepRef.current = currentStep;
-    abandonmentTotalStepsRef.current = totalSteps;
-  }, [currentStep, totalSteps]);
-
-  // Detect navigation away from form page (pathname change)
-  useEffect(() => {
-    const previousPathname = previousPathnameRef.current;
-    
-    // If pathname changed and form was started, track abandonment
-    // Only track if we're actually navigating to a different page (not same page)
-    if (
-      previousPathname && 
-      previousPathname !== pathname && 
-      hasStartedFormRef.current && 
-      status !== "success" && 
-      !hasTrackedAbandonmentRef.current
-    ) {
-      hasTrackedAbandonmentRef.current = true;
-      const stepTypeForAbandonment = getCurrentStepType(abandonmentStepRef.current);
-      
-      const abandonmentData = {
-        event_category: "Lead Form",
-        event_label: "Form Abandoned",
-        step_number: abandonmentStepRef.current + 1,
-        step_name: stepTypeForAbandonment,
-        total_steps: abandonmentTotalStepsRef.current,
-        source_page: previousPathname || window.location?.pathname || "",
-      };
-      
-      // Log to console with a persistent message
-      console.log(`[GA Event] form_abandoned - Navigation from ${previousPathname} to ${pathname}`, abandonmentData);
-      
-      trackEvent("form_abandoned", abandonmentData);
-    }
-    
-    previousPathnameRef.current = pathname;
-  }, [pathname, status, trackEvent]);
-
-  // Track abandonment on page unload (user closes tab/window)
-  // This only handles browser close/refresh, not navigation (which is handled above)
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const handleBeforeUnload = () => {
-      // Only track if form was started and we haven't already tracked abandonment
-      // This prevents double-tracking since pathname change might also fire
-      if (hasStartedFormRef.current && status !== "success" && !hasTrackedAbandonmentRef.current) {
-        hasTrackedAbandonmentRef.current = true;
-        const stepTypeForAbandonment = getCurrentStepType(abandonmentStepRef.current);
-        
-        // Use sendBeacon for reliable tracking on page unload
-        const eventData = {
-          event: "form_abandoned",
-          event_category: "Lead Form",
-          event_label: "Form Abandoned",
-          step_number: abandonmentStepRef.current + 1,
-          step_name: stepTypeForAbandonment,
-          total_steps: abandonmentTotalStepsRef.current,
-          source_page: pathname || window.location?.pathname || "",
-        };
-        
-        // Push to dataLayer - this works even on page unload
-        if (window.dataLayer) {
-          window.dataLayer.push(eventData);
-        }
-        
-        // Use gtag with sendBeacon fallback for page unload
-        if (window.gtag) {
-          window.gtag("event", "form_abandoned", {
-            ...eventData,
-            send_to: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
-          });
-        }
-        
-        // Force send via navigator.sendBeacon if available (most reliable on unload)
-        if (navigator.sendBeacon && window.location) {
-          try {
-            const analyticsEndpoint = `https://www.google-analytics.com/g/collect?v=2&tid=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}&en=form_abandoned`;
-            navigator.sendBeacon(analyticsEndpoint);
-          } catch (e) {
-            // Ignore errors
-          }
-        }
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [status, pathname]);
 
   // Create STEP_CONFIG with dynamic postalCode question
   const STEP_CONFIG = useMemo(() => ({
@@ -597,17 +428,6 @@ const countryCodes = [
     setStepError(null);
     const previousStep = currentStep - 1;
     setCurrentStep(previousStep);
-    
-    // Track step navigation (back)
-    const currentStepTypeName = getCurrentStepType(previousStep);
-    trackEvent("form_step_back", {
-      event_category: "Lead Form",
-      event_label: "Step Back",
-      step_number: previousStep + 1,
-      step_name: currentStepTypeName,
-      total_steps: totalSteps,
-      source_page: pathname || window.location?.pathname || "",
-    });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -635,18 +455,6 @@ const countryCodes = [
       setStepError(null);
       const nextStep = currentStep + 1;
       setCurrentStep(nextStep);
-      
-      // Track step progression
-      const nextStepTypeName = getCurrentStepType(nextStep);
-      trackEvent("form_step_progression", {
-        event_category: "Lead Form",
-        event_label: "Step Forward",
-        step_number: nextStep + 1,
-        step_name: nextStepTypeName,
-        total_steps: totalSteps,
-        source_page: pathname || window.location?.pathname || "",
-      });
-      
       return;
     }
 
@@ -685,17 +493,6 @@ const countryCodes = [
       setStatus("success");
       setStepError(null);
       
-      // Mark that we've completed successfully (prevent abandonment tracking)
-      hasTrackedAbandonmentRef.current = true;
-      
-      // Track successful form completion
-      trackEvent("form_completed", {
-        event_category: "Lead Form",
-        event_label: "Form Completed",
-        total_steps: totalSteps,
-        source_page: pathname || window.location?.pathname || "",
-      });
-      
       // Track lead form submission in Google Analytics
       // Using the service is considered implicit consent, so we track regardless of banner acceptance
       if (typeof window !== "undefined" && window.gtag) {
@@ -707,8 +504,8 @@ const countryCodes = [
         // Also save to localStorage for future visits
         localStorage.setItem("cookie-consent-accepted", "true");
         
-        // Track form submission event with detailed information using trackEvent helper
-        trackEvent("form_submission", {
+        // Track form submission event with detailed information
+        window.gtag("event", "form_submission", {
           event_category: "Lead Form",
           event_label: "Lead Submitted",
           value: 1,
