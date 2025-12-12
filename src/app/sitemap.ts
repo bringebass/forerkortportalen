@@ -69,6 +69,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       title: 'Hva skjer etter at du har bestått prøven?',
       date: '2023-12-20',
     },
+    {
+      id: 7,
+      title: 'Er intensivkurs verdt det?',
+      date: '2025-01-25',
+    },
   ].map((article) => ({
     url: `${siteUrl}/artikler/${article.id}`,
     lastModified: new Date(article.date),

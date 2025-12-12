@@ -67,6 +67,15 @@ const articles = [
     category: "Etter opplæring",
     image: "/Article-photo6.png",
   },
+  {
+    id: 7,
+    title: "Er intensivkurs verdt det?",
+    excerpt: "En ærlig guide til når intensivkurs gir mening, når det kan bli unødvendig dyrt, og hva du bør vite før du melder deg på.",
+    date: "25. januar 2025",
+    readTime: "8 min lesing",
+    category: "Kursformer",
+    image: "/Article-photo3.png",
+  },
 ];
 
 export default function ArtiklerPage() {

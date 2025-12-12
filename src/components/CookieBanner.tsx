@@ -40,14 +40,15 @@ export default function CookieBanner() {
   });
 
   useEffect(() => {
-    // Check if user has already accepted cookies
+    // Check if user has already accepted cookies (only for showing/hiding banner)
+    // Note: Consent for analytics is ALWAYS granted (implicit consent - using site = consent)
     if (typeof window !== "undefined") {
       const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
       const categories = localStorage.getItem(COOKIE_CATEGORIES_KEY);
       
       if (consent === "true") {
         setHasAccepted(true);
-        // Load saved categories
+        // Load saved categories (only for banner display)
         if (categories) {
           try {
             setSelectedCategories(JSON.parse(categories));
@@ -55,8 +56,6 @@ export default function CookieBanner() {
             // Use defaults if parsing fails
           }
         }
-        // Initialize GA if already accepted
-        updateGoogleAnalytics(categories ? JSON.parse(categories) : selectedCategories);
       } else {
         // Small delay to ensure page has rendered
         setTimeout(() => {
@@ -67,12 +66,10 @@ export default function CookieBanner() {
   }, []);
 
   const updateGoogleAnalytics = (categories: Record<string, boolean>) => {
-    if (GA_MEASUREMENT_ID && window.gtag) {
-      const analyticsGranted = categories.performance === true;
-      window.gtag("consent", "update", {
-        analytics_storage: analyticsGranted ? "granted" : "denied",
-      });
-    }
+    // Note: This function is only for cookie banner preferences
+    // Analytics consent is ALWAYS granted (implicit consent - using site = consent)
+    // We don't actually update GA consent here since it's always granted
+    // This function exists only for compatibility with the banner UI
   };
 
   const handleCategoryChange = (categoryId: string, checked: boolean) => {
@@ -107,15 +104,15 @@ export default function CookieBanner() {
   };
 
   const saveConsent = (categories: Record<string, boolean>) => {
+    // Save consent preferences (only for banner display purposes)
+    // Note: Analytics consent is ALWAYS granted (implicit consent)
     if (typeof window !== "undefined") {
       localStorage.setItem(COOKIE_CONSENT_KEY, "true");
       localStorage.setItem(COOKIE_CATEGORIES_KEY, JSON.stringify(categories));
       setShowBanner(false);
       setHasAccepted(true);
       setSelectedCategories(categories);
-      
-      // Update Google Analytics consent
-      updateGoogleAnalytics(categories);
+      // No need to update GA consent - it's always granted
     }
   };
 
@@ -137,25 +134,16 @@ export default function CookieBanner() {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 
-                // Check if user has already accepted cookies
-                const hasAccepted = localStorage.getItem('${COOKIE_CONSENT_KEY}') === 'true';
-                const categoriesJson = localStorage.getItem('${COOKIE_CATEGORIES_KEY}');
-                let categories = { necessary: true, performance: false };
-                
-                if (categoriesJson) {
-                  try {
-                    categories = JSON.parse(categoriesJson);
-                  } catch (e) {
-                    // Use defaults
-                  }
-                }
-                
-                // Configure GA with consent mode
+                // Set consent mode FIRST (before config)
                 // Using implicit consent: visiting/using the site is considered consent
-                // So we default to 'granted' for analytics_storage
-                gtag('config', '${GA_MEASUREMENT_ID}', {
-                  page_path: window.location.pathname,
+                // Analytics is ALWAYS granted - cookie banner is only for UI, not for blocking tracking
+                gtag('consent', 'default', {
                   analytics_storage: 'granted'
+                });
+                
+                // Configure GA with granted consent
+                gtag('config', '${GA_MEASUREMENT_ID}', {
+                  page_path: window.location.pathname
                 });
               `,
             }}

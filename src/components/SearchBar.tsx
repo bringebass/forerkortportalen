@@ -49,6 +49,13 @@ const articles = [
     category: "Etter opplæring",
     href: "/artikler/6",
   },
+  {
+    id: 7,
+    title: "Er intensivkurs verdt det?",
+    excerpt: "En ærlig guide til når intensivkurs gir mening, når det kan bli unødvendig dyrt, og hva du bør vite før du melder deg på.",
+    category: "Kursformer",
+    href: "/artikler/7",
+  },
 ];
 
 // Import FAQ data

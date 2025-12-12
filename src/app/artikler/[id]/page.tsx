@@ -579,7 +579,7 @@ export const articles: Record<string, {
           Førerkort er en betydelig investering, men med god planlegging kan du holde kostnadene under kontroll.
         </figcaption>
       </figure>
-      
+
       <h2>Hvorfor er førerkort så dyrt i Norge?</h2>
       
       <p>Du har kanskje hørt folk si at det er nesten dyrere å ta lappen enn å kjøpe en brukt bil. Og ja, det kan det være. Men grunnen er egentlig ganske logisk: Norge har et av verdens grundigste opplæringsløp for nye sjåfører. Det betyr flere obligatoriske moduler, strenge sensorkrav og høyt fokus på trafikksikkerhet.</p>
@@ -851,6 +851,122 @@ export const articles: Record<string, {
       
       <h2>Trenger du hjelp videre?</h2>
       <p>Selv etter at du har fått førerkort, kan det være nyttig å ta noen ekstra kjøretimer hvis du føler deg usikker på visse situasjoner. Mange trafikkskoler tilbyr oppfriskningskjøring eller spesialiserte kurs for nyere førere. Førerkortportalen kan også hjelpe deg finne trafikkskoler som tilbyr slike tjenester.</p>
+    `,
+  },
+  "7": {
+    id: 7,
+    title: "Er intensivkurs verdt det?",
+    excerpt: "En ærlig guide til når intensivkurs gir mening, når det kan bli unødvendig dyrt, og hva du bør vite før du melder deg på.",
+    date: "25. januar 2025",
+    readTime: "8 min lesing",
+    category: "Kursformer",
+    image: "/Article-photo3.png",
+    content: `
+      <p class="lead">Intensivkurs høres nesten litt magisk ut, gjør det ikke?</p>
+      
+      <p>"Tatt lappen på to uker!"</p>
+      
+      <p>"Du er klar til oppkjøring før du rekker å blunke!"</p>
+      
+      <p>Det lover mye, og for noen funker det faktisk veldig bra. Men er det verdt pengene for alle? Ikke nødvendigvis.</p>
+      
+      <p>Denne artikkelen forklarer når intensivkurs gir mening, når det kan bli unødvendig dyrt, og hva du bør vite før du melder deg på.</p>
+      
+      <h2>Hva er egentlig et intensivkurs?</h2>
+      <p>Et intensivkurs er rett og slett et komprimert førerkortløp. I stedet for å ta timer over flere måneder, kjører du intenst – ofte 2–4 timer per dag – frem mot obligatoriske trinn og oppkjøring.</p>
+      
+      <h3>Typisk inneholder et intensivkurs:</h3>
+      <ul>
+        <li>Et gitt antall kjøretimer</li>
+        <li>Alt av obligatoriske kurs</li>
+        <li>Teorihjelp (hos noen skoler)</li>
+        <li>Oppkjøringsforberedelse</li>
+        <li>Leie av bil til oppkjøring</li>
+      </ul>
+      
+      <p>Det er effektivt, men også krevende. De fleste beskriver det som "å leve og puste bil i to uker".</p>
+      
+      <h2>Fordelene – når intensivkurs faktisk er en god idé</h2>
+      <p>La oss være ærlige: Intensivkurs kan være fantastisk for mange.</p>
+      
+      <h3>1. Du lærer raskt</h3>
+      <p>Hvis du liker å dykke dypt – fokusere intenst på én ting, er dette gull. Det føles som at progresjonen skyter fart fordi du aldri får tid til å "glemme" mellom timene.</p>
+      
+      <h3>2. Perfekt for deg med lite tid</h3>
+      <p>Kanskje du skal flytte, studere eller starte en ny jobb. Et intensivkurs kutter hele prosessen ned til et kort og oversiktlig prosjekt.</p>
+      
+      <h3>3. Du slipper lange pauser mellom trinnene</h3>
+      <p>Du vet hvordan en uke uten kjøring kan gjøre deg rusten igjen? Det skjer ikke her. Alt går fort, og du holder rytmen gjennom hele løpet.</p>
+      
+      <h3>4. Struktur du slipper å tenke på</h3>
+      <p>Kjøreskolen planlegger alt: timer, bane, vei, kurs. Du møter opp – de fikser resten.</p>
+      
+      <h2>Ulempene – når intensivkurs blir dyrere enn du tror</h2>
+      <p>Her er sannheten mange ikke får høre:</p>
+      
+      <h3>1. Du MÅ kunne litt fra før</h3>
+      <p>Hvis du nesten ikke har kjørt, legger intensivkurs ofte inn altfor få timer for nybegynnere. Resultatet?</p>
+      
+      <p>Du må kjøpe ekstra timer, og plutselig er kurset ikke så "gunstig" lenger.</p>
+      
+      <h3>2. Det kan bli mentalt slitsomt</h3>
+      <p>To uker med intens kjøring er krevende. Hvis du lett blir stresset, eller trenger pauser for å lære bedre, kan det faktisk være uheldig.</p>
+      
+      <h3>3. Du kan føle at du "haser" gjennom stoffet</h3>
+      <p>Noen elever trenger mer tid på visse ferdigheter. Under et intensivkurs må du bare videre, uten mulighet til å stoppe opp så mye som du kanskje burde.</p>
+      
+      <h3>4. Du risikerer å stryke hvis du ikke er klar – og da ryker økonomien</h3>
+      <p>Strøk på oppkjøring etter et intensivløp?</p>
+      
+      <p>Da må du vente + betale alt på nytt til ny oppkjøring i tillegg til ny kjøretimepakke.</p>
+      
+      <p>Det blir ofte langt dyrere enn om du hadde tatt det mer rolig i første omgang.</p>
+      
+      <h2>Så… er intensivkurs verdt det? (Det kommer faktisk an på deg)</h2>
+      <p>Dette er det store spørsmålet – og det finnes ikke ett riktig svar.</p>
+      
+      <h3>Intensivkurs passer best for deg som:</h3>
+      <ul>
+        <li>Har kjørt en del privat</li>
+        <li>Lærer raskt og trives med høyt tempo</li>
+        <li>Skal ha lappen kjapt</li>
+        <li>Er motivert og klar for en tett timeplan</li>
+        <li>Ønsker en helhetlig og ferdig planlagt progresjon</li>
+      </ul>
+      
+      <h3>Intensivkurs passer dårlig hvis:</h3>
+      <ul>
+        <li>Du har lite erfaring</li>
+        <li>Du blir stresset av tidspress</li>
+        <li>Du trenger god tid til å mestre nye ferdigheter</li>
+        <li>Du ønsker full fleksibilitet</li>
+        <li>Du vil ta alt i ditt tempo, kanskje kombinert med mye privat øving</li>
+      </ul>
+      
+      <h2>En liten realitetssjekk før du bestemmer deg</h2>
+      <p>Mange kjøreskoler markedsfører intensivkurs som en "kjapp snarvei".</p>
+      
+      <p>Men sannheten? Det er ikke en snarvei. Det er bare et raskere tempo.</p>
+      
+      <p>Du må fortsatt:</p>
+      <ul>
+        <li>Lære alle ferdighetene</li>
+        <li>Kjøpe eventuelle ekstratimer</li>
+        <li>Ha godkjent teori</li>
+        <li>Bestå oppkjøring</li>
+      </ul>
+      
+      <p>Tempoet er høyere, ikke kravene.</p>
+      
+      <h2>Konklusjon: Intensivkurs kan være genialt – men ikke for alle</h2>
+      <p>Hvis du har grunnlaget, motivasjonen og et stramt tidsskjema, kan intensivkurs være helt riktig valg.</p>
+      
+      <p>Men hvis du trenger mer tid, eller ikke har kjørt så mye, kan vanlig løp spare deg for både stress og penger.</p>
+      
+      <p>Uansett: Det viktigste er å finne en kjøreskole som faktisk kan tilpasse opplæringen til deg – ikke motsatt.</p>
+      
+      <h2>Vil du sammenligne kjøreskoler?</h2>
+      <p>Fyll ut skjemaet – så finner vi de rimeligste skolene med best rykte der du bor.</p>
     `,
   },
 };

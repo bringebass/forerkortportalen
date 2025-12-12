@@ -358,19 +358,9 @@ export function LeadForm({
       target instanceof HTMLInputElement && target.type === "checkbox";
 
     // Track form start when user first interacts (only once)
-    // Using the service is considered implicit consent, so we track regardless of banner acceptance
-    if (!hasTrackedFormStartRef.current && typeof window !== "undefined") {
+    // Consent is already granted by default (implicit consent - using the site is consent)
+    if (!hasTrackedFormStartRef.current && typeof window !== "undefined" && window.gtag) {
       hasTrackedFormStartRef.current = true;
-      
-      // Update consent to granted since user is using the service (implicit consent)
-      if (window.gtag) {
-        window.gtag("consent", "update", {
-          analytics_storage: "granted",
-        });
-      }
-      
-      // Also save to localStorage for future visits
-      localStorage.setItem("cookie-consent-accepted", "true");
       
       const eventData = {
         event_category: "Lead Form",
@@ -378,14 +368,9 @@ export function LeadForm({
         source_page: pathname || window.location?.pathname || "",
       };
       
-      // Send event via gtag (standard GA4 method)
-      // Note: gtag internally uses dataLayer.push(), so we only need to call gtag
-      if (window.gtag) {
-        window.gtag("event", "form_start", eventData);
-        console.log("[GA Event] form_start", eventData);
-      } else {
-        console.warn("[GA Warning] gtag not available for form_start");
-      }
+      // Send event via gtag (standard GA4 method - this is the ONLY way we send events)
+      window.gtag("event", "form_start", eventData);
+      console.log("[GA Event] form_start", eventData);
     }
 
     // Activate fullscreen on mobile when user starts filling out the form
@@ -527,11 +512,10 @@ const countryCodes = [
       setStepError(null);
       
       // Track lead form submission in Google Analytics (only once)
-      // Using the service is considered implicit consent, so we track regardless of banner acceptance
-      if (typeof window !== "undefined" && !hasTrackedFormSubmissionRef.current) {
+      // Consent is already granted by default (implicit consent - using the site is consent)
+      if (typeof window !== "undefined" && window.gtag && !hasTrackedFormSubmissionRef.current) {
         hasTrackedFormSubmissionRef.current = true;
         
-        // Prepare event data
         const eventData = {
           event_category: "Lead Form",
           event_label: "Lead Submitted",
@@ -544,29 +528,14 @@ const countryCodes = [
           source_page: pathname || window.location.pathname,
         };
         
-        // Update consent to granted since user is using the service (implicit consent)
-        if (window.gtag) {
-          window.gtag("consent", "update", {
-            analytics_storage: "granted",
-          });
-        }
-        
-        // Also save to localStorage for future visits
-        localStorage.setItem("cookie-consent-accepted", "true");
-        
-        // Send event via gtag (standard GA4 method)
-        // Note: gtag internally uses dataLayer.push(), so we only need to call gtag
-        if (window.gtag) {
-          window.gtag("event", "form_submission", eventData);
-          console.log("[GA Event] form_submission", eventData);
-        } else {
-          console.warn("[GA Warning] gtag not available for form_submission");
-        }
+        // Send event via gtag (standard GA4 method - this is the ONLY way we send events)
+        window.gtag("event", "form_submission", eventData);
+        console.log("[GA Event] form_submission", eventData);
       }
       
       // Small delay to ensure event is sent before redirect
       setTimeout(() => {
-        router.push("/takk");
+      router.push("/takk");
       }, 300);
     } catch (error) {
       console.error("Lead form submission failed", error);
@@ -677,9 +646,9 @@ const countryCodes = [
               value={formData.additionalInfo}
               onChange={handleChange}
               onFocus={(e) => {
-                activateFullscreenIfNeeded();
+                      activateFullscreenIfNeeded();
                 activateDesktopFocusIfNeeded('additionalInfo', e);
-              }}
+                    }}
               className="w-full border-2 border-slate-300 sm:border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 text-base shadow-sm focus:border-[#3bb54a] focus:ring-2 focus:ring-[#3bb54a] resize-none"
               placeholder="Ønsket oppstart, spesielle behov eller annet..."
             />
