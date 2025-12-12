@@ -331,18 +331,37 @@ export function LeadForm({
   const trackEvent = useCallback((eventName: string, eventParams: Record<string, unknown>) => {
     if (typeof window === "undefined") return;
     
-    // Always push to dataLayer (works immediately and is most reliable)
+    // Prepare event data for GA4
+    const eventData = {
+      event: eventName,
+      ...eventParams,
+    };
+    
+    // Always push to dataLayer first (works immediately and is most reliable)
     if (window.dataLayer) {
-      window.dataLayer.push({
-        event: eventName,
-        ...eventParams,
-      });
-      console.log(`[GA Event] ${eventName}`, eventParams);
+      window.dataLayer.push(eventData);
+      console.log(`[GA Event] ${eventName}`, eventData);
     }
     
-    // Also try gtag if available
+    // Also send via gtag (GA4 standard format)
     if (window.gtag) {
-      window.gtag("event", eventName, eventParams);
+      // Extract standard GA4 parameters
+      const {
+        event_category,
+        event_label,
+        value,
+        ...customParams
+      } = eventParams;
+      
+      const gtagParams: Record<string, unknown> = {};
+      if (event_category) gtagParams.event_category = event_category;
+      if (event_label) gtagParams.event_label = event_label;
+      if (value !== undefined) gtagParams.value = value;
+      
+      // Add all custom parameters
+      Object.assign(gtagParams, customParams);
+      
+      window.gtag("event", eventName, gtagParams);
     }
   }, []);
 
@@ -352,7 +371,7 @@ export function LeadForm({
       if (!hasStartedFormRef.current) {
         hasStartedFormRef.current = true;
         // Track form start
-        trackEvent("form_started", {
+        trackEvent("form_start", {
           event_category: "Lead Form",
           event_label: "Form Started",
           source_page: pathname || window.location?.pathname || "",
@@ -402,14 +421,18 @@ export function LeadForm({
   }, [pathname, status, trackEvent]);
 
   // Track abandonment on page unload (user closes tab/window)
+  // This only handles browser close/refresh, not navigation (which is handled above)
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const handleBeforeUnload = () => {
+      // Only track if form was started and we haven't already tracked abandonment
+      // This prevents double-tracking since pathname change might also fire
       if (hasStartedFormRef.current && status !== "success" && !hasTrackedAbandonmentRef.current) {
         hasTrackedAbandonmentRef.current = true;
         const stepTypeForAbandonment = getCurrentStepType(abandonmentStepRef.current);
         
+        // Use sendBeacon for reliable tracking on page unload
         const eventData = {
           event: "form_abandoned",
           event_category: "Lead Form",
@@ -420,15 +443,27 @@ export function LeadForm({
           source_page: pathname || window.location?.pathname || "",
         };
         
-        // Push to dataLayer immediately
+        // Push to dataLayer - this works even on page unload
         if (window.dataLayer) {
           window.dataLayer.push(eventData);
-          console.log(`[GA Event] form_abandoned`, eventData);
         }
         
-        // Also try gtag if available
+        // Use gtag with sendBeacon fallback for page unload
         if (window.gtag) {
-          window.gtag("event", "form_abandoned", eventData);
+          window.gtag("event", "form_abandoned", {
+            ...eventData,
+            send_to: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+          });
+        }
+        
+        // Force send via navigator.sendBeacon if available (most reliable on unload)
+        if (navigator.sendBeacon && window.location) {
+          try {
+            const analyticsEndpoint = `https://www.google-analytics.com/g/collect?v=2&tid=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}&en=form_abandoned`;
+            navigator.sendBeacon(analyticsEndpoint);
+          } catch (e) {
+            // Ignore errors
+          }
         }
       }
     };
@@ -545,7 +580,7 @@ const countryCodes = [
     
     // Track step navigation (back)
     const currentStepTypeName = getCurrentStepType(previousStep);
-    trackEvent("form_step_navigation", {
+    trackEvent("form_step_back", {
       event_category: "Lead Form",
       event_label: "Step Back",
       step_number: previousStep + 1,
@@ -652,8 +687,8 @@ const countryCodes = [
         // Also save to localStorage for future visits
         localStorage.setItem("cookie-consent-accepted", "true");
         
-        // Track form submission event with detailed information
-        window.gtag("event", "form_submission", {
+        // Track form submission event with detailed information using trackEvent helper
+        trackEvent("form_submission", {
           event_category: "Lead Form",
           event_label: "Lead Submitted",
           value: 1,
