@@ -126,6 +126,8 @@ export function LeadForm({
   const focusedInputIdRef = useRef<string | null>(null);
   const postalCodeInputRef = useRef<HTMLInputElement>(null);
   const formContainerRef = useRef<HTMLDivElement>(null);
+  const hasTrackedFormStartRef = useRef(false);
+  const hasTrackedFormSubmissionRef = useRef(false);
 
   // Set background color immediately when desktop focused to prevent flash
   useLayoutEffect(() => {
@@ -355,6 +357,31 @@ export function LeadForm({
     const isCheckbox =
       target instanceof HTMLInputElement && target.type === "checkbox";
 
+    // Track form start when user first interacts (only once)
+    if (!hasTrackedFormStartRef.current && typeof window !== "undefined") {
+      hasTrackedFormStartRef.current = true;
+      
+      const eventData = {
+        event_category: "Lead Form",
+        event_label: "Form Started",
+        source_page: pathname || window.location?.pathname || "",
+      };
+      
+      // Push to dataLayer first (most reliable)
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: "form_start",
+          ...eventData,
+        });
+        console.log("[GA Event] form_start", { event: "form_start", ...eventData });
+      }
+      
+      // Also send via gtag if available
+      if (window.gtag) {
+        window.gtag("event", "form_start", eventData);
+      }
+    }
+
     // Activate fullscreen on mobile when user starts filling out the form
     activateFullscreenIfNeeded();
 
@@ -493,9 +520,11 @@ const countryCodes = [
       setStatus("success");
       setStepError(null);
       
-      // Track lead form submission in Google Analytics
+      // Track lead form submission in Google Analytics (only once)
       // Using the service is considered implicit consent, so we track regardless of banner acceptance
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" && !hasTrackedFormSubmissionRef.current) {
+        hasTrackedFormSubmissionRef.current = true;
+        
         // Prepare event data
         const eventData = {
           event_category: "Lead Form",
