@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useMemo, useState, useEffect, useRef, useLayoutEffect, useCallback } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Shield } from "lucide-react";
 import { useFormContext, FormState } from "@/contexts/FormContext";
@@ -326,19 +326,36 @@ export function LeadForm({
   const currentStepType = getCurrentStepType(currentStep);
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
+  // Helper function to track events - works even if gtag isn't ready yet
+  const trackEvent = useCallback((eventName: string, eventParams: Record<string, unknown>) => {
+    if (typeof window === "undefined") return;
+    
+    // Always push to dataLayer (works immediately and is most reliable)
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: eventName,
+        ...eventParams,
+      });
+      console.log(`[GA Event] ${eventName}`, eventParams);
+    }
+    
+    // Also try gtag if available
+    if (window.gtag) {
+      window.gtag("event", eventName, eventParams);
+    }
+  }, []);
+
   // Track form start when user first interacts
   useEffect(() => {
     if (currentStep > 0 || formData.postalCode) {
       if (!hasStartedFormRef.current) {
         hasStartedFormRef.current = true;
         // Track form start
-        if (typeof window !== "undefined" && window.gtag) {
-          window.gtag("event", "form_started", {
-            event_category: "Lead Form",
-            event_label: "Form Started",
-            source_page: pathname || window.location.pathname,
-          });
-        }
+        trackEvent("form_started", {
+          event_category: "Lead Form",
+          event_label: "Form Started",
+          source_page: pathname || window.location?.pathname || "",
+        });
       }
     }
   }, [currentStep, formData.postalCode, pathname]);
@@ -347,21 +364,22 @@ export function LeadForm({
   useEffect(() => {
     const currentStepTypeForAbandonment = getCurrentStepType(currentStep);
     const totalStepsForAbandonment = totalSteps;
+    const currentPathname = pathname;
     
     return () => {
       // Only track abandonment if form was started but not completed
-      if (hasStartedFormRef.current && status !== "success" && typeof window !== "undefined" && window.gtag) {
-        window.gtag("event", "form_abandoned", {
+      if (hasStartedFormRef.current && status !== "success" && typeof window !== "undefined") {
+        trackEvent("form_abandoned", {
           event_category: "Lead Form",
           event_label: "Form Abandoned",
           step_number: currentStep + 1,
           step_name: currentStepTypeForAbandonment,
           total_steps: totalStepsForAbandonment,
-          source_page: pathname || window.location.pathname,
+          source_page: currentPathname || window.location?.pathname || "",
         });
       }
     };
-  }, [currentStep, status, pathname, totalSteps, getCurrentStepType]);
+  }, [currentStep, status, pathname, totalSteps]);
 
   // Create STEP_CONFIG with dynamic postalCode question
   const STEP_CONFIG = useMemo(() => ({
@@ -467,17 +485,15 @@ const countryCodes = [
     setCurrentStep(previousStep);
     
     // Track step navigation (back)
-    if (typeof window !== "undefined" && window.gtag) {
-      const currentStepTypeName = getCurrentStepType(previousStep);
-      window.gtag("event", "form_step_navigation", {
-        event_category: "Lead Form",
-        event_label: "Step Back",
-        step_number: previousStep + 1,
-        step_name: currentStepTypeName,
-        total_steps: totalSteps,
-        source_page: pathname || window.location.pathname,
-      });
-    }
+    const currentStepTypeName = getCurrentStepType(previousStep);
+    trackEvent("form_step_navigation", {
+      event_category: "Lead Form",
+      event_label: "Step Back",
+      step_number: previousStep + 1,
+      step_name: currentStepTypeName,
+      total_steps: totalSteps,
+      source_page: pathname || window.location?.pathname || "",
+    });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -507,17 +523,15 @@ const countryCodes = [
       setCurrentStep(nextStep);
       
       // Track step progression
-      if (typeof window !== "undefined" && window.gtag) {
-        const nextStepTypeName = getCurrentStepType(nextStep);
-        window.gtag("event", "form_step_progression", {
-          event_category: "Lead Form",
-          event_label: "Step Forward",
-          step_number: nextStep + 1,
-          step_name: nextStepTypeName,
-          total_steps: totalSteps,
-          source_page: pathname || window.location.pathname,
-        });
-      }
+      const nextStepTypeName = getCurrentStepType(nextStep);
+      trackEvent("form_step_progression", {
+        event_category: "Lead Form",
+        event_label: "Step Forward",
+        step_number: nextStep + 1,
+        step_name: nextStepTypeName,
+        total_steps: totalSteps,
+        source_page: pathname || window.location?.pathname || "",
+      });
       
       return;
     }
@@ -558,14 +572,12 @@ const countryCodes = [
       setStepError(null);
       
       // Track successful form completion
-      if (typeof window !== "undefined" && window.gtag) {
-        window.gtag("event", "form_completed", {
-          event_category: "Lead Form",
-          event_label: "Form Completed",
-          total_steps: totalSteps,
-          source_page: pathname || window.location.pathname,
-        });
-      }
+      trackEvent("form_completed", {
+        event_category: "Lead Form",
+        event_label: "Form Completed",
+        total_steps: totalSteps,
+        source_page: pathname || window.location?.pathname || "",
+      });
       
       // Track lead form submission in Google Analytics
       // Using the service is considered implicit consent, so we track regardless of banner acceptance
