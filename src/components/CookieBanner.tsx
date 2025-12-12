@@ -40,8 +40,7 @@ export default function CookieBanner() {
   });
 
   useEffect(() => {
-    // Check if user has already accepted cookies (only for showing/hiding banner)
-    // Note: Consent for analytics is ALWAYS granted (implicit consent - using site = consent)
+    // Check if user has already seen/closed the cookie banner
     if (typeof window !== "undefined") {
       const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
       const categories = localStorage.getItem(COOKIE_CATEGORIES_KEY);
@@ -65,12 +64,6 @@ export default function CookieBanner() {
     }
   }, []);
 
-  const updateGoogleAnalytics = (categories: Record<string, boolean>) => {
-    // Note: This function is only for cookie banner preferences
-    // Analytics consent is ALWAYS granted (implicit consent - using site = consent)
-    // We don't actually update GA consent here since it's always granted
-    // This function exists only for compatibility with the banner UI
-  };
 
   const handleCategoryChange = (categoryId: string, checked: boolean) => {
     // Prevent unchecking necessary cookies
@@ -104,58 +97,36 @@ export default function CookieBanner() {
   };
 
   const saveConsent = (categories: Record<string, boolean>) => {
-    // Save consent preferences (only for banner display purposes)
-    // Note: Analytics consent is ALWAYS granted (implicit consent)
+    // Save preferences (only for banner display - does not affect tracking)
     if (typeof window !== "undefined") {
       localStorage.setItem(COOKIE_CONSENT_KEY, "true");
       localStorage.setItem(COOKIE_CATEGORIES_KEY, JSON.stringify(categories));
       setShowBanner(false);
       setHasAccepted(true);
       setSelectedCategories(categories);
-      // No need to update GA consent - it's always granted
     }
   };
 
   return (
     <>
-      {/* Google Analytics - Set consent FIRST (before GA script loads) */}
+      {/* Google Analytics - Always tracks, no consent required */}
       {GA_MEASUREMENT_ID && (
         <>
-          {/* Step 1: Set default consent mode BEFORE loading GA script */}
-          <Script
-            id="ga-consent"
-            strategy="beforeInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                window.gtag = gtag;
-                // Set consent mode FIRST - using implicit consent: visiting site = consent
-                // Analytics is ALWAYS granted - cookie banner is only for UI display
-                gtag('consent', 'default', {
-                  'analytics_storage': 'granted'
-                });
-              `,
-            }}
-          />
-          {/* Step 2: Load GA script */}
           <Script
             strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           />
-          {/* Step 3: Configure GA (runs after GA script loads) */}
           <Script
-            id="google-analytics-config"
+            id="google-analytics"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
-                // The GA script should have loaded and defined gtag by now
-                if (typeof gtag !== 'undefined') {
-                  gtag('js', new Date());
-                  gtag('config', '${GA_MEASUREMENT_ID}', {
-                    page_path: window.location.pathname
-                  });
-                }
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}', {
+                  page_path: window.location.pathname
+                });
               `,
             }}
           />

@@ -358,7 +358,6 @@ export function LeadForm({
       target instanceof HTMLInputElement && target.type === "checkbox";
 
     // Track form start when user first interacts (only once)
-    // Consent is already granted by default (implicit consent - using the site is consent)
     if (!hasTrackedFormStartRef.current && typeof window !== "undefined" && window.gtag) {
       hasTrackedFormStartRef.current = true;
       
@@ -512,7 +511,6 @@ const countryCodes = [
       setStepError(null);
       
       // Track lead form submission in Google Analytics (only once)
-      // Consent is already granted by default (implicit consent - using the site is consent)
       if (typeof window !== "undefined" && window.gtag && !hasTrackedFormSubmissionRef.current) {
         hasTrackedFormSubmissionRef.current = true;
         
