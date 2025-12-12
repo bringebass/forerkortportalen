@@ -127,6 +127,7 @@ export function LeadForm({
   const postalCodeInputRef = useRef<HTMLInputElement>(null);
   const formContainerRef = useRef<HTMLDivElement>(null);
   const hasStartedFormRef = useRef(false);
+  const hasTrackedAbandonmentRef = useRef(false);
 
   // Set background color immediately when desktop focused to prevent flash
   useLayoutEffect(() => {
@@ -360,26 +361,84 @@ export function LeadForm({
     }
   }, [currentStep, formData.postalCode, pathname]);
 
-  // Track form abandonment when component unmounts or user navigates away
+  // Track form abandonment - use refs to avoid triggering on step changes
+  const previousPathnameRef = useRef(pathname);
+  const abandonmentStepRef = useRef(currentStep);
+  const abandonmentTotalStepsRef = useRef(totalSteps);
+
+  // Update refs when values change (for use in abandonment tracking)
   useEffect(() => {
-    const currentStepTypeForAbandonment = getCurrentStepType(currentStep);
-    const totalStepsForAbandonment = totalSteps;
-    const currentPathname = pathname;
+    abandonmentStepRef.current = currentStep;
+    abandonmentTotalStepsRef.current = totalSteps;
+  }, [currentStep, totalSteps]);
+
+  // Detect navigation away from form page (pathname change)
+  useEffect(() => {
+    const previousPathname = previousPathnameRef.current;
     
-    return () => {
-      // Only track abandonment if form was started but not completed
-      if (hasStartedFormRef.current && status !== "success" && typeof window !== "undefined") {
-        trackEvent("form_abandoned", {
+    // If pathname changed and form was started, track abandonment
+    // Only track if we're actually navigating to a different page (not same page)
+    if (
+      previousPathname && 
+      previousPathname !== pathname && 
+      hasStartedFormRef.current && 
+      status !== "success" && 
+      !hasTrackedAbandonmentRef.current
+    ) {
+      hasTrackedAbandonmentRef.current = true;
+      const stepTypeForAbandonment = getCurrentStepType(abandonmentStepRef.current);
+      
+      trackEvent("form_abandoned", {
+        event_category: "Lead Form",
+        event_label: "Form Abandoned",
+        step_number: abandonmentStepRef.current + 1,
+        step_name: stepTypeForAbandonment,
+        total_steps: abandonmentTotalStepsRef.current,
+        source_page: previousPathname || window.location?.pathname || "",
+      });
+    }
+    
+    previousPathnameRef.current = pathname;
+  }, [pathname, status, trackEvent]);
+
+  // Track abandonment on page unload (user closes tab/window)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleBeforeUnload = () => {
+      if (hasStartedFormRef.current && status !== "success" && !hasTrackedAbandonmentRef.current) {
+        hasTrackedAbandonmentRef.current = true;
+        const stepTypeForAbandonment = getCurrentStepType(abandonmentStepRef.current);
+        
+        const eventData = {
+          event: "form_abandoned",
           event_category: "Lead Form",
           event_label: "Form Abandoned",
-          step_number: currentStep + 1,
-          step_name: currentStepTypeForAbandonment,
-          total_steps: totalStepsForAbandonment,
-          source_page: currentPathname || window.location?.pathname || "",
-        });
+          step_number: abandonmentStepRef.current + 1,
+          step_name: stepTypeForAbandonment,
+          total_steps: abandonmentTotalStepsRef.current,
+          source_page: pathname || window.location?.pathname || "",
+        };
+        
+        // Push to dataLayer immediately
+        if (window.dataLayer) {
+          window.dataLayer.push(eventData);
+          console.log(`[GA Event] form_abandoned`, eventData);
+        }
+        
+        // Also try gtag if available
+        if (window.gtag) {
+          window.gtag("event", "form_abandoned", eventData);
+        }
       }
     };
-  }, [currentStep, status, pathname, totalSteps]);
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [status, pathname]);
 
   // Create STEP_CONFIG with dynamic postalCode question
   const STEP_CONFIG = useMemo(() => ({
@@ -570,6 +629,9 @@ const countryCodes = [
 
       setStatus("success");
       setStepError(null);
+      
+      // Mark that we've completed successfully (prevent abandonment tracking)
+      hasTrackedAbandonmentRef.current = true;
       
       // Track successful form completion
       trackEvent("form_completed", {
