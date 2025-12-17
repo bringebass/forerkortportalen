@@ -3,7 +3,7 @@ const faq = [
     category: "Om tjenesten",
     items: [
       {
-        q: "Hva er Førerkortportalen?",
+        q: "Hva er førerkortportalen?",
         a: "Førerkortportalen er en gratis og uforpliktende tjeneste som kobler deg med godkjente trafikkskoler i ditt område. Du fyller ut et skjema én gang — så får du tilbud fra flere trafikkskoler, slik at du kan sammenligne pris, tilgjengelighet og opplæringstilbud uten å kontakte skolene én og én.",
       },
       {
@@ -77,7 +77,7 @@ export default function FAQSection() {
               Ofte stilte spørsmål
             </h2>
             <p className="text-lg sm:text-xl text-slate-600">
-              Alt du lurer på om Førerkortportalen og vår tjeneste
+              Alt du lurer på om førerkortportalen og vår tjeneste
             </p>
           </div>
           

@@ -175,16 +175,16 @@ export default function TakkPage() {
             </h3>
             <div className="grid gap-6 sm:grid-cols-3 mt-8">
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-[#3bb54a] mb-2">100%</div>
-                <p className="text-base text-slate-700">Gratis</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-[#3bb54a] mb-2">24t</div>
-                <p className="text-base text-slate-700">Rask respons</p>
+                <div className="text-3xl sm:text-4xl font-bold text-[#3bb54a] mb-2">Gratis</div>
+                <p className="text-base text-slate-700">Tjenesten er helt gratis for deg som forbruker</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl sm:text-4xl font-bold text-[#3bb54a] mb-2">Uforpliktende</div>
-                <p className="text-base text-slate-700">Du velger selv</p>
+                <p className="text-base text-slate-700">Du bestemmer selv om du vil benytte tilbudene</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-[#3bb54a] mb-2">Spar penger</div>
+                <p className="text-base text-slate-700">Du kan spare penger på å innhente flere tilbud</p>
               </div>
             </div>
           </div>

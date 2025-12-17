@@ -25,18 +25,23 @@ export const metadata: Metadata = {
   keywords,
   icons: {
     icon: [
-      { url: '/favicon.png', type: 'image/png', sizes: '32x32' },
       { url: '/favicon.png', type: 'image/png', sizes: '16x16' },
+      { url: '/favicon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon.png', type: 'image/png', sizes: '48x48' },
     ],
     apple: [
       { url: '/favicon.png', type: 'image/png', sizes: '180x180' },
     ],
     shortcut: '/favicon.png',
-    // Support for transparent favicon
+    // Support for transparent favicon and better Google indexing
     other: [
       {
         rel: 'icon',
         type: 'image/png',
+        url: '/favicon.png',
+      },
+      {
+        rel: 'apple-touch-icon',
         url: '/favicon.png',
       },
     ],

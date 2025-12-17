@@ -56,6 +56,69 @@ const articles = [
     category: "Kursformer",
     href: "/artikler/7",
   },
+  {
+    id: 8,
+    title: "Slik kan du spare penger på førerkortet (2025-guide)",
+    excerpt: "Praktisk guide som viser hvordan du faktisk kan spare penger på førerkortet uten å kutte så mye at det går utover kvaliteten.",
+    category: "Økonomi",
+    href: "/artikler/8",
+  },
+  {
+    id: 9,
+    title: "Obligatoriske kurs for førerkort klasse B (komplett guide 2025)",
+    excerpt: "Komplett guide til alle obligatoriske kursene du må ta for førerkort klasse B, inkludert varighet, priser og hva hvert kurs inneholder.",
+    category: "Guider",
+    href: "/artikler/9",
+  },
+  {
+    id: 10,
+    title: "Slik fungerer førerkortprosessen – steg for steg (2025-guide)",
+    excerpt: "Enkel og oppdatert steg-for-steg-guide som viser hvordan du går fra null til førerkort – uten stress og uten at du trenger å google alt underveis.",
+    category: "Guider",
+    href: "/artikler/10",
+  },
+  {
+    id: 11,
+    title: "Hvordan velge riktig kjøreskole (sjekkliste)",
+    excerpt: "Enkel, men grundig sjekkliste som gjør det lettere å finne en kjøreskole som matcher både budsjettet ditt og måten du lærer på.",
+    category: "Tips",
+    href: "/artikler/11",
+  },
+  {
+    id: 12,
+    title: "Hvordan bestå oppkjøringen på første forsøk (den komplette guiden)",
+    excerpt: "Komplett guide som viser nøyaktig hva sensoren vurderer, hvilke feil som oftest gjør at folk stryker, og hva du kan gjøre for å øke sjansene dine.",
+    category: "Tips",
+    href: "/artikler/12",
+  },
+  {
+    id: 13,
+    title: "Hvor mange kjøretimer trenger man egentlig? (realistisk guide 2025)",
+    excerpt: "Realistisk guide som viser hvor mange kjøretimer de fleste faktisk trenger, og hvilke faktorer som påvirker antall timer mest.",
+    category: "Guider",
+    href: "/artikler/13",
+  },
+  {
+    id: 14,
+    title: "Hvor lang tid tar det å ta førerkort? (realistisk guide 2025)",
+    excerpt: "Realistisk guide som viser hvor lang tid det tar å ta førerkort, fra start til slutt, og hva som påvirker tidsbruken.",
+    category: "Guider",
+    href: "/artikler/14",
+  },
+  {
+    id: 15,
+    title: "Forskjellen på trafikkskole og privat øvelseskjøring (og hvorfor du trenger begge)",
+    excerpt: "Tydelig forklaring på hva trafikkskole og privat øvelseskjøring gir deg, og hvordan du kan bruke kombinasjonen smart for å spare tid og penger.",
+    category: "Tips",
+    href: "/artikler/15",
+  },
+  {
+    id: 16,
+    title: "Fastpris vs. betaling per kjøretime – hva lønner seg?",
+    excerpt: "Sammenligning mellom fastpris og betaling per kjøretime, og hvilke faktorer som avgjør hva som faktisk lønner seg best for deg.",
+    category: "Økonomi",
+    href: "/artikler/16",
+  },
 ];
 
 // Import FAQ data
@@ -64,7 +127,7 @@ const faq = [
     category: "Om tjenesten",
     items: [
       {
-        q: "Hva er Førerkortportalen?",
+        q: "Hva er førerkortportalen?",
         a: "Førerkortportalen er en gratis og uforpliktende tjeneste som kobler deg med godkjente trafikkskoler i ditt område. Du fyller ut et skjema én gang — så får du tilbud fra flere trafikkskoler, slik at du kan sammenligne pris, tilgjengelighet og opplæringstilbud uten å kontakte skolene én og én.",
       },
       {

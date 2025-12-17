@@ -9,12 +9,12 @@ const testimonials = [
   },
   {
     name: "Emma",
-    image: "/girl1.png",
+    image: "/review-dame.png",
     text: "Super enkelt å bruke. Trafikkskolene kontaktet meg raskt og jeg fikk gode tilbud. Anbefaler på det sterkeste!",
   },
   {
     name: "Anders",
-    image: "/man.png",
+    image: "/review-man.png",
     text: "Endelig en tjeneste som gjør det enkelt å sammenligne trafikkskoler. Sparer både tid og penger.",
   },
 ];

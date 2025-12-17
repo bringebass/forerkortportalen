@@ -128,6 +128,7 @@ export function LeadForm({
   const formContainerRef = useRef<HTMLDivElement>(null);
   const hasTrackedFormStartRef = useRef(false);
   const hasTrackedFormSubmissionRef = useRef(false);
+  const hasTrackedFormAbandonmentRef = useRef(false);
 
   // Set background color immediately when desktop focused to prevent flash
   useLayoutEffect(() => {
@@ -273,6 +274,89 @@ export function LeadForm({
   }, [isDesktopFocused]);
 
   // Restore focus when fullscreen mode activates
+  // Track form abandonment when user leaves/closes/refreshes
+  useEffect(() => {
+    // Only track if form was started but not submitted
+    const handleBeforeUnload = () => {
+      if (
+        hasTrackedFormStartRef.current &&
+        !hasTrackedFormSubmissionRef.current &&
+        !hasTrackedFormAbandonmentRef.current &&
+        typeof window !== "undefined" &&
+        window.gtag
+      ) {
+        hasTrackedFormAbandonmentRef.current = true;
+
+        const eventData = {
+          event_category: "Lead Form",
+          event_label: "Form Abandoned",
+          source_page: pathname || window.location?.pathname || "",
+        };
+
+        // Send event via gtag
+        window.gtag("event", "form_abandoned", eventData);
+        console.log("[GA Event] form_abandoned", eventData);
+      }
+    };
+
+    // Track when tab becomes hidden (user switches tab, minimizes, or closes)
+    let visibilityTimeoutId: NodeJS.Timeout | null = null;
+    
+    const handleVisibilityChange = () => {
+      // Clear any existing timeout if tab becomes visible again
+      if (!document.hidden && visibilityTimeoutId) {
+        clearTimeout(visibilityTimeoutId);
+        visibilityTimeoutId = null;
+        return;
+      }
+
+      if (
+        document.hidden &&
+        hasTrackedFormStartRef.current &&
+        !hasTrackedFormSubmissionRef.current &&
+        !hasTrackedFormAbandonmentRef.current &&
+        typeof window !== "undefined" &&
+        window.gtag
+      ) {
+        // Small delay to avoid tracking if user just quickly switches tabs
+        visibilityTimeoutId = setTimeout(() => {
+          if (
+            document.hidden &&
+            !hasTrackedFormSubmissionRef.current &&
+            !hasTrackedFormAbandonmentRef.current &&
+            typeof window !== "undefined" &&
+            window.gtag
+          ) {
+            hasTrackedFormAbandonmentRef.current = true;
+
+            const eventData = {
+              event_category: "Lead Form",
+              event_label: "Form Abandoned",
+              source_page: pathname || window.location?.pathname || "",
+            };
+
+            if (window.gtag) {
+              window.gtag("event", "form_abandoned", eventData);
+              console.log("[GA Event] form_abandoned", eventData);
+            }
+          }
+          visibilityTimeoutId = null;
+        }, 5000); // Only track if tab is hidden for more than 5 seconds
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (visibilityTimeoutId) {
+        clearTimeout(visibilityTimeoutId);
+      }
+    };
+  }, [pathname]);
+
   useEffect(() => {
     if (isFullscreen && activeElementIdRef.current && window.innerWidth < 640) {
       // Small delay to ensure the element is rendered in fullscreen view
