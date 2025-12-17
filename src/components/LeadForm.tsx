@@ -28,18 +28,6 @@ const otherLicenseOptions = [
   { value: "DontKnow", label: "Vet ikke" },
 ];
 
-const intensiveOptions = [
-  { value: "ja", label: "Ja, intensiv" },
-  { value: "nei", label: "Nei" },
-  { value: "usikker", label: "Usikker" },
-];
-
-const trafficCourseOptions = [
-  { value: "fullfort", label: "Kurs fullført" },
-  { value: "pagar", label: "Pågår" },
-  { value: "ikke", label: "Trenger kurs" },
-];
-
 // Step configuration - change the order here to reorder the form steps
 // Each step type is automatically matched with its question and validator
 // Note: "otherLicenseType" is conditionally shown based on licenseType selection
@@ -605,7 +593,6 @@ const countryCodes = [
           // Custom parameters for better analytics
           license_type: formData.mainLicenseSelection || formData.licenseType || "unknown",
           postal_code: formData.postalCode,
-          intensive_course: formData.intensiveCourse,
           additional_info: formData.additionalInfo || "",
           source_page: pathname || window.location.pathname,
         };

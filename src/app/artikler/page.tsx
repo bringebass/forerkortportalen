@@ -20,7 +20,7 @@ const articles = [
     date: "20. januar 2025",
     readTime: "10 min lesing",
     category: "Guider",
-    image: "/Article-photo1.png",
+    image: "/Article-photo8.png",
   },
   {
     id: 2,

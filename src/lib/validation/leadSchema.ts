@@ -13,10 +13,6 @@ export const leadSchema = z.object({
   licenseType: z.string().min(1),
   mainLicenseSelection: z.string().optional(), // B, B_AUT, OTHER
   additionalInfo: z.string().max(800).optional().or(z.literal("")), // Optional free text field
-  intensiveCourse: z.enum(["ja", "nei", "usikker"]),
-  preferredContact: z.enum(["telefon", "epost"]),
-  trafficCourseStatus: z.enum(["fullfort", "pagar", "ikke"]),
-  message: z.string().max(800).optional().or(z.literal("")),
   marketingConsent: z
     .boolean()
     .refine((val) => val === true, {

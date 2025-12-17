@@ -63,14 +63,14 @@ export default function TakkPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/50 mb-6">
               <Sparkles className="h-4 w-4 text-emerald-600" />
-              <span className="text-sm font-semibold text-emerald-700">Forespørsel sendt!</span>
+              <span className="text-sm font-semibold text-emerald-700">Forespørsel mottatt!</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
-              Takk for din forespørsel!
+              Du blir kontaktet over telefon eller e-post
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-2xl mx-auto mb-6">
-              Vi har mottatt forespørselen din og sender den videre til relevante trafikkskoler i ditt område.
+              Vi har mottatt forespørselen din og sender den videre til relevante trafikkskoler i ditt område som tar kontakt med deg.
             </p>
           </div>
         </div>
@@ -161,31 +161,6 @@ export default function TakkPage() {
                 <span>Les våre artikler</span>
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="py-12 sm:py-16 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-2xl sm:text-3xl font-semibold text-slate-900 mb-4">
-              Hvorfor velge Førerkortportalen?
-            </h3>
-            <div className="grid gap-6 sm:grid-cols-3 mt-8">
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-[#3bb54a] mb-2">Gratis</div>
-                <p className="text-base text-slate-700">Tjenesten er helt gratis for deg som forbruker</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-[#3bb54a] mb-2">Uforpliktende</div>
-                <p className="text-base text-slate-700">Du bestemmer selv om du vil benytte tilbudene</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-[#3bb54a] mb-2">Spar penger</div>
-                <p className="text-base text-slate-700">Du kan spare penger på å innhente flere tilbud</p>
-              </div>
             </div>
           </div>
         </div>

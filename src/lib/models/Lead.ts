@@ -9,14 +9,6 @@ const LeadSchema = new Schema(
     licenseType: { type: String, required: true },
     mainLicenseSelection: { type: String }, // B, B_AUT, OTHER
     additionalInfo: { type: String }, // Optional free text field for additional information
-    intensiveCourse: { type: String, enum: ["ja", "nei", "usikker"], required: true },
-    preferredContact: { type: String, enum: ["telefon", "epost"], required: true },
-    trafficCourseStatus: {
-      type: String,
-      enum: ["fullfort", "pagar", "ikke"],
-      required: true,
-    },
-    message: { type: String },
     marketingConsent: { type: Boolean, required: true },
     sourcePage: { type: String, default: "forerkortportalen.no" },
   },

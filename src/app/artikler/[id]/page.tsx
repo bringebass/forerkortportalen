@@ -31,7 +31,7 @@ export const articles: Record<string, {
     date: "20. januar 2025",
     readTime: "10 min lesing",
     category: "Guider",
-    image: "/Article-photo1.png",
+    image: "/Article-photo8.png",
     content: `
       <p class="lead">Alle vil ha førerkortet billigst mulig — men det finnes mange myter, rare tips og "smarte snarveier" der ute som gjør det vanskelig å vite hva som faktisk lønner seg. Noen råd kan spare deg tusenlapper. Andre gjør det bare dyrere, selv om de høres lure ut.</p>
       

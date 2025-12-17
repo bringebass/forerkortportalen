@@ -12,10 +12,6 @@ export type FormState = {
   licenseType: string;
   mainLicenseSelection: string;
   additionalInfo: string;
-  intensiveCourse: string;
-  preferredContact: "telefon" | "epost";
-  trafficCourseStatus: string;
-  message: string;
   marketingConsent: boolean;
 };
 
@@ -28,10 +24,6 @@ const defaultFormState: FormState = {
   licenseType: "",
   mainLicenseSelection: "",
   additionalInfo: "",
-  intensiveCourse: "usikker",
-  preferredContact: "telefon",
-  trafficCourseStatus: "fullfort",
-  message: "",
   marketingConsent: false,
 };
 
