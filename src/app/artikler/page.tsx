@@ -60,7 +60,7 @@ export const articles = [
     category: "Økonomi",
     image: "/Artikkel4.png",
     inArticleImages: [
-      { image: "/in-article5.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
+      { image: "/in-article1.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
     ],
   },
   {
@@ -71,7 +71,9 @@ export const articles = [
     readTime: "5 min lesing",
     category: "Tips",
     image: "/Artikkel5.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article5.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
+    ],
   },
   {
     id: 6,
@@ -93,7 +95,9 @@ export const articles = [
     readTime: "8 min lesing",
     category: "Kursformer",
     image: "/Artikkel7.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article2.png", alt: "Intensivkurs for førerkort", caption: "Intensivkurs kan være en effektiv måte å ta førerkort på for de som har mulighet til det." }
+    ],
   },
   {
     id: 8,
@@ -103,7 +107,9 @@ export const articles = [
     readTime: "10 min lesing",
     category: "Økonomi",
     image: "/Artikkel8.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article3.png", alt: "Obligatoriske kurs for førerkort", caption: "Alle førerkortklasser krever obligatoriske kurs som en del av opplæringen." }
+    ],
   },
   {
     id: 9,
@@ -113,7 +119,9 @@ export const articles = [
     readTime: "8 min lesing",
     category: "Guider",
     image: "/Artikkel9.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article5.png", alt: "Førerkortprosessen steg for steg", caption: "Førerkortprosessen består av flere viktige steg fra teori til praktisk oppkjøring." }
+    ],
   },
   {
     id: 10,
@@ -123,7 +131,9 @@ export const articles = [
     readTime: "9 min lesing",
     category: "Guider",
     image: "/Artikkel16.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article6.png", alt: "Velge riktig kjøreskole", caption: "Valg av kjøreskole er et viktig valg som påvirker hele førerkortprosessen." }
+    ],
   },
   {
     id: 11,
@@ -133,7 +143,9 @@ export const articles = [
     readTime: "7 min lesing",
     category: "Tips",
     image: "/car-in-circle.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article1.png", alt: "Forberedelse til oppkjøring", caption: "God forberedelse er nøkkelen til å bestå oppkjøringen på første forsøk." }
+    ],
   },
   {
     id: 12,
@@ -143,7 +155,9 @@ export const articles = [
     readTime: "10 min lesing",
     category: "Tips",
     image: "/Forbered-deg-til-forerproven.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article2.png", alt: "Antall kjøretimer", caption: "Antall kjøretimer varierer basert på erfaring, læringsstil og forberedelse." }
+    ],
   },
   {
     id: 13,
@@ -153,7 +167,9 @@ export const articles = [
     readTime: "9 min lesing",
     category: "Guider",
     image: "/Hva-koster-det-å -ta-forerkort.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article3.png", alt: "Tidsbruk for førerkort", caption: "Tiden det tar å ta førerkort varierer basert på intensitet og individuell progresjon." }
+    ],
   },
   {
     id: 14,
@@ -163,7 +179,9 @@ export const articles = [
     readTime: "8 min lesing",
     category: "Guider",
     image: "/hva-skjer-etter-forerkortett.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article5.png", alt: "Trafikkskole vs privat øvelseskjøring", caption: "Kombinasjonen av trafikkskole og privat øvelseskjøring gir best resultat." }
+    ],
   },
   {
     id: 15,
@@ -173,7 +191,9 @@ export const articles = [
     readTime: "7 min lesing",
     category: "Tips",
     image: "/Intensiv-vs-vanlig.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article4.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
+    ],
   },
   {
     id: 16,
@@ -183,7 +203,9 @@ export const articles = [
     readTime: "6 min lesing",
     category: "Økonomi",
     image: "/Artikkel16.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article6.png", alt: "Fastpris vs betaling per time", caption: "Valget mellom fastpris og betaling per time avhenger av din situasjon og behov." }
+    ],
   },
 ];
 
