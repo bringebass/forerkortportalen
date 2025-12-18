@@ -92,17 +92,21 @@ function OmOssContent() {
         </div>
         
         <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/50 mb-6 sm:mb-8">
-              <Users className="h-4 w-4 text-emerald-600" />
-              <span className="text-sm font-semibold text-emerald-700">Om oss</span>
+          <div className="max-w-4xl mx-auto lg:mx-0 lg:max-w-none">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+              <div className="lg:col-span-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 backdrop-blur-sm border border-emerald-200/50 mb-6 sm:mb-8">
+                  <Users className="h-4 w-4 text-emerald-600" />
+                  <span className="text-sm font-semibold text-emerald-700">Om oss</span>
+                </div>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
+                  Om <span className="text-[#3bb54a]">fører</span>kortportalen
+                </h1>
+                <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
+                  Vi gjør det enkelt å finne og sammenligne trafikkskoler i hele Norge
+                </p>
+              </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
-              Om <span className="text-[#3bb54a]">fører</span>kortportalen
-            </h1>
-            <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
-              Vi gjør det enkelt å finne og sammenligne trafikkskoler i hele Norge
-            </p>
           </div>
         </div>
       </section>
@@ -217,8 +221,8 @@ function OmOssContent() {
               </div>
             </div>
 
-            {/* CTA Section */}
-            <div className="text-center bg-slate-900 rounded-3xl p-8 sm:p-10 lg:p-12">
+            {/* CTA Section - Hidden on mobile */}
+            <div className="hidden lg:block text-center bg-slate-900 rounded-3xl p-8 sm:p-10 lg:p-12">
               <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
                 Klar for å motta tilbud fra ulike trafikkskoler?
               </h2>

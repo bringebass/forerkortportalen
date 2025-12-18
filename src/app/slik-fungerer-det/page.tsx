@@ -63,10 +63,14 @@ function SlikFungererDetContent() {
         </div>
         
         <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
-              Slik <span className="text-[#3bb54a]">fungerer</span> det
-            </h1>
+          <div className="max-w-4xl mx-auto lg:mx-0 lg:max-w-none">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+              <div className="lg:col-span-8">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
+                  Slik <span className="text-[#3bb54a]">fungerer</span> det
+                </h1>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -99,6 +103,21 @@ function SlikFungererDetContent() {
                 </div>
               ))}
               </div>
+
+              {/* Why Use Service Section - moved up to same section */}
+              <div className="mt-12">
+                <div className="rounded-3xl bg-white/80 backdrop-blur-sm border border-slate-200 p-8 sm:p-10 lg:p-12">
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-slate-900 mb-4">
+                    Hvorfor bruke Førerkortportalen?
+                  </h3>
+                  <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
+                    I stedet for å kontakte flere trafikkskoler én og én, kan du fylle ut én enkel forespørsel og få tilbud fra flere kvalitetssikrede skoler i ditt område. Du sparer tid, får oversikt over pris og tilbud, og kan sammenligne på din egen måte – helt gratis og uforpliktende.
+                  </p>
+                  <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+                    Alle skolene vi samarbeider med er godkjent av Statens vegvesen og følger læreplanen for føreropplæring. Du velger selv om du vil takke ja til et tilbud, og tjenesten er helt gratis å bruke.
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Right side - Form sidebar */}
@@ -106,27 +125,6 @@ function SlikFungererDetContent() {
           </div>
         </div>
       </section>
-
-      {/* Why Use Service Section */}
-      <section className={`relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 transition-all duration-500 ${isDesktopFocused && !isMobile ? 'blur-md' : ''}`}>
-        <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="rounded-3xl bg-gradient-to-br from-slate-50 to-emerald-50/30 border border-slate-200 p-8 sm:p-10 lg:p-12">
-              <h3 className="text-2xl sm:text-3xl font-semibold text-slate-900 mb-4">
-                Hvorfor bruke Førerkortportalen?
-              </h3>
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
-                I stedet for å kontakte flere trafikkskoler én og én, kan du fylle ut én enkel forespørsel og få tilbud fra flere kvalitetssikrede skoler i ditt område. Du sparer tid, får oversikt over pris og tilbud, og kan sammenligne på din egen måte – helt gratis og uforpliktende.
-              </p>
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
-                Alle skolene vi samarbeider med er godkjent av Statens vegvesen og følger læreplanen for føreropplæring. Du velger selv om du vil takke ja til et tilbud, og tjenesten er helt gratis å bruke.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Form Section - Now integrated with steps section using grid layout */}
 
       <div className={isDesktopFocused && !isMobile ? 'blur-md transition-all duration-500' : ''}>
         <Footer />

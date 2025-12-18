@@ -65,11 +65,11 @@ export default function FormSidebar() {
   }
 
   return (
-    <div className="lg:col-span-4 mt-8 lg:mt-0">
+    <div className="lg:col-span-4 mt-8 lg:mt-14">
       <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-96px)] lg:overflow-y-auto lg:pr-1 space-y-6">
         <FormWrapper />
 
-        {/* 3 gode grunner */}
+        {/* 3 gode grunner - scrolls with form */}
         <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
           <h3 className="text-lg font-semibold text-slate-900 mb-3">3 gode grunner til å velge Førerkortportalen</h3>
           <div className="space-y-3">

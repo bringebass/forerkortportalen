@@ -42,17 +42,21 @@ function MCKlasserContent() {
         </div>
         
         <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/80 backdrop-blur-sm border border-amber-200/50 mb-6 sm:mb-8">
-              <Bike className="h-4 w-4 text-amber-600" />
-              <span className="text-sm font-semibold text-amber-700">Førerkortklasser</span>
+          <div className="max-w-4xl mx-auto lg:mx-0 lg:max-w-none">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+              <div className="lg:col-span-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/80 backdrop-blur-sm border border-amber-200/50 mb-6 sm:mb-8">
+                  <Bike className="h-4 w-4 text-amber-600" />
+                  <span className="text-sm font-semibold text-amber-700">Førerkortklasser</span>
+                </div>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
+                  MC-klasser <span className="text-amber-600">A/A2/A1</span>
+                </h1>
+                <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
+                  Starter med obligatorisk teoridel (3 timer) og fortsetter med kjøreteknikk, sikkerhetskurs bane og trafikk.
+                </p>
+              </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
-              MC-klasser <span className="text-amber-600">A/A2/A1</span>
-            </h1>
-            <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
-              Starter med obligatorisk teoridel (3 timer) og fortsetter med kjøreteknikk, sikkerhetskurs bane og trafikk.
-            </p>
           </div>
         </div>
       </section>

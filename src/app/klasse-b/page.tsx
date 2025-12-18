@@ -42,17 +42,21 @@ function KlasseBContent() {
         </div>
         
         <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/80 backdrop-blur-sm border border-blue-200/50 mb-6 sm:mb-8">
-              <Car className="h-4 w-4 text-blue-600" />
-              <span className="text-sm font-semibold text-blue-700">Førerkortklasser</span>
+          <div className="max-w-4xl mx-auto lg:mx-0 lg:max-w-none">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+              <div className="lg:col-span-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/80 backdrop-blur-sm border border-blue-200/50 mb-6 sm:mb-8">
+                  <Car className="h-4 w-4 text-blue-600" />
+                  <span className="text-sm font-semibold text-blue-700">Førerkortklasser</span>
+                </div>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
+                  Klasse <span className="text-blue-600">B</span> – personbil
+                </h1>
+                <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
+                  Standard lappen opptil 3 500 kg. Inkluderer sikkerhetskurs på bane og i trafikken før oppkjøring.
+                </p>
+              </div>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 leading-tight">
-              Klasse <span className="text-blue-600">B</span> – personbil
-            </h1>
-            <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-3xl">
-              Standard lappen opptil 3 500 kg. Inkluderer sikkerhetskurs på bane og i trafikken før oppkjøring.
-            </p>
           </div>
         </div>
       </section>

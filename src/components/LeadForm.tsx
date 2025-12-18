@@ -140,10 +140,13 @@ export function LeadForm({
     }
   };
 
-  // Activate desktop focus mode when user clicks on input fields (only on article pages)
+  // Activate desktop focus mode when user clicks on input fields (on article pages and content pages, but not homepage)
   // On homepage, users can fill in the form directly without auto-focus/blur
   const activateDesktopFocusIfNeeded = (inputId?: string, event?: React.FocusEvent) => {
-    if (isArticlePage && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
+    const isHomepage = pathname === "/";
+    const shouldActivate = !isHomepage && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused;
+    
+    if (shouldActivate) {
       if (inputId && event) {
         // Store the input ID
         focusedInputIdRef.current = inputId;
