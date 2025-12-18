@@ -202,7 +202,7 @@ export const articles = [
     date: "20. februar 2025",
     readTime: "6 min lesing",
     category: "Økonomi",
-    image: "/Artikkel16.png",
+    image: "/Artikkel10.png",
     inArticleImages: [
       { image: "/in-article6.png", alt: "Fastpris vs betaling per time", caption: "Valget mellom fastpris og betaling per time avhenger av din situasjon og behov." }
     ],

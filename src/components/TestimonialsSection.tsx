@@ -3,8 +3,8 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Markus",
-    image: "/boy1.png",
+    name: "Line",
+    image: "/jente.png",
     text: "Fant perfekt trafikkskole på noen minutter! Fikk flere tilbud å velge mellom og sparte mye tid.",
   },
   {
