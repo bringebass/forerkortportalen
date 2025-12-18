@@ -10,6 +10,26 @@ export default function TakkPage() {
   useEffect(() => {
     // Scroll to top on mount
     window.scrollTo({ top: 0, behavior: "instant" });
+
+    // Track Google Ads conversion on thank you page
+    // Use sessionStorage to prevent duplicate tracking if already fired from form submission
+    const conversionKey = "google_ads_conversion_tracked";
+    const alreadyTracked = typeof window !== "undefined" && sessionStorage.getItem(conversionKey);
+
+    if (typeof window !== "undefined" && window.gtag && !alreadyTracked) {
+      // Mark as tracked to prevent duplicates
+      sessionStorage.setItem(conversionKey, "true");
+      
+      // Small delay to ensure gtag is fully loaded
+      setTimeout(() => {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17789739680/Qu87CPKMmc4bEKDF56JC",
+          value: 1.0,
+          currency: "NOK",
+        });
+        console.log("[Google Ads] Conversion tracked on thank you page");
+      }, 100);
+    }
   }, []);
 
   const nextSteps = [

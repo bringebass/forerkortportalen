@@ -600,6 +600,19 @@ const countryCodes = [
         // Send event via gtag (standard GA4 method - this is the ONLY way we send events)
         window.gtag("event", "form_submission", eventData);
         console.log("[GA Event] form_submission", eventData);
+
+        // Track Google Ads conversion event
+        // Mark in sessionStorage to prevent duplicate tracking on thank you page
+        if (typeof window !== "undefined" && sessionStorage) {
+          sessionStorage.setItem("google_ads_conversion_tracked", "true");
+        }
+        
+        window.gtag("event", "conversion", {
+          send_to: "AW-17789739680/Qu87CPKMmc4bEKDF56JC",
+          value: 1.0,
+          currency: "NOK",
+        });
+        console.log("[Google Ads] Conversion tracked");
       }
       
       // Small delay to ensure event is sent before redirect
