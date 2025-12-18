@@ -47,7 +47,7 @@ export default function TestimonialsSection() {
             <span className="text-[#3bb54a]">Hva sier</span>{" "}brukerne våre?
           </h2>
           <p className="text-lg sm:text-xl text-slate-600">
-            Over 1000 fornøyde brukere har funnet sin perfekte trafikkskole gjennom oss
+            Over 1000 fornøyde brukere har funnet sin trafikkskole gjennom oss
           </p>
         </div>
 
