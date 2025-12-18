@@ -2703,35 +2703,69 @@ function ArticleContent({ params }: { params: { id: string } }) {
     // Replace in-article images if they exist in metadata
     if (metadata.inArticleImages && metadata.inArticleImages.length > 0) {
       let processedContent = article.content;
+      let imagesInserted = 0;
+      
       metadata.inArticleImages.forEach((imgData, index) => {
         const imageHTML = createImageHTML(imgData.image, imgData.alt, imgData.caption);
         
-        // Strategy 1: Replace by matching existing image path pattern (for in-article images we've already placed)
-        // Look for any img tag that might have a similar path pattern
+        // Strategy 1: Use placeholder pattern {{IN_ARTICLE_IMAGE:index}}
+        const placeholder = `{{IN_ARTICLE_IMAGE:${index}}}`;
+        
+        // Strategy 2: Replace by matching existing image path pattern
         const imagePathEscaped = imgData.image.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const pathPattern = new RegExp(`<figure[^>]*>.*?<img[^>]*src=["']${imagePathEscaped}["'][^>]*>.*?<\\/figure>`, 'is');
         
-        // Strategy 2: Replace by alt text
+        // Strategy 3: Replace by alt text
         const altEscaped = imgData.alt.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const altPattern = new RegExp(`<img[^>]*alt=["']${altEscaped}["'][^>]*>`, 'i');
+        const figureWithAltPattern = new RegExp(`<figure[^>]*>.*?<img[^>]*alt=["']${altEscaped}["'][^>]*>.*?<\\/figure>`, 'is');
         
-        // Strategy 3: Use placeholder pattern {{IN_ARTICLE_IMAGE:index}}
-        const placeholder = `{{IN_ARTICLE_IMAGE:${index}}}`;
+        let wasReplaced = false;
         
         if (processedContent.includes(placeholder)) {
           // Replace placeholder
           processedContent = processedContent.replace(placeholder, imageHTML.trim());
+          wasReplaced = true;
         } else if (pathPattern.test(processedContent)) {
           // Replace existing figure with matching image path
           processedContent = processedContent.replace(pathPattern, imageHTML.trim());
+          wasReplaced = true;
+        } else if (figureWithAltPattern.test(processedContent)) {
+          // Replace existing figure with matching alt text
+          processedContent = processedContent.replace(figureWithAltPattern, imageHTML.trim());
+          wasReplaced = true;
         } else if (altPattern.test(processedContent)) {
-          // Replace existing img tag with matching alt text (and its figure wrapper if exists)
-          const figureWithAltPattern = new RegExp(`<figure[^>]*>.*?<img[^>]*alt=["']${altEscaped}["'][^>]*>.*?<\\/figure>`, 'is');
-          if (figureWithAltPattern.test(processedContent)) {
-            processedContent = processedContent.replace(figureWithAltPattern, imageHTML.trim());
-          } else {
-            // Just replace the img tag
-            processedContent = processedContent.replace(altPattern, imageHTML.trim());
+          // Replace existing img tag with matching alt text
+          processedContent = processedContent.replace(altPattern, imageHTML.trim());
+          wasReplaced = true;
+        } else {
+          // Strategy 4: Insert image after first h2 heading if no match found
+          // This ensures images are always displayed even if article content doesn't have matching patterns
+          const h2Pattern = /(<h2[^>]*>.*?<\/h2>)/i;
+          const h2Match = processedContent.match(h2Pattern);
+          
+          if (h2Match && imagesInserted === 0) {
+            // Insert after first h2
+            const insertPosition = processedContent.indexOf(h2Match[0]) + h2Match[0].length;
+            processedContent = 
+              processedContent.slice(0, insertPosition) + 
+              imageHTML.trim() + 
+              processedContent.slice(insertPosition);
+            wasReplaced = true;
+            imagesInserted++;
+          } else if (imagesInserted === 0) {
+            // Fallback: Insert after first paragraph if no h2 found
+            const pPattern = /(<p[^>]*>.*?<\/p>)/i;
+            const pMatch = processedContent.match(pPattern);
+            if (pMatch) {
+              const insertPosition = processedContent.indexOf(pMatch[0]) + pMatch[0].length;
+              processedContent = 
+                processedContent.slice(0, insertPosition) + 
+                imageHTML.trim() + 
+                processedContent.slice(insertPosition);
+              wasReplaced = true;
+              imagesInserted++;
+            }
           }
         }
       });

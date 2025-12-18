@@ -58,9 +58,9 @@ export const articles = [
     date: "15. januar 2025",
     readTime: "8 min lesing",
     category: "Økonomi",
-    image: "/Artikkel5.png",
+    image: "/Artikkel4.png",
     inArticleImages: [
-      { image: "/in-article5.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
+      { image: "/in-article1.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
     ],
   },
   {
@@ -70,8 +70,10 @@ export const articles = [
     date: "28. desember 2023",
     readTime: "5 min lesing",
     category: "Tips",
-    image: "/Artikkel6.png",
-    inArticleImages: [],
+    image: "/Artikkel5.png",
+    inArticleImages: [
+      { image: "/in-article5.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
+    ],
   },
   {
     id: 6,
@@ -80,7 +82,7 @@ export const articles = [
     date: "20. desember 2023",
     readTime: "4 min lesing",
     category: "Etter opplæring",
-    image: "/Artikkel7.png",
+    image: "/Artikkel6.png",
     inArticleImages: [
       { image: "/in-article6.png", alt: "Prøvetid for nye førere", caption: "Som ny fører har du prøvetid i 2 år med strengere regler." }
     ],
@@ -92,8 +94,10 @@ export const articles = [
     date: "25. januar 2025",
     readTime: "8 min lesing",
     category: "Kursformer",
-    image: "/Artikkel8.png",
-    inArticleImages: [],
+    image: "/Artikkel7.png",
+    inArticleImages: [
+      { image: "/in-article2.png", alt: "Intensivkurs for førerkort", caption: "Intensivkurs kan være en effektiv måte å ta førerkort på for de som har mulighet til det." }
+    ],
   },
   {
     id: 8,
@@ -102,8 +106,10 @@ export const articles = [
     date: "30. januar 2025",
     readTime: "10 min lesing",
     category: "Økonomi",
-    image: "/Artikkel9.png",
-    inArticleImages: [],
+    image: "/Artikkel8.png",
+    inArticleImages: [
+      { image: "/in-article3.png", alt: "Obligatoriske kurs for førerkort", caption: "Alle førerkortklasser krever obligatoriske kurs som en del av opplæringen." }
+    ],
   },
   {
     id: 9,
@@ -112,8 +118,10 @@ export const articles = [
     date: "2. februar 2025",
     readTime: "8 min lesing",
     category: "Guider",
-    image: "/Article-photo1.png",
-    inArticleImages: [],
+    image: "/Artikkel9.png",
+    inArticleImages: [
+      { image: "/in-article5.png", alt: "Førerkortprosessen steg for steg", caption: "Førerkortprosessen består av flere viktige steg fra teori til praktisk oppkjøring." }
+    ],
   },
   {
     id: 10,
@@ -122,8 +130,10 @@ export const articles = [
     date: "5. februar 2025",
     readTime: "9 min lesing",
     category: "Guider",
-    image: "/Article-photo2.png",
-    inArticleImages: [],
+    image: "/Artikkel16.png",
+    inArticleImages: [
+      { image: "/in-article6.png", alt: "Velge riktig kjøreskole", caption: "Valg av kjøreskole er et viktig valg som påvirker hele førerkortprosessen." }
+    ],
   },
   {
     id: 11,
@@ -132,8 +142,10 @@ export const articles = [
     date: "7. februar 2025",
     readTime: "7 min lesing",
     category: "Tips",
-    image: "/Article-photo5.png",
-    inArticleImages: [],
+    image: "/car-in-circle.png",
+    inArticleImages: [
+      { image: "/in-article1.png", alt: "Forberedelse til oppkjøring", caption: "God forberedelse er nøkkelen til å bestå oppkjøringen på første forsøk." }
+    ],
   },
   {
     id: 12,
@@ -143,7 +155,9 @@ export const articles = [
     readTime: "10 min lesing",
     category: "Tips",
     image: "/Forbered-deg-til-forerproven.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article2.png", alt: "Antall kjøretimer", caption: "Antall kjøretimer varierer basert på erfaring, læringsstil og forberedelse." }
+    ],
   },
   {
     id: 13,
@@ -153,7 +167,9 @@ export const articles = [
     readTime: "9 min lesing",
     category: "Guider",
     image: "/Hva-koster-det-å -ta-forerkort.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article3.png", alt: "Tidsbruk for førerkort", caption: "Tiden det tar å ta førerkort varierer basert på intensitet og individuell progresjon." }
+    ],
   },
   {
     id: 14,
@@ -163,7 +179,9 @@ export const articles = [
     readTime: "8 min lesing",
     category: "Guider",
     image: "/hva-skjer-etter-forerkortett.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article5.png", alt: "Trafikkskole vs privat øvelseskjøring", caption: "Kombinasjonen av trafikkskole og privat øvelseskjøring gir best resultat." }
+    ],
   },
   {
     id: 15,
@@ -173,7 +191,9 @@ export const articles = [
     readTime: "7 min lesing",
     category: "Tips",
     image: "/Intensiv-vs-vanlig.png",
-    inArticleImages: [],
+    inArticleImages: [
+      { image: "/in-article4.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
+    ],
   },
   {
     id: 16,
@@ -182,8 +202,10 @@ export const articles = [
     date: "20. februar 2025",
     readTime: "6 min lesing",
     category: "Økonomi",
-    image: "/Artikkel16.png",
-    inArticleImages: [],
+    image: "/Artikkel10.png",
+    inArticleImages: [
+      { image: "/in-article6.png", alt: "Fastpris vs betaling per time", caption: "Valget mellom fastpris og betaling per time avhenger av din situasjon og behov." }
+    ],
   },
 ];
 
