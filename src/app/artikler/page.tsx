@@ -12,7 +12,9 @@ import CompactFormCTA from "@/components/CompactFormCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 // Placeholder artikler - du kan erstatte disse med faktiske artikler senere
-const articles = [
+// Add inArticleImages array to specify images that appear further down in articles
+// Format: [{ image: "/path/to/image.png", alt: "Description" }]
+export const articles = [
   {
     id: 1,
     title: "Billigste måte å ta førerkort på – myter vs. fakta (2025-guide)",
@@ -20,7 +22,10 @@ const articles = [
     date: "20. januar 2025",
     readTime: "10 min lesing",
     category: "Guider",
-    image: "/Article-photo8.png",
+    image: "/Artikkel1.png",
+    inArticleImages: [
+      { image: "/in-article1.png", alt: "Riktig planlegging for førerkort", caption: "Riktig planlegging og strukturert trening sparer penger på førerkortet." }
+    ],
   },
   {
     id: 2,
@@ -29,7 +34,10 @@ const articles = [
     date: "10. januar 2024",
     readTime: "8 min lesing",
     category: "Førerkortklasser",
-    image: "/Article-photo2.png",
+    image: "/Artikkel2.png",
+    inArticleImages: [
+      { image: "/in-article2.png", alt: "Kjøreopplæring for førerkort klasse B", caption: "Kjøreopplæringen er et viktig steg i prosessen mot førerkort." }
+    ],
   },
   {
     id: 3,
@@ -38,7 +46,10 @@ const articles = [
     date: "5. januar 2024",
     readTime: "6 min lesing",
     category: "Kursformer",
-    image: "/Article-photo3.png",
+    image: "/Artikkel3.png",
+    inArticleImages: [
+      { image: "/in-article3.png", alt: "Velge mellom intensivkurs og tradisjonelt løp", caption: "Valget mellom intensivkurs og tradisjonelt løp avhenger av din situasjon og behov." }
+    ],
   },
   {
     id: 4,
@@ -47,7 +58,10 @@ const articles = [
     date: "15. januar 2025",
     readTime: "8 min lesing",
     category: "Økonomi",
-    image: "/Article-photo4.png",
+    image: "/Artikkel5.png",
+    inArticleImages: [
+      { image: "/in-article5.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
+    ],
   },
   {
     id: 5,
@@ -56,7 +70,8 @@ const articles = [
     date: "28. desember 2023",
     readTime: "5 min lesing",
     category: "Tips",
-    image: "/Article-photo5.png",
+    image: "/Artikkel6.png",
+    inArticleImages: [],
   },
   {
     id: 6,
@@ -65,7 +80,10 @@ const articles = [
     date: "20. desember 2023",
     readTime: "4 min lesing",
     category: "Etter opplæring",
-    image: "/Article-photo6.png",
+    image: "/Artikkel7.png",
+    inArticleImages: [
+      { image: "/in-article6.png", alt: "Prøvetid for nye førere", caption: "Som ny fører har du prøvetid i 2 år med strengere regler." }
+    ],
   },
   {
     id: 7,
@@ -74,7 +92,8 @@ const articles = [
     date: "25. januar 2025",
     readTime: "8 min lesing",
     category: "Kursformer",
-    image: "/Article-photo3.png",
+    image: "/Artikkel8.png",
+    inArticleImages: [],
   },
   {
     id: 8,
@@ -83,7 +102,8 @@ const articles = [
     date: "30. januar 2025",
     readTime: "10 min lesing",
     category: "Økonomi",
-    image: "/Article-photo4.png",
+    image: "/Artikkel9.png",
+    inArticleImages: [],
   },
   {
     id: 9,
@@ -93,6 +113,7 @@ const articles = [
     readTime: "8 min lesing",
     category: "Guider",
     image: "/Article-photo1.png",
+    inArticleImages: [],
   },
   {
     id: 10,
@@ -102,6 +123,7 @@ const articles = [
     readTime: "9 min lesing",
     category: "Guider",
     image: "/Article-photo2.png",
+    inArticleImages: [],
   },
   {
     id: 11,
@@ -111,6 +133,7 @@ const articles = [
     readTime: "7 min lesing",
     category: "Tips",
     image: "/Article-photo5.png",
+    inArticleImages: [],
   },
   {
     id: 12,
@@ -119,7 +142,8 @@ const articles = [
     date: "10. februar 2025",
     readTime: "10 min lesing",
     category: "Tips",
-    image: "/Article-photo5.png",
+    image: "/Forbered-deg-til-forerproven.png",
+    inArticleImages: [],
   },
   {
     id: 13,
@@ -128,7 +152,8 @@ const articles = [
     date: "12. februar 2025",
     readTime: "9 min lesing",
     category: "Guider",
-    image: "/Article-photo2.png",
+    image: "/Hva-koster-det-å -ta-forerkort.png",
+    inArticleImages: [],
   },
   {
     id: 14,
@@ -137,7 +162,8 @@ const articles = [
     date: "15. februar 2025",
     readTime: "8 min lesing",
     category: "Guider",
-    image: "/Article-photo2.png",
+    image: "/hva-skjer-etter-forerkortett.png",
+    inArticleImages: [],
   },
   {
     id: 15,
@@ -146,7 +172,8 @@ const articles = [
     date: "17. februar 2025",
     readTime: "7 min lesing",
     category: "Tips",
-    image: "/Article-photo3.png",
+    image: "/Intensiv-vs-vanlig.png",
+    inArticleImages: [],
   },
   {
     id: 16,
@@ -155,7 +182,8 @@ const articles = [
     date: "20. februar 2025",
     readTime: "6 min lesing",
     category: "Økonomi",
-    image: "/Article-photo4.png",
+    image: "/Artikkel16.png",
+    inArticleImages: [],
   },
 ];
 

@@ -24,22 +24,22 @@ export default function Footer() {
     {
       title: "Tjenesten",
       links: [
-        { label: "Om Førerkortportalen", href: "/" },
-        { label: "Slik fungerer det", href: "#hvordan" },
+        { label: "Om Førerkortportalen", href: "/om-oss" },
+        { label: "Slik fungerer det", href: "/slik-fungerer-det" },
       ],
     },
     {
       title: "Førerkortklasser",
       links: [
-        { label: "Klasse B", href: "#klasser" },
-        { label: "MC-klasser", href: "#klasser" },
-        { label: "Tilhenger", href: "#klasser" },
+        { label: "Klasse B", href: "/klasse-b" },
+        { label: "MC-klasser", href: "/mc-klasser" },
+        { label: "Tilhenger", href: "/tilhenger" },
       ],
     },
     {
       title: "Annet",
       links: [
-        { label: "Ofte stilte spørsmål", href: "#faq" },
+        { label: "Artikler", href: "/artikler" },
         { label: "Kontakt oss", href: "/kontakt" },
       ],
     },

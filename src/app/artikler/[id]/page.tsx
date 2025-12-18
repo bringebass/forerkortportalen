@@ -13,6 +13,19 @@ import ArticleStickyCTA from "@/components/ArticleStickyCTA";
 import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 import CompactFormCTA from "@/components/CompactFormCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import { articles as articlesMetadata } from "../page";
+
+// Helper function to create image HTML from inArticleImages
+function createImageHTML(imagePath: string, alt: string, caption: string): string {
+  return `
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="${imagePath}" alt="${alt}" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          ${caption}
+        </figcaption>
+      </figure>
+  `;
+}
 
 export const articles: Record<string, {
   id: number;
@@ -31,7 +44,7 @@ export const articles: Record<string, {
     date: "20. januar 2025",
     readTime: "10 min lesing",
     category: "Guider",
-    image: "/Article-photo8.png",
+    image: "/Artikkel1.png",
     content: `
       <p class="lead">Alle vil ha førerkortet billigst mulig — men det finnes mange myter, rare tips og "smarte snarveier" der ute som gjør det vanskelig å vite hva som faktisk lønner seg. Noen råd kan spare deg tusenlapper. Andre gjør det bare dyrere, selv om de høres lure ut.</p>
       
@@ -137,6 +150,13 @@ export const articles: Record<string, {
       
       <h2>Fakta: Dette er faktisk den billigste måten å ta førerkort på</h2>
       <p>Her er sannheten – basert på tall fra kjøreskoler, sensorer og elever:</p>
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article1.png" alt="Riktig planlegging for førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Riktig planlegging og strukturert trening sparer penger på førerkortet.
+        </figcaption>
+      </figure>
       
       <h3>1. Øv riktig privat (ikke bare mye)</h3>
       <p>Privat trening er gratis. Men den må være strukturert.</p>
@@ -293,6 +313,13 @@ export const articles: Record<string, {
       
       <h2>3. Kjøreopplæring – lær å kjøre</h2>
       <p>Etter å ha bestått teoriprøven kan du begynne på kjøreopplæringen. Dette er det praktiske steget der du faktisk lærer å kjøre bil.</p>
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article2.png" alt="Kjøreopplæring for førerkort klasse B" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Kjøreopplæringen er et viktig steg i prosessen mot førerkort.
+        </figcaption>
+      </figure>
       
       <h3>Obligatorisk minimum</h3>
       <p>Du må ta minimum 13 kjøretimer á 45 minutter. Disse timene må dekke:</p>
@@ -538,6 +565,14 @@ export const articles: Record<string, {
       </ul>
       
       <h2>Ekstra elementer som påvirker valget</h2>
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article3.png" alt="Velge mellom intensivkurs og tradisjonelt løp" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Valget mellom intensivkurs og tradisjonelt løp avhenger av din situasjon og behov.
+        </figcaption>
+      </figure>
+      
       <h3>Tilgang til bil og øvingspartner</h3>
       <p>Har du en øvingspartner (over 25 år med 5 års førerrett)? Det kan redusere antall skoletimer, særlig i tradisjonelt løp.</p>
       
@@ -590,14 +625,14 @@ export const articles: Record<string, {
     date: "15. januar 2025",
     readTime: "8 min lesing",
     category: "Økonomi",
-    image: "/Article-photo4.png",
+    image: "/Article-photo5.png",
     content: `
       <p class="lead">Å ta førerkort i Norge er litt som å planlegge en lang tur: du vet omtrent hvor du skal, men du aner aldri helt hvor mye det faktisk kommer til å koste før du er midt i det. Prisene endrer seg smått hvert år, og 2025 er ikke noe unntak. Samtidig er det mange som blir overrasket – enten positivt eller negativt – når de ser den faktiske totalsummen.</p>
       
       <p>Så la oss rydde opp i forvirringen og gå gjennom hva du faktisk må betale.</p>
       
       <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-        <img src="/Article-photo4.png" alt="Kostnader ved førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <img src="/Article-photo5.png" alt="Kostnader ved førerkort" class="w-full h-auto object-cover" loading="lazy" />
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
           Førerkort er en betydelig investering, men med god planlegging kan du holde kostnadene under kontroll.
         </figcaption>
@@ -642,6 +677,13 @@ export const articles: Record<string, {
       <h2>Variabel kostnad: kjøretimer – den store joker'n</h2>
       
       <p>Her varierer det mest. Noen tar lappen nesten uten ekstra timer, mens andre trenger tid på å bli trygge. Det handler ikke om intelligens; det handler om erfaring, stressnivå, trafikksans og noen ganger ren dagsform.</p>
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article5.png" alt="Kjøretimer og kostnader for førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Antall kjøretimer varierer og påvirker totalprisen betydelig.
+        </figcaption>
+      </figure>
       
       <p>For de fleste ligger dette på 10–20 ekstra timer, som gjerne betyr:</p>
       
@@ -812,7 +854,7 @@ export const articles: Record<string, {
     date: "20. desember 2023",
     readTime: "4 min lesing",
     category: "Etter opplæring",
-    image: "/Article-photo6.png",
+    image: "/Article-photo1.png",
     content: `
       <p class="lead">Gratulerer! Du har bestått førerprøven. Men hva skjer nå? Her er en guide til hva du må gjøre for å få førerkortet ditt og hva du bør vite som ny fører.</p>
       
@@ -828,7 +870,7 @@ export const articles: Record<string, {
       <p>Det tar vanligvis 1-2 uker før førerkortet er klart. Du får beskjed når det er klart for henting. I mellomtiden har du ikke lov til å kjøre bil, så du må vente med å kjøre alene til du har fått førerkortet.</p>
 
       <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-        <img src="/Article-photo6.png" alt="Etter bestått førerprøve" class="w-full h-auto object-cover" loading="lazy" />
+        <img src="/Article-photo1.png" alt="Etter bestått førerprøve" class="w-full h-auto object-cover" loading="lazy" />
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
           Etter bestått prøve gjenstår bestilling, ventetid og trygg oppstart som ny sjåfør.
         </figcaption>
@@ -839,6 +881,14 @@ export const articles: Record<string, {
       
       <h2>4. Prøvetid i 2 år</h2>
       <p>Som ny fører har du prøvetid i 2 år fra den dagen du fikk førerkortet. Under prøvetiden:</p>
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article6.png" alt="Prøvetid for nye førere" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Som ny fører har du prøvetid i 2 år med strengere regler.
+        </figcaption>
+      </figure>
+      
       <ul>
         <li>Du har strengere regler enn erfarne førere</li>
         <li>Du får dobbel poeng ved trafikkforseelser</li>
@@ -1030,7 +1080,7 @@ export const articles: Record<string, {
     date: "30. januar 2025",
     readTime: "10 min lesing",
     category: "Økonomi",
-    image: "/Article-photo4.png",
+    image: "/Article-photo5.png",
     content: `
       <p class="lead">Du har sikkert hørt det før: "Førerkort koster en formue." Og ja, det kan fort bli dyrere enn du planla — men sannheten er at utrolig mange betaler mer enn nødvendig. Ofte handler det ikke om selve kjøreskolen, men om små valg i prosessen som til sammen blir en dyr affære.</p>
       
@@ -1043,7 +1093,7 @@ export const articles: Record<string, {
       <p>Det samme gjelder førerkortet.</p>
       
       <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-        <img src="/Article-photo4.png" alt="Spar penger på førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <img src="/Article-photo5.png" alt="Spar penger på førerkort" class="w-full h-auto object-cover" loading="lazy" />
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
           Med riktig planlegging kan du spare penger på førerkortet uten å kutte på kvaliteten.
         </figcaption>
@@ -2437,7 +2487,7 @@ export const articles: Record<string, {
     date: "20. februar 2025",
     readTime: "6 min lesing",
     category: "Økonomi",
-    image: "/Article-photo4.png",
+    image: "/Article-photo5.png",
     content: `
       <p class="lead">Når du skal ta førerkort, dukker det fort opp et spørsmål som nesten alle kjenner på: <strong>Skal jeg gå for fastpris eller betale per kjøretime?</strong></p>
       
@@ -2446,7 +2496,7 @@ export const articles: Record<string, {
       <p>I denne artikkelen bryter vi ned forskjellen mellom fastpris og betaling per time, hva du faktisk betaler for, og når noen av alternativene gir bedre verdi enn det andre.</p>
       
       <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-        <img src="/Article-photo4.png" alt="Fastpris vs betaling per kjøretime" class="w-full h-auto object-cover" loading="lazy" />
+        <img src="/Article-photo5.png" alt="Fastpris vs betaling per kjøretime" class="w-full h-auto object-cover" loading="lazy" />
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
           Valget mellom fastpris og betaling per time avhenger av din situasjon. Ingen av alternativene er automatisk billigst.
         </figcaption>
@@ -2641,11 +2691,64 @@ function ArticleContent({ params }: { params: { id: string } }) {
   const { isDesktopFocused } = useFormContext();
   const [isMobile, setIsMobile] = useState(false);
   
+  // Merge article data with metadata from page.tsx to get correct images
+  const articleWithMetadata = useMemo(() => {
+    if (!article) return null;
+    const metadata = articlesMetadata.find(a => a.id === article.id);
+    if (!metadata) return article;
+    
+    // Get the merged article with updated image
+    let mergedArticle = { ...article, image: metadata.image };
+    
+    // Replace in-article images if they exist in metadata
+    if (metadata.inArticleImages && metadata.inArticleImages.length > 0) {
+      let processedContent = article.content;
+      metadata.inArticleImages.forEach((imgData, index) => {
+        const imageHTML = createImageHTML(imgData.image, imgData.alt, imgData.caption);
+        
+        // Strategy 1: Replace by matching existing image path pattern (for in-article images we've already placed)
+        // Look for any img tag that might have a similar path pattern
+        const imagePathEscaped = imgData.image.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const pathPattern = new RegExp(`<figure[^>]*>.*?<img[^>]*src=["']${imagePathEscaped}["'][^>]*>.*?<\\/figure>`, 'is');
+        
+        // Strategy 2: Replace by alt text
+        const altEscaped = imgData.alt.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const altPattern = new RegExp(`<img[^>]*alt=["']${altEscaped}["'][^>]*>`, 'i');
+        
+        // Strategy 3: Use placeholder pattern {{IN_ARTICLE_IMAGE:index}}
+        const placeholder = `{{IN_ARTICLE_IMAGE:${index}}}`;
+        
+        if (processedContent.includes(placeholder)) {
+          // Replace placeholder
+          processedContent = processedContent.replace(placeholder, imageHTML.trim());
+        } else if (pathPattern.test(processedContent)) {
+          // Replace existing figure with matching image path
+          processedContent = processedContent.replace(pathPattern, imageHTML.trim());
+        } else if (altPattern.test(processedContent)) {
+          // Replace existing img tag with matching alt text (and its figure wrapper if exists)
+          const figureWithAltPattern = new RegExp(`<figure[^>]*>.*?<img[^>]*alt=["']${altEscaped}["'][^>]*>.*?<\\/figure>`, 'is');
+          if (figureWithAltPattern.test(processedContent)) {
+            processedContent = processedContent.replace(figureWithAltPattern, imageHTML.trim());
+          } else {
+            // Just replace the img tag
+            processedContent = processedContent.replace(altPattern, imageHTML.trim());
+          }
+        }
+      });
+      mergedArticle = { ...mergedArticle, content: processedContent };
+    }
+    
+    return mergedArticle;
+  }, [article]);
+
+  // Use merged article instead of original
+  const finalArticle = articleWithMetadata || article;
+
   // Extract headings for table of contents
   const headings = useMemo(() => {
-    if (!article) return [];
-    return extractHeadings(article.content);
-  }, [article]);
+    if (!finalArticle) return [];
+    return extractHeadings(finalArticle.content);
+  }, [finalArticle]);
 
   // Check if mobile on mount
   useEffect(() => {
@@ -2686,10 +2789,10 @@ function ArticleContent({ params }: { params: { id: string } }) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": article.title,
-    "description": article.excerpt,
-    "image": article.image ? `https://forerkortportalen.no${article.image}` : undefined,
-    "datePublished": article.date,
+    "headline": finalArticle.title,
+    "description": finalArticle.excerpt,
+    "image": finalArticle.image ? `https://forerkortportalen.no${finalArticle.image}` : undefined,
+    "datePublished": finalArticle.date,
     "author": {
       "@type": "Organization",
       "name": "Førerkortportalen"
@@ -2704,7 +2807,7 @@ function ArticleContent({ params }: { params: { id: string } }) {
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://forerkortportalen.no/artikler/${article.id}`
+      "@id": `https://forerkortportalen.no/artikler/${finalArticle.id}`
     }
   };
 
@@ -2744,30 +2847,30 @@ function ArticleContent({ params }: { params: { id: string } }) {
             {/* Header */}
             <header className="px-6 sm:px-8 lg:px-10 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 border-b border-slate-200">
               <div className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-semibold mb-4">
-                {article.category}
+                {finalArticle.category}
               </div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-slate-900 mb-4 sm:mb-6 leading-tight">
-                {article.title}
+                {finalArticle.title}
               </h1>
               <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-600">
                 <div className="flex items-center gap-1.5">
                   <Calendar className="h-4 w-4" />
-                  <span>{article.date}</span>
+                  <span>{finalArticle.date}</span>
                 </div>
                 <span>•</span>
                 <div className="flex items-center gap-1.5">
                   <Clock className="h-4 w-4" />
-                  <span>{article.readTime}</span>
+                  <span>{finalArticle.readTime}</span>
                 </div>
               </div>
             </header>
 
                   {/* Article Image */}
-                  {article.image && (
+                  {finalArticle.image && (
                     <div className="relative w-full h-64 sm:h-80 lg:h-96 overflow-hidden bg-slate-100">
                       <Image
-                        src={article.image}
-                        alt={article.title}
+                        src={finalArticle.image}
+                        alt={finalArticle.title}
                         fill
                         className="object-cover"
                         sizes="(max-width: 1024px) 100vw, 60vw"
@@ -2841,7 +2944,7 @@ function ArticleContent({ params }: { params: { id: string } }) {
                   prose-img:rounded-xl prose-img:shadow-md prose-img:my-8 prose-img:w-full
                   prose-hr:border-slate-200 prose-hr:my-8"
                       dangerouslySetInnerHTML={{ 
-                        __html: article.content
+                        __html: finalArticle.content
                           .replace(
                             /<h2([^>]*)>(.*?)<\/h2>/gi,
                             (match, attrs, text) => {
