@@ -20,14 +20,19 @@ export default function TakkPage() {
       // Mark as tracked to prevent duplicates
       sessionStorage.setItem(conversionKey, "true");
       
+      // Store gtag reference for TypeScript
+      const gtag = window.gtag;
+      
       // Small delay to ensure gtag is fully loaded
       setTimeout(() => {
-        window.gtag("event", "conversion", {
-          send_to: "AW-17789739680/Qu87CPKMmc4bEKDF56JC",
-          value: 1.0,
-          currency: "NOK",
-        });
-        console.log("[Google Ads] Conversion tracked on thank you page");
+        if (gtag) {
+          gtag("event", "conversion", {
+            send_to: "AW-17789739680/Qu87CPKMmc4bEKDF56JC",
+            value: 1.0,
+            currency: "NOK",
+          });
+          console.log("[Google Ads] Conversion tracked on thank you page");
+        }
       }, 100);
     }
   }, []);

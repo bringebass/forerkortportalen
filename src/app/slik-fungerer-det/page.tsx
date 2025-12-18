@@ -2,12 +2,12 @@
 
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { LeadForm } from "@/components/LeadForm";
 import { FormProvider, useFormContext } from "@/contexts/FormContext";
 import ArticleStickyCTA from "@/components/ArticleStickyCTA";
 import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 import CompactFormCTA from "@/components/CompactFormCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import FormSidebar from "@/components/FormSidebar";
 import { useState, useEffect } from "react";
 
 const steps = [
@@ -74,11 +74,13 @@ function SlikFungererDetContent() {
       {/* Steps Section */}
       <section className={`relative overflow-hidden bg-gradient-to-br from-emerald-50 to-blue-50/30 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 transition-all duration-500 ${isDesktopFocused && !isMobile ? 'blur-md' : ''}`}>
         <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-8 sm:mb-10">
-              Steg for steg
-            </h2>
-            <div className="space-y-6">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+            {/* Left side - Steps */}
+            <div className="lg:col-span-8">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-8 sm:mb-10">
+                Steg for steg
+              </h2>
+              <div className="space-y-6">
               {steps.map((step, index) => (
                 <div key={index} className="flex gap-6">
                   <div className="flex-shrink-0">
@@ -96,7 +98,11 @@ function SlikFungererDetContent() {
                   </div>
                 </div>
               ))}
+              </div>
             </div>
+
+            {/* Right side - Form sidebar */}
+            <FormSidebar />
           </div>
         </div>
       </section>
@@ -120,19 +126,7 @@ function SlikFungererDetContent() {
         </div>
       </section>
 
-      {/* Form Section */}
-      <section className={`relative overflow-hidden bg-slate-900 py-12 sm:py-16 lg:py-20 transition-all duration-500 ${isDesktopFocused && !isMobile ? 'blur-md' : ''}`}>
-        <div className="container relative mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto">
-            <div className="rounded-[32px] backdrop-blur-md shadow-2xl shadow-slate-900/50 bg-gradient-to-br from-slate-900 to-slate-600">
-              <LeadForm 
-                formHeading="Motta tilbud fra flere trafikkskoler"
-                postalCodeQuestion="Hvor i Norge skal du ta førerkort?"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Form Section - Now integrated with steps section using grid layout */}
 
       <div className={isDesktopFocused && !isMobile ? 'blur-md transition-all duration-500' : ''}>
         <Footer />

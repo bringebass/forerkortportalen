@@ -8,6 +8,7 @@ import ArticleStickyCTA from "@/components/ArticleStickyCTA";
 import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 import CompactFormCTA from "@/components/CompactFormCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import FormSidebar from "@/components/FormSidebar";
 import { useState, useEffect } from "react";
 import { Bike } from "lucide-react";
 
@@ -59,8 +60,10 @@ function MCKlasserContent() {
       {/* Main Content */}
       <section className={`pt-0 pb-12 sm:pb-16 lg:pb-20 transition-all duration-500 ${isDesktopFocused && !isMobile ? 'blur-md' : ''}`}>
         <div className="container mx-auto max-w-[1300px] px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <article className="rounded-3xl bg-white border-2 border-slate-200 p-6 sm:p-8 lg:p-10 shadow-md">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+            {/* Left side - Content */}
+            <div className="lg:col-span-8">
+              <article className="rounded-3xl bg-white border-2 border-slate-200 p-6 sm:p-8 lg:p-10 shadow-md">
               <div className="w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center mb-6">
                 <Bike className="h-7 w-7 text-amber-600" />
               </div>
@@ -126,6 +129,10 @@ function MCKlasserContent() {
                 </p>
               </div>
             </article>
+            </div>
+
+            {/* Right side - Form sidebar */}
+            <FormSidebar />
           </div>
         </div>
       </section>

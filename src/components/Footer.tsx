@@ -31,9 +31,9 @@ export default function Footer() {
     {
       title: "Førerkortklasser",
       links: [
-        { label: "Klasse B", href: "/klasse-b" },
-        { label: "MC-klasser", href: "/mc-klasser" },
-        { label: "Tilhenger", href: "/tilhenger" },
+        { label: "Klasse B (personbil)", href: "/klasse-b" },
+        { label: "MC-klasser (A, A2, A1)", href: "/mc-klasser" },
+        { label: "Tilhenger (BE, B96)", href: "/tilhenger" },
       ],
     },
     {
