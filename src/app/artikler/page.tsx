@@ -58,7 +58,7 @@ export const articles = [
     date: "15. januar 2025",
     readTime: "8 min lesing",
     category: "Økonomi",
-    image: "/Artikkel5.png",
+    image: "/Artikkel4.png",
     inArticleImages: [
       { image: "/in-article5.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
     ],
@@ -70,7 +70,7 @@ export const articles = [
     date: "28. desember 2023",
     readTime: "5 min lesing",
     category: "Tips",
-    image: "/Artikkel6.png",
+    image: "/Artikkel5.png",
     inArticleImages: [],
   },
   {
@@ -80,7 +80,7 @@ export const articles = [
     date: "20. desember 2023",
     readTime: "4 min lesing",
     category: "Etter opplæring",
-    image: "/Artikkel7.png",
+    image: "/Artikkel6.png",
     inArticleImages: [
       { image: "/in-article6.png", alt: "Prøvetid for nye førere", caption: "Som ny fører har du prøvetid i 2 år med strengere regler." }
     ],
@@ -92,7 +92,7 @@ export const articles = [
     date: "25. januar 2025",
     readTime: "8 min lesing",
     category: "Kursformer",
-    image: "/Artikkel8.png",
+    image: "/Artikkel7.png",
     inArticleImages: [],
   },
   {
@@ -102,7 +102,7 @@ export const articles = [
     date: "30. januar 2025",
     readTime: "10 min lesing",
     category: "Økonomi",
-    image: "/Artikkel9.png",
+    image: "/Artikkel8.png",
     inArticleImages: [],
   },
   {
@@ -112,7 +112,7 @@ export const articles = [
     date: "2. februar 2025",
     readTime: "8 min lesing",
     category: "Guider",
-    image: "/Article-photo1.png",
+    image: "/Artikkel9.png",
     inArticleImages: [],
   },
   {
@@ -122,7 +122,7 @@ export const articles = [
     date: "5. februar 2025",
     readTime: "9 min lesing",
     category: "Guider",
-    image: "/Article-photo2.png",
+    image: "/Artikkel16.png",
     inArticleImages: [],
   },
   {
@@ -132,7 +132,7 @@ export const articles = [
     date: "7. februar 2025",
     readTime: "7 min lesing",
     category: "Tips",
-    image: "/Article-photo5.png",
+    image: "/car-in-circle.png",
     inArticleImages: [],
   },
   {
