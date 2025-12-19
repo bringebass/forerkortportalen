@@ -866,6 +866,15 @@ function TeoriproveContent() {
                 </div>
               </div>
 
+              <div className="mb-8">
+                <button
+                  onClick={handleStart}
+                  className="w-full sm:w-auto mx-auto block px-8 py-4 bg-[#3bb54a] text-white font-semibold text-lg rounded-xl hover:bg-[#2d8f3d] transition-colors shadow-lg shadow-[#3bb54a]/25 hover:shadow-xl hover:shadow-[#3bb54a]/30"
+                >
+                  Start teoriprøven
+                </button>
+              </div>
+
               {/* SEO-friendly content section */}
               <div className="mt-10 space-y-8 text-slate-700 prose prose-slate max-w-none prose-a:text-[#3bb54a] prose-a:hover:text-[#2d8f3d] prose-a:font-medium prose-a:underline">
                 <div>
@@ -938,15 +947,6 @@ function TeoriproveContent() {
                     Viktigst av alt er at du har solid kunnskap om trafikkreglene og kan anvende dem i ulike situasjoner.
                   </p>
                 </div>
-              </div>
-
-              <div className="mt-10 pt-8 border-t border-slate-200">
-                <button
-                  onClick={handleStart}
-                  className="w-full sm:w-auto mx-auto block px-8 py-4 bg-[#3bb54a] text-white font-semibold text-lg rounded-xl hover:bg-[#2d8f3d] transition-colors shadow-lg shadow-[#3bb54a]/25 hover:shadow-xl hover:shadow-[#3bb54a]/30"
-                >
-                  Start teoriprøven
-                </button>
               </div>
             </div>
               </div>
