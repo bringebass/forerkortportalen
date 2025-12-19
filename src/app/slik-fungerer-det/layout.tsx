@@ -37,10 +37,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://forerkortportalen.no/slik-fungerer-det",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
 export default function SlikFungererDetLayout({
