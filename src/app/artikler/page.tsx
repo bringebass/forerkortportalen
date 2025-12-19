@@ -72,7 +72,7 @@ export const articles = [
     category: "Tips",
     image: "/Artikkel5.png",
     inArticleImages: [
-      { image: "/in-article5.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
+      { image: "/in-article1.png", alt: "Kjøretimer og kostnader for førerkort", caption: "Antall kjøretimer varierer og påvirker totalprisen betydelig." }
     ],
   },
   {

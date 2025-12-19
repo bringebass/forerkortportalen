@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Finn trafikkskole i Oslo | Førerkortportalen",
-  description: "Finn riktig trafikkskole for deg i Oslo. Få tilbud fra flere kvalitetssikrede trafikkskoler i Oslo og sammenlign priser, pakker og tilgjengelighet.",
+  description: "Finn riktig trafikkskole for deg i Oslo. Få tilbud fra flere godkjente trafikkskoler i Oslo og sammenlign priser, pakker og tilgjengelighet.",
   keywords: [
     "trafikkskole Oslo",
     "førerkort Oslo",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Finn trafikkskole i Oslo | Førerkortportalen",
-    description: "Finn riktig trafikkskole for deg i Oslo. Få tilbud fra flere kvalitetssikrede trafikkskoler.",
+    description: "Finn riktig trafikkskole for deg i Oslo. Få tilbud fra flere godkjente trafikkskoler.",
     url: "https://forerkortportalen.no/oslo",
     type: "website",
   },

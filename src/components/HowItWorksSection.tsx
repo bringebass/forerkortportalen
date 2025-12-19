@@ -10,7 +10,7 @@ const features = [
   },
   {
     text: "Få tilbud fra flere",
-    highlight: "kvalitetssikrede trafikkskoler",
+    highlight: "godkjente trafikkskoler",
   },
   {
     text: "Tjenesten er",
@@ -85,7 +85,7 @@ export default function HowItWorksSection() {
 
             {/* CTA */}
             <div className="pt-6">
-              <ScrollToFormButton className="group inline-flex items-center gap-3 px-6 py-4 bg-[#3bb54a] text-white font-semibold rounded-xl shadow-lg shadow-[#3bb54a]/25 hover:shadow-xl hover:shadow-[#3bb54a]/30 transition-all duration-300 hover:scale-105">
+              <ScrollToFormButton className="group inline-flex items-center justify-center gap-3 px-6 py-4 bg-[#3bb54a] text-white font-semibold rounded-xl shadow-lg shadow-[#3bb54a]/25 hover:shadow-xl hover:shadow-[#3bb54a]/30 transition-all duration-300 hover:scale-105 w-full lg:w-auto">
                 <span>Kom i gang nå</span>
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </ScrollToFormButton>

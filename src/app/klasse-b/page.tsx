@@ -134,7 +134,7 @@ function KlasseBContent() {
             Klar for å ta klasse B?
           </h2>
           <p className="text-base sm:text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
-            Fyll ut skjemaet på forsiden og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.
+            Fyll ut skjemaet på forsiden og få tilbud fra flere godkjente trafikkskoler i ditt område.
           </p>
           <ScrollToFormButton className="inline-flex items-center justify-center rounded-full bg-[#3bb54a] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#3bb54a]/30 transition hover:bg-[#2d8f3d]">
             Gå til skjemaet
@@ -158,3 +158,4 @@ export default function KlasseBPage() {
     </FormProvider>
   );
 }
+

@@ -111,7 +111,7 @@ function SlikFungererDetContent() {
                     Hvorfor bruke Førerkortportalen?
                   </h3>
                   <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
-                    I stedet for å kontakte flere trafikkskoler én og én, kan du fylle ut én enkel forespørsel og få tilbud fra flere kvalitetssikrede skoler i ditt område. Du sparer tid, får oversikt over pris og tilbud, og kan sammenligne på din egen måte – helt gratis og uforpliktende.
+                    I stedet for å kontakte flere trafikkskoler én og én, kan du fylle ut én enkel forespørsel og få tilbud fra flere godkjente skoler i ditt område. Du sparer tid, får oversikt over pris og tilbud, og kan sammenligne på din egen måte – helt gratis og uforpliktende.
                   </p>
                   <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
                     Alle skolene vi samarbeider med er godkjent av Statens vegvesen og følger læreplanen for føreropplæring. Du velger selv om du vil takke ja til et tilbud, og tjenesten er helt gratis å bruke.
@@ -142,3 +142,4 @@ export default function SlikFungererDetPage() {
     </FormProvider>
   );
 }
+

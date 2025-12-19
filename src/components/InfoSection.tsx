@@ -7,7 +7,7 @@ interface InfoSectionProps {
 }
 
 export default function InfoSection({ 
-  description = "Førerkortportalen er din vei til å finne den beste trafikkskolen til riktig pris. I stedet for å kontakte flere skoler individuelt, kan du fylle ut én enkel forespørsel og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område."
+  description = "Førerkortportalen er din vei til å finne den beste trafikkskolen til riktig pris. I stedet for å kontakte flere skoler individuelt, kan du fylle ut én enkel forespørsel og få tilbud fra flere godkjente trafikkskoler i ditt område."
 }: InfoSectionProps = {}) {
   return (
     <section className="bg-white py-8 sm:py-12 lg:py-16">
@@ -48,7 +48,7 @@ export default function InfoSection({
                 {[
                   { label: "100% gratis", icon: CheckCircle2 },
                   { label: "Helt uforpliktende", icon: CheckCircle2 },
-                  { label: "Kvalitetssikret", icon: CheckCircle2 },
+                  { label: "Godkjent", icon: CheckCircle2 },
                 ].map((item, index) => (
                   <div
                     key={index}

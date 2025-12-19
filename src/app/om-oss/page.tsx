@@ -43,7 +43,7 @@ function OmOssContent() {
     {
       icon: Zap,
       title: "Raskt og enkelt",
-      description: "Fyll ut ett skjema og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.",
+      description: "Fyll ut ett skjema og få tilbud fra flere godkjente trafikkskoler i ditt område.",
       color: "text-amber-600",
       bgColor: "bg-amber-50",
     },
@@ -127,7 +127,7 @@ function OmOssContent() {
               </p>
               <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6">
                 I stedet for å kontakte flere skoler individuelt, kan du fylle ut én enkel forespørsel 
-                og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område. Alle skolene våre 
+                og få tilbud fra flere godkjente trafikkskoler i ditt område. Alle skolene våre 
                 er godkjent av Statens vegvesen og følger læreplanen for føreropplæring.
               </p>
               <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
@@ -227,7 +227,7 @@ function OmOssContent() {
                 Klar for å motta tilbud fra ulike trafikkskoler?
               </h2>
               <p className="text-base sm:text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
-                Fyll ut skjema og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.
+                Fyll ut skjema og få tilbud fra flere godkjente trafikkskoler i ditt område.
               </p>
               <ScrollToFormButton className="inline-flex items-center justify-center rounded-full bg-[#3bb54a] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#3bb54a]/30 transition hover:bg-[#2d8f3d]">
                 Gå til skjemaet

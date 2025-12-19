@@ -57,7 +57,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ 
   headline = "Spar penger og finn riktig trafikkskole for deg",
-  description = "Del behovet ditt én gang – vi kobler deg med kvalitetssikrede trafikkskoler i området ditt slik at du kan sammenligne priser, pakker og tilgjengelighet.",
+  description = "Del behovet ditt én gang – vi kobler deg med godkjente trafikkskoler i området ditt slik at du kan sammenligne priser, pakker og tilgjengelighet.",
   formHeading = "Motta tilbud fra flere trafikkskoler",
   postalCodeQuestion = "Hvor i Norge skal du ta førerkort?"
 }: HeroSectionProps = {}) {

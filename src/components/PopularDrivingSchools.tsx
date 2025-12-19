@@ -26,7 +26,7 @@ export default function PopularDrivingSchools() {
           Populære trafikkskoler
         </h2>
           <p className="text-base sm:text-lg text-slate-600">
-            Vi samarbeider med kvalitetssikrede trafikkskoler over hele Norge
+            Vi samarbeider med godkjente trafikkskoler over hele Norge
           </p>
         </div>
         

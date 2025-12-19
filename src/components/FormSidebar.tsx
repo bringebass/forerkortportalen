@@ -79,7 +79,7 @@ export default function FormSidebar() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-slate-900">Flere tilbud – ett skjema</p>
-                <p className="text-sm text-slate-600">Få tilbud fra kvalitetssikrede trafikkskoler uten å ringe rundt.</p>
+                <p className="text-sm text-slate-600">Få tilbud fra godkjente trafikkskoler uten å ringe rundt.</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -106,3 +106,4 @@ export default function FormSidebar() {
     </div>
   );
 }
+

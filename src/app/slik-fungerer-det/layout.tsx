@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Slik fungerer det | Førerkortportalen",
-  description: "Lær hvordan Førerkortportalen fungerer. Fyll ut et enkelt skjema og få tilbud fra flere kvalitetssikrede trafikkskoler i ditt område.",
+  description: "Lær hvordan Førerkortportalen fungerer. Fyll ut et enkelt skjema og få tilbud fra flere godkjente trafikkskoler i ditt område.",
   keywords: [
     "hvordan fungerer førerkortportalen",
     "slik fungerer det",
@@ -27,3 +27,4 @@ export default function SlikFungererDetLayout({
 }) {
   return children;
 }
+
