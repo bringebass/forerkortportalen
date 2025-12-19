@@ -9,6 +9,7 @@ import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 import FormSidebar from "@/components/FormSidebar";
 import CompactFormCTA from "@/components/CompactFormCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // Quiz questions - 45 questions mimicking the actual theory test
 const QUIZ_QUESTIONS = [
@@ -781,8 +782,38 @@ function TeoriproveContent() {
   }
 
   if (!isStarted) {
+    // Structured data for Quiz/EducationalActivity
+    const quizStructuredData = {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "Teoriprøve Klasse B - Treningsprøve",
+      "description": "Gratis treningsprøve med 45 spørsmål som ligner på den virkelige teoriprøven for klasse B hos Statens vegvesen. 90 minutter og minst 38 riktige svar for å bestå.",
+      "educationalLevel": "Beginner",
+      "educationalUse": "Assessment",
+      "learningResourceType": "Quiz",
+      "teaches": "Trafikkregler, vikeplikt, skilting, fartsgrenser, sikkerhet i trafikken",
+      "numberOfQuestions": TOTAL_QUESTIONS,
+      "timeRequired": "PT90M",
+      "educationalCredentialAwarded": "Self-assessment for driver's license theory test preparation",
+      "provider": {
+        "@type": "Organization",
+        "name": "Førerkortportalen",
+        "url": "https://forerkortportalen.no"
+      }
+    };
+
     return (
       <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(quizStructuredData) }}
+        />
+        <Breadcrumbs
+          items={[
+            { name: "Hjem", url: "https://forerkortportalen.no" },
+            { name: "Teoriprøve", url: "https://forerkortportalen.no/teoriprove" },
+          ]}
+        />
         <Navbar />
         <ArticleFormOverlay />
         <CompactFormCTA />
@@ -836,7 +867,7 @@ function TeoriproveContent() {
               </div>
 
               {/* SEO-friendly content section */}
-              <div className="mt-10 space-y-8 text-slate-700 prose prose-slate max-w-none">
+              <div className="mt-10 space-y-8 text-slate-700 prose prose-slate max-w-none prose-a:text-[#3bb54a] prose-a:hover:text-[#2d8f3d] prose-a:font-medium prose-a:underline">
                 <div>
                   <h2 className="text-2xl font-bold text-slate-900 mb-4">Hva er teoriprøven for førerkort klasse B?</h2>
                   <p className="text-base leading-relaxed mb-4">
@@ -857,7 +888,7 @@ function TeoriproveContent() {
                   <p className="text-base leading-relaxed mb-4">
                     En god forberedelse er nøkkelen til å bestå teoriprøven på første forsøk. Det anbefales å bruke 
                     teoribøker, øve på digitale plattformer og ta treningsprøver som denne for å bli kjent med 
-                    spørsmålsformuleringene og fokusområdene. Mange elever finner det nyttig å fokusere spesielt på 
+                    spørsmålsformuleringene og fokusområdene. Vi anbefaler også å lese vår guide om <a href="/artikler/5" className="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">hvordan du forbereder deg til førerprøven</a> for ytterligere tips og råd. Mange elever finner det nyttig å fokusere spesielt på 
                     områder som:
                   </p>
                   <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
@@ -880,7 +911,7 @@ function TeoriproveContent() {
                     Når du er klar til å ta den offisielle teoriprøven, må du bestille time hos Statens vegvesen. 
                     Prøven gjennomføres på en datamaskin på trafikkstasjonen, og du får resultatet umiddelbart etter 
                     at du har fullført prøven. Hvis du består, kan du begynne på den praktiske kjøreopplæringen og 
-                    planlegge oppkjøringen.
+                    planlegge oppkjøringen. Les mer om hele prosessen i vår <a href="/artikler/10" className="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">steg-for-steg guide til førerkortprosessen</a> eller få detaljert informasjon om <a href="/artikler/2" className="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">førerkort klasse B</a>.
                   </p>
                   <p className="text-base leading-relaxed">
                     Teoriprøven er tilgjengelig på flere språk, inkludert norsk bokmål, nynorsk, engelsk, arabisk, 

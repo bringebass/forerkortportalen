@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { FormProvider } from "@/contexts/FormContext";
 import CookieBanner from "@/components/CookieBanner";
+import OrganizationSchema from "@/components/OrganizationSchema";
 
 const siteUrl = "https://forerkortportalen.no";
 const title = "Førerkortportalen | Få tilbud fra trafikkskoler i hele Norge";
@@ -85,6 +86,7 @@ export default function RootLayout({
   return (
     <html lang="no" className="bg-slate-50">
       <body className="antialiased font-sans">
+        <OrganizationSchema />
         <FormProvider>{children}</FormProvider>
         <CookieBanner />
       </body>

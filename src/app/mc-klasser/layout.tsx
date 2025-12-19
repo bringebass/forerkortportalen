@@ -12,12 +12,35 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "MC-klasser A/A2/A1 | Førerkortportalen",
-    description: "Alt du trenger å vite om MC-førerkortklassene A, A2 og A1.",
+    description: "Alt du trenger å vite om MC-førerkortklassene A, A2 og A1. Obligatorisk teoridel, kjøreteknikk, sikkerhetskurs og trafikk.",
     url: "https://forerkortportalen.no/mc-klasser",
+    siteName: "Førerkortportalen",
+    locale: "nb_NO",
     type: "website",
+    images: [
+      {
+        url: "https://forerkortportalen.no/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Førerkortportalen - MC-klasser",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MC-klasser A/A2/A1 | Førerkortportalen",
+    description: "Alt du trenger å vite om MC-førerkortklassene A, A2 og A1.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   alternates: {
     canonical: "https://forerkortportalen.no/mc-klasser",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

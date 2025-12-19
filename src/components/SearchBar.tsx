@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, FileText, HelpCircle, X } from "lucide-react";
+import { Search, FileText, HelpCircle, X, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -182,8 +182,48 @@ const faq = [
   },
 ];
 
+// Pages that should be searchable
+const searchablePages = [
+  {
+    title: "Teoriprøve Klasse B",
+    description: "Gratis treningsprøve med 45 spørsmål som ligner på den virkelige teoriprøven hos Statens vegvesen. 90 minutter og minst 38 riktige svar for å bestå.",
+    keywords: ["teori", "teoriprøve", "teori prøve", "klasse b", "test", "treningsprøve", "prøve", "eksamen"],
+    href: "/teoriprove",
+  },
+  {
+    title: "Om oss",
+    description: "Lær mer om Førerkortportalen og hvordan vi hjelper deg med å finne riktig trafikkskole.",
+    keywords: ["om oss", "om", "om førerkortportalen", "hva er", "hvem er"],
+    href: "/om-oss",
+  },
+  {
+    title: "Slik fungerer det",
+    description: "En enkel guide som viser hvordan du får tilbud fra flere trafikkskoler gjennom Førerkortportalen.",
+    keywords: ["slik fungerer", "hvordan", "fungerer", "guide", "slik"],
+    href: "/slik-fungerer-det",
+  },
+  {
+    title: "Klasse B – personbil",
+    description: "Informasjon om førerkort klasse B for personbil, inkludert krav, varighet og prosess.",
+    keywords: ["klasse b", "personbil", "bil", "b-lappen", "førerkort klasse b"],
+    href: "/klasse-b",
+  },
+  {
+    title: "MC-klasser (A, A2, A1)",
+    description: "Informasjon om MC-førerkortklasser A, A2 og A1, inkludert krav og varighet.",
+    keywords: ["mc", "motor sykkel", "klasse a", "klasse a2", "klasse a1", "mc lappen"],
+    href: "/mc-klasser",
+  },
+  {
+    title: "Tilhenger (BE, B96)",
+    description: "Informasjon om førerkort for tilhenger, inkludert klasse BE og B96.",
+    keywords: ["tilhenger", "klasse be", "b96", "be", "tilhenger lappen"],
+    href: "/tilhenger",
+  },
+];
+
 interface SearchResult {
-  type: "article" | "faq";
+  type: "article" | "faq" | "page";
   title: string;
   excerpt: string;
   href: string;
@@ -241,6 +281,24 @@ export function SearchBar() {
           });
         }
       });
+    });
+
+    // Search pages
+    searchablePages.forEach((page) => {
+      const titleMatch = page.title.toLowerCase().includes(lowerQuery);
+      const descriptionMatch = page.description.toLowerCase().includes(lowerQuery);
+      const keywordMatch = page.keywords.some((keyword) => 
+        keyword.toLowerCase().includes(lowerQuery)
+      );
+      
+      if (titleMatch || descriptionMatch || keywordMatch) {
+        searchResults.push({
+          type: "page",
+          title: page.title,
+          excerpt: page.description,
+          href: page.href,
+        });
+      }
     });
 
     // Sort results: exact title matches first, then by relevance
@@ -403,8 +461,10 @@ export function SearchBar() {
                     <div className="mt-0.5 flex-shrink-0">
                       {result.type === "article" ? (
                         <FileText className="h-5 w-5 text-slate-400 group-hover:text-[#3bb54a] transition" />
-                      ) : (
+                      ) : result.type === "faq" ? (
                         <HelpCircle className="h-5 w-5 text-slate-400 group-hover:text-[#3bb54a] transition" />
+                      ) : (
+                        <BookOpen className="h-5 w-5 text-slate-400 group-hover:text-[#3bb54a] transition" />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -420,7 +480,7 @@ export function SearchBar() {
                       </div>
                       <p className="text-xs text-slate-600 line-clamp-2">{result.excerpt}</p>
                       <span className="text-xs text-slate-400 mt-1 inline-block">
-                        {result.type === "article" ? "Artikkel" : "FAQ"}
+                        {result.type === "article" ? "Artikkel" : result.type === "faq" ? "FAQ" : "Side"}
                       </span>
                     </div>
                   </div>

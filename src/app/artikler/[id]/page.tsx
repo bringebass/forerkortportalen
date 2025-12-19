@@ -144,7 +144,7 @@ export const articles: Record<string, {
       
       <p>Teorien er faktisk en av de tingene som påvirker totalprisen mest.</p>
       
-      <p><strong>Bruk kvalitet:</strong> Teoritentamen, Testen.no, Prøve.no.</p>
+      <p><strong>Bruk kvalitet:</strong> Teoritentamen, Testen.no, Prøve.no. Vi anbefaler også å ta vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis teoriprøve</a> for å teste kunnskapen din før den offisielle prøven.</p>
       
       <p>Billig teori øker som regel totalprisen.</p>
       
@@ -167,13 +167,13 @@ export const articles: Record<string, {
       <p>Du sparer på rask progresjon, ikke på lav timepris.</p>
       
       <h3>4. Lær teorien skikkelig før du kjører masse timer</h3>
-      <p>Gode teorikunnskaper = færre kjøretimer = lavere pris.</p>
+      <p>Gode teorikunnskaper = færre kjøretimer = lavere pris. Ta en <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">treningsprøve</a> for å vurdere hvor godt forberedt du er.</p>
       
       <h3>5. Kjøp pakker etter at lærer har vurdert deg</h3>
       <p>Da treffer du behovet ditt bedre.</p>
       
       <h3>6. Gjør alt du kan for å bestå teoriprøven og oppkjøringen på første forsøk</h3>
-      <p>Én stryk koster fort flere tusen kroner.</p>
+      <p>Én stryk koster fort flere tusen kroner. Forbered deg grundig med vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis teoriprøve</a> og les vår guide om <a href="/artikler/5" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">hvordan du forbereder deg til førerprøven</a>.</p>
       
       <h2>Kort sagt: Mytene høres lure ut. Fakta sparer deg penger.</h2>
       <p>Den billigste veien er en kombinasjon av:</p>
@@ -203,7 +203,7 @@ export const articles: Record<string, {
     category: "Førerkortklasser",
     image: "/Article-photo2.png",
     content: `
-      <p class="lead">Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg rett til å kjøre personbil. Dette er førerkortet de fleste tar når de skal lære å kjøre bil. Denne omfattende guiden tar deg gjennom alt du trenger å vite om førerkort klasse B – fra krav og prosess til kostnader og valg mellom automat og manuell.</p>
+      <p class="lead">Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg rett til å kjøre personbil. Dette er førerkortet de fleste tar når de skal lære å kjøre bil. Denne omfattende guiden tar deg gjennom alt du trenger å vite om førerkort klasse B – fra krav og prosess til kostnader og valg mellom automat og manuell. Du kan også se vår <a href="/klasse-b" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">oversiktsside om klasse B</a> for en rask oppsummering.</p>
 
       <h2>Hva er førerkort klasse B?</h2>
       <p>Førerkort klasse B er det standard førerkortet for personbiler i Norge. Med dette førerkortet kan du kjøre personbil med en totalvekt på inntil 3500 kg. Dette dekker de fleste vanlige personbiler på norske veier.</p>
@@ -269,7 +269,7 @@ export const articles: Record<string, {
       </ul>
       
       <h2>2. Teoriprøven – test din kunnskap</h2>
-      <p>Etter å ha fullført trafikalt grunnkurs kan du ta teoriprøven. Dette er en datamaskinbasert prøve som tester din kunnskap om trafikkregler, sikkerhet og kjøretøyteknikk.</p>
+      <p>Etter å ha fullført trafikalt grunnkurs kan du ta teoriprøven. Dette er en datamaskinbasert prøve som tester din kunnskap om trafikkregler, sikkerhet og kjøretøyteknikk. Vi anbefaler å øve med vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis teoriprøve</a> før du tar den offisielle prøven hos Statens vegvesen.</p>
       
       <h3>Hvordan fungerer teoriprøven?</h3>
       <p>Teoriprøven består av:</p>
@@ -282,6 +282,10 @@ export const articles: Record<string, {
       
       <h3>Hvordan består du teoriprøven?</h3>
       <p>For å bestå teoriprøven bør du:</p>
+      <ul>
+        <li>Ta vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis treningsprøve</a> for å teste kunnskapen din</li>
+      </ul>
+      <p>I tillegg bør du:</p>
       <ul>
         <li><strong>Lese læreboken grundig:</strong> Gjennomgå alle kapitler flere ganger</li>
         <li><strong>Øve med prøveeksamen:</strong> Bruk apper eller nettsider med prøveeksamener</li>
@@ -442,7 +446,7 @@ export const articles: Record<string, {
       <h2>Konklusjon</h2>
       <p>Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg frihet til å kjøre personbil. Prosessen består av fire hovedsteg: trafikalt grunnkurs, teoriprøve, kjøreopplæring og førerprøve.</p>
       
-      <p>Ta deg tid til å forberede deg grundig på hvert steg, og ikke nøl med å ta flere kjøretimer hvis du trenger det. Det viktigste er at du føler deg trygg bak rattet når du skal ta førerprøven.</p>
+      <p>Ta deg tid til å forberede deg grundig på hvert steg, og ikke nøl med å ta flere kjøretimer hvis du trenger det. Det viktigste er at du føler deg trygg bak rattet når du skal ta førerprøven. Husk å teste deg selv med vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis teoriprøve</a> før du tar den offisielle prøven, og les vår guide om <a href="/artikler/5" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">hvordan du forbereder deg til førerprøven</a>.</p>
       
       <p>Ved å bruke Førerkortportalen kan du enkelt finne og sammenligne trafikkskoler som tilbyr opplæring i klasse B. Dette gjør det lettere å velge en skole som passer din situasjon, behov og budsjett.</p>
     `,
@@ -720,7 +724,7 @@ export const articles: Record<string, {
     category: "Tips",
     image: "/Article-photo5.png",
     content: `
-      <p class="lead">Førerprøven (oppkjøringen) er det siste steget før du får førerkortet. Her er tips for å forberede deg best mulig og øke sjansene for å bestå på første forsøk.</p>
+      <p class="lead">Førerprøven (oppkjøringen) er det siste steget før du får førerkortet. Her er tips for å forberede deg best mulig og øke sjansene for å bestå på første forsøk. Husk at du må ha bestått <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">teoriprøven</a> først.</p>
       
       <h2>Før prøven – praktisk forberedelse</h2>
       
@@ -1403,7 +1407,7 @@ export const articles: Record<string, {
     category: "Guider",
     image: "/Article-photo2.png",
     content: `
-      <p class="lead">For mange føles førerkortprosessen som en labyrint. Det er mye som skal på plass: kurs, kjøretimer, dokumenter, teori, oppkjøring – og det virker nesten som alle du snakker med gir helt ulike råd. Men sannheten er at prosessen er ganske ryddig når du får sett den fra start til slutt.</p>
+      <p class="lead">For mange føles førerkortprosessen som en labyrint. Det er mye som skal på plass: kurs, kjøretimer, dokumenter, teori, oppkjøring – og det virker nesten som alle du snakker med gir helt ulike råd. Men sannheten er at prosessen er ganske ryddig når du får sett den fra start til slutt. Se også vår <a href="/slik-fungerer-det" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">enkle guide om hvordan tjenesten fungerer</a>.</p>
       
       <p>Her får du en enkel, ærlig og helt oppdatert steg-for-steg-guide som viser hvordan du går fra null til førerkort – uten stress og uten at du trenger å google alt underveis.</p>
       
@@ -1507,7 +1511,7 @@ export const articles: Record<string, {
       
       <h2>Steg 6: Teoriprøven</h2>
       
-      <p>Teoriprøven kan du ta når du er 17,5 år – og du trenger ikke være ferdig å kjøre først. Faktisk er det smart å ta den tidlig, så du slipper stress senere.</p>
+      <p>Teoriprøven kan du ta når du er 17,5 år – og du trenger ikke være ferdig å kjøre først. Faktisk er det smart å ta den tidlig, så du slipper stress senere. Vi anbefaler å øve med vår <a href="/teoriprove">gratis teoriprøve</a> før du tar den offisielle prøven.</p>
       
       <p><strong>Husk:</strong></p>
       
@@ -2711,9 +2715,11 @@ function ArticleContent({ params }: { params: { id: string } }) {
     "description": finalArticle.excerpt,
     "image": finalArticle.image ? `https://forerkortportalen.no${finalArticle.image}` : undefined,
     "datePublished": finalArticle.date,
+    "dateModified": finalArticle.date, // Update this if you have modified dates
     "author": {
       "@type": "Organization",
-      "name": "Førerkortportalen"
+      "name": "Førerkortportalen",
+      "url": "https://forerkortportalen.no"
     },
     "publisher": {
       "@type": "Organization",
@@ -2726,7 +2732,9 @@ function ArticleContent({ params }: { params: { id: string } }) {
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `https://forerkortportalen.no/artikler/${finalArticle.id}`
-    }
+    },
+    "inLanguage": "nb-NO",
+    "articleSection": finalArticle.category
   };
 
   return (
@@ -2735,6 +2743,36 @@ function ArticleContent({ params }: { params: { id: string } }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      {/* Breadcrumbs for better navigation */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Hjem",
+                item: "https://forerkortportalen.no",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Artikler",
+                item: "https://forerkortportalen.no/artikler",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: finalArticle.title,
+                item: `https://forerkortportalen.no/artikler/${finalArticle.id}`,
+              },
+            ],
+          }),
+        }}
       />
       <Navbar />
       <ArticleFormOverlay />
@@ -2846,7 +2884,7 @@ function ArticleContent({ params }: { params: { id: string } }) {
             {/* Content */}
             <div className="px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
               <div
-                className="prose prose-slate prose-lg max-w-none 
+                className="prose prose-slate prose-lg max-w-none prose-a:text-[#3bb54a] prose-a:hover:text-[#2d8f3d] prose-a:font-medium prose-a:underline 
                   prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:mt-12 prose-headings:mb-6
                   prose-h1:text-3xl sm:prose-h1:text-4xl prose-h1:font-bold prose-h1:mt-14 prose-h1:mb-7
                   prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:font-bold prose-h2:scroll-mt-24
