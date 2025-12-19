@@ -87,6 +87,9 @@ const config: Config = {
         fadeInScale: "fadeInScale 0.5s ease-out",
         fadeIn: "fadeIn 0.3s ease-out",
       },
+      gridTemplateColumns: {
+        '15': 'repeat(15, minmax(0, 1fr))',
+      },
     },
   },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],

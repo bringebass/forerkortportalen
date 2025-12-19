@@ -65,8 +65,8 @@ export default function FormSidebar() {
   }
 
   return (
-    <div className="lg:col-span-4 mt-8 lg:mt-0">
-      <div className="lg:sticky lg:top-4 lg:pr-1 space-y-6">
+    <div className="lg:col-span-4 mt-8 lg:mt-14">
+      <div className="lg:sticky lg:top-20 lg:max-h-[calc(100vh-96px)] lg:overflow-y-auto lg:pr-1 space-y-6">
         <FormWrapper />
 
         {/* 3 gode grunner - scrolls with form */}

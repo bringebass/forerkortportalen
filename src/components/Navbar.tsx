@@ -10,6 +10,7 @@ export function Navbar() {
   const navItems = [
     { label: "Om oss", href: "/om-oss" },
     { label: "Artikler", href: "/artikler" },
+    { label: "Teoriprøve", href: "/teoriprove" },
     { label: "Kontakt", href: "/kontakt" },
   ];
 
