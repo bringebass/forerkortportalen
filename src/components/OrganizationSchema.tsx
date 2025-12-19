@@ -1,5 +1,3 @@
-import Script from "next/script";
-
 const siteUrl = "https://forerkortportalen.no";
 
 const organizationSchema = {
@@ -23,10 +21,8 @@ const organizationSchema = {
 
 export default function OrganizationSchema() {
   return (
-    <Script
-      id="organization-jsonld"
+    <script
       type="application/ld+json"
-      strategy="afterInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
     />
   );

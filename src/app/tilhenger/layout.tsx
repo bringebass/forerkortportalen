@@ -37,10 +37,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://forerkortportalen.no/tilhenger",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
 export default function TilhengerLayout({
