@@ -62,23 +62,30 @@ export async function POST(request: Request) {
         const fromAddress = process.env.MICROSOFT_FROM_EMAIL || "help@dbinfo.no";
         const emailSubject = `Ny lead fra Førerkortportalen: ${parsed.data.fullName}`;
 
-        // Format license type for display
-        const licenseTypeDisplay = parsed.data.licenseType === "B" 
-          ? "Klasse B (Personbil)"
-          : parsed.data.licenseType === "MC"
-          ? "MC-klasser"
-          : parsed.data.licenseType === "Tilhenger"
-          ? "Tilhenger"
-          : parsed.data.licenseType;
-
-        // Format main license selection for display
-        const mainLicenseDisplay = parsed.data.mainLicenseSelection === "B"
-          ? "Klasse B (Manuell)"
-          : parsed.data.mainLicenseSelection === "B_AUT"
-          ? "Klasse B (Automat)"
-          : parsed.data.mainLicenseSelection === "OTHER"
-          ? "Annet"
-          : "Ikke valgt";
+        // Format license type for display - prioritize mainLicenseSelection if set
+        let licenseTypeDisplay: string;
+        
+        if (parsed.data.mainLicenseSelection) {
+          // Use mainLicenseSelection for primary display
+          licenseTypeDisplay = parsed.data.mainLicenseSelection === "B"
+            ? "Klasse B (Manuell)"
+            : parsed.data.mainLicenseSelection === "B_AUT"
+            ? "Klasse B (Automat)"
+            : parsed.data.mainLicenseSelection === "OTHER"
+            ? parsed.data.licenseType || "Annet"
+            : parsed.data.mainLicenseSelection;
+        } else {
+          // Fallback to licenseType
+          licenseTypeDisplay = parsed.data.licenseType === "B" 
+            ? "Klasse B (Manuell)"
+            : parsed.data.licenseType === "B_AUT"
+            ? "Klasse B (Automat)"
+            : parsed.data.licenseType === "MC"
+            ? "MC-klasser"
+            : parsed.data.licenseType === "Tilhenger"
+            ? "Tilhenger"
+            : parsed.data.licenseType || "Ikke spesifisert";
+        }
 
         // Email content HTML
         const emailBody = `
@@ -90,7 +97,6 @@ export async function POST(request: Request) {
               <p style="margin: 8px 0;"><strong>Telefon:</strong> ${parsed.data.phone}</p>
               <p style="margin: 8px 0;"><strong>Postnummer:</strong> ${parsed.data.postalCode}</p>
               <p style="margin: 8px 0;"><strong>Førerkortklasse:</strong> ${licenseTypeDisplay}</p>
-              ${parsed.data.mainLicenseSelection ? `<p style="margin: 8px 0;"><strong>Hovedvalg:</strong> ${mainLicenseDisplay}</p>` : ""}
               ${parsed.data.sourcePage ? `<p style="margin: 8px 0;"><strong>Kilde:</strong> ${parsed.data.sourcePage}</p>` : ""}
               <p style="margin: 8px 0;"><strong>Markedsføringssamtykke:</strong> ${parsed.data.marketingConsent ? "Ja" : "Nei"}</p>
             </div>
