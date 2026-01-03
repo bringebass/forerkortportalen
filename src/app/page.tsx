@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import PopularDrivingSchools from "@/components/PopularDrivingSchools";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import LicenseClassesSection from "@/components/LicenseClassesSection";

@@ -20,13 +20,10 @@ export default function TakkPage() {
       // Mark as tracked to prevent duplicates
       sessionStorage.setItem(conversionKey, "true");
       
-      // Store gtag reference for TypeScript
-      const gtag = window.gtag;
-      
       // Small delay to ensure gtag is fully loaded
       setTimeout(() => {
-        if (gtag) {
-          gtag("event", "conversion", {
+        if (window.gtag) {
+          window.gtag("event", "conversion", {
             send_to: "AW-17789739680/Qu87CPKMmc4bEKDF56JC",
             value: 1.0,
             currency: "NOK",

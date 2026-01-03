@@ -24,22 +24,22 @@ export default function Footer() {
     {
       title: "Tjenesten",
       links: [
-        { label: "Om Førerkortportalen", href: "/om-oss" },
-        { label: "Slik fungerer det", href: "/slik-fungerer-det" },
+        { label: "Om Førerkortportalen", href: "/" },
+        { label: "Slik fungerer det", href: "#hvordan" },
       ],
     },
     {
       title: "Førerkortklasser",
       links: [
-        { label: "Klasse B (personbil)", href: "/klasse-b" },
-        { label: "MC-klasser (A, A2, A1)", href: "/mc-klasser" },
-        { label: "Tilhenger (BE, B96)", href: "/tilhenger" },
+        { label: "Klasse B", href: "#klasser" },
+        { label: "MC-klasser", href: "#klasser" },
+        { label: "Tilhenger", href: "#klasser" },
       ],
     },
     {
       title: "Annet",
       links: [
-        { label: "Artikler", href: "/artikler" },
+        { label: "Ofte stilte spørsmål", href: "#faq" },
         { label: "Kontakt oss", href: "/kontakt" },
       ],
     },
@@ -62,8 +62,8 @@ export default function Footer() {
                 {section.title}
               </h3>
               <ul className="space-y-2">
-                {section.links.map((link, index) => (
-                  <li key={`${section.title}-${link.label}-${index}`}>
+                {section.links.map((link) => (
+                  <li key={link.href}>
                     <Link
                       href={link.href}
                       className="text-slate-600 hover:text-[#3bb54a] transition"

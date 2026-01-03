@@ -28,6 +28,18 @@ const otherLicenseOptions = [
   { value: "DontKnow", label: "Vet ikke" },
 ];
 
+const intensiveOptions = [
+  { value: "ja", label: "Ja, intensiv" },
+  { value: "nei", label: "Nei" },
+  { value: "usikker", label: "Usikker" },
+];
+
+const trafficCourseOptions = [
+  { value: "fullfort", label: "Kurs fullført" },
+  { value: "pagar", label: "Pågår" },
+  { value: "ikke", label: "Trenger kurs" },
+];
+
 // Step configuration - change the order here to reorder the form steps
 // Each step type is automatically matched with its question and validator
 // Note: "otherLicenseType" is conditionally shown based on licenseType selection
@@ -116,7 +128,6 @@ export function LeadForm({
   const formContainerRef = useRef<HTMLDivElement>(null);
   const hasTrackedFormStartRef = useRef(false);
   const hasTrackedFormSubmissionRef = useRef(false);
-  const hasTrackedFormAbandonmentRef = useRef(false);
 
   // Set background color immediately when desktop focused to prevent flash
   useLayoutEffect(() => {
@@ -140,13 +151,10 @@ export function LeadForm({
     }
   };
 
-  // Activate desktop focus mode when user clicks on input fields (on article pages and content pages, but not homepage)
+  // Activate desktop focus mode when user clicks on input fields (only on article pages)
   // On homepage, users can fill in the form directly without auto-focus/blur
   const activateDesktopFocusIfNeeded = (inputId?: string, event?: React.FocusEvent) => {
-    const isHomepage = pathname === "/";
-    const shouldActivate = !isHomepage && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused;
-    
-    if (shouldActivate) {
+    if (isArticlePage && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
       if (inputId && event) {
         // Store the input ID
         focusedInputIdRef.current = inputId;
@@ -265,89 +273,6 @@ export function LeadForm({
   }, [isDesktopFocused]);
 
   // Restore focus when fullscreen mode activates
-  // Track form abandonment when user leaves/closes/refreshes
-  useEffect(() => {
-    // Only track if form was started but not submitted
-    const handleBeforeUnload = () => {
-      if (
-        hasTrackedFormStartRef.current &&
-        !hasTrackedFormSubmissionRef.current &&
-        !hasTrackedFormAbandonmentRef.current &&
-        typeof window !== "undefined" &&
-        window.gtag
-      ) {
-        hasTrackedFormAbandonmentRef.current = true;
-
-        const eventData = {
-          event_category: "Lead Form",
-          event_label: "Form Abandoned",
-          source_page: pathname || window.location?.pathname || "",
-        };
-
-        // Send event via gtag
-        window.gtag("event", "form_abandoned", eventData);
-        console.log("[GA Event] form_abandoned", eventData);
-      }
-    };
-
-    // Track when tab becomes hidden (user switches tab, minimizes, or closes)
-    let visibilityTimeoutId: NodeJS.Timeout | null = null;
-    
-    const handleVisibilityChange = () => {
-      // Clear any existing timeout if tab becomes visible again
-      if (!document.hidden && visibilityTimeoutId) {
-        clearTimeout(visibilityTimeoutId);
-        visibilityTimeoutId = null;
-        return;
-      }
-
-      if (
-        document.hidden &&
-        hasTrackedFormStartRef.current &&
-        !hasTrackedFormSubmissionRef.current &&
-        !hasTrackedFormAbandonmentRef.current &&
-        typeof window !== "undefined" &&
-        window.gtag
-      ) {
-        // Small delay to avoid tracking if user just quickly switches tabs
-        visibilityTimeoutId = setTimeout(() => {
-          if (
-            document.hidden &&
-            !hasTrackedFormSubmissionRef.current &&
-            !hasTrackedFormAbandonmentRef.current &&
-            typeof window !== "undefined" &&
-            window.gtag
-          ) {
-            hasTrackedFormAbandonmentRef.current = true;
-
-            const eventData = {
-              event_category: "Lead Form",
-              event_label: "Form Abandoned",
-              source_page: pathname || window.location?.pathname || "",
-            };
-
-            if (window.gtag) {
-              window.gtag("event", "form_abandoned", eventData);
-              console.log("[GA Event] form_abandoned", eventData);
-            }
-          }
-          visibilityTimeoutId = null;
-        }, 5000); // Only track if tab is hidden for more than 5 seconds
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      if (visibilityTimeoutId) {
-        clearTimeout(visibilityTimeoutId);
-      }
-    };
-  }, [pathname]);
-
   useEffect(() => {
     if (isFullscreen && activeElementIdRef.current && window.innerWidth < 640) {
       // Small delay to ensure the element is rendered in fullscreen view
@@ -433,6 +358,7 @@ export function LeadForm({
       target instanceof HTMLInputElement && target.type === "checkbox";
 
     // Track form start when user first interacts (only once)
+    // Consent is already granted by default (implicit consent - using the site is consent)
     if (!hasTrackedFormStartRef.current && typeof window !== "undefined" && window.gtag) {
       hasTrackedFormStartRef.current = true;
       
@@ -586,6 +512,7 @@ const countryCodes = [
       setStepError(null);
       
       // Track lead form submission in Google Analytics (only once)
+      // Consent is already granted by default (implicit consent - using the site is consent)
       if (typeof window !== "undefined" && window.gtag && !hasTrackedFormSubmissionRef.current) {
         hasTrackedFormSubmissionRef.current = true;
         
@@ -603,19 +530,6 @@ const countryCodes = [
         // Send event via gtag (standard GA4 method - this is the ONLY way we send events)
         window.gtag("event", "form_submission", eventData);
         console.log("[GA Event] form_submission", eventData);
-
-        // Track Google Ads conversion event
-        // Mark in sessionStorage to prevent duplicate tracking on thank you page
-        if (typeof window !== "undefined" && sessionStorage) {
-          sessionStorage.setItem("google_ads_conversion_tracked", "true");
-        }
-        
-        window.gtag("event", "conversion", {
-          send_to: "AW-17789739680/Qu87CPKMmc4bEKDF56JC",
-          value: 1.0,
-          currency: "NOK",
-        });
-        console.log("[Google Ads] Conversion tracked");
       }
       
       // Small delay to ensure event is sent before redirect

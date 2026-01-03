@@ -144,14 +144,19 @@ export const articles: Record<string, {
       
       <p>Teorien er faktisk en av de tingene som påvirker totalprisen mest.</p>
       
-      <p><strong>Bruk kvalitet:</strong> Teoritentamen, Testen.no, Prøve.no. Vi anbefaler også å ta vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis teoriprøve</a> for å teste kunnskapen din før den offisielle prøven.</p>
+      <p><strong>Bruk kvalitet:</strong> Teoritentamen, Testen.no, Prøve.no.</p>
       
       <p>Billig teori øker som regel totalprisen.</p>
       
       <h2>Fakta: Dette er faktisk den billigste måten å ta førerkort på</h2>
       <p>Her er sannheten – basert på tall fra kjøreskoler, sensorer og elever:</p>
       
-     
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article1.png" alt="Riktig planlegging for førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Riktig planlegging og strukturert trening sparer penger på førerkortet.
+        </figcaption>
+      </figure>
       
       <h3>1. Øv riktig privat (ikke bare mye)</h3>
       <p>Privat trening er gratis. Men den må være strukturert.</p>
@@ -167,13 +172,13 @@ export const articles: Record<string, {
       <p>Du sparer på rask progresjon, ikke på lav timepris.</p>
       
       <h3>4. Lær teorien skikkelig før du kjører masse timer</h3>
-      <p>Gode teorikunnskaper = færre kjøretimer = lavere pris. Ta en <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">treningsprøve</a> for å vurdere hvor godt forberedt du er.</p>
+      <p>Gode teorikunnskaper = færre kjøretimer = lavere pris.</p>
       
       <h3>5. Kjøp pakker etter at lærer har vurdert deg</h3>
       <p>Da treffer du behovet ditt bedre.</p>
       
       <h3>6. Gjør alt du kan for å bestå teoriprøven og oppkjøringen på første forsøk</h3>
-      <p>Én stryk koster fort flere tusen kroner. Forbered deg grundig med vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis teoriprøve</a> og les vår guide om <a href="/artikler/5" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">hvordan du forbereder deg til førerprøven</a>.</p>
+      <p>Én stryk koster fort flere tusen kroner.</p>
       
       <h2>Kort sagt: Mytene høres lure ut. Fakta sparer deg penger.</h2>
       <p>Den billigste veien er en kombinasjon av:</p>
@@ -203,7 +208,7 @@ export const articles: Record<string, {
     category: "Førerkortklasser",
     image: "/Article-photo2.png",
     content: `
-      <p class="lead">Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg rett til å kjøre personbil. Dette er førerkortet de fleste tar når de skal lære å kjøre bil. Denne omfattende guiden tar deg gjennom alt du trenger å vite om førerkort klasse B – fra krav og prosess til kostnader og valg mellom automat og manuell. Du kan også se vår <a href="/klasse-b" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">oversiktsside om klasse B</a> for en rask oppsummering.</p>
+      <p class="lead">Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg rett til å kjøre personbil. Dette er førerkortet de fleste tar når de skal lære å kjøre bil. Denne omfattende guiden tar deg gjennom alt du trenger å vite om førerkort klasse B – fra krav og prosess til kostnader og valg mellom automat og manuell.</p>
 
       <h2>Hva er førerkort klasse B?</h2>
       <p>Førerkort klasse B er det standard førerkortet for personbiler i Norge. Med dette førerkortet kan du kjøre personbil med en totalvekt på inntil 3500 kg. Dette dekker de fleste vanlige personbiler på norske veier.</p>
@@ -221,7 +226,12 @@ export const articles: Record<string, {
         <p><strong>Viktig:</strong> Klasse B gir deg ikke rett til å kjøre motorsykkel (klasse A), lastebil (klasse C) eller buss (klasse D). For disse kjøretøyene trenger du spesialiserte førerkortklasser.</p>
       </blockquote>
 
-    
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo2.png" alt="Førerkort klasse B – personbil" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Klasse B dekker de fleste vanlige personbiler opptil 3 500 kg totalvekt.
+        </figcaption>
+      </figure>
       
       <h2>Krav for å ta førerkort klasse B</h2>
       <p>Før du kan begynne opplæringen for førerkort klasse B, må du oppfylle visse grunnleggende krav. Disse er satt av Statens vegvesen for å sikre at alle som tar førerkort har nødvendig forutsetninger.</p>
@@ -269,7 +279,7 @@ export const articles: Record<string, {
       </ul>
       
       <h2>2. Teoriprøven – test din kunnskap</h2>
-      <p>Etter å ha fullført trafikalt grunnkurs kan du ta teoriprøven. Dette er en datamaskinbasert prøve som tester din kunnskap om trafikkregler, sikkerhet og kjøretøyteknikk. Vi anbefaler å øve med vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis teoriprøve</a> før du tar den offisielle prøven hos Statens vegvesen.</p>
+      <p>Etter å ha fullført trafikalt grunnkurs kan du ta teoriprøven. Dette er en datamaskinbasert prøve som tester din kunnskap om trafikkregler, sikkerhet og kjøretøyteknikk.</p>
       
       <h3>Hvordan fungerer teoriprøven?</h3>
       <p>Teoriprøven består av:</p>
@@ -282,10 +292,6 @@ export const articles: Record<string, {
       
       <h3>Hvordan består du teoriprøven?</h3>
       <p>For å bestå teoriprøven bør du:</p>
-      <ul>
-        <li>Ta vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis treningsprøve</a> for å teste kunnskapen din</li>
-      </ul>
-      <p>I tillegg bør du:</p>
       <ul>
         <li><strong>Lese læreboken grundig:</strong> Gjennomgå alle kapitler flere ganger</li>
         <li><strong>Øve med prøveeksamen:</strong> Bruk apper eller nettsider med prøveeksamener</li>
@@ -301,7 +307,12 @@ export const articles: Record<string, {
       <h2>3. Kjøreopplæring – lær å kjøre</h2>
       <p>Etter å ha bestått teoriprøven kan du begynne på kjøreopplæringen. Dette er det praktiske steget der du faktisk lærer å kjøre bil.</p>
       
-   
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article2.png" alt="Kjøreopplæring for førerkort klasse B" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Kjøreopplæringen er et viktig steg i prosessen mot førerkort.
+        </figcaption>
+      </figure>
       
       <h3>Obligatorisk minimum</h3>
       <p>Du må ta minimum 13 kjøretimer á 45 minutter. Disse timene må dekke:</p>
@@ -446,7 +457,7 @@ export const articles: Record<string, {
       <h2>Konklusjon</h2>
       <p>Førerkort klasse B er det mest vanlige førerkortet i Norge og gir deg frihet til å kjøre personbil. Prosessen består av fire hovedsteg: trafikalt grunnkurs, teoriprøve, kjøreopplæring og førerprøve.</p>
       
-      <p>Ta deg tid til å forberede deg grundig på hvert steg, og ikke nøl med å ta flere kjøretimer hvis du trenger det. Det viktigste er at du føler deg trygg bak rattet når du skal ta førerprøven. Husk å teste deg selv med vår <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">gratis teoriprøve</a> før du tar den offisielle prøven, og les vår guide om <a href="/artikler/5" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">hvordan du forbereder deg til førerprøven</a>.</p>
+      <p>Ta deg tid til å forberede deg grundig på hvert steg, og ikke nøl med å ta flere kjøretimer hvis du trenger det. Det viktigste er at du føler deg trygg bak rattet når du skal ta førerprøven.</p>
       
       <p>Ved å bruke Førerkortportalen kan du enkelt finne og sammenligne trafikkskoler som tilbyr opplæring i klasse B. Dette gjør det lettere å velge en skole som passer din situasjon, behov og budsjett.</p>
     `,
@@ -492,6 +503,13 @@ export const articles: Record<string, {
       <blockquote>
         <p><strong>Tips:</strong> Intensivkurs passer best hvis du har tid til å sette av 2-4 uker, tåler høyt tempo og har en klar deadline. Hvis du har fulltidsjobb eller trenger fleksibilitet, kan tradisjonelt opplegg eller hybrid være bedre.</p>
       </blockquote>
+      
+      <figure class="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo3.png" alt="Intensivkurs vs. tradisjonelt førerkortløp" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Intensivløp passer når tiden er knapp; tradisjonelt løp gir fleksibilitet.
+        </figcaption>
+      </figure>
 
       <h2>Tradisjonelt løp – når du vil ha fleksibilitet</h2>
       <p>Et tradisjonelt opplegg går ofte over 3–6 måneder med 1–2 kjøretimer i uken. Du får tid til å øve privat, fordøye stoffet og spre kostnadene.</p>
@@ -540,7 +558,13 @@ export const articles: Record<string, {
       </ul>
       
       <h2>Ekstra elementer som påvirker valget</h2>
-  
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article3.png" alt="Velge mellom intensivkurs og tradisjonelt løp" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Valget mellom intensivkurs og tradisjonelt løp avhenger av din situasjon og behov.
+        </figcaption>
+      </figure>
       
       <h3>Tilgang til bil og øvingspartner</h3>
       <p>Har du en øvingspartner (over 25 år med 5 års førerrett)? Det kan redusere antall skoletimer, særlig i tradisjonelt løp.</p>
@@ -600,7 +624,12 @@ export const articles: Record<string, {
       
       <p>Så la oss rydde opp i forvirringen og gå gjennom hva du faktisk må betale.</p>
       
-    
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo5.png" alt="Kostnader ved førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Førerkort er en betydelig investering, men med god planlegging kan du holde kostnadene under kontroll.
+        </figcaption>
+      </figure>
 
       <h2>Hvorfor er førerkort så dyrt i Norge?</h2>
       
@@ -641,7 +670,13 @@ export const articles: Record<string, {
       <h2>Variabel kostnad: kjøretimer – den store joker'n</h2>
       
       <p>Her varierer det mest. Noen tar lappen nesten uten ekstra timer, mens andre trenger tid på å bli trygge. Det handler ikke om intelligens; det handler om erfaring, stressnivå, trafikksans og noen ganger ren dagsform.</p>
-    
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article5.png" alt="Kjøretimer og kostnader for førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Antall kjøretimer varierer og påvirker totalprisen betydelig.
+        </figcaption>
+      </figure>
       
       <p>For de fleste ligger dette på 10–20 ekstra timer, som gjerne betyr:</p>
       
@@ -724,10 +759,16 @@ export const articles: Record<string, {
     category: "Tips",
     image: "/Article-photo5.png",
     content: `
-      <p class="lead">Førerprøven (oppkjøringen) er det siste steget før du får førerkortet. Her er tips for å forberede deg best mulig og øke sjansene for å bestå på første forsøk. Husk at du må ha bestått <a href="/teoriprove" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">teoriprøven</a> først.</p>
+      <p class="lead">Førerprøven (oppkjøringen) er det siste steget før du får førerkortet. Her er tips for å forberede deg best mulig og øke sjansene for å bestå på første forsøk.</p>
       
       <h2>Før prøven – praktisk forberedelse</h2>
       
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo5.png" alt="Forberedelser til førerprøven" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          God forberedelse før oppkjøring øker sjansen for å bestå på første forsøk.
+        </figcaption>
+      </figure>
 
       <h3>1. Øv deg grundig</h3>
       <p>Ta nok kjøretimer til at du føler deg trygg bak rattet. Det er bedre å ta noen ekstra timer enn å prøve for tidlig. Sørg for at du har kjørt i ulike situasjoner: bytrafikk, landevei, motorvei, i mørke, i dårlig vær.</p>
@@ -821,12 +862,25 @@ export const articles: Record<string, {
       <h2>2. Ventetid</h2>
       <p>Det tar vanligvis 1-2 uker før førerkortet er klart. Du får beskjed når det er klart for henting. I mellomtiden har du ikke lov til å kjøre bil, så du må vente med å kjøre alene til du har fått førerkortet.</p>
 
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo1.png" alt="Etter bestått førerprøve" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Etter bestått prøve gjenstår bestilling, ventetid og trygg oppstart som ny sjåfør.
+        </figcaption>
+      </figure>
+      
       <h2>3. Henting av førerkort</h2>
       <p>Når førerkortet er klart, kan du hente det på det trafikantkontoret du bestilte det til. Husk å ta med gyldig legitimasjon når du henter det.</p>
       
       <h2>4. Prøvetid i 2 år</h2>
       <p>Som ny fører har du prøvetid i 2 år fra den dagen du fikk førerkortet. Under prøvetiden:</p>
-  
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article6.png" alt="Prøvetid for nye førere" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Som ny fører har du prøvetid i 2 år med strengere regler.
+        </figcaption>
+      </figure>
       
       <ul>
         <li>Du har strengere regler enn erfarne førere</li>
@@ -918,7 +972,12 @@ export const articles: Record<string, {
       
       <p>Det er effektivt, men også krevende. De fleste beskriver det som "å leve og puste bil i to uker".</p>
       
-     
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo3.png" alt="Intensivkurs førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Intensivkurs kan være raskt og effektivt, men passer ikke for alle. Tenk gjennom om det er riktig valg for deg.
+        </figcaption>
+      </figure>
       
       <h2>Fordelene – når intensivkurs faktisk er en god idé</h2>
       <p>La oss være ærlige: Intensivkurs kan være fantastisk for mange.</p>
@@ -1026,7 +1085,12 @@ export const articles: Record<string, {
       
       <p>Det samme gjelder førerkortet.</p>
       
-     
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo5.png" alt="Spar penger på førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Med riktig planlegging kan du spare penger på førerkortet uten å kutte på kvaliteten.
+        </figcaption>
+      </figure>
       
       <h2>1. Få oversikt før du starter (du sparer mer enn du tror)</h2>
       
@@ -1226,7 +1290,12 @@ export const articles: Record<string, {
       
       <p>De obligatoriske kursene binder alt sammen.</p>
       
-    
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo1.png" alt="Obligatoriske kurs for førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Obligatoriske kurs sikrer en trygg og helhetlig opplæring, og er de fleste elevers største kostnadsposter.
+        </figcaption>
+      </figure>
       
       <h2>Oversikt: Disse kursene må alle ta</h2>
       
@@ -1407,11 +1476,17 @@ export const articles: Record<string, {
     category: "Guider",
     image: "/Article-photo2.png",
     content: `
-      <p class="lead">For mange føles førerkortprosessen som en labyrint. Det er mye som skal på plass: kurs, kjøretimer, dokumenter, teori, oppkjøring – og det virker nesten som alle du snakker med gir helt ulike råd. Men sannheten er at prosessen er ganske ryddig når du får sett den fra start til slutt. Se også vår <a href="/slik-fungerer-det" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">enkle guide om hvordan tjenesten fungerer</a>.</p>
+      <p class="lead">For mange føles førerkortprosessen som en labyrint. Det er mye som skal på plass: kurs, kjøretimer, dokumenter, teori, oppkjøring – og det virker nesten som alle du snakker med gir helt ulike råd. Men sannheten er at prosessen er ganske ryddig når du får sett den fra start til slutt.</p>
       
       <p>Her får du en enkel, ærlig og helt oppdatert steg-for-steg-guide som viser hvordan du går fra null til førerkort – uten stress og uten at du trenger å google alt underveis.</p>
       
-     
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo2.png" alt="Førerkortprosessen steg for steg" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Førerkortprosessen er ryddig når du ser den fra start til slutt. Her er hele veien forklart steg for steg.
+        </figcaption>
+      </figure>
+      
       <h2>Steg 1: Trafikalt grunnkurs (hvis du er under 25)</h2>
       
       <p>Dette er startskuddet for hele reisen.</p>
@@ -1511,7 +1586,7 @@ export const articles: Record<string, {
       
       <h2>Steg 6: Teoriprøven</h2>
       
-      <p>Teoriprøven kan du ta når du er 17,5 år – og du trenger ikke være ferdig å kjøre først. Faktisk er det smart å ta den tidlig, så du slipper stress senere. Vi anbefaler å øve med vår <a href="/teoriprove">gratis teoriprøve</a> før du tar den offisielle prøven.</p>
+      <p>Teoriprøven kan du ta når du er 17,5 år – og du trenger ikke være ferdig å kjøre først. Faktisk er det smart å ta den tidlig, så du slipper stress senere.</p>
       
       <p><strong>Husk:</strong></p>
       
@@ -1606,7 +1681,13 @@ export const articles: Record<string, {
       
       <p>Her får du en enkel, men grundig sjekkliste som gjør det lettere å finne en skole som matcher både budsjettet ditt og måten du lærer på.</p>
       
-   
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo5.png" alt="Velge riktig kjøreskole" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Å velge riktig kjøreskole handler om å finne en skole som matcher både budsjettet ditt og måten du lærer på.
+        </figcaption>
+      </figure>
+      
       <h2>Start med det viktigste: Hva trenger du?</h2>
       
       <p>Det høres banalt ut, men mange hopper rett til pris uten å tenke gjennom behovene sine først. La oss ta en liten realitetssjekk:</p>
@@ -1722,7 +1803,12 @@ export const articles: Record<string, {
       
       <p>Denne guiden viser deg nøyaktig hva sensoren vurderer, hvilke feil som oftest gjør at folk stryker, og hva du kan gjøre for å øke sjansene dine dramatisk.</p>
       
-    
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo5.png" alt="Bestå oppkjøringen på første forsøk" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Med riktig forberedelse kan du øke sjansene for å bestå oppkjøringen på første forsøk betydelig.
+        </figcaption>
+      </figure>
       
       <h2>Kort forklart: De som består på første forsøk har tre ting til felles</h2>
       
@@ -1881,7 +1967,12 @@ export const articles: Record<string, {
       
       <p>Greia er at det ikke finnes ett enkelt svar – men det finnes mønstre, og de gir oss veldig gode pekepinner. La oss gå gjennom alt, ærlig og forståelig.</p>
       
-     
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo2.png" alt="Hvor mange kjøretimer trenger man" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Antall kjøretimer varierer mye, men de fleste trenger 10-25 timer. Hvor mye du øver privat er den største faktoren.
+        </figcaption>
+      </figure>
       
       <h2>Det korte svaret først: De fleste trenger 10–25 kjøretimer</h2>
       
@@ -2056,6 +2147,12 @@ export const articles: Record<string, {
       
       <p>La oss gå gjennom alt, uten stress og uten teknisk tåkeprat.</p>
       
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo2.png" alt="Hvor lang tid tar det å ta førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          De fleste bruker 8-20 uker på å ta førerkort. Tiden varierer basert på hvor mye du øver privat og hvor raskt du lærer.
+        </figcaption>
+      </figure>
       
       <h2>Hvor lang tid bruker de fleste?</h2>
       
@@ -2214,7 +2311,12 @@ export const articles: Record<string, {
       
       <p>Her får du en tydelig forklaring på hva hver av dem gir deg, hva de ikke gir deg, og hvordan du kan bruke kombinasjonen smart for å spare tid og penger.</p>
       
-
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo3.png" alt="Trafikkskole vs privat øvelseskjøring" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Trafikkskole og privat øvelseskjøring trener to forskjellige ferdigheter. Du trenger begge for å bli en god sjåfør.
+        </figcaption>
+      </figure>
       
       <h2>Kort forklart: De trener to helt forskjellige ferdigheter</h2>
       
@@ -2331,8 +2433,6 @@ export const articles: Record<string, {
       
       <p>Dette gir både trygghet og kvalitet – og færre unødvendige kostnader.</p>
       
-     
-      
       <blockquote>
         <p><strong>Tips:</strong> Den perfekte kombinasjonen: 5-10 timer hos trafikkskolen i starten, masse privat øvelseskjøring (20-50 timer), og 5-10 timer ekstra hos lærer mot slutten. Dette gir både trygghet og kvalitet.</p>
       </blockquote>
@@ -2388,7 +2488,12 @@ export const articles: Record<string, {
       
       <p>I denne artikkelen bryter vi ned forskjellen mellom fastpris og betaling per time, hva du faktisk betaler for, og når noen av alternativene gir bedre verdi enn det andre.</p>
       
-
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Article-photo5.png" alt="Fastpris vs betaling per kjøretime" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Valget mellom fastpris og betaling per time avhenger av din situasjon. Ingen av alternativene er automatisk billigst.
+        </figcaption>
+      </figure>
       
       <h2>Hva er egentlig fastpris?</h2>
       
@@ -2715,11 +2820,9 @@ function ArticleContent({ params }: { params: { id: string } }) {
     "description": finalArticle.excerpt,
     "image": finalArticle.image ? `https://forerkortportalen.no${finalArticle.image}` : undefined,
     "datePublished": finalArticle.date,
-    "dateModified": finalArticle.date, // Update this if you have modified dates
     "author": {
       "@type": "Organization",
-      "name": "Førerkortportalen",
-      "url": "https://forerkortportalen.no"
+      "name": "Førerkortportalen"
     },
     "publisher": {
       "@type": "Organization",
@@ -2732,9 +2835,7 @@ function ArticleContent({ params }: { params: { id: string } }) {
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `https://forerkortportalen.no/artikler/${finalArticle.id}`
-    },
-    "inLanguage": "nb-NO",
-    "articleSection": finalArticle.category
+    }
   };
 
   return (
@@ -2743,36 +2844,6 @@ function ArticleContent({ params }: { params: { id: string } }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      {/* Breadcrumbs for better navigation */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Hjem",
-                item: "https://forerkortportalen.no",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Artikler",
-                item: "https://forerkortportalen.no/artikler",
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: finalArticle.title,
-                item: `https://forerkortportalen.no/artikler/${finalArticle.id}`,
-              },
-            ],
-          }),
-        }}
       />
       <Navbar />
       <ArticleFormOverlay />
@@ -2884,7 +2955,7 @@ function ArticleContent({ params }: { params: { id: string } }) {
             {/* Content */}
             <div className="px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
               <div
-                className="prose prose-slate prose-lg max-w-none prose-a:text-[#3bb54a] prose-a:hover:text-[#2d8f3d] prose-a:font-medium prose-a:underline 
+                className="prose prose-slate prose-lg max-w-none 
                   prose-headings:text-slate-900 prose-headings:font-semibold prose-headings:mt-12 prose-headings:mb-6
                   prose-h1:text-3xl sm:prose-h1:text-4xl prose-h1:font-bold prose-h1:mt-14 prose-h1:mb-7
                   prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:font-bold prose-h2:scroll-mt-24
@@ -2962,7 +3033,7 @@ function ArticleContent({ params }: { params: { id: string } }) {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-slate-900">Flere tilbud – ett skjema</p>
-                          <p className="text-sm text-slate-600">Få tilbud fra godkjente trafikkskoler uten å ringe rundt.</p>
+                          <p className="text-sm text-slate-600">Få tilbud fra kvalitetssikrede trafikkskoler uten å ringe rundt.</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">

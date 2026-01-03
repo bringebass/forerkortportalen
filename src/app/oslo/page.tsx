@@ -28,9 +28,7 @@ export default function OsloPage() {
         
         <WhyChooseSection />
         <HowItWorksSection />
-        <InfoSection 
-          description="Vi samarbeider med trafikkskoler i hele Oslo, fyll inn skjemaet og motta tilbud fra flere forskjellige"
-        />
+        <InfoSection />
         <TestimonialsSection />
         <FAQSection />
         

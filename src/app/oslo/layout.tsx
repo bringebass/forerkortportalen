@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Finn trafikkskole i Oslo | Førerkortportalen",
-  description: "Finn riktig trafikkskole for deg i Oslo. Få tilbud fra flere godkjente trafikkskoler i Oslo og sammenligne priser, pakker og tilgjengelighet.",
+  title: "Trafikkskoler i Oslo | Førerkortportalen",
+  description: "Finn riktig trafikkskole for deg i Oslo. Fyll ut skjemaet og motta tilbud fra flere godkjente trafikkskoler i Oslo.",
   keywords: [
-    "trafikkskole Oslo",
-    "førerkort Oslo",
-    "kjøreskole Oslo",
-    "føreropplæring Oslo",
-    "intensivkurs Oslo",
+    "trafikkskole oslo",
+    "førerkort oslo",
+    "trafikkskoler oslo",
   ],
   openGraph: {
-    title: "Finn trafikkskole i Oslo | Førerkortportalen",
-    description: "Finn riktig trafikkskole for deg i Oslo. Få tilbud fra flere godkjente trafikkskoler.",
+    title: "Trafikkskoler i Oslo | Førerkortportalen",
+    description: "Finn riktig trafikkskole for deg i Oslo.",
     url: "https://forerkortportalen.no/oslo",
     type: "website",
   },
@@ -28,7 +26,3 @@ export default function OsloLayout({
 }) {
   return children;
 }
-
-
-
-

@@ -88,10 +88,10 @@ export default function KontaktPage() {
                 <div>
                   <p className="font-semibold text-slate-900 mb-1">E-post</p>
                   <a
-                    href="mailto:help@dbinfo.no"
+                    href="mailto:kontakt@forerkortportalen.no"
                     className="text-[#3bb54a] hover:underline"
                   >
-                    help@dbinfo.no
+                   kontakt@forerkortportalen.no
                   </a>
                 </div>
               </div>
