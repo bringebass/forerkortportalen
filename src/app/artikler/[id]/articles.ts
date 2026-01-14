@@ -595,12 +595,7 @@ export const articles: Record<string, {
       
       <p>Så la oss rydde opp i forvirringen og gå gjennom hva du faktisk må betale.</p>
       
-      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-        <img src="/Article-photo5.png" alt="Kostnader ved førerkort" class="w-full h-auto object-cover" loading="lazy" />
-        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
-          Førerkort er en betydelig investering, men med god planlegging kan du holde kostnadene under kontroll.
-        </figcaption>
-      </figure>
+    
 
       <h2>Hvorfor er førerkort så dyrt i Norge?</h2>
       
