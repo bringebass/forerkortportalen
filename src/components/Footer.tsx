@@ -60,11 +60,11 @@ export default function Footer() {
       ],
     },
     {
-      title: "Førerkortklasser",
+      title: "Artikler",
       links: [
-        { label: "Klasse B", href: "/artikler/2" },
-        { label: "MC-klasser", href: "/mc-klasser" },
-        { label: "Tilhenger", href: "/tilhenger" },
+        { label: "Alt du trenger å vite om førerkort klasse B", href: "/artikler/2" },
+        { label: "Hva koster førerkort i Norge?", href: "/artikler/4" },
+        { label: "Forbered deg til førerprøven", href: "/artikler/5" },
       ],
     },
     {
