@@ -23,12 +23,12 @@ export default function TakkPage() {
       // Small delay to ensure gtag is fully loaded
       setTimeout(() => {
         if (window.gtag) {
-          window.gtag("event", "conversion", {
-            send_to: "AW-17789739680/Qu87CPKMmc4bEKDF56JC",
-            value: 1.0,
-            currency: "NOK",
-          });
-          console.log("[Google Ads] Conversion tracked on thank you page");
+        window.gtag("event", "conversion", {
+          send_to: "AW-17789739680/Qu87CPKMmc4bEKDF56JC",
+          value: 1.0,
+          currency: "NOK",
+        });
+        console.log("[Google Ads] Conversion tracked on thank you page");
         }
       }, 100);
     }

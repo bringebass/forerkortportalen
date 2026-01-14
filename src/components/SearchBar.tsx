@@ -192,10 +192,22 @@ const faq = [
 // Pages that should be searchable
 const searchablePages = [
   {
+    title: "Artikler",
+    description: "Les nyttige guider og artikler om førerkort, trafikkskoler, føreropplæring og mer.",
+    keywords: ["artikler", "artikkel", "guider", "guide", "blogg", "innhold", "lese", "informasjon"],
+    href: "/artikler",
+  },
+  {
     title: "Teoriprøve Klasse B",
     description: "Gratis treningsprøve med 45 spørsmål som ligner på den virkelige teoriprøven hos Statens vegvesen. 90 minutter og minst 38 riktige svar for å bestå.",
     keywords: ["teori", "teoriprøve", "teori prøve", "klasse b", "test", "treningsprøve", "prøve", "eksamen"],
     href: "/teoriprove",
+  },
+  {
+    title: "Kontakt",
+    description: "Kontakt oss hvis du har spørsmål eller trenger hjelp med å finne riktig trafikkskole.",
+    keywords: ["kontakt", "ta kontakt", "spørsmål", "hjelp", "support", "e-post", "telefon", "melding"],
+    href: "/kontakt",
   },
   {
     title: "Om oss",
@@ -226,6 +238,24 @@ const searchablePages = [
     description: "Informasjon om førerkort for tilhenger, inkludert klasse BE og B96.",
     keywords: ["tilhenger", "klasse be", "b96", "be", "tilhenger lappen"],
     href: "/tilhenger",
+  },
+  {
+    title: "Oslo",
+    description: "Finn trafikkskoler i Oslo og få tilbud fra flere skoler i området.",
+    keywords: ["oslo", "trafikkskole oslo", "kjøreskole oslo", "førerkort oslo"],
+    href: "/oslo",
+  },
+  {
+    title: "Brukervilkår",
+    description: "Les våre brukervilkår og vilkår for bruk av Førerkortportalen.",
+    keywords: ["brukervilkår", "vilkår", "terms", "betingelser", "regler"],
+    href: "/brukervilkar",
+  },
+  {
+    title: "Personvern",
+    description: "Les vår personvernpolicy og hvordan vi håndterer dine personopplysninger.",
+    keywords: ["personvern", "privacy", "personopplysninger", "gdpr", "databeskyttelse"],
+    href: "/personvern",
   },
 ];
 

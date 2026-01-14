@@ -68,10 +68,10 @@ export async function POST(request: Request) {
         if (parsed.data.mainLicenseSelection) {
           // Use mainLicenseSelection for primary display
           licenseTypeDisplay = parsed.data.mainLicenseSelection === "B"
-            ? "Klasse B (Manuell)"
-            : parsed.data.mainLicenseSelection === "B_AUT"
-            ? "Klasse B (Automat)"
-            : parsed.data.mainLicenseSelection === "OTHER"
+          ? "Klasse B (Manuell)"
+          : parsed.data.mainLicenseSelection === "B_AUT"
+          ? "Klasse B (Automat)"
+          : parsed.data.mainLicenseSelection === "OTHER"
             ? parsed.data.licenseType || "Annet"
             : parsed.data.mainLicenseSelection;
         } else {
