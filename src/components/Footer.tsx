@@ -3,10 +3,13 @@
 import { useFormContext } from "@/contexts/FormContext";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Footer() {
   const { hasStartedFilling } = useFormContext();
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 640);
@@ -20,26 +23,54 @@ export default function Footer() {
   // Reduce padding on mobile when user has started filling (CompactFormCTA is shown instead of StickyMobileCTA)
   const mobilePadding = hasStartedFilling && isMobile ? "pb-6" : "pb-24";
 
+  // Handle hash navigation - scroll to element after navigation
+  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("/#")) {
+      e.preventDefault();
+      const hash = href.substring(2); // Remove "/#"
+      
+      if (pathname === "/") {
+        // Already on home page, just scroll
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 50);
+      } else {
+        // Navigate to home page first, then scroll
+        router.push(`/#${hash}`);
+        // Wait for navigation then scroll
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 300);
+      }
+    }
+  };
+
   const footerSections = [
     {
       title: "Tjenesten",
       links: [
-        { label: "Om Førerkortportalen", href: "/" },
-        { label: "Slik fungerer det", href: "#hvordan" },
+        { label: "Om Førerkortportalen", href: "/om-oss" },
+        { label: "Slik fungerer det", href: "/#hvordan" },
       ],
     },
     {
       title: "Førerkortklasser",
       links: [
-        { label: "Klasse B", href: "#klasser" },
-        { label: "MC-klasser", href: "#klasser" },
-        { label: "Tilhenger", href: "#klasser" },
+        { label: "Klasse B", href: "/artikler/2" },
+        { label: "MC-klasser", href: "/mc-klasser" },
+        { label: "Tilhenger", href: "/tilhenger" },
       ],
     },
     {
       title: "Annet",
       links: [
-        { label: "Ofte stilte spørsmål", href: "#faq" },
+        { label: "Ofte stilte spørsmål", href: "/#faq" },
         { label: "Kontakt oss", href: "/kontakt" },
       ],
     },
@@ -64,12 +95,22 @@ export default function Footer() {
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-slate-600 hover:text-[#3bb54a] transition"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href.startsWith("/#") ? (
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleHashClick(e, link.href)}
+                        className="text-slate-600 hover:text-[#3bb54a] transition cursor-pointer"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-slate-600 hover:text-[#3bb54a] transition"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
