@@ -18,7 +18,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 export const articles = [
   {
     id: 1,
-    title: "Billigste måte å ta førerkort på – myter vs. fakta (2025-guide)",
+    title: "Billigste måte å ta førerkort på – myter vs. fakta (2026-guide)",
     excerpt: "En ærlig guide som rydder opp i myter om billig førerkort. Lær hva som faktisk sparer deg penger og hva som bare høres lure ut.",
     date: "20. januar 2025",
     readTime: "10 min lesing",
@@ -54,7 +54,7 @@ export const articles = [
   },
   {
     id: 4,
-    title: "Hva koster førerkort i Norge? (oppdatert guide 2025)",
+    title: "Hva koster førerkort i Norge? (oppdatert guide 2026)",
     excerpt: "Oppdatert oversikt over kostnader ved førerkort klasse B i 2025, obligatoriske utgifter, skjulte kostnader og hvordan du kan spare penger.",
     date: "15. januar 2025",
     readTime: "8 min lesing",
@@ -102,7 +102,7 @@ export const articles = [
   },
   {
     id: 8,
-    title: "Slik kan du spare penger på førerkortet (2025-guide)",
+    title: "Slik kan du spare penger på førerkortet (2026-guide)",
     excerpt: "Praktisk guide som viser hvordan du faktisk kan spare penger på førerkortet uten å kutte så mye at det går utover kvaliteten.",
     date: "30. januar 2025",
     readTime: "10 min lesing",
@@ -114,7 +114,7 @@ export const articles = [
   },
   {
     id: 9,
-    title: "Obligatoriske kurs for førerkort klasse B (komplett guide 2025)",
+    title: "Obligatoriske kurs for førerkort klasse B (komplett guide 2026)",
     excerpt: "Komplett guide til alle obligatoriske kursene du må ta for førerkort klasse B, inkludert varighet, priser og hva hvert kurs inneholder.",
     date: "2. februar 2025",
     readTime: "8 min lesing",
@@ -126,7 +126,7 @@ export const articles = [
   },
   {
     id: 10,
-    title: "Slik fungerer førerkortprosessen – steg for steg (2025-guide)",
+    title: "Slik fungerer førerkortprosessen – steg for steg (2026-guide)",
     excerpt: "Enkel og oppdatert steg-for-steg-guide som viser hvordan du går fra null til førerkort – uten stress og uten at du trenger å google alt underveis.",
     date: "5. februar 2025",
     readTime: "9 min lesing",
@@ -162,7 +162,7 @@ export const articles = [
   },
   {
     id: 13,
-    title: "Hvor mange kjøretimer trenger man egentlig? (realistisk guide 2025)",
+    title: "Hvor mange kjøretimer trenger man egentlig? (realistisk guide 2026)",
     excerpt: "Realistisk guide som viser hvor mange kjøretimer de fleste faktisk trenger, og hvilke faktorer som påvirker antall timer mest.",
     date: "12. februar 2025",
     readTime: "9 min lesing",
@@ -174,7 +174,7 @@ export const articles = [
   },
   {
     id: 14,
-    title: "Hvor lang tid tar det å ta førerkort? (realistisk guide 2025)",
+    title: "Hvor lang tid tar det å ta førerkort? (realistisk guide 2026)",
     excerpt: "Realistisk guide som viser hvor lang tid det tar å ta førerkort, fra start til slutt, og hva som påvirker tidsbruken.",
     date: "15. februar 2025",
     readTime: "8 min lesing",
@@ -206,6 +206,18 @@ export const articles = [
     image: "/Artikkel10.png",
     inArticleImages: [
       { image: "/in-article6.png", alt: "Fastpris vs betaling per time", caption: "Valget mellom fastpris og betaling per time avhenger av din situasjon og behov." }
+    ],
+  },
+  {
+    id: 17,
+    title: "Digitalt førerkort i Norge – Den komplette guiden for 2026",
+    excerpt: "Komplett guide til digitalt førerkort i Norge. Lær hvordan du aktiverer det, hva du kan bruke det til, krav, fordeler og begrensninger.",
+    date: "25. februar 2026",
+    readTime: "8 min lesing",
+    category: "Guider",
+    image: "/digitalt-forekort.png",
+    inArticleImages: [
+      { image: "/digitalt-forekort.png", alt: "Digitalt førerkort på mobil", caption: "Digitalt førerkort gir deg offisiell, gyldig versjon av førerkortet på mobilen." }
     ],
   },
 ];

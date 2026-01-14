@@ -40,7 +40,7 @@ export const articles: Record<string, {
 }> = {
   "1": {
     id: 1,
-    title: "Billigste måte å ta førerkort på – myter vs. fakta (2025-guide)",
+    title: "Billigste måte å ta førerkort på – myter vs. fakta (2026-guide)",
     excerpt: "En ærlig guide som rydder opp i myter om billig førerkort. Lær hva som faktisk sparer deg penger og hva som bare høres lure ut.",
     date: "20. januar 2025",
     readTime: "10 min lesing",
@@ -614,7 +614,7 @@ export const articles: Record<string, {
   },
   "4": {
     id: 4,
-    title: "Hva koster førerkort i Norge? (oppdatert guide 2025)",
+    title: "Hva koster førerkort i Norge? (oppdatert guide 2026)",
     excerpt: "Oppdatert oversikt over kostnader ved førerkort klasse B i 2025, obligatoriske utgifter, skjulte kostnader og hvordan du kan spare penger.",
     date: "15. januar 2025",
     readTime: "8 min lesing",
@@ -1069,7 +1069,7 @@ export const articles: Record<string, {
   },
   "8": {
     id: 8,
-    title: "Slik kan du spare penger på førerkortet (2025-guide)",
+    title: "Slik kan du spare penger på førerkortet (2026-guide)",
     excerpt: "Praktisk guide som viser hvordan du faktisk kan spare penger på førerkortet uten å kutte så mye at det går utover kvaliteten.",
     date: "30. januar 2025",
     readTime: "10 min lesing",
@@ -1268,7 +1268,7 @@ export const articles: Record<string, {
   },
   "9": {
     id: 9,
-    title: "Obligatoriske kurs for førerkort klasse B (komplett guide 2025)",
+    title: "Obligatoriske kurs for førerkort klasse B (komplett guide 2026)",
     excerpt: "Komplett guide til alle obligatoriske kursene du må ta for førerkort klasse B, inkludert varighet, priser og hva hvert kurs inneholder.",
     date: "2. februar 2025",
     readTime: "8 min lesing",
@@ -1470,7 +1470,7 @@ export const articles: Record<string, {
   },
   "10": {
     id: 10,
-    title: "Slik fungerer førerkortprosessen – steg for steg (2025-guide)",
+    title: "Slik fungerer førerkortprosessen – steg for steg (2026-guide)",
     excerpt: "Enkel og oppdatert steg-for-steg-guide som viser hvordan du går fra null til førerkort – uten stress og uten at du trenger å google alt underveis.",
     date: "5. februar 2025",
     readTime: "9 min lesing",
@@ -1953,7 +1953,7 @@ export const articles: Record<string, {
   },
   "13": {
     id: 13,
-    title: "Hvor mange kjøretimer trenger man egentlig? (realistisk guide 2025)",
+    title: "Hvor mange kjøretimer trenger man egentlig? (realistisk guide 2026)",
     excerpt: "Realistisk guide som viser hvor mange kjøretimer de fleste faktisk trenger, og hvilke faktorer som påvirker antall timer mest.",
     date: "12. februar 2025",
     readTime: "9 min lesing",
@@ -2135,7 +2135,7 @@ export const articles: Record<string, {
   },
   "14": {
     id: 14,
-    title: "Hvor lang tid tar det å ta førerkort? (realistisk guide 2025)",
+    title: "Hvor lang tid tar det å ta førerkort? (realistisk guide 2026)",
     excerpt: "Realistisk guide som viser hvor lang tid det tar å ta førerkort, fra start til slutt, og hva som påvirker tidsbruken.",
     date: "15. februar 2025",
     readTime: "8 min lesing",
@@ -2614,6 +2614,165 @@ export const articles: Record<string, {
       <h2>Vil du sammenligne kjøreskoler?</h2>
       
       <p>Fyll ut skjemaet.</p>
+    `,
+  },
+  "17": {
+    id: 17,
+    title: "Digitalt førerkort i Norge – Den komplette guiden for 2026",
+    excerpt: "Komplett guide til digitalt førerkort i Norge. Lær hvordan du aktiverer det, hva du kan bruke det til, krav, fordeler og begrensninger.",
+    date: "25. februar 2026",
+    readTime: "8 min lesing",
+    category: "Guider",
+    image: "/digitalt-forekort.png",
+    content: `
+      <p class="lead">I en digital verden er stadig mer tilgjengelig på mobilen – og det inkluderer nå førerkortet ditt. Digitalt førerkort er en offisiell, gyldig versjon av ditt norske førerkort som du kan ha liggende på telefonen. Denne guiden forklarer alt du trenger å vite – fra hvordan du aktiverer det, hva du kan bruke det til, hvilke krav som gjelder, og hvilke fordeler og begrensninger det har.</p>
+      
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/digitalt-forekort.png" alt="Digitalt førerkort på mobil" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Digitalt førerkort gir deg offisiell, gyldig versjon av førerkortet på mobilen.
+        </figcaption>
+      </figure>
+      
+      <h2>Hva er digitalt førerkort?</h2>
+      
+      <p>Digitalt førerkort er en app-basert versjon av ditt norske førerkort som du kan vise fram når du kjører. Det har samme juridiske gyldighet som det fysiske kortet i Norge, og kan være et praktisk alternativ til å alltid ha kortet i lommeboka.</p>
+      
+      <p>Dette er en offisiell tjeneste fra Statens vegvesen, som betyr at politiet og andre myndigheter aksepterer det digitale førerkortet på samme måte som det fysiske kortet når du kjører i Norge.</p>
+      
+      <h2>Hvordan fungerer det?</h2>
+      
+      <p>Digitalt førerkort brukes gjennom «Førerkort-appen» som er utviklet av Statens vegvesen. Når du har aktivert det digitale kortet i appen, kan du vise det ved trafikkontroller eller ved identifikasjon som krever førerkort.</p>
+      
+      <p>Appen bruker ID-porten for sikker innlogging, noe som betyr at du logger inn med BankID eller annen ID-verifisering. Dette sikrer at kun du har tilgang til ditt digitale førerkort.</p>
+      
+      <h2>Hvordan få digitalt førerkort – steg for steg</h2>
+      
+      <p>Å få digitalt førerkort er enkelt og tar bare noen minutter.</p>
+      
+      <h3>1. Du må ha gyldig fysisk førerkort</h3>
+      
+      <p>For å bruke digitalt førerkort må du ha et gyldig norsk førerkort. Dersom førerkortet ditt er utløpt eller inndratt, vil du ikke få tilgang til den digitale versjonen. Hvis du ikke har førerkort ennå, må du først gjennomføre <a href="/artikler/10" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">førerkortprosessen</a> og få utstedt fysisk førerkort før du kan aktivere den digitale versjonen.</p>
+      
+      <h3>2. Last ned Førerkort-appen</h3>
+      
+      <p>Appen er tilgjengelig for både iPhone og Android. Du laster den ned fra App Store, Google Play eller Huawei AppGallery ved å søke etter «Førerkort».</p>
+      
+      <h3>3. Logg inn med ID-porten</h3>
+      
+      <p>Når appen er installert, logger du inn via ID-porten. Dette gjøres vanligvis med BankID og sørger for sikker identifisering.</p>
+      
+      <h3>4. Aktiver digitalt førerkort</h3>
+      
+      <p>Etter innlogging sjekker appen automatisk om du har gyldig førerkort. Dersom alt er i orden, blir det digitale førerkortet aktivert og klart til bruk.</p>
+      
+      <h2>Hvilke krav gjelder for digitalt førerkort?</h2>
+      
+      <p>For at digitalt førerkort skal være gyldig, må følgende krav være oppfylt:</p>
+      
+      <h3>Gyldig førerkort</h3>
+      
+      <p>Du må ha et gyldig fysisk førerkort registrert i Norge. Om du skal ta <a href="/artikler/2" class="text-[#3bb54a] hover:text-[#2d8f3d] underline font-medium">førerkort klasse B</a> eller en annen klasse, må du først gjennomføre prosessen og få utstedt fysisk førerkort.</p>
+      
+      <h3>Støttet mobiltelefon</h3>
+      
+      <p>Appen krever relativt ny programvare:</p>
+      <ul>
+        <li><strong>iOS 15</strong> eller nyere</li>
+        <li><strong>Android 10</strong> eller nyere</li>
+      </ul>
+      
+      <h3>Telefonen må fungere</h3>
+      
+      <p>Du må kunne vise førerkortet på skjermen. Dersom telefonen er tom for strøm, ødelagt eller ikke fungerer, kan du ikke bruke det digitale førerkortet.</p>
+      
+      <h2>Fordeler med digitalt førerkort</h2>
+      
+      <h3>Enklere i hverdagen</h3>
+      
+      <p>Mange glemmer lommeboken, men sjelden mobilen. Med digitalt førerkort har du alltid førerkortet tilgjengelig så lenge du har telefonen med deg.</p>
+      
+      <h3>Like gyldig som fysisk førerkort i Norge</h3>
+      
+      <p>Ved kontroll i Norge er digitalt førerkort juridisk like gyldig som plastkortet. Politiet og andre myndigheter aksepterer det på samme måte som det fysiske kortet.</p>
+      
+      <h3>Bedre sikkerhet</h3>
+      
+      <p>Digitalt førerkort er beskyttet av ID-porten og sikkerheten på telefonen din. Det er vanskeligere å misbruke enn et fysisk kort som kan mistes eller stjeles.</p>
+      
+      <h3>Rask tilgang</h3>
+      
+      <p>Det tar bare sekunder å åpne appen og vise førerkortet dersom du blir stoppet i kontroll.</p>
+      
+      <h2>Begrensninger du bør vite om</h2>
+      
+      <h3>Kun gyldig i Norge</h3>
+      
+      <p>Digitalt førerkort gjelder kun i Norge. Ved kjøring i utlandet må du alltid ha med fysisk førerkort.</p>
+      
+      <h3>Avhengig av mobil</h3>
+      
+      <p>Dersom telefonen er tom for strøm eller ikke fungerer, kan du ikke vise digitalt førerkort. Derfor anbefales det å fortsatt ha med fysisk førerkort ved lengre turer.</p>
+      
+      <h3>Årlig innlogging</h3>
+      
+      <p>For å beholde tilgangen må du logge inn på nytt via ID-porten minst én gang i året.</p>
+      
+      <h2>Vanlige spørsmål om digitalt førerkort</h2>
+      
+      <h3>Koster digitalt førerkort noe?</h3>
+      
+      <p>Nei, digitalt førerkort er helt gratis å bruke.</p>
+      
+      <h3>Kan alle førerkortklasser vises digitalt?</h3>
+      
+      <p>Ja, så lenge førerkortet er gyldig og registrert, vil de fleste klasser vises i appen.</p>
+      
+      <h3>Hva skjer hvis jeg fornyer førerkortet?</h3>
+      
+      <p>Når du får nytt fysisk førerkort, må du aktivere det digitale på nytt i appen.</p>
+      
+      <h2>Digitalt førerkort i fremtiden</h2>
+      
+      <p>Digitalt førerkort er en del av en større digitalisering av offentlige tjenester. I fremtiden kan vi forvente:</p>
+      
+      <h3>Mer funksjonalitet</h3>
+      
+      <p>Flere tjenester kan bli integrert i appen, som varsler om utløpsdato og kobling mot andre kjøretøytjenester.</p>
+      
+      <h3>Bedre internasjonal bruk</h3>
+      
+      <p>Det jobbes med løsninger som kan gjøre digitalt førerkort mer akseptert også utenfor Norge.</p>
+      
+      <h3>Økt sikkerhet</h3>
+      
+      <p>Biometrisk innlogging og bedre beskyttelse mot misbruk er sannsynlige forbedringer.</p>
+      
+      <h2>Tips for trygg bruk av digitalt førerkort</h2>
+      
+      <h3>Ha alltid en backup</h3>
+      
+      <p>Ta med fysisk førerkort på lengre turer eller når du reiser utenlands.</p>
+      
+      <h3>Pass på batteriet</h3>
+      
+      <p>Sørg for at telefonen har nok strøm før kjøreturer.</p>
+      
+      <h3>Bruk lås på telefonen</h3>
+      
+      <p>Aktiver PIN-kode, ansiktsgjenkjenning eller fingeravtrykk for ekstra sikkerhet.</p>
+      
+      <h2>Oppsummering</h2>
+      
+      <p>Digitalt førerkort gir deg:</p>
+      <ul>
+        <li>Et offisielt og gyldig førerkort på mobilen i Norge</li>
+        <li>Enkel tilgang uten behov for fysisk kort</li>
+        <li>Sikker identifisering gjennom ID-porten</li>
+        <li>Et praktisk supplement til det fysiske førerkortet</li>
+      </ul>
+      
+      <p>Digitalt førerkort er et moderne og brukervennlig alternativ for norske sjåfører, men bør brukes som et supplement – ikke en full erstatning – for det fysiske førerkortet.</p>
     `,
   },
 };

@@ -119,6 +119,13 @@ const articles = [
     category: "Økonomi",
     href: "/artikler/16",
   },
+  {
+    id: 17,
+    title: "Digitalt førerkort i Norge – Den komplette guiden for 2026",
+    excerpt: "Komplett guide til digitalt førerkort i Norge. Lær hvordan du aktiverer det, hva du kan bruke det til, krav, fordeler og begrensninger.",
+    category: "Guider",
+    href: "/artikler/17",
+  },
 ];
 
 // Import FAQ data
