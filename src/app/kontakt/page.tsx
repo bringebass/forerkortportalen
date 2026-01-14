@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { useState } from "react";
 
 export default function KontaktPage() {
@@ -61,6 +62,11 @@ export default function KontaktPage() {
 
   return (
     <main className="min-h-screen bg-white">
+      <Breadcrumbs
+        items={[
+          { name: "Kontakt", url: "https://forerkortportalen.no/kontakt" },
+        ]}
+      />
       <Navbar />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="space-y-8">

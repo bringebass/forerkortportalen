@@ -10,6 +10,7 @@ import ArticleStickyCTA from "@/components/ArticleStickyCTA";
 import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 import CompactFormCTA from "@/components/CompactFormCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // Placeholder artikler - du kan erstatte disse med faktiske artikler senere
 // Add inArticleImages array to specify images that appear further down in articles
@@ -213,6 +214,11 @@ export default function ArtiklerPage() {
   return (
     <FormProvider>
     <main className="min-h-screen bg-white">
+      <Breadcrumbs
+        items={[
+          { name: "Artikler", url: "https://forerkortportalen.no/artikler" },
+        ]}
+      />
       <Navbar />
       <ArticleFormOverlay />
       <ArticleStickyCTA />

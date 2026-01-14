@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,6 +13,11 @@ export default function PersonvernPage() {
 
   return (
     <main className="min-h-screen bg-white">
+      <Breadcrumbs
+        items={[
+          { name: "Personvern", url: "https://forerkortportalen.no/personvern" },
+        ]}
+      />
       <Navbar />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="space-y-8">

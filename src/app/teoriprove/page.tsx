@@ -810,7 +810,6 @@ function TeoriproveContent() {
         />
         <Breadcrumbs
           items={[
-            { name: "Hjem", url: "https://forerkortportalen.no" },
             { name: "Teoriprøve", url: "https://forerkortportalen.no/teoriprove" },
           ]}
         />

@@ -10,6 +10,7 @@ import ArticleFormOverlay from "@/components/ArticleFormOverlay";
 import CompactFormCTA from "@/components/CompactFormCTA";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import FormSidebar from "@/components/FormSidebar";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { useState, useEffect } from "react";
 
 function OmOssContent() {
@@ -77,6 +78,11 @@ function OmOssContent() {
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: "Om oss", url: "https://forerkortportalen.no/om-oss" },
+        ]}
+      />
       <Navbar />
       <ArticleFormOverlay />
       <ArticleStickyCTA />

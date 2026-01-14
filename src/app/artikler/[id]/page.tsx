@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { ScrollToFormButton } from "@/components/ScrollToFormButton";
 import { Calendar, Clock, ArrowLeft, Share2, List, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
@@ -2844,6 +2845,12 @@ function ArticleContent({ params }: { params: { id: string } }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Artikler", url: "https://forerkortportalen.no/artikler" },
+          { name: finalArticle.title, url: `https://forerkortportalen.no/artikler/${finalArticle.id}` },
+        ]}
       />
       <Navbar />
       <ArticleFormOverlay />
