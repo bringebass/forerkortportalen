@@ -118,6 +118,8 @@ export function LeadForm({
   const router = useRouter();
   const pathname = usePathname();
   const isArticlePage = pathname?.startsWith("/artikler");
+  // Pages that should use desktop focus mode (not homepage)
+  const shouldUseDesktopFocus = pathname !== "/";
   const { isFullscreen, setIsFullscreen, setHasStartedFilling, formData, setFormData, resetFormData, currentStep, setCurrentStep, isDesktopFocused, setIsDesktopFocused } = useFormContext();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -151,10 +153,10 @@ export function LeadForm({
     }
   };
 
-  // Activate desktop focus mode when user clicks on input fields (only on article pages)
+  // Activate desktop focus mode when user clicks on input fields (on article pages and other pages with FormSidebar/ArticleFormOverlay)
   // On homepage, users can fill in the form directly without auto-focus/blur
   const activateDesktopFocusIfNeeded = (inputId?: string, event?: React.FocusEvent) => {
-    if (isArticlePage && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
+    if (shouldUseDesktopFocus && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
       if (inputId && event) {
         // Store the input ID
         focusedInputIdRef.current = inputId;
@@ -459,9 +461,9 @@ const countryCodes = [
     // Activate fullscreen on mobile when clicking Next (even if validation fails)
     activateFullscreenIfNeeded();
     
-    // Activate desktop focus mode on article pages when clicking Next
+    // Activate desktop focus mode on article pages and other pages with FormSidebar/ArticleFormOverlay when clicking Next
     // On homepage, users can fill in the form directly without blur/overlay
-    if (isArticlePage && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
+    if (shouldUseDesktopFocus && typeof window !== 'undefined' && window.innerWidth >= 1024 && !isDesktopFocused) {
       setIsDesktopFocused(true);
     }
 
