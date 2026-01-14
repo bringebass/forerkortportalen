@@ -595,8 +595,13 @@ export const articles: Record<string, {
       
       <p>Så la oss rydde opp i forvirringen og gå gjennom hva du faktisk må betale.</p>
       
-    
-
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article1.png" alt="Kjøretimer og kostnader for førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Antall kjøretimer varierer og påvirker totalprisen betydelig.
+        </figcaption>
+      </figure>
+      
       <h2>Hvorfor er førerkort så dyrt i Norge?</h2>
       
       <p>Du har kanskje hørt folk si at det er nesten dyrere å ta lappen enn å kjøpe en brukt bil. Og ja, det kan det være. Men grunnen er egentlig ganske logisk: Norge har et av verdens grundigste opplæringsløp for nye sjåfører. Det betyr flere obligatoriske moduler, strenge sensorkrav og høyt fokus på trafikksikkerhet.</p>
@@ -724,8 +729,13 @@ export const articles: Record<string, {
       
       <h2>Før prøven – praktisk forberedelse</h2>
       
-   
-
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/in-article1.png" alt="Kjøretimer og kostnader for førerkort" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Antall kjøretimer varierer og påvirker totalprisen betydelig.
+        </figcaption>
+      </figure>
+      
       <h3>1. Øv deg grundig</h3>
       <p>Ta nok kjøretimer til at du føler deg trygg bak rattet. Det er bedre å ta noen ekstra timer enn å prøve for tidlig. Sørg for at du har kjørt i ulike situasjoner: bytrafikk, landevei, motorvei, i mørke, i dårlig vær.</p>
       
@@ -2226,7 +2236,12 @@ export const articles: Record<string, {
       
       <p>Her får du en tydelig forklaring på hva hver av dem gir deg, hva de ikke gir deg, og hvordan du kan bruke kombinasjonen smart for å spare tid og penger.</p>
       
-   
+      <figure class="my-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <img src="/Artikkel6.png" alt="Trafikkskole og privat øvelseskjøring" class="w-full h-auto object-cover" loading="lazy" />
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50">
+          Kombinasjonen av trafikkskole og privat øvelseskjøring gir best resultat.
+        </figcaption>
+      </figure>
       
       <h2>Kort forklart: De trener to helt forskjellige ferdigheter</h2>
       

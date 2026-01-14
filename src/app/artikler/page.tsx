@@ -217,7 +217,6 @@ export const articles = [
     category: "Guider",
     image: "/digitalt-forekort.png",
     inArticleImages: [
-      { image: "/digitalt-forekort.png", alt: "Digitalt førerkort på mobil", caption: "Digitalt førerkort gir deg offisiell, gyldig versjon av førerkortet på mobilen." },
       { image: "/aktivere-digitalt-forerkort.png", alt: "Aktivere digitalt førerkort i ID-porten", caption: "Du aktiverer digitalt førerkort gjennom ID-porten i Førerkort-appen." }
     ],
   },
