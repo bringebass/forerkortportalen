@@ -4,7 +4,7 @@ import { useFormContext } from "@/contexts/FormContext";
 import { useEffect, useState } from "react";
 import LeadForm from "@/components/LeadForm";
 
-const MOBILE_FULLSCREEN_BG = "bg-slate-900"; // Fullscreen overlay background
+const MOBILE_FULLSCREEN_BG = "bg-gradient-to-br from-slate-900 to-slate-600"; // Fullscreen overlay background
 
 export default function ArticleFormOverlay() {
   const { isFullscreen, setIsFullscreen, isDesktopFocused, setIsDesktopFocused } = useFormContext();
